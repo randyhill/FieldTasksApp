@@ -15,17 +15,26 @@ class FormController : UITableViewController {
         super.viewDidLoad()
 
         self.title = "Form: \(form!.name)"
-        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(goBack))
-        navigationItem.leftBarButtonItem = backButton
-     }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(goBack))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(submitForm))
+    }
 
     func goBack(){
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    func submitForm() {
+        if !form!.isComplete() {
+            self.showAlert("Form Incomplete", message: "You must complete all required fields before submitting the form")
+        } else {
+            ServerManager.sharedInstance.saveForm(form!) { (result, error) in
+            }
+        }
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,8 +50,15 @@ class FormController : UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath)
         let task = form!.tasks[indexPath.row]
-        cell.textLabel!.text = "\(task.name)"
-        cell.detailTextLabel!.text = "Type: \(task.type)"
+
+        var titleText = "\(task.name)"
+        if (task.result?.completed)! {
+            titleText = "√ " + titleText
+        }
+        cell.textLabel!.text = titleText
+
+        let detailText = "\(task.type)"
+        cell.detailTextLabel!.text = detailText
         return cell
     }
 

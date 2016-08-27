@@ -12,7 +12,7 @@ class Form {
     var id = ""
     var name = ""
     var description = ""
-    var tasks = [Task]()
+    var tasks = [FormTask]()
 
     init(formDict : [String : AnyObject]) {
         if let name = formDict["name"] as? String {
@@ -27,9 +27,32 @@ class Form {
         if let tasksArray = formDict["tasks"] as? [AnyObject] {
             for taskObject in tasksArray {
                 if let taskDict = taskObject as? [String : AnyObject] {
-                    self.tasks += [Task(taskDict: taskDict)]
+                    self.tasks += [FormTask(taskDict: taskDict)]
                 }
             }
         }
+    }
+
+    func toDict() -> [String : AnyObject]{
+        var formDict = [String : AnyObject]()
+
+        // Dont' write id, as this is a different object to database
+        formDict["name"] = name
+        formDict["description"] = description
+        var taskDicts = [[String : AnyObject]]()
+        for task in tasks {
+            taskDicts += [task.toDict()]
+        }
+        formDict["tasks"] = taskDicts
+        return formDict
+    }
+
+    func isComplete() -> Bool {
+        for task in tasks {
+            if !task.isComplete() {
+                return false
+            }
+        }
+        return true
     }
 }

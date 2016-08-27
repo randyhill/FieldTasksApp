@@ -33,8 +33,10 @@ class FormListController: UITableViewController {
                             self.formsList += [Form(formDict: formDict)]
                         }
                     }
-                    self.tableView.reloadData()
-                }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                    })
+                 }
 
             }
         }
@@ -42,6 +44,8 @@ class FormListController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
+        self.tableView.reloadData()
 
     }
 

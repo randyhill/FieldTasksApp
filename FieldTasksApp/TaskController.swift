@@ -9,32 +9,52 @@
 import UIKit
 
 
+
 class TaskController : UIViewController {
     var form : Form?
     var taskIndex = 0
+    var viewLayoutInited = false
     var taskHandler : TaskHandler?
+    var curTask : FormTask {
+        get {
+            return form!.tasks[taskIndex]
+        }
+    }
     @IBOutlet var taskDescription : UITextView!
     @IBOutlet var taskView : UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.updateViewValues()
-        self.createNewTask()
+
         let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(prevTask))
         navigationItem.leftBarButtonItem = backButton
         let nextButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(nextTask))
         navigationItem.rightBarButtonItem = nextButton
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.updateViewValues()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if !viewLayoutInited {
+            self.createNewTask()
+            viewLayoutInited = true
+        }
+    }
+
     func updateViewValues() {
-        let task = form!.tasks[taskIndex]
-        if task.name.characters.count > 0 {
-            self.title = task.name
+         if curTask.name.characters.count > 0 {
+            self.title = curTask.name
         } else {
             self.title = "Task"
         }
-        self.taskDescription.text = task.description
+        self.taskDescription.text = curTask.description
     }
 
     func createNewTask() {
@@ -49,28 +69,24 @@ class TaskController : UIViewController {
         taskView!.addSubview(subView)
         switch task.type {
         case "Text":
-            taskHandler = TextTaskHandler(container: subView)
+            taskHandler = TextTaskHandler(controller : self, container: subView, task: task)
         case "Number":
-            taskHandler = NumberTaskHandler(container: subView)
-        case "PhoneNumber":
-            taskHandler = PhoneTaskHandler(container: subView)
-        case "Choice":
-            taskHandler = ChoiceTaskHandler(container: subView)
+            taskHandler = NumberTaskHandler(controller : self, container: subView, task: task)
+        case "Choices":
+            taskHandler = ChoiceTaskHandler(controller : self, container: subView, task: task)
         case "Photo":
-            taskHandler = PhotoTaskHandler(container: subView)
+            taskHandler = PhotoTaskHandler(controller : self, container: subView, task: task)
         case "Worker":
-            taskHandler = WorkerTaskHandler(container: subView)
+            taskHandler = WorkerTaskHandler(controller : self, container: subView, task: task)
         case "Customer":
-            taskHandler = CustomerTaskHandler(container: subView)
+            taskHandler = CustomerTaskHandler(controller : self, container: subView, task: task)
         default:
-            taskHandler = TaskHandler(container: subView)
+            taskHandler = TaskHandler(controller : self, container: subView, task: task)
         }
+        taskHandler?.restore()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
 
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,69 +94,48 @@ class TaskController : UIViewController {
     }
 
     // MARK: Actions -------------------------------------------------------------------------------
+    func validateFields() -> Bool {
+        if !curTask.required {
+            return true
+        }
+        if let errorMessage = taskHandler?.validate() {
+            self.showAlert("Invalid value", message: errorMessage)
+//            let alert = UIAlertController(title: "Invalid value", message: errorMessage, preferredStyle: .Alert)
+//            let ok = UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) in
+//
+//            })
+//            alert.addAction(ok)
+//            self.presentViewController(alert, animated: true, completion: {
+//
+//            })
+            return false
+        }
+        return true
+    }
     @IBAction func prevTask(){
-        taskIndex -= 1
-        if taskIndex >= 0 {
-            self.updateViewValues()
-            self.createNewTask()
-        } else {
-            dismissViewControllerAnimated(true, completion: nil)
+        if validateFields() {
+            taskHandler!.save()
+            taskIndex -= 1
+            if taskIndex >= 0 {
+                self.updateViewValues()
+                self.createNewTask()
+            } else {
+                dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
 
     @IBAction func nextTask() {
-        taskIndex += 1
-        if taskIndex < form!.tasks.count {
-            self.updateViewValues()
-            self.createNewTask()
-        } else {
-            dismissViewControllerAnimated(true, completion: nil)
+        if validateFields() {
+            taskHandler!.save()
+            taskIndex += 1
+            if taskIndex < form!.tasks.count {
+                self.updateViewValues()
+                self.createNewTask()
+            } else {
+                dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
 }
 
-// MARK: Task Handlers -------------------------------------------------------------------------------
-class TaskHandler {
-    init(container : UIView) {
-        //container.backgroundColor = UIColor.blueColor()
-    }
-    func save() {
-
-    }
-}
-
-class TextTaskHandler : TaskHandler {
-    let textView = UITextView()
-
-    override init(container : UIView) {
-        super.init(container: container)
-        textView.frame = container.frame
-        textView.layer.borderWidth =  2.0
-        container.addSubview(textView)
-        textView.becomeFirstResponder()
-    }
-}
-
-class NumberTaskHandler : TextTaskHandler {
-
-}
-
-class PhoneTaskHandler : NumberTaskHandler {
-
-}
-
-class ChoiceTaskHandler : TaskHandler {
-
-}
-
-class PhotoTaskHandler : TaskHandler {
-
-}
-
-class WorkerTaskHandler : TaskHandler {
-
-}
-
-class CustomerTaskHandler : TaskHandler {
-
-}

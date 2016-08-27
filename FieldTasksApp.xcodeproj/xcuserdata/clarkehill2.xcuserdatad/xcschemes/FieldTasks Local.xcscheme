@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D8549B961D67871B009DBE7A"
-               BuildableName = "FieldTasksApp.app"
-               BlueprintName = "FieldTasksApp"
+               BlueprintIdentifier = "D85D53C21D710750006D31F2"
+               BuildableName = "FieldTasksApp Local.app"
+               BlueprintName = "FieldTasksApp Local"
                ReferencedContainer = "container:FieldTasksApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,33 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D8549BAD1D67871B009DBE7A"
-               BuildableName = "FieldTasksAppTests.xctest"
-               BlueprintName = "FieldTasksAppTests"
-               ReferencedContainer = "container:FieldTasksApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D8549BB81D67871B009DBE7A"
-               BuildableName = "FieldTasksAppUITests.xctest"
-               BlueprintName = "FieldTasksAppUITests"
-               ReferencedContainer = "container:FieldTasksApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8549B961D67871B009DBE7A"
-            BuildableName = "FieldTasksApp.app"
-            BlueprintName = "FieldTasksApp"
+            BlueprintIdentifier = "D85D53C21D710750006D31F2"
+            BuildableName = "FieldTasksApp Local.app"
+            BlueprintName = "FieldTasksApp Local"
             ReferencedContainer = "container:FieldTasksApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,19 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8549B961D67871B009DBE7A"
-            BuildableName = "FieldTasksApp.app"
-            BlueprintName = "FieldTasksApp"
+            BlueprintIdentifier = "D85D53C21D710750006D31F2"
+            BuildableName = "FieldTasksApp Local.app"
+            BlueprintName = "FieldTasksApp Local"
             ReferencedContainer = "container:FieldTasksApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "LOCAL"
-            value = "true"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -101,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8549B961D67871B009DBE7A"
-            BuildableName = "FieldTasksApp.app"
-            BlueprintName = "FieldTasksApp"
+            BlueprintIdentifier = "D85D53C21D710750006D31F2"
+            BuildableName = "FieldTasksApp Local.app"
+            BlueprintName = "FieldTasksApp Local"
             ReferencedContainer = "container:FieldTasksApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
