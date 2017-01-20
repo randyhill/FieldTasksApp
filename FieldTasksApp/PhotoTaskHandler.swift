@@ -11,7 +11,7 @@ import UIKit
 class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var pictureButton = UIButton()
     var pictureView = UIImageView()
-    var containerFrame = CGRectZero
+    var containerFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
     var photoData : PhotoTaskDescription {
         get {
             return task!.taskDescription as! PhotoTaskDescription
@@ -29,28 +29,28 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
 
         // Picture frame
         containerFrame = container.frame
-        pictureView.frame = CGRectMake(0, 0, containerFrame.width, containerFrame.height)
+        pictureView.frame = CGRect(x: 0, y: 0, width: containerFrame.width, height: containerFrame.height)
         pictureView.layer.borderWidth = 2.0
         container.addSubview(pictureView)
 
         // Picture button
-        pictureButton.frame = CGRectMake(container.frame.width - kButtonSize.width, 0, kButtonSize.width, kButtonSize.height)
-        pictureButton.setTitle("Take Picture", forState: .Normal)
-        pictureButton.setTitleColor(container.tintColor, forState: .Normal)
-        pictureButton.backgroundColor = UIColor.lightGrayColor()
+        pictureButton.frame = CGRect(x: container.frame.width - kButtonSize.width, y: 0, width: kButtonSize.width, height: kButtonSize.height)
+        pictureButton.setTitle("Take Picture", for: .normal)
+        pictureButton.setTitleColor(container.tintColor, for: .normal)
+        pictureButton.backgroundColor = UIColor.lightGray
         pictureButton.layer.cornerRadius = 8.0
-        pictureButton.userInteractionEnabled = true
-        pictureButton.addTarget(self, action: #selector(PhotoTaskHandler.snapIt), forControlEvents: .TouchUpInside)
+        pictureButton.isUserInteractionEnabled = true
+        pictureButton.addTarget(self, action: #selector(PhotoTaskHandler.snapIt), for: .touchUpInside)
         container.addSubview(pictureButton)
     }
 
     @objc func snapIt(sender: UIButton!) {
         let picker = UIImagePickerController()
         picker.delegate = self
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            picker.sourceType = .Camera
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.sourceType = .camera
         }
-        controller?.presentViewController(picker, animated: true, completion: {
+        controller?.present(picker, animated: true, completion: {
             print("done")
         })
     }
@@ -69,11 +69,11 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
         }
     }
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let picture = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            setPicture(picture)
+            setPicture(picture: picture)
         }
-        picker.dismissViewControllerAnimated(true) {
+        picker.dismiss(animated: true) {
             print("done")
         }
     }
@@ -84,11 +84,11 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
     }
 
     override func save() {
-        result.save(self.pictureView.image)
+        result.save(newPhoto: self.pictureView.image)
     }
     override func restore() {
         if let picture = result.photo {
-            setPicture(picture)
+            setPicture(picture: picture)
         }
     }
 }

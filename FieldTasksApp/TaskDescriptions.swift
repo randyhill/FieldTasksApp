@@ -47,10 +47,10 @@ class NumberTaskDescription  : TaskDescription {
     }
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
-        dict["isDecimal"] = isDecimal
-        dict["range"] = isUnlimited ? "unlimited" : "limited"
-        dict["min"] = min
-        dict["max"] = max
+        dict["isDecimal"] = isDecimal as AnyObject?
+        dict["range"] = (isUnlimited ? "unlimited" : "limited") as AnyObject
+        dict["min"] = min as AnyObject?
+        dict["max"] = max as AnyObject?
         return dict
     }
 }
@@ -71,8 +71,8 @@ class ChoicesTaskDescription  : TaskDescription {
     }
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
-        dict["selections"] = isRadio ? "single" : "multiple"
-        dict["choices"] = titles
+        dict["selections"] = (isRadio ? "single" : "multiple") as AnyObject
+        dict["choices"] = titles as AnyObject?
         return dict
     }
 }

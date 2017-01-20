@@ -1,5 +1,5 @@
 //
-//  FormController.swift
+//  TemplateController.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/19/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FormController : UITableViewController {
+class TemplateController : UITableViewController {
     var form : Template?
 
     override func viewDidLoad() {
@@ -57,12 +57,14 @@ class FormController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath as IndexPath)
         let task = form!.tasks[indexPath.row]
 
-        cell.textLabel!.text = task.name
-        if let result = task.result {
-            cell.detailTextLabel!.text = result.description()
-        } else {
-            cell.detailTextLabel!.text = "Not entered"
+        var titleText = "\(task.name)"
+        if (task.result?.completed)! {
+            titleText = "√ " + titleText
         }
+        cell.textLabel!.text = titleText
+
+        let detailText = "\(task.type)"
+        cell.detailTextLabel!.text = detailText
         return cell
     }
 
@@ -73,7 +75,7 @@ class FormController : UITableViewController {
             taskController.taskIndex = indexPath.row
             let navController = UINavigationController(rootViewController: taskController) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {
-
+                
             })
         }
     }

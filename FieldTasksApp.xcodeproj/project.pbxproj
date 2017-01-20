@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D82411A11E301BE6006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
+		D82411A31E301D5A006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
+		D82411A51E315517006D06E2 /* TemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* TemplateController.swift */; };
+		D82411A61E315517006D06E2 /* TemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* TemplateController.swift */; };
 		D826E6BD1D6D2AD8002B91AE /* PhotoTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6BC1D6D2AD8002B91AE /* PhotoTaskHandler.swift */; };
 		D826E6BF1D6D2B02002B91AE /* NumberTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6BE1D6D2B01002B91AE /* NumberTaskHandler.swift */; };
 		D826E6C11D6D2B24002B91AE /* TextTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6C01D6D2B24002B91AE /* TextTaskHandler.swift */; };
@@ -19,8 +23,6 @@
 		D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */; };
 		D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8549BA41D67871B009DBE7A /* Assets.xcassets */; };
 		D8549BA81D67871B009DBE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */; };
-		D8549BB31D67871B009DBE7A /* FieldTasksAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BB21D67871B009DBE7A /* FieldTasksAppTests.swift */; };
-		D8549BBE1D67871B009DBE7A /* FieldTasksAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BBD1D67871B009DBE7A /* FieldTasksAppUITests.swift */; };
 		D8549BCC1D678DFF009DBE7A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BCB1D678DFF009DBE7A /* ServerManager.swift */; };
 		D8549BCE1D67B5D5009DBE7A /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BCD1D67B5D5009DBE7A /* Form.swift */; };
 		D8549BD31D67E85A009DBE7A /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BD21D67E85A009DBE7A /* FormController.swift */; };
@@ -49,24 +51,9 @@
 		D85D53E11D711051006D31F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85D53DD1D710D94006D31F2 /* Globals.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D8549BAF1D67871B009DBE7A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D8549B8F1D67871B009DBE7A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D8549B961D67871B009DBE7A;
-			remoteInfo = FieldTasksApp;
-		};
-		D8549BBA1D67871B009DBE7A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D8549B8F1D67871B009DBE7A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D8549B961D67871B009DBE7A;
-			remoteInfo = FieldTasksApp;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		D82411A01E301BE6006D06E2 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = UI/MainController.swift; sourceTree = "<group>"; };
+		D82411A41E315517006D06E2 /* TemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateController.swift; path = UI/TemplateController.swift; sourceTree = "<group>"; };
 		D826E6BC1D6D2AD8002B91AE /* PhotoTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PhotoTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D826E6BE1D6D2B01002B91AE /* NumberTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D826E6C01D6D2B24002B91AE /* TextTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TextTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -81,10 +68,7 @@
 		D8549BA41D67871B009DBE7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8549BA71D67871B009DBE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8549BA91D67871B009DBE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8549BAE1D67871B009DBE7A /* FieldTasksAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FieldTasksAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8549BB21D67871B009DBE7A /* FieldTasksAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTasksAppTests.swift; sourceTree = "<group>"; };
 		D8549BB41D67871B009DBE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8549BB91D67871B009DBE7A /* FieldTasksAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FieldTasksAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8549BBD1D67871B009DBE7A /* FieldTasksAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTasksAppUITests.swift; sourceTree = "<group>"; };
 		D8549BBF1D67871B009DBE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8549BCB1D678DFF009DBE7A /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServerManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -106,20 +90,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8549BAB1D67871B009DBE7A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D8549BB61D67871B009DBE7A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D85D53D31D710750006D31F2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -130,6 +100,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D82411A21E301C01006D06E2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D8549B9E1D67871B009DBE7A /* Main.storyboard */,
+				D82411A01E301BE6006D06E2 /* MainController.swift */,
+				D8549B9C1D67871B009DBE7A /* FormListController.swift */,
+				D8549BD21D67E85A009DBE7A /* FormController.swift */,
+				D8549BD41D68A3C3009DBE7A /* TaskController.swift */,
+				D82411A41E315517006D06E2 /* TemplateController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		D826E6C41D6D2B87002B91AE /* TaskHandlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,8 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				D8549B971D67871B009DBE7A /* FieldTasksApp.app */,
-				D8549BAE1D67871B009DBE7A /* FieldTasksAppTests.xctest */,
-				D8549BB91D67871B009DBE7A /* FieldTasksAppUITests.xctest */,
 				D85D53DB1D710750006D31F2 /* FieldTasksApp Local.app */,
 			);
 			name = Products;
@@ -168,11 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				D85D53DD1D710D94006D31F2 /* Globals.swift */,
-				D8549B9E1D67871B009DBE7A /* Main.storyboard */,
+				D8549B9A1D67871B009DBE7A /* AppDelegate.swift */,
+				D82411A21E301C01006D06E2 /* UI */,
 				D8549BD81D68C9D7009DBE7A /* Data Classes */,
-				D8549B9C1D67871B009DBE7A /* FormListController.swift */,
-				D8549BD21D67E85A009DBE7A /* FormController.swift */,
-				D8549BD41D68A3C3009DBE7A /* TaskController.swift */,
 				D826E6C41D6D2B87002B91AE /* TaskHandlers */,
 				D8549BCF1D67B652009DBE7A /* Supporting Files */,
 			);
@@ -182,7 +161,6 @@
 		D8549BB11D67871B009DBE7A /* FieldTasksAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				D8549BB21D67871B009DBE7A /* FieldTasksAppTests.swift */,
 				D8549BB41D67871B009DBE7A /* Info.plist */,
 			);
 			path = FieldTasksAppTests;
@@ -200,7 +178,6 @@
 		D8549BCF1D67B652009DBE7A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D8549B9A1D67871B009DBE7A /* AppDelegate.swift */,
 				D8549BA41D67871B009DBE7A /* Assets.xcassets */,
 				D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */,
 				D8549BA91D67871B009DBE7A /* Info.plist */,
@@ -241,42 +218,6 @@
 			productReference = D8549B971D67871B009DBE7A /* FieldTasksApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D8549BAD1D67871B009DBE7A /* FieldTasksAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D8549BC51D67871B009DBE7A /* Build configuration list for PBXNativeTarget "FieldTasksAppTests" */;
-			buildPhases = (
-				D8549BAA1D67871B009DBE7A /* Sources */,
-				D8549BAB1D67871B009DBE7A /* Frameworks */,
-				D8549BAC1D67871B009DBE7A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D8549BB01D67871B009DBE7A /* PBXTargetDependency */,
-			);
-			name = FieldTasksAppTests;
-			productName = FieldTasksAppTests;
-			productReference = D8549BAE1D67871B009DBE7A /* FieldTasksAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D8549BB81D67871B009DBE7A /* FieldTasksAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D8549BC81D67871B009DBE7A /* Build configuration list for PBXNativeTarget "FieldTasksAppUITests" */;
-			buildPhases = (
-				D8549BB51D67871B009DBE7A /* Sources */,
-				D8549BB61D67871B009DBE7A /* Frameworks */,
-				D8549BB71D67871B009DBE7A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D8549BBB1D67871B009DBE7A /* PBXTargetDependency */,
-			);
-			name = FieldTasksAppUITests;
-			productName = FieldTasksAppUITests;
-			productReference = D8549BB91D67871B009DBE7A /* FieldTasksAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		D85D53C21D710750006D31F2 /* FieldTasksApp Local */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D85D53D81D710750006D31F2 /* Build configuration list for PBXNativeTarget "FieldTasksApp Local" */;
@@ -301,20 +242,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = CRH;
 				TargetAttributes = {
 					D8549B961D67871B009DBE7A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 94XAT8XXQR;
+						DevelopmentTeam = 4UNCRH2N42;
+						LastSwiftMigration = 0800;
 					};
-					D8549BAD1D67871B009DBE7A = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = D8549B961D67871B009DBE7A;
-					};
-					D8549BB81D67871B009DBE7A = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = D8549B961D67871B009DBE7A;
+					D85D53C21D710750006D31F2 = {
+						DevelopmentTeam = 4UNCRH2N42;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -332,8 +270,6 @@
 			projectRoot = "";
 			targets = (
 				D8549B961D67871B009DBE7A /* FieldTasksApp */,
-				D8549BAD1D67871B009DBE7A /* FieldTasksAppTests */,
-				D8549BB81D67871B009DBE7A /* FieldTasksAppUITests */,
 				D85D53C21D710750006D31F2 /* FieldTasksApp Local */,
 			);
 		};
@@ -347,20 +283,6 @@
 				D8549BA81D67871B009DBE7A /* LaunchScreen.storyboard in Resources */,
 				D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */,
 				D8549BA01D67871B009DBE7A /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D8549BAC1D67871B009DBE7A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D8549BB71D67871B009DBE7A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,8 +308,10 @@
 				D8549B9D1D67871B009DBE7A /* FormListController.swift in Sources */,
 				D826E6C11D6D2B24002B91AE /* TextTaskHandler.swift in Sources */,
 				D8549BD31D67E85A009DBE7A /* FormController.swift in Sources */,
+				D82411A51E315517006D06E2 /* TemplateController.swift in Sources */,
 				D826E6BF1D6D2B02002B91AE /* NumberTaskHandler.swift in Sources */,
 				D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */,
+				D82411A11E301BE6006D06E2 /* MainController.swift in Sources */,
 				D8549BCE1D67B5D5009DBE7A /* Form.swift in Sources */,
 				D8549BCC1D678DFF009DBE7A /* ServerManager.swift in Sources */,
 				D826E6BD1D6D2AD8002B91AE /* PhotoTaskHandler.swift in Sources */,
@@ -400,22 +324,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8549BAA1D67871B009DBE7A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D8549BB31D67871B009DBE7A /* FieldTasksAppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D8549BB51D67871B009DBE7A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D8549BBE1D67871B009DBE7A /* FieldTasksAppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D85D53C31D710750006D31F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,8 +333,10 @@
 				D85D53C61D710750006D31F2 /* FormListController.swift in Sources */,
 				D85D53C71D710750006D31F2 /* TextTaskHandler.swift in Sources */,
 				D85D53C81D710750006D31F2 /* FormController.swift in Sources */,
+				D82411A61E315517006D06E2 /* TemplateController.swift in Sources */,
 				D85D53C91D710750006D31F2 /* NumberTaskHandler.swift in Sources */,
 				D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */,
+				D82411A31E301D5A006D06E2 /* MainController.swift in Sources */,
 				D85D53CB1D710750006D31F2 /* Form.swift in Sources */,
 				D85D53CC1D710750006D31F2 /* ServerManager.swift in Sources */,
 				D85D53CD1D710750006D31F2 /* PhotoTaskHandler.swift in Sources */,
@@ -440,19 +350,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D8549BB01D67871B009DBE7A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D8549B961D67871B009DBE7A /* FieldTasksApp */;
-			targetProxy = D8549BAF1D67871B009DBE7A /* PBXContainerItemProxy */;
-		};
-		D8549BBB1D67871B009DBE7A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D8549B961D67871B009DBE7A /* FieldTasksApp */;
-			targetProxy = D8549BBA1D67871B009DBE7A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D8549B9E1D67871B009DBE7A /* Main.storyboard */ = {
@@ -488,8 +385,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -535,8 +434,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -556,6 +457,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -567,11 +469,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4UNCRH2N42;
 				INFOPLIST_FILE = FieldTasksApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -581,57 +485,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4UNCRH2N42;
 				INFOPLIST_FILE = FieldTasksApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-			};
-			name = Release;
-		};
-		D8549BC61D67871B009DBE7A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = FieldTasksAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FieldTasksApp.app/FieldTasksApp";
-			};
-			name = Debug;
-		};
-		D8549BC71D67871B009DBE7A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = FieldTasksAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FieldTasksApp.app/FieldTasksApp";
-			};
-			name = Release;
-		};
-		D8549BC91D67871B009DBE7A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = FieldTasksAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = FieldTasksApp;
-			};
-			name = Debug;
-		};
-		D8549BCA1D67871B009DBE7A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = FieldTasksAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = FieldTasksApp;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -641,12 +501,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4UNCRH2N42;
 				INFOPLIST_FILE = "FieldTasksApp copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_SWIFT_FLAGS[arch=*]" = "-D LOCAL";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D LOCALHOST";
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -656,12 +518,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4UNCRH2N42;
 				INFOPLIST_FILE = "FieldTasksApp copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-D LOCAL";
+				OTHER_SWIFT_FLAGS = "-D LOCALHOST";
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -682,24 +546,6 @@
 			buildConfigurations = (
 				D8549BC31D67871B009DBE7A /* Debug */,
 				D8549BC41D67871B009DBE7A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D8549BC51D67871B009DBE7A /* Build configuration list for PBXNativeTarget "FieldTasksAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D8549BC61D67871B009DBE7A /* Debug */,
-				D8549BC71D67871B009DBE7A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D8549BC81D67871B009DBE7A /* Build configuration list for PBXNativeTarget "FieldTasksAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D8549BC91D67871B009DBE7A /* Debug */,
-				D8549BCA1D67871B009DBE7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

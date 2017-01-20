@@ -19,12 +19,16 @@ class TaskResult {
 
     func toDict() -> [String : AnyObject]{
         var dict = [String : AnyObject]()
-        dict["completed"] = completed
+        dict["completed"] = completed as AnyObject?
         return dict
     }
 
     func save(newText : String) {
 
+    }
+
+    func description() -> String {
+        return ""
     }
 }
 
@@ -40,8 +44,12 @@ class TextResult : TaskResult {
     }
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
-        dict["text"] = text
+        dict["text"] = text as AnyObject?
         return dict
+    }
+
+    override func description() -> String {
+        return text
     }
 }
 
@@ -59,9 +67,13 @@ class NumberResult : TaskResult {
         var dict = super.toDict()
 
         if let numberValue = value {
-            dict["number"] = numberValue
+            dict["number"] = numberValue as AnyObject?
         }
         return dict
+    }
+
+    override func description() -> String {
+        return "\(value)"
     }
 }
 
@@ -79,11 +91,25 @@ class ChoicesResult : TaskResult {
             completed = true
         }
     }
+
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
 
-        dict["values"] = values
+        dict["values"] = values as AnyObject?
         return dict
+    }
+
+    override func description() -> String {
+        var text = ""
+        if let choicesTask = formTask?.taskDescription as? ChoicesTaskDescription {
+            var index = 1
+            for (value, choice) in zip(values, choicesTask.titles) {
+                text += "\(choice): \(value) "
+                index += 1
+            }
+        }
+
+        return text
     }
 }
 

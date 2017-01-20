@@ -26,16 +26,17 @@ class NumberTaskHandler : TextTaskHandler {
         textView.frame.size.height = 28.0
         if !taskData.isUnlimited {
             // Describe range to users
-            rangeLabel.frame = CGRectMake(textView.frame.origin.x, textView.frame.height, textView.frame.width, 28)
+            rangeLabel.frame = CGRect(x: textView.frame.origin.x, y: textView.frame.height, width: textView.frame.width, height: 28)
+            //(textView.frame.origin.x, textView.frame.height, textView.frame.width, 28)
             rangeLabel.text = "Range: \(taskData.min) to \(taskData.max)"
             container.addSubview(rangeLabel)
         }
         if taskData.isDecimal {
-            textView.keyboardType = .DecimalPad
+            textView.keyboardType = .decimalPad
         } else {
-            textView.keyboardType = .NumberPad
+            textView.keyboardType = .numberPad
         }
-        textView.text = String(numberResult.value)
+        textView.text = String(describing: numberResult.value)
         textView.becomeFirstResponder()
     }
 
@@ -55,7 +56,7 @@ class NumberTaskHandler : TextTaskHandler {
         return nil
     }
     override func save() {
-        numberResult.save(textView.text)
+        numberResult.save(newText: textView.text)
     }
     override func restore() {
         if let value = numberResult.value {

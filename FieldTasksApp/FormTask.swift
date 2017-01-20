@@ -62,13 +62,13 @@ class FormTask {
         var taskDict = [String : AnyObject]()
 
         // Dont' write id, as this is a different object to database
-        taskDict["name"] = name
-        taskDict["type"] = type
-        taskDict["required"] = required
-        taskDict["description"] = description
-        taskDict["data"] = taskDescription!.toDict()
-        taskDict["results"] = result!.toDict()
-        taskDict["name"] = name
+        taskDict["name"] = name as AnyObject?
+        taskDict["type"] = type as AnyObject?
+        taskDict["required"] = required as AnyObject?
+        taskDict["description"] = description as AnyObject?
+        taskDict["data"] = taskDescription!.toDict() as AnyObject?
+        taskDict["results"] = result!.toDict() as AnyObject?
+        taskDict["name"] = name as AnyObject?
         return taskDict
     }
 

@@ -8,8 +8,101 @@
 
 import UIKit
 
+let kSwitchSize = CGSize(width: 48.0, height: 44.0)
+
+// MARK: Choice Class -------------------------------------------------------------------------------
+class Choice {
+    var view : UIView?      // Active control, switch or checkbox
+    var label = UILabel()   // Title for control
+    var listIndex = 0
+    var on : Bool {
+        get {
+            return false
+        }
+        set(newOn) {
+
+        }
+    }
+
+    func toggle() {
+        self.on = !self.on
+    }
+
+    init(frame : CGRect, handler: ChoiceTaskHandler, title: String) {
+        // Make label for title
+        var labelFrame = frame
+        labelFrame.origin.x = kSwitchSize.width + 10.0
+        label.frame = labelFrame
+        label.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: handler, action: #selector(ChoiceTaskHandler.labelTap))
+        label.addGestureRecognizer(tapGesture)
+        label.text = title;
+    }
+
+    func setIndex(listIndex : Int) {
+        self.listIndex = listIndex
+        label.tag = listIndex
+    }
+}
+
+// MARK: Checkbox Class -------------------------------------------------------------------------------
+class Checkbox : Choice {
+    private var _on = false
+    private var button = UIButton()
+    override var on : Bool {
+        get {
+            return _on
+        }
+        set(newOn) {
+            _on = newOn
+            if newOn {
+                button.setTitle("X", for: .normal)
+            } else {
+                button.setTitle("", for: .normal)
+            }
+        }
+    }
+
+    override init(frame : CGRect, handler: ChoiceTaskHandler, title : String) {
+        super.init(frame : frame, handler: handler, title: title)
+        button.frame = frame
+        button.frame.size.width = frame.height
+        button.layer.borderWidth = 2.0
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 18.0)
+        button.addTarget(handler, action: #selector(ChoiceTaskHandler.didCheck), for: .touchUpInside)
+        view = button
+     }
+
+    override func setIndex(listIndex : Int) {
+        super.setIndex(listIndex: listIndex)
+        button.tag = listIndex
+    }
+}
+
+// MARK: Switchbox Class -------------------------------------------------------------------------------
+class Switchbox : Choice {
+    private var _switch = UISwitch()
+    override var on : Bool {
+        get {
+            return _switch.isOn
+        }
+        set(newOn) {
+            _switch.isOn = newOn
+        }
+    }
+    override init(frame : CGRect, handler: ChoiceTaskHandler, title : String) {
+        super.init(frame : frame, handler: handler, title: title)
+        _switch.frame = frame
+        _switch.frame.size.width = kSwitchSize.width;
+        _switch.addTarget(handler, action: #selector(ChoiceTaskHandler.didSwitch), for: .valueChanged)
+        view = _switch
+    }
+}
+
+// MARK: ChoiceTaskHandler Class -------------------------------------------------------------------------------
 class ChoiceTaskHandler : TaskHandler {
-    var options = [UISwitch]()
+    var options = [Choice]()
     var choiceData : ChoicesTaskDescription {
         get {
             return task!.taskDescription as! ChoicesTaskDescription
@@ -20,52 +113,55 @@ class ChoiceTaskHandler : TaskHandler {
             return task!.result as! ChoicesResult
         }
     }
-    let kSwitchSize = CGSize(width: 48.0, height: 44.0)
-
 
     override init(controller : UIViewController, container : UIView, task: FormTask) {
         super.init(controller : controller,  container: container, task: task)
 
-        var choiceFrame = CGRectMake(0, 0, container.frame.width, 28)
+        var choiceFrame = CGRect(x: 0, y: 0, width: container.frame.width, height: 28)
+        let isRadio = (task.taskDescription as! ChoicesTaskDescription).isRadio
         for title in choiceData.titles {
-            makeSwitch(container, title: title, frame: choiceFrame)
+            makeSwitchbox(container: container, title: title, frame: choiceFrame, isRadio: isRadio)
             choiceFrame.origin.y += kSwitchSize.height;
         }
     }
 
-    func makeSwitch(container: UIView, title: String, frame : CGRect) {
+    func makeSwitchbox(container: UIView, title: String, frame : CGRect, isRadio: Bool) {
         // Make switch control
-        var choiceFrame = frame;
-        choiceFrame.size.width = kSwitchSize.width;
-        let choiceSwitch = UISwitch(frame: choiceFrame)
-        choiceSwitch.addTarget(self, action: #selector(ChoiceTaskHandler.didSwitch), forControlEvents: .ValueChanged)
-        options += [choiceSwitch]
-        container.addSubview(choiceSwitch)
-
-        // Make label for title
-        var labelFrame = frame
-        labelFrame.origin.x = kSwitchSize.width + 10.0
-        let label = UILabel(frame: labelFrame)
-        label.userInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ChoiceTaskHandler.labelTap))
-        label.addGestureRecognizer(tapGesture)
-        label.text = title;
-        label.tag = options.count - 1 // Label linked to option by it's array index
-        container.addSubview(label)
+        var choice : Choice?
+        if isRadio {
+            choice = Switchbox(frame: frame, handler: self, title: title)
+        } else {
+            choice = Checkbox(frame: frame, handler: self, title: title)
+        }
+        options += [choice!]
+        container.addSubview(choice!.view!)
+        container.addSubview(choice!.label)
+        choice!.setIndex(listIndex: options.count - 1)
     }
 
     func labelTap(tap : UIGestureRecognizer) {
         if let label = tap.view as? UILabel {
             let option = options[label.tag]
             option.on = !option.on
+            selectBoxView(selectedOption: option.view!)
         }
 
     }
 
     func didSwitch(sender: UISwitch) {
+        selectBoxView(selectedOption: sender)
+    }
+
+    func didCheck(button: UIButton) {
+        let choice = options[button.tag]
+        choice.toggle()
+        selectBoxView(selectedOption: button)
+    }
+
+    func selectBoxView(selectedOption : UIView) {
         if choiceData.isRadio {
             for option in options {
-                if (option != sender) {
+                if (option.view != selectedOption) {
                     option.on = false
                 }
             }
@@ -89,16 +185,7 @@ class ChoiceTaskHandler : TaskHandler {
         let boolValues = options.map{(control)->Bool in
             return control.on
         }
-        result.save(boolValues)
-//        result.values.removeAll()
-//        for option in options {
-//            result.values += [option.on]
-//        }
-//        if task!.required {
-//            result.completed = result.values.count > 0
-//        } else {
-//            result.completed = true
-//        }
+        result.save(newValues: boolValues)
     }
     override func restore() {
         for i in 0 ..< result.values.count {

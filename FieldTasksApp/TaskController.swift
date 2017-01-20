@@ -11,7 +11,7 @@ import UIKit
 
 
 class TaskController : UIViewController {
-    var form : Form?
+    var form : Template?
     var taskIndex = 0
     var viewLayoutInited = false
     var taskHandler : TaskHandler?
@@ -27,13 +27,13 @@ class TaskController : UIViewController {
         super.viewDidLoad()
 
 
-        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(prevTask))
+        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(prevTask))
         navigationItem.leftBarButtonItem = backButton
-        let nextButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(nextTask))
+        let nextButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextTask))
         navigationItem.rightBarButtonItem = nextButton
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.updateViewValues()
@@ -65,7 +65,7 @@ class TaskController : UIViewController {
             view.removeFromSuperview()
         }
         let subView = UIView()
-        subView.frame = CGRectMake(0, 0, taskView!.frame.width, taskView!.frame.height)
+        subView.frame = CGRect(x: 0, y: 0, width: taskView!.frame.width, height: taskView!.frame.height)
         taskView!.addSubview(subView)
         switch task.type {
         case "Text":
@@ -99,7 +99,7 @@ class TaskController : UIViewController {
             return true
         }
         if let errorMessage = taskHandler?.validate() {
-            self.showAlert("Invalid value", message: errorMessage)
+            self.showAlert(title: "Invalid value", message: errorMessage)
 //            let alert = UIAlertController(title: "Invalid value", message: errorMessage, preferredStyle: .Alert)
 //            let ok = UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) in
 //
@@ -120,7 +120,7 @@ class TaskController : UIViewController {
                 self.updateViewValues()
                 self.createNewTask()
             } else {
-                dismissViewControllerAnimated(true, completion: nil)
+                dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -133,7 +133,7 @@ class TaskController : UIViewController {
                 self.updateViewValues()
                 self.createNewTask()
             } else {
-                dismissViewControllerAnimated(true, completion: nil)
+                dismiss(animated: true, completion: nil)
             }
         }
     }

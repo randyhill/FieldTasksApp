@@ -25,7 +25,7 @@ class TextTaskHandler : TaskHandler {
         super.init(controller : controller, container: container, task: task)
         textView.frame = container.frame
         textView.layer.borderWidth =  1.0
-        configureTextView(container)
+        configureTextView(container: container)
         container.addSubview(textView)
     }
 
@@ -34,7 +34,7 @@ class TextTaskHandler : TaskHandler {
     }
 
     override func save() {
-        result.save(textView.text)
+        result.save(newText: textView.text)
     }
     override func restore() {
         textView.text = result.text

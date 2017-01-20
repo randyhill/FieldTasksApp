@@ -9,20 +9,27 @@
 import UIKit
 
 class FormListController: UITableViewController {
-    var formsList = [Form]()
+    var formsList = [Template]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Forms"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(refreshList))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(goBack))
 
         self.refreshList()
     }
 
+    func goBack() {
+        self.dismiss(animated: true) { 
+
+        }
+    }
+
     func refreshList() {
         // Do any additional setup after loading the view, typically from a nib.
-        ServerManager.sharedInstance.loadForms { (result, error) in
+        ServerManager.sharedInstance.loadTemplates { (result, error) in
             if error != nil {
                 print("Failed to load forms: \(error)")
             } else {
@@ -30,10 +37,10 @@ class FormListController: UITableViewController {
                     self.formsList.removeAll()
                     for formObject in formList {
                         if let formDict = formObject as? [String : AnyObject] {
-                            self.formsList += [Form(formDict: formDict)]
+                            self.formsList += [Template(templateDict: formDict)]
                         }
                     }
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.tableView.reloadData()
                     })
                  }
@@ -42,7 +49,7 @@ class FormListController: UITableViewController {
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.tableView.reloadData()
@@ -55,23 +62,24 @@ class FormListController: UITableViewController {
     }
 
     // MARK: Table Methods -------------------------------------------------------------------------------
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return formsList.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FormCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FormCell", for: indexPath as IndexPath)
         let form = formsList[indexPath.row]
         cell.textLabel!.text = "\(form.name) Tasks: \(form.tasks.count)"
         cell.detailTextLabel!.text = "Description: \(form.description)"
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let formController = self.storyboard?.instantiateViewControllerWithIdentifier("FormController") as? FormController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "TemplateController") as? TemplateController {
             formController.form = formsList[indexPath.row]
             let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
-            self.presentViewController(navController, animated: true, completion: {
+            self.present(navController, animated: true, completion: {
 
             })
         }
