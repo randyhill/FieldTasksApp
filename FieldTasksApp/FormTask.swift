@@ -33,6 +33,11 @@ class FormTask {
         if let description = taskDict["description"] as? String {
             self.description = description
         }
+        var results = taskDict["results"] as? [String : AnyObject]
+        if (results == nil) {
+            results = [String : AnyObject]()
+        }
+
         // Some tasks might not have custom data, so allocate the data either way
         var data = taskDict["data"] as? [String : AnyObject]
         if (data == nil) {
@@ -41,20 +46,20 @@ class FormTask {
         switch type {
             case "Text":
                 self.taskDescription = TextTaskDescription(dataDict: data!)
-                self.result = TextResult(formTask: self)
+                self.result = TextResult(formTask: self, results: results!)
             case "Number":
                 self.taskDescription = NumberTaskDescription(dataDict: data!)
-                self.result = NumberResult(formTask: self)
+                self.result = NumberResult(formTask: self, results: results!)
             case "Choices":
                 self.taskDescription = ChoicesTaskDescription(dataDict: data!)
-                self.result = ChoicesResult(formTask: self)
+                self.result = ChoicesResult(formTask: self, results: results!)
             case "Photo":
                 self.taskDescription = PhotoTaskDescription(dataDict: data!)
-                self.result = PhotoResult(formTask: self)
+                self.result = PhotoResult(formTask: self, results: results!)
             default:
                 print("can't find type of data")
                 self.taskDescription = TaskDescription(dataDict: data!)
-                self.result = TaskResult(formTask: self)
+                self.result = TaskResult(formTask: self, results: results!)
         }
     }
 

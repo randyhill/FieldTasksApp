@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Main Controller-->
         <scene sceneID="QIO-Ud-gEh">
             <objects>
-                <tableViewController id="Z6d-oH-UYb" customClass="MainController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MainController" id="Z6d-oH-UYb" customClass="MainController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fd9-f4-QNU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,11 +49,11 @@
                             <outlet property="delegate" destination="Z6d-oH-UYb" id="okN-qO-UzH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Of2-1V-JTy"/>
+                    <navigationItem key="navigationItem" title="Main Controller" id="Of2-1V-JTy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ar6-3M-8rt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1284" y="-244"/>
+            <point key="canvasLocation" x="1086" y="-244"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QHZ-Ac-a4A">
@@ -157,11 +157,11 @@
                             <outlet property="delegate" destination="pHz-AP-0hF" id="KlJ-hf-a4e"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Zjt-3p-1xp"/>
+                    <navigationItem key="navigationItem" title="Template Controller" id="Zjt-3p-1xp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJK-FH-uKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="1204"/>
+            <point key="canvasLocation" x="956" y="1197"/>
         </scene>
         <!--Task-->
         <scene sceneID="CNM-AM-2AT">
@@ -257,7 +257,7 @@
             </objects>
             <point key="canvasLocation" x="272" y="1204"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Form Controller-->
         <scene sceneID="lq3-8a-KJd">
             <objects>
                 <tableViewController storyboardIdentifier="FormController" id="hmr-Jz-0WV" customClass="FormController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -266,24 +266,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" textLabel="0np-XO-7oK" detailTextLabel="QZR-LY-EO8" style="IBUITableViewCellStyleValue1" id="PVl-xp-9mS">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" textLabel="0np-XO-7oK" detailTextLabel="QZR-LY-EO8" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="PVl-xp-9mS">
+                                <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PVl-xp-9mS" id="8U3-RI-YAi">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0np-XO-7oK">
-                                            <rect key="frame" x="15" y="12" width="32" height="20"/>
+                                            <rect key="frame" x="15" y="12" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QZR-LY-EO8">
-                                            <rect key="frame" x="263" y="12" width="42" height="20"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QZR-LY-EO8">
+                                            <rect key="frame" x="15" y="33" width="33" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -296,11 +296,11 @@
                             <outlet property="delegate" destination="hmr-Jz-0WV" id="hIY-ID-8S6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="oz6-xe-ONi"/>
+                    <navigationItem key="navigationItem" title="Form Controller" id="oz6-xe-ONi"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TcC-Ai-aWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="833" y="1910"/>
+            <point key="canvasLocation" x="1138" y="1918"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NCh-Jj-Dkg">

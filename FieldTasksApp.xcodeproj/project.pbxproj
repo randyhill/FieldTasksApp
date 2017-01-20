@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02DC79A19BED6F37D1045500 /* Pods_FieldTasksApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE8420CBC9B3A1B24799E213 /* Pods_FieldTasksApp.framework */; };
+		2A93717BDF54F2F84376DF30 /* Pods_FieldTasksApp_Local.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE7A32FB2AD4BDB1E5B9D84 /* Pods_FieldTasksApp_Local.framework */; };
 		D82411A11E301BE6006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
 		D82411A31E301D5A006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
 		D82411A51E315517006D06E2 /* TemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* TemplateController.swift */; };
@@ -52,6 +54,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4BEB6C5B210DC95D925F6144 /* Pods-FieldTasksApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.release.xcconfig"; sourceTree = "<group>"; };
+		65BD1D570094E531AEA25ED4 /* Pods-FieldTasksApp Local.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp Local.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local.debug.xcconfig"; sourceTree = "<group>"; };
+		7BE7A32FB2AD4BDB1E5B9D84 /* Pods_FieldTasksApp_Local.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FieldTasksApp_Local.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAEB5688752EF3DB8FAD426F /* Pods-FieldTasksApp Local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp Local.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local.release.xcconfig"; sourceTree = "<group>"; };
+		D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D82411A01E301BE6006D06E2 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = UI/MainController.swift; sourceTree = "<group>"; };
 		D82411A41E315517006D06E2 /* TemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateController.swift; path = UI/TemplateController.swift; sourceTree = "<group>"; };
 		D826E6BC1D6D2AD8002B91AE /* PhotoTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PhotoTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -80,6 +87,7 @@
 		D85D53DB1D710750006D31F2 /* FieldTasksApp Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FieldTasksApp Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85D53DC1D710750006D31F2 /* FieldTasksApp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "FieldTasksApp copy-Info.plist"; path = "/Users/clarkehill2/Documents/source/FieldTasksApp/FieldTasksApp copy-Info.plist"; sourceTree = "<absolute>"; };
 		D85D53DD1D710D94006D31F2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = ../Globals.swift; sourceTree = "<group>"; };
+		FE8420CBC9B3A1B24799E213 /* Pods_FieldTasksApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FieldTasksApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02DC79A19BED6F37D1045500 /* Pods_FieldTasksApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,12 +103,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A93717BDF54F2F84376DF30 /* Pods_FieldTasksApp_Local.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		733A03F4D593960BF82AEDC1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */,
+				4BEB6C5B210DC95D925F6144 /* Pods-FieldTasksApp.release.xcconfig */,
+				65BD1D570094E531AEA25ED4 /* Pods-FieldTasksApp Local.debug.xcconfig */,
+				CAEB5688752EF3DB8FAD426F /* Pods-FieldTasksApp Local.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		97468B23C682C8E9694ECBA1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE8420CBC9B3A1B24799E213 /* Pods_FieldTasksApp.framework */,
+				7BE7A32FB2AD4BDB1E5B9D84 /* Pods_FieldTasksApp_Local.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D82411A21E301C01006D06E2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +163,8 @@
 				D8549BBC1D67871B009DBE7A /* FieldTasksAppUITests */,
 				D8549B981D67871B009DBE7A /* Products */,
 				D85D53DC1D710750006D31F2 /* FieldTasksApp copy-Info.plist */,
+				733A03F4D593960BF82AEDC1 /* Pods */,
+				97468B23C682C8E9694ECBA1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,9 +237,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D8549BC21D67871B009DBE7A /* Build configuration list for PBXNativeTarget "FieldTasksApp" */;
 			buildPhases = (
+				83886228DA531A06D1F63217 /* [CP] Check Pods Manifest.lock */,
 				D8549B931D67871B009DBE7A /* Sources */,
 				D8549B941D67871B009DBE7A /* Frameworks */,
 				D8549B951D67871B009DBE7A /* Resources */,
+				5AE4DAFEBB361E35C27F5FBE /* [CP] Embed Pods Frameworks */,
+				43D38B795521B690E7853A61 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,9 +257,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D85D53D81D710750006D31F2 /* Build configuration list for PBXNativeTarget "FieldTasksApp Local" */;
 			buildPhases = (
+				4F43F7F7217746C1BFC8A30E /* [CP] Check Pods Manifest.lock */,
 				D85D53C31D710750006D31F2 /* Sources */,
 				D85D53D31D710750006D31F2 /* Frameworks */,
 				D85D53D41D710750006D31F2 /* Resources */,
+				9880C8660EBA7239B5A71DE6 /* [CP] Embed Pods Frameworks */,
+				D8736DBDD5D940BF0790A6CC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -297,6 +335,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		43D38B795521B690E7853A61 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4F43F7F7217746C1BFC8A30E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5AE4DAFEBB361E35C27F5FBE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83886228DA531A06D1F63217 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9880C8660EBA7239B5A71DE6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8736DBDD5D940BF0790A6CC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D8549B931D67871B009DBE7A /* Sources */ = {
@@ -465,6 +596,7 @@
 		};
 		D8549BC31D67871B009DBE7A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -472,6 +604,8 @@
 				DEVELOPMENT_TEAM = 4UNCRH2N42;
 				INFOPLIST_FILE = FieldTasksApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D \"CocoaPods\"";
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -481,6 +615,7 @@
 		};
 		D8549BC41D67871B009DBE7A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BEB6C5B210DC95D925F6144 /* Pods-FieldTasksApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -488,6 +623,8 @@
 				DEVELOPMENT_TEAM = 4UNCRH2N42;
 				INFOPLIST_FILE = FieldTasksApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D \"CocoaPods\"";
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -497,6 +634,7 @@
 		};
 		D85D53D91D710750006D31F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65BD1D570094E531AEA25ED4 /* Pods-FieldTasksApp Local.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -514,6 +652,7 @@
 		};
 		D85D53DA1D710750006D31F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAEB5688752EF3DB8FAD426F /* Pods-FieldTasksApp Local.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

@@ -14,9 +14,9 @@ class FormController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Form: \(form!.name)"
+        self.title = form?.name
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(submitForm))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(submitForm))
     }
 
     func goBack(){
@@ -27,7 +27,7 @@ class FormController : UITableViewController {
         if !form!.isComplete() {
             self.showAlert(title: "Form Incomplete", message: "You must complete all required fields before submitting the form")
         } else {
-            ServerManager.sharedInstance.saveTemplate(form: form!) { (result, error) in
+            ServerManager.sharedInstance.saveTemplate(template: form!) { (result, error) in
                 if error != nil {
                     self.showAlert(title: "Form Submission Failed", message: error!)
                 } else {
@@ -50,6 +50,10 @@ class FormController : UITableViewController {
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return form!.tasks.count
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80.0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

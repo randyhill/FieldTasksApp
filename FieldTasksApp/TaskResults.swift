@@ -13,7 +13,7 @@ class TaskResult {
     var completed = false
     var formTask : FormTask?
 
-    init(formTask : FormTask) {
+    init(formTask : FormTask, results: [String : AnyObject]) {
         self.formTask = formTask
     }
 
@@ -34,6 +34,14 @@ class TaskResult {
 
 class TextResult : TaskResult {
     var text = ""
+
+    override init(formTask : FormTask, results: [String : AnyObject]) {
+        super.init(formTask: formTask, results: results)
+
+        if let resultText = results["text"] as? String {
+            text = resultText
+        }
+    }
 
     override func save(newText : String) {
         completed = false
@@ -56,6 +64,14 @@ class TextResult : TaskResult {
 class NumberResult : TaskResult {
     var value : Double?
 
+    override init(formTask : FormTask, results: [String : AnyObject]) {
+        super.init(formTask: formTask, results: results)
+
+        if let valueResult = results["number"] as? Double {
+            value = valueResult
+        }
+     }
+
     override func save(newText : String) {
         completed = false
         if let newValue = Double(newText) {
@@ -73,12 +89,24 @@ class NumberResult : TaskResult {
     }
 
     override func description() -> String {
-        return "\(value)"
+        if let numberValue = value {
+            return "\(numberValue)"
+        }
+        return ""
     }
 }
 
 class ChoicesResult : TaskResult {
     var values = [Bool]()
+
+    override init(formTask : FormTask, results: [String : AnyObject]) {
+        super.init(formTask: formTask, results: results)
+        if let resultValues = results["values"] as? [Bool] {
+            for value in resultValues {
+                values += [value]
+            }
+        }
+    }
 
     func save(newValues: [Bool]) {
         values.removeAll()
@@ -115,6 +143,10 @@ class ChoicesResult : TaskResult {
 
 class PhotoResult : TaskResult {
     var photo : UIImage?
+
+    override init(formTask : FormTask, results: [String : AnyObject]) {
+        super.init(formTask: formTask, results: results)
+    }
 
     func save(newPhoto: UIImage?) {
         photo = newPhoto

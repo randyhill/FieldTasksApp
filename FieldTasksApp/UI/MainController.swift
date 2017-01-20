@@ -16,8 +16,6 @@ class MainController: UITableViewController {
 
         self.title = "Welcome"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
-
-        self.refreshList()
     }
 
     func refreshList() {
@@ -45,9 +43,9 @@ class MainController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.tableView.reloadData()
-
+        self.refreshList()
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
