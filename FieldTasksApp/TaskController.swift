@@ -12,6 +12,7 @@ import UIKit
 
 class TaskController : UIViewController {
     var form : Template?
+    var isEditable = true
     var taskIndex = 0
     var viewLayoutInited = false
     var taskHandler : TaskHandler?
@@ -69,24 +70,22 @@ class TaskController : UIViewController {
         taskView!.addSubview(subView)
         switch task.type {
         case "Text":
-            taskHandler = TextTaskHandler(controller : self, container: subView, task: task)
+            taskHandler = TextTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
         case "Number":
-            taskHandler = NumberTaskHandler(controller : self, container: subView, task: task)
+            taskHandler = NumberTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
         case "Choices":
-            taskHandler = ChoiceTaskHandler(controller : self, container: subView, task: task)
+            taskHandler = ChoiceTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
         case "Photo":
-            taskHandler = PhotoTaskHandler(controller : self, container: subView, task: task)
+            taskHandler = PhotoTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
         case "Worker":
-            taskHandler = WorkerTaskHandler(controller : self, container: subView, task: task)
+            taskHandler = WorkerTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
         case "Customer":
-            taskHandler = CustomerTaskHandler(controller : self, container: subView, task: task)
+            taskHandler = CustomerTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
         default:
-            taskHandler = TaskHandler(controller : self, container: subView, task: task)
+            taskHandler = TaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
         }
         taskHandler?.restore()
     }
-
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

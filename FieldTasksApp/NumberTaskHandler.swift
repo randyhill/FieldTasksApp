@@ -37,6 +37,7 @@ class NumberTaskHandler : TextTaskHandler {
             textView.keyboardType = .numberPad
         }
         textView.text = String(describing: numberResult.value)
+        textView.isEditable = isEditable
         textView.becomeFirstResponder()
     }
 

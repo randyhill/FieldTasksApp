@@ -8,6 +8,11 @@
 
 import UIKit
 
+class FormTaskCell : UITableViewCell {
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var body: UITextView!
+}
+
 class FormController : UITableViewController {
     var form : Template?
 
@@ -15,26 +20,12 @@ class FormController : UITableViewController {
         super.viewDidLoad()
 
         self.title = form?.name
+        self.tableView.allowsSelection = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(submitForm))
     }
 
     func goBack(){
         dismiss(animated: true, completion: nil)
-    }
-
-    func submitForm() {
-        if !form!.isComplete() {
-            self.showAlert(title: "Form Incomplete", message: "You must complete all required fields before submitting the form")
-        } else {
-            ServerManager.sharedInstance.saveTemplate(template: form!) { (result, error) in
-                if error != nil {
-                    self.showAlert(title: "Form Submission Failed", message: error!)
-                } else {
-                    self.showAlert(title: "Success", message: "Form submitted successfuly")
-                }
-            }
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -58,14 +49,17 @@ class FormController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath as IndexPath)
-        let task = form!.tasks[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FormTaskCell", for: indexPath as IndexPath)
+        if let formTaskCell = cell as? FormTaskCell {
+            let task = form!.tasks[indexPath.row]
 
-        cell.textLabel!.text = task.name
-        if let result = task.result {
-            cell.detailTextLabel!.text = result.description()
-        } else {
-            cell.detailTextLabel!.text = "Not entered"
+            formTaskCell.title!.text = task.name
+            if let result = task.result {
+                formTaskCell.body!.text = result.description()
+            } else {
+                formTaskCell.body!.text = "Not entered"
+            }
+            formTaskCell.selectionStyle = .default
         }
         return cell
     }
@@ -75,6 +69,7 @@ class FormController : UITableViewController {
         if let taskController = self.storyboard?.instantiateViewController(withIdentifier: "TaskController") as? TaskController {
             taskController.form = form
             taskController.taskIndex = indexPath.row
+            taskController.isEditable = false
             let navController = UINavigationController(rootViewController: taskController) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {
 

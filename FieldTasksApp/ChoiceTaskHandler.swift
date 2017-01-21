@@ -63,7 +63,7 @@ class Checkbox : Choice {
         }
     }
 
-    override init(frame : CGRect, handler: ChoiceTaskHandler, title : String) {
+    init(frame : CGRect, handler: ChoiceTaskHandler, title : String, isEnabled: Bool) {
         super.init(frame : frame, handler: handler, title: title)
         button.frame = frame
         button.frame.size.width = frame.height
@@ -71,6 +71,7 @@ class Checkbox : Choice {
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 18.0)
         button.addTarget(handler, action: #selector(ChoiceTaskHandler.didCheck), for: .touchUpInside)
+        button.isEnabled = isEnabled
         view = button
      }
 
@@ -91,11 +92,12 @@ class Switchbox : Choice {
             _switch.isOn = newOn
         }
     }
-    override init(frame : CGRect, handler: ChoiceTaskHandler, title : String) {
+    init(frame : CGRect, handler: ChoiceTaskHandler, title : String, isEnabled: Bool) {
         super.init(frame : frame, handler: handler, title: title)
         _switch.frame = frame
         _switch.frame.size.width = kSwitchSize.width;
         _switch.addTarget(handler, action: #selector(ChoiceTaskHandler.didSwitch), for: .valueChanged)
+        _switch.isEnabled = isEnabled
         view = _switch
     }
 }
@@ -114,8 +116,8 @@ class ChoiceTaskHandler : TaskHandler {
         }
     }
 
-    override init(controller : UIViewController, container : UIView, task: FormTask) {
-        super.init(controller : controller,  container: container, task: task)
+    override init(controller : UIViewController, container : UIView, task: FormTask, isEditable: Bool) {
+        super.init(controller : controller,  container: container, task: task, isEditable: isEditable)
 
         var choiceFrame = CGRect(x: 0, y: 0, width: container.frame.width, height: 28)
         let isRadio = (task.taskDescription as! ChoicesTaskDescription).isRadio
@@ -129,9 +131,9 @@ class ChoiceTaskHandler : TaskHandler {
         // Make switch control
         var choice : Choice?
         if isRadio {
-            choice = Switchbox(frame: frame, handler: self, title: title)
+            choice = Switchbox(frame: frame, handler: self, title: title, isEnabled: isEditable)
         } else {
-            choice = Checkbox(frame: frame, handler: self, title: title)
+            choice = Checkbox(frame: frame, handler: self, title: title, isEnabled: isEditable)
         }
         options += [choice!]
         container.addSubview(choice!.view!)
