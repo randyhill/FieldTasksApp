@@ -27,12 +27,20 @@ class TaskController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        setBackButton(title: "Back")
+//        setNextButton(title: "Next")
+    }
 
-        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(prevTask))
+    func setBackButton(title: String) {
+        let backButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(prevTask))
         navigationItem.leftBarButtonItem = backButton
-        let nextButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextTask))
+    }
+
+    func setNextButton(title: String) {
+        let nextButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextTask))
         navigationItem.rightBarButtonItem = nextButton
     }
+
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -56,6 +64,9 @@ class TaskController : UIViewController {
             self.title = "Task"
         }
         self.taskDescription.text = curTask.description
+
+        setBackButton(title: taskIndex == 0 ? "Done" : "Back")
+        setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
     }
 
     func createNewTask() {
@@ -118,6 +129,7 @@ class TaskController : UIViewController {
             if taskIndex >= 0 {
                 self.updateViewValues()
                 self.createNewTask()
+                setBackButton(title: taskIndex == 0 ? "Done" : "Back")
             } else {
                 dismiss(animated: true, completion: nil)
             }
@@ -131,6 +143,7 @@ class TaskController : UIViewController {
             if taskIndex < form!.tasks.count {
                 self.updateViewValues()
                 self.createNewTask()
+                setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
             } else {
                 dismiss(animated: true, completion: nil)
             }

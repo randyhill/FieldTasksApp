@@ -89,9 +89,17 @@ class NumberResult : TaskResult {
     }
 
     override func description() -> String {
-        if let numberValue = value {
-            return "\(numberValue)"
+        if let description =  formTask?.taskDescription as? NumberTaskDescription {
+            if let numberValue = value {
+                if description.isDecimal {
+                    return "\(numberValue)"
+                } else {
+                    let intValue  = Int(numberValue)
+                    return "\(intValue)"
+                }
+            }
         }
+
         return ""
     }
 }
