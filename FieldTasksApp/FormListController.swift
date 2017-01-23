@@ -17,6 +17,7 @@ class FormListController: UITableViewController {
         self.title = "Forms"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(goBack))
+        configureNavBar()
 
         self.refreshList()
     }
@@ -66,12 +67,17 @@ class FormListController: UITableViewController {
         return formsList.count
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 84.0
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FormCell", for: indexPath as IndexPath)
         let form = formsList[indexPath.row]
         cell.textLabel!.text = "\(form.name) Tasks: \(form.tasks.count)"
         cell.detailTextLabel!.text = "Description: \(form.description)"
+        cell.configureDataCell()
         return cell
     }
 

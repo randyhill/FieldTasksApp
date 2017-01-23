@@ -66,7 +66,7 @@ class Form : Template {
     init(formDict : [String : AnyObject]) {
         super.init(templateDict: formDict)
         if let createDate = formDict["createDate"] as? String {
-            if let date = Globals.sharedInstance.utcFormatter.date(from: createDate) {
+            if let date = Globals.shared.utcFormatter.date(from: createDate) {
                 self.createDate = date
             }
         }
@@ -74,7 +74,7 @@ class Form : Template {
 
     override func toDict() -> [String : AnyObject] {
         var formDict = super.toDict()
-        formDict["createDate"] = Globals.sharedInstance.utcFormatter.string(from: createDate) as AnyObject?
+        formDict["createDate"] = Globals.shared.utcFormatter.string(from: createDate) as AnyObject?
         return formDict
     }
 }

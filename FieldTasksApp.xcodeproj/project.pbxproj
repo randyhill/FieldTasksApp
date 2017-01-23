@@ -13,6 +13,16 @@
 		D82411A31E301D5A006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
 		D82411A51E315517006D06E2 /* TemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* TemplateController.swift */; };
 		D82411A61E315517006D06E2 /* TemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* TemplateController.swift */; };
+		D82411B11E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */; };
+		D82411B21E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */; };
+		D82411B31E36B405006D06E2 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AC1E36B405006D06E2 /* Lato-Bold.ttf */; };
+		D82411B41E36B405006D06E2 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AC1E36B405006D06E2 /* Lato-Bold.ttf */; };
+		D82411B51E36B405006D06E2 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AD1E36B405006D06E2 /* Lato-Italic.ttf */; };
+		D82411B61E36B405006D06E2 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AD1E36B405006D06E2 /* Lato-Italic.ttf */; };
+		D82411B71E36B405006D06E2 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AE1E36B405006D06E2 /* Lato-Light.ttf */; };
+		D82411B81E36B405006D06E2 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AE1E36B405006D06E2 /* Lato-Light.ttf */; };
+		D82411B91E36B405006D06E2 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AF1E36B405006D06E2 /* Lato-Regular.ttf */; };
+		D82411BA1E36B405006D06E2 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AF1E36B405006D06E2 /* Lato-Regular.ttf */; };
 		D826E6BD1D6D2AD8002B91AE /* PhotoTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6BC1D6D2AD8002B91AE /* PhotoTaskHandler.swift */; };
 		D826E6BF1D6D2B02002B91AE /* NumberTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6BE1D6D2B01002B91AE /* NumberTaskHandler.swift */; };
 		D826E6C11D6D2B24002B91AE /* TextTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6C01D6D2B24002B91AE /* TextTaskHandler.swift */; };
@@ -51,6 +61,10 @@
 		D85D53D71D710750006D31F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8549B9E1D67871B009DBE7A /* Main.storyboard */; };
 		D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85D53DD1D710D94006D31F2 /* Globals.swift */; };
 		D85D53E11D711051006D31F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85D53DD1D710D94006D31F2 /* Globals.swift */; };
+		D88B94E11E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DA1E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m */; };
+		D88B94E21E36CC4800465793 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DC1E36CC4800465793 /* TPKeyboardAvoidingScrollView.m */; };
+		D88B94E31E36CC4800465793 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DE1E36CC4800465793 /* TPKeyboardAvoidingTableView.m */; };
+		D88B94E41E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94E01E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +75,11 @@
 		D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D82411A01E301BE6006D06E2 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = UI/MainController.swift; sourceTree = "<group>"; };
 		D82411A41E315517006D06E2 /* TemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateController.swift; path = UI/TemplateController.swift; sourceTree = "<group>"; };
+		D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "flat-ui-icons-regular.ttf"; path = "Resources/flat-ui-icons-regular.ttf"; sourceTree = "<group>"; };
+		D82411AC1E36B405006D06E2 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "Resources/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		D82411AD1E36B405006D06E2 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Italic.ttf"; path = "Resources/Lato-Italic.ttf"; sourceTree = "<group>"; };
+		D82411AE1E36B405006D06E2 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "Resources/Lato-Light.ttf"; sourceTree = "<group>"; };
+		D82411AF1E36B405006D06E2 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "Resources/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		D826E6BC1D6D2AD8002B91AE /* PhotoTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PhotoTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D826E6BE1D6D2B01002B91AE /* NumberTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D826E6C01D6D2B24002B91AE /* TextTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TextTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -87,6 +106,15 @@
 		D85D53DB1D710750006D31F2 /* FieldTasksApp Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FieldTasksApp Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85D53DC1D710750006D31F2 /* FieldTasksApp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "FieldTasksApp copy-Info.plist"; path = "/Users/clarkehill2/Documents/source/FieldTasksApp/FieldTasksApp copy-Info.plist"; sourceTree = "<absolute>"; };
 		D85D53DD1D710D94006D31F2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = ../Globals.swift; sourceTree = "<group>"; };
+		D88B94D81E36CC4800465793 /* FieldTasksApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FieldTasksApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		D88B94D91E36CC4800465793 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingCollectionView.h; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingCollectionView.h"; sourceTree = "<group>"; };
+		D88B94DA1E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingCollectionView.m; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingCollectionView.m"; sourceTree = "<group>"; };
+		D88B94DB1E36CC4800465793 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h"; sourceTree = "<group>"; };
+		D88B94DC1E36CC4800465793 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.m"; sourceTree = "<group>"; };
+		D88B94DD1E36CC4800465793 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingTableView.h; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingTableView.h"; sourceTree = "<group>"; };
+		D88B94DE1E36CC4800465793 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingTableView.m; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingTableView.m"; sourceTree = "<group>"; };
+		D88B94DF1E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+TPKeyboardAvoidingAdditions.h"; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		D88B94E01E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+TPKeyboardAvoidingAdditions.m"; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		FE8420CBC9B3A1B24799E213 /* Pods_FieldTasksApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FieldTasksApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,6 +161,7 @@
 		D82411A21E301C01006D06E2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D88B94D71E36CBE100465793 /* TPKeyboardAvoiding */,
 				D8549B9E1D67871B009DBE7A /* Main.storyboard */,
 				D82411A01E301BE6006D06E2 /* MainController.swift */,
 				D8549B9C1D67871B009DBE7A /* FormListController.swift */,
@@ -141,6 +170,19 @@
 				D82411A41E315517006D06E2 /* TemplateController.swift */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		D82411B01E36B405006D06E2 /* FlatUIKit Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */,
+				D82411AC1E36B405006D06E2 /* Lato-Bold.ttf */,
+				D82411AD1E36B405006D06E2 /* Lato-Italic.ttf */,
+				D82411AE1E36B405006D06E2 /* Lato-Light.ttf */,
+				D82411AF1E36B405006D06E2 /* Lato-Regular.ttf */,
+			);
+			name = "FlatUIKit Resources";
+			path = ../Pods/FlatUIKit;
 			sourceTree = "<group>";
 		};
 		D826E6C41D6D2B87002B91AE /* TaskHandlers */ = {
@@ -210,6 +252,7 @@
 		D8549BCF1D67B652009DBE7A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D82411B01E36B405006D06E2 /* FlatUIKit Resources */,
 				D8549BA41D67871B009DBE7A /* Assets.xcassets */,
 				D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */,
 				D8549BA91D67871B009DBE7A /* Info.plist */,
@@ -228,6 +271,22 @@
 				D8346CF31D6E21A400CDC34E /* TaskResults.swift */,
 			);
 			name = "Data Classes";
+			sourceTree = "<group>";
+		};
+		D88B94D71E36CBE100465793 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				D88B94D91E36CC4800465793 /* TPKeyboardAvoidingCollectionView.h */,
+				D88B94DA1E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m */,
+				D88B94DB1E36CC4800465793 /* TPKeyboardAvoidingScrollView.h */,
+				D88B94DC1E36CC4800465793 /* TPKeyboardAvoidingScrollView.m */,
+				D88B94DD1E36CC4800465793 /* TPKeyboardAvoidingTableView.h */,
+				D88B94DE1E36CC4800465793 /* TPKeyboardAvoidingTableView.m */,
+				D88B94DF1E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				D88B94E01E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+				D88B94D81E36CC4800465793 /* FieldTasksApp-Bridging-Header.h */,
+			);
+			name = TPKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,13 +339,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CRH;
 				TargetAttributes = {
 					D8549B961D67871B009DBE7A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 4UNCRH2N42;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					D85D53C21D710750006D31F2 = {
 						DevelopmentTeam = 4UNCRH2N42;
@@ -319,8 +378,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8549BA81D67871B009DBE7A /* LaunchScreen.storyboard in Resources */,
+				D82411B31E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
 				D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */,
+				D82411B91E36B405006D06E2 /* Lato-Regular.ttf in Resources */,
 				D8549BA01D67871B009DBE7A /* Main.storyboard in Resources */,
+				D82411B51E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
+				D82411B11E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */,
+				D82411B71E36B405006D06E2 /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,8 +393,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D85D53D51D710750006D31F2 /* LaunchScreen.storyboard in Resources */,
+				D82411B41E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
 				D85D53D61D710750006D31F2 /* Assets.xcassets in Resources */,
+				D82411BA1E36B405006D06E2 /* Lato-Regular.ttf in Resources */,
 				D85D53D71D710750006D31F2 /* Main.storyboard in Resources */,
+				D82411B61E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
+				D82411B21E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */,
+				D82411B81E36B405006D06E2 /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,12 +504,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8549BD71D68C9CC009DBE7A /* FormTask.swift in Sources */,
+				D88B94E21E36CC4800465793 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				D88B94E11E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				D8346CF41D6E21A400CDC34E /* TaskResults.swift in Sources */,
 				D8549B9D1D67871B009DBE7A /* FormListController.swift in Sources */,
+				D88B94E41E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				D826E6C11D6D2B24002B91AE /* TextTaskHandler.swift in Sources */,
 				D8549BD31D67E85A009DBE7A /* FormController.swift in Sources */,
 				D82411A51E315517006D06E2 /* TemplateController.swift in Sources */,
 				D826E6BF1D6D2B02002B91AE /* NumberTaskHandler.swift in Sources */,
+				D88B94E31E36CC4800465793 /* TPKeyboardAvoidingTableView.m in Sources */,
 				D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */,
 				D82411A11E301BE6006D06E2 /* MainController.swift in Sources */,
 				D8549BCE1D67B5D5009DBE7A /* Form.swift in Sources */,
@@ -598,7 +671,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4UNCRH2N42;
@@ -609,6 +684,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FieldTasksApp/FieldTasksApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -617,7 +694,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4BEB6C5B210DC95D925F6144 /* Pods-FieldTasksApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4UNCRH2N42;
@@ -628,6 +707,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FieldTasksApp/FieldTasksApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -636,6 +716,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65BD1D570094E531AEA25ED4 /* Pods-FieldTasksApp Local.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -654,6 +735,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CAEB5688752EF3DB8FAD426F /* Pods-FieldTasksApp Local.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

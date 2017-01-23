@@ -116,7 +116,7 @@ class ChoiceTaskHandler : TaskHandler {
         }
     }
 
-    override init(controller : UIViewController, container : UIView, task: FormTask, isEditable: Bool) {
+    override init(controller : TaskController, container : UIView, task: FormTask, isEditable: Bool) {
         super.init(controller : controller,  container: container, task: task, isEditable: isEditable)
 
         var choiceFrame = CGRect(x: 0, y: 0, width: container.frame.width, height: 28)

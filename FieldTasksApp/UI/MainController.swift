@@ -16,6 +16,7 @@ class MainController: UITableViewController {
 
         self.title = "Welcome"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
+        configureNavBar()
     }
 
     func refreshList() {
@@ -54,25 +55,39 @@ class MainController: UITableViewController {
 
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return formsList.count + 1
+        if section == 0 {
+            return 1
+        }
+        return formsList.count
+    }
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64.0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubmissionCell", for: indexPath as IndexPath)
-        if indexPath.row == 0 {
-            cell.textLabel!.text = "Tap to Add New Form +"
+        if indexPath.section == 0 {
+            cell.textLabel!.text = "Add New Form"
+            cell.textLabel!.textAlignment = .center
             cell.detailTextLabel!.text = ""
-        } else {
-            let form = formsList[indexPath.row-1]
+            cell.configureHeaderCell()
+       } else {
+            let form = formsList[indexPath.row]
             cell.textLabel!.text = form.name
-            cell.detailTextLabel!.text = Globals.sharedInstance.dateFormatter.string(from: form.createDate)
-        }
+            cell.detailTextLabel!.text = Globals.shared.dateFormatter.string(from: form.createDate)
+             cell.configureDataCell()
+       }
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             if let formController = self.storyboard?.instantiateViewController(withIdentifier: "FormListController") as? FormListController {
                 let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
                 self.present(navController, animated: true, completion: {
@@ -81,7 +96,7 @@ class MainController: UITableViewController {
             }
         } else {
             if let formController = self.storyboard?.instantiateViewController(withIdentifier: "FormController") as? FormController {
-                formController.form = formsList[indexPath.row - 1]
+                formController.form = formsList[indexPath.row]
                 let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
                 self.present(navController, animated: true, completion: {
 

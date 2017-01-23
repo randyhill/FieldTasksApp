@@ -63,6 +63,14 @@ class TextResult : TaskResult {
 
 class NumberResult : TaskResult {
     var value : Double?
+//    var value : Double {
+//        get {
+//            return _value ?? 0.0
+//        }
+//        set(newValue) {
+//            _value = new
+//        }
+//    }
 
     override init(formTask : FormTask, results: [String : AnyObject]) {
         super.init(formTask: formTask, results: results)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlatUIKit
 
 class TextTaskHandler : TaskHandler {
     let textView = UITextView()
@@ -21,11 +22,13 @@ class TextTaskHandler : TaskHandler {
         }
     }
 
-    override init(controller : UIViewController,  container : UIView, task: FormTask, isEditable: Bool) {
+    override init(controller : TaskController,  container : UIView, task: FormTask, isEditable: Bool) {
         super.init(controller : controller, container: container, task: task, isEditable: isEditable)
         textView.frame = container.frame
         textView.layer.borderWidth =  1.0
         textView.isEditable = isEditable
+        textView.font = Globals.shared.mediumFont
+        textView.backgroundColor = UIColor.clouds()
         configureTextView(container: container)
         container.addSubview(textView)
     }

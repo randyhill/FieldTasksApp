@@ -24,7 +24,7 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
     }
     let kButtonSize = CGSize(width: 120.0, height: 34.0)
 
-    override init(controller : UIViewController, container : UIView, task: FormTask, isEditable: Bool) {
+    override init(controller : TaskController, container : UIView, task: FormTask, isEditable: Bool) {
         super.init(controller : controller, container: container, task: task, isEditable: isEditable)
 
         // Picture frame

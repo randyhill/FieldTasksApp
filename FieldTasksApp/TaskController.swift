@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FlatUIKit
 
 
 class TaskController : UIViewController {
@@ -21,26 +21,21 @@ class TaskController : UIViewController {
             return form!.tasks[taskIndex]
         }
     }
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var taskDescription : UITextView!
     @IBOutlet var taskView : UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        setBackButton(title: "Back")
-//        setNextButton(title: "Next")
+        configureNavBar()
+        self.view.backgroundColor = Globals.shared.bgColor
+        self.descriptionLabel.textColor = Globals.shared.textColor
+        self.descriptionLabel.font = Globals.shared.bigFont
+        self.taskDescription.textColor = Globals.shared.textColor
+        self.taskDescription.font = Globals.shared.mediumFont
+        self.taskView.backgroundColor =  Globals.shared.bgColor
     }
-
-    func setBackButton(title: String) {
-        let backButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(prevTask))
-        navigationItem.leftBarButtonItem = backButton
-    }
-
-    func setNextButton(title: String) {
-        let nextButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextTask))
-        navigationItem.rightBarButtonItem = nextButton
-    }
-
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,6 +63,17 @@ class TaskController : UIViewController {
         setBackButton(title: taskIndex == 0 ? "Done" : "Back")
         setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
     }
+
+    func setBackButton(title: String) {
+        let backButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(prevTask))
+        navigationItem.leftBarButtonItem = backButton
+    }
+
+    func setNextButton(title: String) {
+        let nextButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextTask))
+        navigationItem.rightBarButtonItem = nextButton
+    }
+    
 
     func createNewTask() {
         let task = form!.tasks[taskIndex]
@@ -110,14 +116,6 @@ class TaskController : UIViewController {
         }
         if let errorMessage = taskHandler?.validate() {
             self.showAlert(title: "Invalid value", message: errorMessage)
-//            let alert = UIAlertController(title: "Invalid value", message: errorMessage, preferredStyle: .Alert)
-//            let ok = UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) in
-//
-//            })
-//            alert.addAction(ok)
-//            self.presentViewController(alert, animated: true, completion: {
-//
-//            })
             return false
         }
         return true

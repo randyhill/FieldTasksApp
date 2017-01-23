@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "757C1A00267DA641E73D48797F6DA805"
+               BlueprintIdentifier = "56F76F7912A61A16C706EFB5725206F0"
                BuildableName = "Pods_FieldTasksApp_Local.framework"
                BlueprintName = "Pods-FieldTasksApp Local"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "757C1A00267DA641E73D48797F6DA805"
+            BlueprintIdentifier = "56F76F7912A61A16C706EFB5725206F0"
             BuildableName = "Pods_FieldTasksApp_Local.framework"
             BlueprintName = "Pods-FieldTasksApp Local"
             ReferencedContainer = "container:Pods.xcodeproj">

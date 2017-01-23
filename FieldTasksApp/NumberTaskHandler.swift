@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FlatUIKit
 
 class NumberTaskHandler : TextTaskHandler {
     var rangeLabel = UILabel()
@@ -27,18 +27,21 @@ class NumberTaskHandler : TextTaskHandler {
         if !taskData.isUnlimited {
             // Describe range to users
             rangeLabel.frame = CGRect(x: textView.frame.origin.x, y: textView.frame.height, width: textView.frame.width, height: 28)
-            //(textView.frame.origin.x, textView.frame.height, textView.frame.width, 28)
             rangeLabel.text = "Range: \(taskData.min) to \(taskData.max)"
             container.addSubview(rangeLabel)
         }
         if taskData.isDecimal {
             textView.keyboardType = .decimalPad
+ //           textView.text = String(describing: numberResult.value)
         } else {
             textView.keyboardType = .numberPad
+//            if let numberValue = numberResult.value {
+//                textView.text = String(describing: Int(numberValue))
+//            }
         }
-        textView.text = String(describing: numberResult.value)
         textView.isEditable = isEditable
         textView.becomeFirstResponder()
+        textView.font = Globals.shared.mediumFont
     }
 
     override func validate() -> String? {
@@ -56,14 +59,24 @@ class NumberTaskHandler : TextTaskHandler {
         }
         return nil
     }
+
     override func save() {
         numberResult.save(newText: textView.text)
     }
-    override func restore() {
-        if let value = numberResult.value {
-            textView.text = String(value)
+
+    private func setNumberValue() {
+        if taskData.isDecimal {
+            textView.text = String(describing: numberResult.value)
         } else {
-            textView.text = ""
+            if let numberValue = numberResult.value {
+                textView.text = String(describing: Int(numberValue))
+            } else {
+                textView.text = ""
+            }
         }
+    }
+
+    override func restore() {
+        setNumberValue()
     }
 }

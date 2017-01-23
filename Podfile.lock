@@ -1,12 +1,15 @@
 PODS:
   - Alamofire (4.3.0)
+  - FlatUIKit (1.6.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - FlatUIKit
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
 
-PODFILE CHECKSUM: f239fb6828b0e2c603fe293d731be23e1658242f
+PODFILE CHECKSUM: cb81df6a17bebff079dfab51aedfe29426be7542
 
 COCOAPODS: 1.1.1

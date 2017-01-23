@@ -17,6 +17,7 @@ class TemplateController : UITableViewController {
         self.title = "Form: \(form!.name)"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(submitForm))
+        configureNavBar()
     }
 
     func goBack(){
@@ -52,6 +53,10 @@ class TemplateController : UITableViewController {
         return form!.tasks.count
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64.0
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath as IndexPath)
@@ -61,10 +66,12 @@ class TemplateController : UITableViewController {
         if (task.result?.completed)! {
             titleText = "√ " + titleText
         }
-        cell.textLabel!.text = titleText
+        let requiredText = task.required ? " (required)" : ""
+        cell.textLabel!.text = titleText + requiredText
 
         let detailText = "\(task.type)"
         cell.detailTextLabel!.text = detailText
+        cell.configureDataCell()
         return cell
     }
 
