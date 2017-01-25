@@ -23,7 +23,7 @@ class NumberTaskHandler : TextTaskHandler {
     }
 
     override func configureTextView(container : UIView) {
-        textView.frame.size.height = 28.0
+        textView.frame.size.height = 34.0
         if !taskData.isUnlimited {
             // Describe range to users
             rangeLabel.frame = CGRect(x: textView.frame.origin.x, y: textView.frame.height, width: textView.frame.width, height: 28)
@@ -32,12 +32,8 @@ class NumberTaskHandler : TextTaskHandler {
         }
         if taskData.isDecimal {
             textView.keyboardType = .decimalPad
- //           textView.text = String(describing: numberResult.value)
         } else {
             textView.keyboardType = .numberPad
-//            if let numberValue = numberResult.value {
-//                textView.text = String(describing: Int(numberValue))
-//            }
         }
         textView.isEditable = isEditable
         textView.becomeFirstResponder()

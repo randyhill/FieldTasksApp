@@ -51,6 +51,7 @@ class FormController : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FormTaskCell", for: indexPath as IndexPath)
+        cell.configureDataCell()
         if let formTaskCell = cell as? FormTaskCell {
             let task = form!.tasks[indexPath.row]
 
@@ -61,8 +62,9 @@ class FormController : UITableViewController {
                 formTaskCell.body!.text = "Not entered"
             }
             formTaskCell.selectionStyle = .default
-        }
-        cell.configureDataCell()
+            formTaskCell.body.layer.cornerRadius = 4.0
+            formTaskCell.body.backgroundColor = Globals.shared.bgColor
+       }
        return cell
     }
 

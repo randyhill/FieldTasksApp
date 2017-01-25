@@ -30,7 +30,7 @@ class FormListController: UITableViewController {
 
     func refreshList() {
         // Do any additional setup after loading the view, typically from a nib.
-        ServerManager.sharedInstance.loadTemplates { (result, error) in
+        ServerMgr.shared.loadTemplates { (result, error) in
             if error != nil {
                 print("Failed to load forms: \(error)")
             } else {
@@ -83,7 +83,7 @@ class FormListController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let formController = self.storyboard?.instantiateViewController(withIdentifier: "TemplateController") as? TemplateController {
-            formController.form = formsList[indexPath.row]
+            formController.form = Form(template: formsList[indexPath.row])
             let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {
 

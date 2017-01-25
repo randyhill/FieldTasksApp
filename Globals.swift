@@ -19,6 +19,8 @@ class Globals {
     let bigFont = UIFont.boldFlatFont(ofSize: 18.0)!
     let textColor = UIColor.clouds()
     let bgColor = UIColor.greenSea()
+    let barColor = UIColor.midnightBlue()
+    let barButtonColor = UIColor.belizeHole()
 
     init() {
         utcFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -28,7 +30,7 @@ class Globals {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
 
-        UIBarButtonItem.configureFlatButtons(with: UIColor.belizeHole(), highlightedColor: UIColor.belizeHole(), cornerRadius: 3.0)
+        UIBarButtonItem.configureFlatButtons(with: barButtonColor, highlightedColor: barButtonColor, cornerRadius: 3.0)
     }
 }
 
@@ -41,7 +43,7 @@ extension UIViewController {
     }
 
     func configureNavBar() {
-        self.navigationController?.navigationBar.configureFlatNavigationBar(with: UIColor.midnightBlue())
+        self.navigationController?.navigationBar.configureFlatNavigationBar(with: Globals.shared.barColor)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.clouds(), NSFontAttributeName : Globals.shared.bigFont]
         self.navigationController?.navigationBar.tintColor = UIColor.clouds()
     }

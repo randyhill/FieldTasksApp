@@ -144,12 +144,21 @@ class ChoicesResult : TaskResult {
     }
 
     override func description() -> String {
-        var text = ""
+        var text = "Done: "
         if let choicesTask = formTask?.taskDescription as? ChoicesTaskDescription {
-            var index = 1
+            var checked = 0
             for (value, choice) in zip(values, choicesTask.titles) {
-                text += "\(choice): \(value) "
-                index += 1
+                if value {
+                    // separate with checkmarks.
+                    if checked > 0 {
+                        text += ", "
+                    }
+                    text += choice
+                    checked += 1
+                }
+            }
+            if checked == 0 {
+                text += "No choices selected"
             }
         }
 
@@ -159,6 +168,7 @@ class ChoicesResult : TaskResult {
 
 class PhotoResult : TaskResult {
     var photo : UIImage?
+    var fileName : String?
 
     override init(formTask : FormTask, results: [String : AnyObject]) {
         super.init(formTask: formTask, results: results)

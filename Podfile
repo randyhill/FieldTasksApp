@@ -8,6 +8,7 @@ target 'FieldTasksApp' do
   # Pods for FieldTasksApp
   pod 'Alamofire', '~> 4.3'
   pod 'FlatUIKit'
+  pod 'Just'
 
 end
 
@@ -18,5 +19,6 @@ target 'FieldTasksApp Local' do
   # Pods for FieldTasksApp Local
   pod 'Alamofire', '~> 4.3'
   pod 'FlatUIKit'
+  pod 'Just'
   
 end

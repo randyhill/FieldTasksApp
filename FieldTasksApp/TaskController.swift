@@ -24,6 +24,7 @@ class TaskController : UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var taskDescription : UITextView!
     @IBOutlet var taskView : UIView!
+    @IBOutlet var doneButton : UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,13 @@ class TaskController : UIViewController {
         self.descriptionLabel.font = Globals.shared.bigFont
         self.taskDescription.textColor = Globals.shared.textColor
         self.taskDescription.font = Globals.shared.mediumFont
-        self.taskView.backgroundColor =  Globals.shared.bgColor
+        self.taskView.backgroundColor = Globals.shared.bgColor
+
+        doneButton.backgroundColor = Globals.shared.barButtonColor
+        doneButton.setTitleColor(Globals.shared.textColor, for: .normal)
+        doneButton.titleLabel!.font = Globals.shared.mediumFont
+        doneButton.layer.cornerRadius = 4.0
+        doneButton.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +127,7 @@ class TaskController : UIViewController {
         }
         return true
     }
+
     @IBAction func prevTask(){
         if validateFields() {
             taskHandler!.save()
@@ -128,6 +136,7 @@ class TaskController : UIViewController {
                 self.updateViewValues()
                 self.createNewTask()
                 setBackButton(title: taskIndex == 0 ? "Done" : "Back")
+                doneButton.isHidden = taskIndex == 0
             } else {
                 dismiss(animated: true, completion: nil)
             }
@@ -142,9 +151,17 @@ class TaskController : UIViewController {
                 self.updateViewValues()
                 self.createNewTask()
                 setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
+                doneButton.isHidden = taskIndex == (form!.tasks.count - 1)
             } else {
                 dismiss(animated: true, completion: nil)
             }
+        }
+    }
+
+    @IBAction func done() {
+        if validateFields() {
+            taskHandler!.save()
+            dismiss(animated: true, completion: nil)
         }
     }
 }

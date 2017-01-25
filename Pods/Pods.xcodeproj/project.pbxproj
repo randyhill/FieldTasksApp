@@ -7,236 +7,262 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01C7AC28D9B4FA46087139B1C42E2764 /* NSString+Icons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5458BFCC47D81336B97301E0F86923 /* NSString+Icons.m */; };
-		03150083B17B664B32A6C261C11D9821 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6483A23799E709A75E9503A3C5439653 /* Foundation.framework */; };
-		07C44F7AB9C3311F11ED2104D35BB52F /* UIToolbar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = B41CADA7C8AEF6A4C3D0A0F59FAAB580 /* UIToolbar+FlatUI.m */; };
-		08CF76F875254A413957FBEFD24E3B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6483A23799E709A75E9503A3C5439653 /* Foundation.framework */; };
-		08EF1423F8D32121765277EB17771FA2 /* Pods-FieldTasksApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B9621B7B10D5FE8543E355E71EACBFD /* Pods-FieldTasksApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		09D6C1C061263FF12620C2BAD4CD56D4 /* UIStepper+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B1327B52D8A663AE1147CFB844F2163 /* UIStepper+FlatUI.m */; };
-		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F735F0F2727C3B895C15C142F3447B9 /* Timeline.swift */; };
-		199D3A62C22D95D1CCC0543B698DCC11 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E177ED9EB9730D497ABFEEEA47F6BFCF /* Lato-Regular.ttf */; };
-		1B7FA2C7D685ACF178D114813B694262 /* Pods-FieldTasksApp Local-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C985B1A03CFE384914285D3EF89FE /* Pods-FieldTasksApp Local-dummy.m */; };
-		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F63307DCA08DFEC075A7F8C0FB46B9C /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		247927BBB9CAA77E5BB6D524BE442837 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47EAD5995CB4AD064024FB956A6F60E6 /* Lato-Light.ttf */; };
-		277B7107A41806303867B100AD8EA057 /* FUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A06DFEB8632E9670597EC0854C8E718A /* FUIButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29CBFCF1B5E74E159A471AED05F7FFE4 /* FUITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 68B53A9592E52FEEECA45875C802602D /* FUITextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35DC0B35AE97EFD533FDC3C99028CC8B /* UIStepper+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = A4F5AC7E311CE1D9F599DD2FDAE460F4 /* UIStepper+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC74AF7CF11F33065B5676C4BDE56D7 /* TaskDelegate.swift */; };
-		3A3D2DFE234424887CA87ABB47C0515F /* UIBarButtonItem+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CBE4931968CF5A21A221FB74D1F16AB /* UIBarButtonItem+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C980924C8CFE8C8B6F2A28AF9D054AC /* UINavigationBar+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DDB24E7F679EEE83C89790830B7A890B /* UINavigationBar+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FC285584A4A7DBBA4C1E132634EC97A /* UITabBar+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 963D5D2F6ABAA8403A7A7FB5DCBBA180 /* UITabBar+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		01C7AC28D9B4FA46087139B1C42E2764 /* NSString+Icons.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A44051607FC4BB05DF650D6C4F091 /* NSString+Icons.m */; };
+		0277B38BB4233F97F2EBAB6F5503D988 /* Just-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F8ED09A5B202F764C6FF1FA8D2DF33 /* Just-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07C44F7AB9C3311F11ED2104D35BB52F /* UIToolbar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = B8529C4CC5BF3C8E791FD545985F0845 /* UIToolbar+FlatUI.m */; };
+		09D6C1C061263FF12620C2BAD4CD56D4 /* UIStepper+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 09437AF8533F5C5960AEFA2DF392007E /* UIStepper+FlatUI.m */; };
+		10206A3D3A4967AA43A01C5709484241 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6483A23799E709A75E9503A3C5439653 /* Foundation.framework */; };
+		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440CAD496D6C945B190DC1A068B5A05 /* Timeline.swift */; };
+		199D3A62C22D95D1CCC0543B698DCC11 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB4C99721B1B2A596B69E089AE23CC04 /* Lato-Regular.ttf */; };
+		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 73F7F2B2BDA888C6B376B3346F7F254E /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21BC060A609FC564441E2295FAAB69D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6483A23799E709A75E9503A3C5439653 /* Foundation.framework */; };
+		247927BBB9CAA77E5BB6D524BE442837 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D5D290DF6A69AD97B5C3AD0D0658872 /* Lato-Light.ttf */; };
+		270BD4B1C65B3AFA6E3D44B88E18475A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6483A23799E709A75E9503A3C5439653 /* Foundation.framework */; };
+		277B7107A41806303867B100AD8EA057 /* FUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = BD6ED69F533426F90B4B11024A9B988A /* FUIButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29CBFCF1B5E74E159A471AED05F7FFE4 /* FUITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = E4A8C3D21AE883AF6E3229DA201F2DC1 /* FUITextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35DC0B35AE97EFD533FDC3C99028CC8B /* UIStepper+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C6DE5E7153CE7E01763A08F402AB3C8 /* UIStepper+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35DF85193C6C4FEBAC2D3D81129F01E1 /* Just-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 275694907450E0F7A0F19DAF7DC09D92 /* Just-dummy.m */; };
+		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD46F0AD3CB3189212349814822F3FCD /* TaskDelegate.swift */; };
+		3A3D2DFE234424887CA87ABB47C0515F /* UIBarButtonItem+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = AE62148EB893599101580CEFB211136C /* UIBarButtonItem+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C980924C8CFE8C8B6F2A28AF9D054AC /* UINavigationBar+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 36DF9529C7F1FABB1DC89B3EFAE2A16E /* UINavigationBar+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3FC285584A4A7DBBA4C1E132634EC97A /* UITabBar+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = FC72F9ED647E4E8F896A03C1D38BE14D /* UITabBar+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		409D8ED54CC607ADAE9416EFD0EADF7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6483A23799E709A75E9503A3C5439653 /* Foundation.framework */; };
-		42067963E9E1DC388FAA3A518B53AB10 /* UIPopoverController+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = AD10A4AC3FF7B8702FFAEAA54BF9CBDC /* UIPopoverController+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		46A3EDA4B5B50C63DCAF229BBCB8F314 /* FUIPopoverBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = A0C69B05F9645592DAF6323086916167 /* FUIPopoverBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		499B276EE19E74DE11DEE12934F93BAD /* FlatUIKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F93E4526612DDC35EDE1CDAD8317158 /* FlatUIKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B61AE56E41703F4315D6996002CFE3E /* Request.swift */; };
-		557F207112A89E962B4FA3DA95E62BB8 /* UIBarButtonItem+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 67927C82D60946B10E9F0CCB221D1720 /* UIBarButtonItem+FlatUI.m */; };
-		5D6D6054F82C2555FBF409FA0E5BB3AD /* FUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3397D290AA756D7D0ABB200C22D468 /* FUITextField.m */; };
-		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E4AEE17FFE0C8C2C338B83331CA530 /* DispatchQueue+Alamofire.swift */; };
-		62255E5D1584217D13F356F89BAC9FDF /* NSString+Icons.h in Headers */ = {isa = PBXBuildFile; fileRef = 24CD8BB76BA7765D1B7A92175FF7BA7C /* NSString+Icons.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518A26A235E98644833FA06881DFCB9F /* ServerTrustPolicy.swift */; };
-		65E2EB7E21CF52B33AC4D0569C4349F9 /* FUIAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = F9790E4149D33826AB2D938047CB2645 /* FUIAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		72B0B27ACF89BE8DD95E4A6607C925D2 /* FUISegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B13FD1DC77FC61915200C9359BE0A43E /* FUISegmentedControl.m */; };
-		732E8B35C62650A698A3E6496401E4DA /* FUISwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E5BAB3DB940C089BB54AAB679B15717 /* FUISwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F4B09F234B681F46665EE4D5B27B9B /* SessionDelegate.swift */; };
-		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D98F770A0B526E15AF2844DFD24DAC3 /* Result.swift */; };
-		7F9B62B15F30E18DC38110B194EBA18E /* UIFont+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F111B0277958FC769AA2B986BCA21B4 /* UIFont+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7FE5BE6EB75843B0598B2FE69D4165EC /* UIImage+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE488DA2D207D80786CB85F700076A2 /* UIImage+FlatUI.m */; };
-		8541336BD3FA3A657D91AB19D3975AF4 /* UIColor+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = BD22B42D3CE0AC13B8ECA79A610BB50B /* UIColor+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8C314B6FAA78EDAC2A7A82FDFE058806 /* UIProgressView+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5210B6A6E473A1E58BCD4802FDFCC389 /* UIProgressView+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8E4FBDBA77DDDFAC490ABE9E28BED06F /* UITabBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D0616E3C05C1ECB80F2AA7BD08C2B7 /* UITabBar+FlatUI.m */; };
-		8E972E7ADD582B0C1A85FD5ADFE61CED /* FUISwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEEE9C740733142FDEF0CA882F99C43 /* FUISwitch.m */; };
-		90CB9CA50A1275E3BAB44A5502C636F1 /* FUICellBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A38CAFB59175920B31083A01931C6A4 /* FUICellBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		90DD950FD1304EC230CA473884A61595 /* Pods-FieldTasksApp Local-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7390E1B56007AFB0A9DAC64F3F21CE47 /* Pods-FieldTasksApp Local-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9339894BFFC1FA62DDF64A7DA0433770 /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B4B00FCE111DFAC9A89165942D9E9F5 /* flat-ui-icons-regular.ttf */; };
-		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA31966F04E0B88DE28833075EDDE677 /* AFError.swift */; };
+		42067963E9E1DC388FAA3A518B53AB10 /* UIPopoverController+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F8D347AB9B619A838EF38716528F16 /* UIPopoverController+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		46A3EDA4B5B50C63DCAF229BBCB8F314 /* FUIPopoverBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FBFD57FCD69BE3CC341DD19DDA38831 /* FUIPopoverBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		499B276EE19E74DE11DEE12934F93BAD /* FlatUIKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 93843A6E35BF3F6DAFAA1F01DCE89962 /* FlatUIKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4E612D64DE9A58EEEA6A1008D250 /* Request.swift */; };
+		557F207112A89E962B4FA3DA95E62BB8 /* UIBarButtonItem+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4B71F5F2F880057EC79452F1C34C97 /* UIBarButtonItem+FlatUI.m */; };
+		5C1079403715F54F4EE427C95C273FF1 /* Pods-FieldTasksApp Local-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7390E1B56007AFB0A9DAC64F3F21CE47 /* Pods-FieldTasksApp Local-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5D6D6054F82C2555FBF409FA0E5BB3AD /* FUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DA04DD70EF58EA514A6C82140E2F6E /* FUITextField.m */; };
+		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BA623369BF5649CA60CC95EF07390B /* DispatchQueue+Alamofire.swift */; };
+		62255E5D1584217D13F356F89BAC9FDF /* NSString+Icons.h in Headers */ = {isa = PBXBuildFile; fileRef = F52E3DFD21B156A274469CBD4EBC12C4 /* NSString+Icons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E2BE0901FA0AF5F9BE707F3603F02 /* ServerTrustPolicy.swift */; };
+		65E2EB7E21CF52B33AC4D0569C4349F9 /* FUIAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C0FFF6AF2078AF54845B2D69E7DA56B /* FUIAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72B0B27ACF89BE8DD95E4A6607C925D2 /* FUISegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 757C980A683AF196D846D816CEFF8500 /* FUISegmentedControl.m */; };
+		732E8B35C62650A698A3E6496401E4DA /* FUISwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = AA756B6B4E866CF387C80CAC7BD650C8 /* FUISwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C236CFE7CF7F97D7BEC9F8CCAAFB9F /* SessionDelegate.swift */; };
+		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADDC3F94ACB6CCE23447F1F41E71B2 /* Result.swift */; };
+		7F9B62B15F30E18DC38110B194EBA18E /* UIFont+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B380F423A9FAEAB4E5A20112A875479 /* UIFont+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7FE5BE6EB75843B0598B2FE69D4165EC /* UIImage+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E2FD0A046B1C05A97F53D2B5B9ADCA /* UIImage+FlatUI.m */; };
+		8541336BD3FA3A657D91AB19D3975AF4 /* UIColor+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = C40A682423D84279C32112A3831E30CA /* UIColor+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C314B6FAA78EDAC2A7A82FDFE058806 /* UIProgressView+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 36584B44C3856C908DBBED1D00BEAC13 /* UIProgressView+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8E4FBDBA77DDDFAC490ABE9E28BED06F /* UITabBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAAC5E5094E5EEBF97BE6AC1162CB0 /* UITabBar+FlatUI.m */; };
+		8E972E7ADD582B0C1A85FD5ADFE61CED /* FUISwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = A35C879BFC169E5543484E231181CF2F /* FUISwitch.m */; };
+		90CB9CA50A1275E3BAB44A5502C636F1 /* FUICellBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 62411091D7C429E370B0796D418EE7BE /* FUICellBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9339894BFFC1FA62DDF64A7DA0433770 /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B6561EA1B4C793737A66CE93E8D17F7 /* flat-ui-icons-regular.ttf */; };
+		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810739BADCE826E16636556C864ACC88 /* AFError.swift */; };
 		A04BFC558D69E7DBB68023C80A9CFE4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6483A23799E709A75E9503A3C5439653 /* Foundation.framework */; };
-		A08169E67C88B9B9EDAB41246EB8F9AA /* Pods-FieldTasksApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91099DF0AF659DEE74E1E6991F947295 /* Pods-FieldTasksApp-dummy.m */; };
-		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A80BDC21991CD0723732DCDF51795A /* NetworkReachabilityManager.swift */; };
-		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A17A2C45A5303345AA140A31B00F186C /* Alamofire-dummy.m */; };
-		A9FDE3330428B8220FB31FA0A2AF146E /* FUICellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9032CAC7FFFA51FBC388B34EC851B22 /* FUICellBackgroundView.m */; };
-		AA9C0C6673E06CC4E645E0BDCBCCA61E /* FlatUIKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B4C3214F52E379470AB9767E258113 /* FlatUIKit-dummy.m */; };
-		AAB5657E30C0E44B44DFDB0010F86E35 /* UIPopoverController+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C59089119C38D2C088310BB33FCFA77 /* UIPopoverController+FlatUI.m */; };
-		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B7D9BFBDAA3183BC268F9054B3E2A /* SessionManager.swift */; };
-		AEA281A787013B608C7831E9DDACFD3E /* UIFont+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6106AA01C49D0016A2CE07FB15390 /* UIFont+FlatUI.m */; };
-		B50B060E226C59635C4B67FA994144D7 /* UISlider+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E92BEA125E2EE3301A923A81F4E7E683 /* UISlider+FlatUI.m */; };
-		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E655FFF7DC29BD091D89FCD3920E1AE2 /* MultipartFormData.swift */; };
-		B6B076C50EBCCB5C1DE7D48159A80B64 /* UIImage+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = AB7D1D1D3007DCFD8D15C3E192E17AC6 /* UIImage+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A34B68B5429653B6CFBC3231D86125 /* Validation.swift */; };
-		BDD1261B8BF3BD4D58EDA45AB884897B /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0D2F9E5613872E9CFEBFF07160269C5 /* Lato-Italic.ttf */; };
-		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B21326765D512C024179ADA98DA2FE /* ParameterEncoding.swift */; };
+		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D3534D977EDF29CD761E2914D7323E /* NetworkReachabilityManager.swift */; };
+		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A424BD9519C1FCEA31AE7C38C6CDEC /* Alamofire-dummy.m */; };
+		A9FDE3330428B8220FB31FA0A2AF146E /* FUICellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6137D0222157D014D456A06E5EF2670 /* FUICellBackgroundView.m */; };
+		AA9C0C6673E06CC4E645E0BDCBCCA61E /* FlatUIKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCE05D144D932849B1882094EC238D5 /* FlatUIKit-dummy.m */; };
+		AAB5657E30C0E44B44DFDB0010F86E35 /* UIPopoverController+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA75B28F79AF541F2A0FF6A7147E5DC /* UIPopoverController+FlatUI.m */; };
+		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437271D3BE6B3D7C9BA13068406A2CF /* SessionManager.swift */; };
+		AEA281A787013B608C7831E9DDACFD3E /* UIFont+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A8A38CC37A3DAD624D0D27B9E71350 /* UIFont+FlatUI.m */; };
+		B50B060E226C59635C4B67FA994144D7 /* UISlider+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC55F3FAD85003E4F951DFE8056C97 /* UISlider+FlatUI.m */; };
+		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8A8E4B6E859782B661056E2975E7DF /* MultipartFormData.swift */; };
+		B6B076C50EBCCB5C1DE7D48159A80B64 /* UIImage+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = B61BE22614B278A802363CBA95A33D14 /* UIImage+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB5B1193D5CA3A6DAB6014B9FEEBED1D /* Pods-FieldTasksApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91099DF0AF659DEE74E1E6991F947295 /* Pods-FieldTasksApp-dummy.m */; };
+		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3F42E112FAD00CBE394066B52B5A79 /* Validation.swift */; };
+		BD6CCCA6FB2C2ED41C2DBD17D475D2A8 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A562D22983CEF2D24EE722B1CF37A9F /* Just.swift */; };
+		BDD1261B8BF3BD4D58EDA45AB884897B /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1A459E937E67740421DFC84FF9E7F92 /* Lato-Italic.ttf */; };
+		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ADC5E3943AE9D19E3A43F01602C18D /* ParameterEncoding.swift */; };
 		BFFDA5A32016CE964721B451ED2700CB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C46D5FEDBF3C20F663490E11B1C9AD6 /* CoreText.framework */; };
-		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353B099FD9EC0F1F451DD4EC62C0831 /* Response.swift */; };
-		D0CA57562C7915FC1C0A502E19707116 /* UITableViewCell+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E3C8BC3C1ABD37BBD3F33A8BB3CDE /* UITableViewCell+FlatUI.m */; };
-		D2D824F17FFD86540CE49319C6E1B001 /* UIToolbar+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = B7100AE6380C0A777DF9BBCD85C092D7 /* UIToolbar+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D7B8AB19FF9BFB1D1D62E18CDF4B7D6C /* UITableViewCell+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 52E391B34D0A66D4A33A073CFE88AE9E /* UITableViewCell+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE516DEC37CA57C0E368A29FE1C9D2D2 /* FUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CD00916B655B8BB3C58D259D951FDA /* FUIButton.m */; };
-		DF3210B3451BB6D6A3460A3C617A920A /* UIColor+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D529928A3F4C4B78B22A63ACB6107FA7 /* UIColor+FlatUI.m */; };
-		E2E30634F3C390BEDFA552FAE81C0D24 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF88398866A8B7A2CA10CF76555A22BF /* Lato-Bold.ttf */; };
-		E96A76744AF75EA3AB5CF1143E2D87D1 /* UIProgressView+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAC46C087760A53E0EFDE541AD96612 /* UIProgressView+FlatUI.m */; };
-		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0BB5D85F177BCBF7D6F23A04628C59 /* Notifications.swift */; };
-		EFFDE961D8196565BBB7871BCDB7A9FA /* FlatUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F2A0D5FEAC2B9DA7D3404A5E55CC1E7 /* FlatUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F08BAFCDF44D340D8C271DDD345D86CD /* FUISegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = E97353C1D5BA7EAA8D54396085B1B68A /* FUISegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F1B2A8510309C2CA4BB69C6D2054FFEB /* FUIPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D1995F850F49B171E6A5D1DD28CADC3 /* FUIPopoverBackgroundView.m */; };
-		F2C5F382284042577550A3436E0A798B /* UISlider+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 55F2BB78BC52EFA2A26CA655275239CE /* UISlider+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F3EC47E7FED11EE580F81119C584E445 /* FUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B8AC49EC830E8CCBCC158EEFC0A6D0 /* FUIAlertView.m */; };
-		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8370169F4CC0B91621D94F8A7294D5 /* ResponseSerialization.swift */; };
-		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A630CE6B4F4BD0A80AACC58CDB9A1A98 /* Alamofire.swift */; };
+		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0253541185141E1277C2176323EFCE33 /* Response.swift */; };
+		D0CA57562C7915FC1C0A502E19707116 /* UITableViewCell+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 419B97A36679E2D919CDB4531914163E /* UITableViewCell+FlatUI.m */; };
+		D2D824F17FFD86540CE49319C6E1B001 /* UIToolbar+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = F65A48BBEF1FB2FAA24A05622912D400 /* UIToolbar+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D40BA24962EBF690C89591510FBF81E3 /* Pods-FieldTasksApp Local-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C985B1A03CFE384914285D3EF89FE /* Pods-FieldTasksApp Local-dummy.m */; };
+		D7B8AB19FF9BFB1D1D62E18CDF4B7D6C /* UITableViewCell+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 7760EFC4F6CEDB34D59161FAC2ECC0AD /* UITableViewCell+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE516DEC37CA57C0E368A29FE1C9D2D2 /* FUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8996395E55948BF03C5D672AD4173 /* FUIButton.m */; };
+		DF3210B3451BB6D6A3460A3C617A920A /* UIColor+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B7E3368ADA8F7290736E04B96A7AD3 /* UIColor+FlatUI.m */; };
+		E2E30634F3C390BEDFA552FAE81C0D24 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 003E69B4878B67CE8E2E47199A81949B /* Lato-Bold.ttf */; };
+		E96A76744AF75EA3AB5CF1143E2D87D1 /* UIProgressView+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A87D0D285A7183F281095205B56588A /* UIProgressView+FlatUI.m */; };
+		EE3BB8E787726A684C6195A43FB105F4 /* Pods-FieldTasksApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B9621B7B10D5FE8543E355E71EACBFD /* Pods-FieldTasksApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A99255810E5958C45B9818E5407261 /* Notifications.swift */; };
+		EFFDE961D8196565BBB7871BCDB7A9FA /* FlatUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 10FB1B545DB52A44161D02D85202FF97 /* FlatUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F08BAFCDF44D340D8C271DDD345D86CD /* FUISegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C867D9755A71AAE1E2C2681C27FE9AA /* FUISegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1B2A8510309C2CA4BB69C6D2054FFEB /* FUIPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D4CE8BDBCD9450338A9F45C2A78890 /* FUIPopoverBackgroundView.m */; };
+		F2C5F382284042577550A3436E0A798B /* UISlider+FlatUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 17E706DC71CD91589E8E5D131E341E25 /* UISlider+FlatUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3EC47E7FED11EE580F81119C584E445 /* FUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2CFC77B90B8125E44DBA3D1E5773EF /* FUIAlertView.m */; };
+		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9482BC392C4BF8A9C1059D8A8E72F2C /* ResponseSerialization.swift */; };
+		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872BDD7A331E5AC0B602D6CE11BA9021 /* Alamofire.swift */; };
 		FEE15B32C68F3BFE2AA4DFCC555379C0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895EE794395CE0503C05B8C6E5C7DB88 /* QuartzCore.framework */; };
-		FFAEDB37941FC21A782B95E53201B46D /* UINavigationBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D866D27CA399128F449098C5F89628A3 /* UINavigationBar+FlatUI.m */; };
+		FFAEDB37941FC21A782B95E53201B46D /* UINavigationBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 926D64B7C9203092A74E18C1DB7A8CA1 /* UINavigationBar+FlatUI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3574DFA7EC7EBDCFC1809F40C87B2105 /* PBXContainerItemProxy */ = {
+		22137C7EF5B0408454B5D5009A7BDC29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5D3BD952D57AD3D47FE6178401E5BEC;
+			remoteInfo = Just;
+		};
+		A20560338E396E13EFD6820798BBD2D5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D88D87F9C08CC6014A19D5865226133B;
 			remoteInfo = FlatUIKit;
 		};
-		632B1127C446BAAF23258F553CEF0275 /* PBXContainerItemProxy */ = {
+		B373D8C5724EE561CE87CC86C2D289ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5D3BD952D57AD3D47FE6178401E5BEC;
+			remoteInfo = Just;
+		};
+		C0E118BF5D13E1954E5243A43B2D93ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
 			remoteInfo = Alamofire;
 		};
-		73CDABE41FC46D8C6D62BD8E748CBB87 /* PBXContainerItemProxy */ = {
+		C89943F935BD5624B88A26089C556540 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
+			remoteInfo = Alamofire;
+		};
+		E6052AECD8357399460F7B92B00D2283 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D88D87F9C08CC6014A19D5865226133B;
 			remoteInfo = FlatUIKit;
-		};
-		C28DC3F794A1B2E724AFAA0A00833478 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
-			remoteInfo = Alamofire;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01A80BDC21991CD0723732DCDF51795A /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		003E69B4878B67CE8E2E47199A81949B /* Lato-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Lato-Bold.ttf"; path = "Resources/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		0253541185141E1277C2176323EFCE33 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		04F8ED09A5B202F764C6FF1FA8D2DF33 /* Just-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Just-umbrella.h"; sourceTree = "<group>"; };
 		054009B7BAE89666D3636CCE5149C8F1 /* Pods-FieldTasksApp Local-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FieldTasksApp Local-resources.sh"; sourceTree = "<group>"; };
-		0C59089119C38D2C088310BB33FCFA77 /* UIPopoverController+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIPopoverController+FlatUI.m"; path = "Classes/ios/UIPopoverController+FlatUI.m"; sourceTree = "<group>"; };
+		09437AF8533F5C5960AEFA2DF392007E /* UIStepper+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIStepper+FlatUI.m"; path = "Classes/ios/UIStepper+FlatUI.m"; sourceTree = "<group>"; };
+		0FEAAC5E5094E5EEBF97BE6AC1162CB0 /* UITabBar+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITabBar+FlatUI.m"; path = "Classes/ios/UITabBar+FlatUI.m"; sourceTree = "<group>"; };
 		102F950AB610CED0150F645FA82A0803 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1609DB5BD7BAFDE9143E2F951585E3ED /* Pods_FieldTasksApp_Local.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FieldTasksApp_Local.framework; path = "Pods-FieldTasksApp Local.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B61AE56E41703F4315D6996002CFE3E /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		10FB1B545DB52A44161D02D85202FF97 /* FlatUIKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FlatUIKit.h; path = Classes/ios/FlatUIKit.h; sourceTree = "<group>"; };
+		124DE875CC7C0F3E7780044358AACBEC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17E706DC71CD91589E8E5D131E341E25 /* UISlider+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UISlider+FlatUI.h"; path = "Classes/ios/UISlider+FlatUI.h"; sourceTree = "<group>"; };
 		1C46D5FEDBF3C20F663490E11B1C9AD6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		1D1995F850F49B171E6A5D1DD28CADC3 /* FUIPopoverBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUIPopoverBackgroundView.m; path = Classes/ios/FUIPopoverBackgroundView.m; sourceTree = "<group>"; };
+		1C867D9755A71AAE1E2C2681C27FE9AA /* FUISegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUISegmentedControl.h; path = Classes/ios/FUISegmentedControl.h; sourceTree = "<group>"; };
 		1DDD8A6B09745D38DAC5A1C94D411C46 /* Pods-FieldTasksApp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FieldTasksApp-resources.sh"; sourceTree = "<group>"; };
-		21D7851729298AE81E5246E42C4520D6 /* FlatUIKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FlatUIKit-prefix.pch"; sourceTree = "<group>"; };
-		24CD8BB76BA7765D1B7A92175FF7BA7C /* NSString+Icons.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+Icons.h"; path = "Classes/ios/NSString+Icons.h"; sourceTree = "<group>"; };
+		20A424BD9519C1FCEA31AE7C38C6CDEC /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		20D3534D977EDF29CD761E2914D7323E /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		275694907450E0F7A0F19DAF7DC09D92 /* Just-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Just-dummy.m"; sourceTree = "<group>"; };
 		28A9AB3218BCB4194A361E62DCB809DF /* Pods-FieldTasksApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FieldTasksApp-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2B4B00FCE111DFAC9A89165942D9E9F5 /* flat-ui-icons-regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "flat-ui-icons-regular.ttf"; path = "Resources/flat-ui-icons-regular.ttf"; sourceTree = "<group>"; };
-		2B8370169F4CC0B91621D94F8A7294D5 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
-		3F3E5D8EDD09E57FAE82C49828D70CC8 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		295B4E612D64DE9A58EEEA6A1008D250 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		2D5D290DF6A69AD97B5C3AD0D0658872 /* Lato-Light.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Lato-Light.ttf"; path = "Resources/Lato-Light.ttf"; sourceTree = "<group>"; };
+		2FAC55F3FAD85003E4F951DFE8056C97 /* UISlider+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UISlider+FlatUI.m"; path = "Classes/ios/UISlider+FlatUI.m"; sourceTree = "<group>"; };
+		311706016F31AEE6FC0808B158026614 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		36584B44C3856C908DBBED1D00BEAC13 /* UIProgressView+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+FlatUI.h"; path = "Classes/ios/UIProgressView+FlatUI.h"; sourceTree = "<group>"; };
+		36DF9529C7F1FABB1DC89B3EFAE2A16E /* UINavigationBar+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar+FlatUI.h"; path = "Classes/ios/UINavigationBar+FlatUI.h"; sourceTree = "<group>"; };
+		3B1160FAF693849E9C5C157D02DE589A /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		3C0FFF6AF2078AF54845B2D69E7DA56B /* FUIAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUIAlertView.h; path = Classes/ios/FUIAlertView.h; sourceTree = "<group>"; };
+		419B97A36679E2D919CDB4531914163E /* UITableViewCell+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+FlatUI.m"; path = "Classes/ios/UITableViewCell+FlatUI.m"; sourceTree = "<group>"; };
+		41A99255810E5958C45B9818E5407261 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		42548F425A0181F0F92C1C2AAF4A27D1 /* Pods-FieldTasksApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FieldTasksApp-frameworks.sh"; sourceTree = "<group>"; };
 		476C985B1A03CFE384914285D3EF89FE /* Pods-FieldTasksApp Local-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FieldTasksApp Local-dummy.m"; sourceTree = "<group>"; };
-		47EAD5995CB4AD064024FB956A6F60E6 /* Lato-Light.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Lato-Light.ttf"; path = "Resources/Lato-Light.ttf"; sourceTree = "<group>"; };
+		4A562D22983CEF2D24EE722B1CF37A9F /* Just.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Just.swift; path = Sources/Just/Just.swift; sourceTree = "<group>"; };
+		4B380F423A9FAEAB4E5A20112A875479 /* UIFont+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIFont+FlatUI.h"; path = "Classes/ios/UIFont+FlatUI.h"; sourceTree = "<group>"; };
+		4B4E2BE0901FA0AF5F9BE707F3603F02 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		4E0D63BE970A609504C20F86F11C85F0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EB3B0002A4144F0A9C540704155CC92 /* Pods-FieldTasksApp Local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FieldTasksApp Local.release.xcconfig"; sourceTree = "<group>"; };
-		518A26A235E98644833FA06881DFCB9F /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		4FBFD57FCD69BE3CC341DD19DDA38831 /* FUIPopoverBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUIPopoverBackgroundView.h; path = Classes/ios/FUIPopoverBackgroundView.h; sourceTree = "<group>"; };
 		51B5BE8A3EEBEA0A76124CC653E5B2B9 /* Pods-FieldTasksApp Local-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FieldTasksApp Local-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5210B6A6E473A1E58BCD4802FDFCC389 /* UIProgressView+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+FlatUI.h"; path = "Classes/ios/UIProgressView+FlatUI.h"; sourceTree = "<group>"; };
-		52E391B34D0A66D4A33A073CFE88AE9E /* UITableViewCell+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+FlatUI.h"; path = "Classes/ios/UITableViewCell+FlatUI.h"; sourceTree = "<group>"; };
-		547B7D9BFBDAA3183BC268F9054B3E2A /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
-		55F2BB78BC52EFA2A26CA655275239CE /* UISlider+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UISlider+FlatUI.h"; path = "Classes/ios/UISlider+FlatUI.h"; sourceTree = "<group>"; };
+		5535AE75EDA5E3ABBB821A527C73D2D5 /* Just.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Just.framework; path = Just.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		556883944B774EAD152388AAF2A4E6D7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5910EECE9D9682143355D36402662F50 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5AEEE9C740733142FDEF0CA882F99C43 /* FUISwitch.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUISwitch.m; path = Classes/ios/FUISwitch.m; sourceTree = "<group>"; };
-		5B19BC0E46AFF8E55D45826C97DD64F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D1B4F0F6A29007CBD2AC55C81202DEA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5F2A0D5FEAC2B9DA7D3404A5E55CC1E7 /* FlatUIKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FlatUIKit.h; path = Classes/ios/FlatUIKit.h; sourceTree = "<group>"; };
-		5F735F0F2727C3B895C15C142F3447B9 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		63CD00916B655B8BB3C58D259D951FDA /* FUIButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUIButton.m; path = Classes/ios/FUIButton.m; sourceTree = "<group>"; };
+		59E49D7B8C8CC8F5FD065CAA7FE6E16F /* FlatUIKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FlatUIKit.modulemap; sourceTree = "<group>"; };
+		5B6561EA1B4C793737A66CE93E8D17F7 /* flat-ui-icons-regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "flat-ui-icons-regular.ttf"; path = "Resources/flat-ui-icons-regular.ttf"; sourceTree = "<group>"; };
+		60ADC5E3943AE9D19E3A43F01602C18D /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		62411091D7C429E370B0796D418EE7BE /* FUICellBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUICellBackgroundView.h; path = Classes/ios/FUICellBackgroundView.h; sourceTree = "<group>"; };
 		6483A23799E709A75E9503A3C5439653 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		65E89204404AD50C7A377DBFE3163EF7 /* Pods-FieldTasksApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FieldTasksApp.debug.xcconfig"; sourceTree = "<group>"; };
-		67927C82D60946B10E9F0CCB221D1720 /* UIBarButtonItem+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+FlatUI.m"; path = "Classes/ios/UIBarButtonItem+FlatUI.m"; sourceTree = "<group>"; };
-		68B53A9592E52FEEECA45875C802602D /* FUITextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUITextField.h; path = Classes/ios/FUITextField.h; sourceTree = "<group>"; };
-		68F4B09F234B681F46665EE4D5B27B9B /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		6983A62C48530A2935DD74E7578B048B /* Pods_FieldTasksApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FieldTasksApp.framework; path = "Pods-FieldTasksApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6CAC46C087760A53E0EFDE541AD96612 /* UIProgressView+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+FlatUI.m"; path = "Classes/ios/UIProgressView+FlatUI.m"; sourceTree = "<group>"; };
-		6CBE4931968CF5A21A221FB74D1F16AB /* UIBarButtonItem+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+FlatUI.h"; path = "Classes/ios/UIBarButtonItem+FlatUI.h"; sourceTree = "<group>"; };
-		6DEFB4D52651159DD58AFFC31E743E87 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		6F5458BFCC47D81336B97301E0F86923 /* NSString+Icons.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+Icons.m"; path = "Classes/ios/NSString+Icons.m"; sourceTree = "<group>"; };
+		66C236CFE7CF7F97D7BEC9F8CCAAFB9F /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		6FD6A77F9E44C5A1DB29721694D0DF44 /* FlatUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FlatUIKit.framework; path = FlatUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		710644A38E5F0711529BECCC058D63F2 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		733D26DFEBABB31C5DD538AA9ABAFF5D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7390E1B56007AFB0A9DAC64F3F21CE47 /* Pods-FieldTasksApp Local-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FieldTasksApp Local-umbrella.h"; sourceTree = "<group>"; };
-		76D0616E3C05C1ECB80F2AA7BD08C2B7 /* UITabBar+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITabBar+FlatUI.m"; path = "Classes/ios/UITabBar+FlatUI.m"; sourceTree = "<group>"; };
+		73F7F2B2BDA888C6B376B3346F7F254E /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		757C980A683AF196D846D816CEFF8500 /* FUISegmentedControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUISegmentedControl.m; path = Classes/ios/FUISegmentedControl.m; sourceTree = "<group>"; };
+		75E2FD0A046B1C05A97F53D2B5B9ADCA /* UIImage+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+FlatUI.m"; path = "Classes/ios/UIImage+FlatUI.m"; sourceTree = "<group>"; };
+		7760EFC4F6CEDB34D59161FAC2ECC0AD /* UITableViewCell+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+FlatUI.h"; path = "Classes/ios/UITableViewCell+FlatUI.h"; sourceTree = "<group>"; };
+		7A87D0D285A7183F281095205B56588A /* UIProgressView+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+FlatUI.m"; path = "Classes/ios/UIProgressView+FlatUI.m"; sourceTree = "<group>"; };
 		7B9621B7B10D5FE8543E355E71EACBFD /* Pods-FieldTasksApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FieldTasksApp-umbrella.h"; sourceTree = "<group>"; };
-		7E5BAB3DB940C089BB54AAB679B15717 /* FUISwitch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUISwitch.h; path = Classes/ios/FUISwitch.h; sourceTree = "<group>"; };
-		82436319D80EED36E7AF1A55D03D1F7F /* FlatUIKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FlatUIKit.xcconfig; sourceTree = "<group>"; };
+		7BCE05D144D932849B1882094EC238D5 /* FlatUIKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FlatUIKit-dummy.m"; sourceTree = "<group>"; };
+		810739BADCE826E16636556C864ACC88 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
+		872BDD7A331E5AC0B602D6CE11BA9021 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		895EE794395CE0503C05B8C6E5C7DB88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		8C3397D290AA756D7D0ABB200C22D468 /* FUITextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUITextField.m; path = Classes/ios/FUITextField.m; sourceTree = "<group>"; };
-		8CE488DA2D207D80786CB85F700076A2 /* UIImage+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+FlatUI.m"; path = "Classes/ios/UIImage+FlatUI.m"; sourceTree = "<group>"; };
-		8D98F770A0B526E15AF2844DFD24DAC3 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		8F63307DCA08DFEC075A7F8C0FB46B9C /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		8F93E4526612DDC35EDE1CDAD8317158 /* FlatUIKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FlatUIKit-umbrella.h"; sourceTree = "<group>"; };
+		8A8A8E4B6E859782B661056E2975E7DF /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		8C6DE5E7153CE7E01763A08F402AB3C8 /* UIStepper+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIStepper+FlatUI.h"; path = "Classes/ios/UIStepper+FlatUI.h"; sourceTree = "<group>"; };
+		8D175E6F985565FA40415B41D37906C7 /* Pods_FieldTasksApp_Local.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FieldTasksApp_Local.framework; path = "Pods-FieldTasksApp Local.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91099DF0AF659DEE74E1E6991F947295 /* Pods-FieldTasksApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FieldTasksApp-dummy.m"; sourceTree = "<group>"; };
-		9353B099FD9EC0F1F451DD4EC62C0831 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		926D64B7C9203092A74E18C1DB7A8CA1 /* UINavigationBar+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar+FlatUI.m"; path = "Classes/ios/UINavigationBar+FlatUI.m"; sourceTree = "<group>"; };
+		931339C523CABA2F3532E71DFBD13482 /* Just-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Just-prefix.pch"; sourceTree = "<group>"; };
+		93843A6E35BF3F6DAFAA1F01DCE89962 /* FlatUIKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FlatUIKit-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94976842B3109C1F22745F07FC2D481E /* Pods-FieldTasksApp Local.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FieldTasksApp Local.debug.xcconfig"; sourceTree = "<group>"; };
-		963D5D2F6ABAA8403A7A7FB5DCBBA180 /* UITabBar+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITabBar+FlatUI.h"; path = "Classes/ios/UITabBar+FlatUI.h"; sourceTree = "<group>"; };
-		9A38CAFB59175920B31083A01931C6A4 /* FUICellBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUICellBackgroundView.h; path = Classes/ios/FUICellBackgroundView.h; sourceTree = "<group>"; };
 		9A8B97C909080A72FDD5A5E510EC8A43 /* Pods-FieldTasksApp Local.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-FieldTasksApp Local.modulemap"; sourceTree = "<group>"; };
-		9B1327B52D8A663AE1147CFB844F2163 /* UIStepper+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIStepper+FlatUI.m"; path = "Classes/ios/UIStepper+FlatUI.m"; sourceTree = "<group>"; };
-		9F111B0277958FC769AA2B986BCA21B4 /* UIFont+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIFont+FlatUI.h"; path = "Classes/ios/UIFont+FlatUI.h"; sourceTree = "<group>"; };
-		A06DFEB8632E9670597EC0854C8E718A /* FUIButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUIButton.h; path = Classes/ios/FUIButton.h; sourceTree = "<group>"; };
-		A0C69B05F9645592DAF6323086916167 /* FUIPopoverBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUIPopoverBackgroundView.h; path = Classes/ios/FUIPopoverBackgroundView.h; sourceTree = "<group>"; };
-		A17A2C45A5303345AA140A31B00F186C /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		A2DC29B5AD37CF3D08F05A8B60D71993 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		A4820BF9E6409C4DD0E5A915FAFA9233 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4F5AC7E311CE1D9F599DD2FDAE460F4 /* UIStepper+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIStepper+FlatUI.h"; path = "Classes/ios/UIStepper+FlatUI.h"; sourceTree = "<group>"; };
-		A5A6106AA01C49D0016A2CE07FB15390 /* UIFont+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIFont+FlatUI.m"; path = "Classes/ios/UIFont+FlatUI.m"; sourceTree = "<group>"; };
-		A630CE6B4F4BD0A80AACC58CDB9A1A98 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		A7A34B68B5429653B6CFBC3231D86125 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		AB7D1D1D3007DCFD8D15C3E192E17AC6 /* UIImage+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+FlatUI.h"; path = "Classes/ios/UIImage+FlatUI.h"; sourceTree = "<group>"; };
-		AD10A4AC3FF7B8702FFAEAA54BF9CBDC /* UIPopoverController+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIPopoverController+FlatUI.h"; path = "Classes/ios/UIPopoverController+FlatUI.h"; sourceTree = "<group>"; };
-		B13FD1DC77FC61915200C9359BE0A43E /* FUISegmentedControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUISegmentedControl.m; path = Classes/ios/FUISegmentedControl.m; sourceTree = "<group>"; };
-		B41CADA7C8AEF6A4C3D0A0F59FAAB580 /* UIToolbar+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+FlatUI.m"; path = "Classes/ios/UIToolbar+FlatUI.m"; sourceTree = "<group>"; };
-		B7100AE6380C0A777DF9BBCD85C092D7 /* UIToolbar+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIToolbar+FlatUI.h"; path = "Classes/ios/UIToolbar+FlatUI.h"; sourceTree = "<group>"; };
-		BA31966F04E0B88DE28833075EDDE677 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		BB0BB5D85F177BCBF7D6F23A04628C59 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		BD22B42D3CE0AC13B8ECA79A610BB50B /* UIColor+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+FlatUI.h"; path = "Classes/ios/UIColor+FlatUI.h"; sourceTree = "<group>"; };
-		C32E3C8BC3C1ABD37BBD3F33A8BB3CDE /* UITableViewCell+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+FlatUI.m"; path = "Classes/ios/UITableViewCell+FlatUI.m"; sourceTree = "<group>"; };
-		CDAB8231666E8C22D6D7789DB97857C6 /* FlatUIKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FlatUIKit.modulemap; sourceTree = "<group>"; };
+		9AB8996395E55948BF03C5D672AD4173 /* FUIButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUIButton.m; path = Classes/ios/FUIButton.m; sourceTree = "<group>"; };
+		9BAE5E0C3E194D392AFBFD3190DD9E68 /* Just.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Just.xcconfig; sourceTree = "<group>"; };
+		A15F5105C10BCF91BE45DC3202A62E83 /* FlatUIKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FlatUIKit.xcconfig; sourceTree = "<group>"; };
+		A35C879BFC169E5543484E231181CF2F /* FUISwitch.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUISwitch.m; path = Classes/ios/FUISwitch.m; sourceTree = "<group>"; };
+		A3D4CE8BDBCD9450338A9F45C2A78890 /* FUIPopoverBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUIPopoverBackgroundView.m; path = Classes/ios/FUIPopoverBackgroundView.m; sourceTree = "<group>"; };
+		AA756B6B4E866CF387C80CAC7BD650C8 /* FUISwitch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUISwitch.h; path = Classes/ios/FUISwitch.h; sourceTree = "<group>"; };
+		AE3F42E112FAD00CBE394066B52B5A79 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		AE62148EB893599101580CEFB211136C /* UIBarButtonItem+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+FlatUI.h"; path = "Classes/ios/UIBarButtonItem+FlatUI.h"; sourceTree = "<group>"; };
+		B229A5688706520234988B7EA5B2F941 /* Pods_FieldTasksApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FieldTasksApp.framework; path = "Pods-FieldTasksApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B61BE22614B278A802363CBA95A33D14 /* UIImage+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+FlatUI.h"; path = "Classes/ios/UIImage+FlatUI.h"; sourceTree = "<group>"; };
+		B8529C4CC5BF3C8E791FD545985F0845 /* UIToolbar+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+FlatUI.m"; path = "Classes/ios/UIToolbar+FlatUI.m"; sourceTree = "<group>"; };
+		BA4F9A8D43C5014C3198A6F4B486F354 /* Just.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Just.modulemap; sourceTree = "<group>"; };
+		BD6ED69F533426F90B4B11024A9B988A /* FUIButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUIButton.h; path = Classes/ios/FUIButton.h; sourceTree = "<group>"; };
+		C0F8D347AB9B619A838EF38716528F16 /* UIPopoverController+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIPopoverController+FlatUI.h"; path = "Classes/ios/UIPopoverController+FlatUI.h"; sourceTree = "<group>"; };
+		C1A459E937E67740421DFC84FF9E7F92 /* Lato-Italic.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Lato-Italic.ttf"; path = "Resources/Lato-Italic.ttf"; sourceTree = "<group>"; };
+		C40A682423D84279C32112A3831E30CA /* UIColor+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+FlatUI.h"; path = "Classes/ios/UIColor+FlatUI.h"; sourceTree = "<group>"; };
+		C440CAD496D6C945B190DC1A068B5A05 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		C6137D0222157D014D456A06E5EF2670 /* FUICellBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUICellBackgroundView.m; path = Classes/ios/FUICellBackgroundView.m; sourceTree = "<group>"; };
 		CE983ADDA6DC3D87DBC826B8F164B98A /* Pods-FieldTasksApp Local-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FieldTasksApp Local-acknowledgements.plist"; sourceTree = "<group>"; };
-		CF88398866A8B7A2CA10CF76555A22BF /* Lato-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Lato-Bold.ttf"; path = "Resources/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		CE9A2628CB0A69C9BB9BA4DC49D4FB45 /* FlatUIKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FlatUIKit-prefix.pch"; sourceTree = "<group>"; };
 		CFAD98200B8F7499BD9562A2DCDD2D35 /* Pods-FieldTasksApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-FieldTasksApp.modulemap"; sourceTree = "<group>"; };
-		D1B4C3214F52E379470AB9767E258113 /* FlatUIKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FlatUIKit-dummy.m"; sourceTree = "<group>"; };
+		D3A8A38CC37A3DAD624D0D27B9E71350 /* UIFont+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIFont+FlatUI.m"; path = "Classes/ios/UIFont+FlatUI.m"; sourceTree = "<group>"; };
 		D41204FF83B9DC37D4673DF8B162550D /* Pods-FieldTasksApp Local-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FieldTasksApp Local-frameworks.sh"; sourceTree = "<group>"; };
-		D529928A3F4C4B78B22A63ACB6107FA7 /* UIColor+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+FlatUI.m"; path = "Classes/ios/UIColor+FlatUI.m"; sourceTree = "<group>"; };
-		D5B8AC49EC830E8CCBCC158EEFC0A6D0 /* FUIAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUIAlertView.m; path = Classes/ios/FUIAlertView.m; sourceTree = "<group>"; };
-		D6B21326765D512C024179ADA98DA2FE /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
-		D866D27CA399128F449098C5F89628A3 /* UINavigationBar+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar+FlatUI.m"; path = "Classes/ios/UINavigationBar+FlatUI.m"; sourceTree = "<group>"; };
-		D8B51629739DACBB262B383446B7DFB6 /* FlatUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FlatUIKit.framework; path = FlatUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9032CAC7FFFA51FBC388B34EC851B22 /* FUICellBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUICellBackgroundView.m; path = Classes/ios/FUICellBackgroundView.m; sourceTree = "<group>"; };
+		D437271D3BE6B3D7C9BA13068406A2CF /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		D4DA04DD70EF58EA514A6C82140E2F6E /* FUITextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUITextField.m; path = Classes/ios/FUITextField.m; sourceTree = "<group>"; };
+		DA1A44051607FC4BB05DF650D6C4F091 /* NSString+Icons.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+Icons.m"; path = "Classes/ios/NSString+Icons.m"; sourceTree = "<group>"; };
 		DA7AFFFD958C9E5FC05CBB8CA47B1EED /* Pods-FieldTasksApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FieldTasksApp-acknowledgements.plist"; sourceTree = "<group>"; };
-		DDB24E7F679EEE83C89790830B7A890B /* UINavigationBar+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar+FlatUI.h"; path = "Classes/ios/UINavigationBar+FlatUI.h"; sourceTree = "<group>"; };
-		DEC74AF7CF11F33065B5676C4BDE56D7 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
-		E0D2F9E5613872E9CFEBFF07160269C5 /* Lato-Italic.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Lato-Italic.ttf"; path = "Resources/Lato-Italic.ttf"; sourceTree = "<group>"; };
-		E177ED9EB9730D497ABFEEEA47F6BFCF /* Lato-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Lato-Regular.ttf"; path = "Resources/Lato-Regular.ttf"; sourceTree = "<group>"; };
-		E4E4AEE17FFE0C8C2C338B83331CA530 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		E655FFF7DC29BD091D89FCD3920E1AE2 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		DB4B71F5F2F880057EC79452F1C34C97 /* UIBarButtonItem+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+FlatUI.m"; path = "Classes/ios/UIBarButtonItem+FlatUI.m"; sourceTree = "<group>"; };
+		DB4C99721B1B2A596B69E089AE23CC04 /* Lato-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Lato-Regular.ttf"; path = "Resources/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		DD46F0AD3CB3189212349814822F3FCD /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
+		E4A8C3D21AE883AF6E3229DA201F2DC1 /* FUITextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUITextField.h; path = Classes/ios/FUITextField.h; sourceTree = "<group>"; };
 		E66C1E9B4D9082ED0FA191CAC8952CD5 /* Pods-FieldTasksApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FieldTasksApp.release.xcconfig"; sourceTree = "<group>"; };
-		E92BEA125E2EE3301A923A81F4E7E683 /* UISlider+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UISlider+FlatUI.m"; path = "Classes/ios/UISlider+FlatUI.m"; sourceTree = "<group>"; };
-		E97353C1D5BA7EAA8D54396085B1B68A /* FUISegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUISegmentedControl.h; path = Classes/ios/FUISegmentedControl.h; sourceTree = "<group>"; };
-		F9790E4149D33826AB2D938047CB2645 /* FUIAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUIAlertView.h; path = Classes/ios/FUIAlertView.h; sourceTree = "<group>"; };
+		EBADDC3F94ACB6CCE23447F1F41E71B2 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		EF2CFC77B90B8125E44DBA3D1E5773EF /* FUIAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FUIAlertView.m; path = Classes/ios/FUIAlertView.m; sourceTree = "<group>"; };
+		EFA75B28F79AF541F2A0FF6A7147E5DC /* UIPopoverController+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIPopoverController+FlatUI.m"; path = "Classes/ios/UIPopoverController+FlatUI.m"; sourceTree = "<group>"; };
+		F52E3DFD21B156A274469CBD4EBC12C4 /* NSString+Icons.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+Icons.h"; path = "Classes/ios/NSString+Icons.h"; sourceTree = "<group>"; };
+		F65A48BBEF1FB2FAA24A05622912D400 /* UIToolbar+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIToolbar+FlatUI.h"; path = "Classes/ios/UIToolbar+FlatUI.h"; sourceTree = "<group>"; };
+		F6BA623369BF5649CA60CC95EF07390B /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		F7B7E3368ADA8F7290736E04B96A7AD3 /* UIColor+FlatUI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+FlatUI.m"; path = "Classes/ios/UIColor+FlatUI.m"; sourceTree = "<group>"; };
+		F9482BC392C4BF8A9C1059D8A8E72F2C /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		FC72F9ED647E4E8F896A03C1D38BE14D /* UITabBar+FlatUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITabBar+FlatUI.h"; path = "Classes/ios/UITabBar+FlatUI.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2CFFE180F61BC04D8F9940F09D7CE8A8 /* Frameworks */ = {
+		4CFBDB2BB9030E23AC6E112D9FE6D741 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08CF76F875254A413957FBEFD24E3B42 /* Foundation.framework in Frameworks */,
+				21BC060A609FC564441E2295FAAB69D8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E5F41848B89D1B40B48598345203AAC /* Frameworks */ = {
+		72E28B410CDAA2F7A1DD58793A92F6D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03150083B17B664B32A6C261C11D9821 /* Foundation.framework in Frameworks */,
+				10206A3D3A4967AA43A01C5709484241 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +284,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F2E65449EFECD8D5CBA5132AD65D361B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				270BD4B1C65B3AFA6E3D44B88E18475A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		098645DA87D782BEABE701F4C111A500 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				710644A38E5F0711529BECCC058D63F2 /* Alamofire.modulemap */,
+				3B1160FAF693849E9C5C157D02DE589A /* Alamofire.xcconfig */,
+				20A424BD9519C1FCEA31AE7C38C6CDEC /* Alamofire-dummy.m */,
+				311706016F31AEE6FC0808B158026614 /* Alamofire-prefix.pch */,
+				73F7F2B2BDA888C6B376B3346F7F254E /* Alamofire-umbrella.h */,
+				733D26DFEBABB31C5DD538AA9ABAFF5D /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
 		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,29 +327,26 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		1962B81728315AB79512D4FD059E9DE4 /* Products */ = {
+		2F2685C70ED860DDA34A006F10097A7C /* Just */ = {
 			isa = PBXGroup;
 			children = (
-				A4820BF9E6409C4DD0E5A915FAFA9233 /* Alamofire.framework */,
-				D8B51629739DACBB262B383446B7DFB6 /* FlatUIKit.framework */,
-				6983A62C48530A2935DD74E7578B048B /* Pods_FieldTasksApp.framework */,
-				1609DB5BD7BAFDE9143E2F951585E3ED /* Pods_FieldTasksApp_Local.framework */,
+				4A562D22983CEF2D24EE722B1CF37A9F /* Just.swift */,
+				48E6A535F0A142C9AF44E5F56476FDEE /* Support Files */,
 			);
-			name = Products;
+			name = Just;
+			path = Just;
 			sourceTree = "<group>";
 		};
-		37FAC9A1CA079DFAEE4B3C7277EBF103 /* Support Files */ = {
+		3CD27B0F1A4D2BE9E7EE0FBC7E60D8FD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A2DC29B5AD37CF3D08F05A8B60D71993 /* Alamofire.modulemap */,
-				3F3E5D8EDD09E57FAE82C49828D70CC8 /* Alamofire.xcconfig */,
-				A17A2C45A5303345AA140A31B00F186C /* Alamofire-dummy.m */,
-				6DEFB4D52651159DD58AFFC31E743E87 /* Alamofire-prefix.pch */,
-				8F63307DCA08DFEC075A7F8C0FB46B9C /* Alamofire-umbrella.h */,
-				5B19BC0E46AFF8E55D45826C97DD64F7 /* Info.plist */,
+				5B6561EA1B4C793737A66CE93E8D17F7 /* flat-ui-icons-regular.ttf */,
+				003E69B4878B67CE8E2E47199A81949B /* Lato-Bold.ttf */,
+				C1A459E937E67740421DFC84FF9E7F92 /* Lato-Italic.ttf */,
+				2D5D290DF6A69AD97B5C3AD0D0658872 /* Lato-Light.ttf */,
+				DB4C99721B1B2A596B69E089AE23CC04 /* Lato-Regular.ttf */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Alamofire";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		42BBB1E5156FAD07CF7A8C8A8092340F /* Pods-FieldTasksApp Local */ = {
@@ -322,15 +367,106 @@
 			path = "Target Support Files/Pods-FieldTasksApp Local";
 			sourceTree = "<group>";
 		};
-		4C23B664E90C1C865DE37007B900075E /* Support Files */ = {
+		48E6A535F0A142C9AF44E5F56476FDEE /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CDAB8231666E8C22D6D7789DB97857C6 /* FlatUIKit.modulemap */,
-				82436319D80EED36E7AF1A55D03D1F7F /* FlatUIKit.xcconfig */,
-				D1B4C3214F52E379470AB9767E258113 /* FlatUIKit-dummy.m */,
-				21D7851729298AE81E5246E42C4520D6 /* FlatUIKit-prefix.pch */,
-				8F93E4526612DDC35EDE1CDAD8317158 /* FlatUIKit-umbrella.h */,
-				5D1B4F0F6A29007CBD2AC55C81202DEA /* Info.plist */,
+				124DE875CC7C0F3E7780044358AACBEC /* Info.plist */,
+				BA4F9A8D43C5014C3198A6F4B486F354 /* Just.modulemap */,
+				9BAE5E0C3E194D392AFBFD3190DD9E68 /* Just.xcconfig */,
+				275694907450E0F7A0F19DAF7DC09D92 /* Just-dummy.m */,
+				931339C523CABA2F3532E71DFBD13482 /* Just-prefix.pch */,
+				04F8ED09A5B202F764C6FF1FA8D2DF33 /* Just-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Just";
+			sourceTree = "<group>";
+		};
+		57F142D9F9B9C22B953D5B9A4F5B46FB /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				810739BADCE826E16636556C864ACC88 /* AFError.swift */,
+				872BDD7A331E5AC0B602D6CE11BA9021 /* Alamofire.swift */,
+				F6BA623369BF5649CA60CC95EF07390B /* DispatchQueue+Alamofire.swift */,
+				8A8A8E4B6E859782B661056E2975E7DF /* MultipartFormData.swift */,
+				20D3534D977EDF29CD761E2914D7323E /* NetworkReachabilityManager.swift */,
+				41A99255810E5958C45B9818E5407261 /* Notifications.swift */,
+				60ADC5E3943AE9D19E3A43F01602C18D /* ParameterEncoding.swift */,
+				295B4E612D64DE9A58EEEA6A1008D250 /* Request.swift */,
+				0253541185141E1277C2176323EFCE33 /* Response.swift */,
+				F9482BC392C4BF8A9C1059D8A8E72F2C /* ResponseSerialization.swift */,
+				EBADDC3F94ACB6CCE23447F1F41E71B2 /* Result.swift */,
+				4B4E2BE0901FA0AF5F9BE707F3603F02 /* ServerTrustPolicy.swift */,
+				66C236CFE7CF7F97D7BEC9F8CCAAFB9F /* SessionDelegate.swift */,
+				D437271D3BE6B3D7C9BA13068406A2CF /* SessionManager.swift */,
+				DD46F0AD3CB3189212349814822F3FCD /* TaskDelegate.swift */,
+				C440CAD496D6C945B190DC1A068B5A05 /* Timeline.swift */,
+				AE3F42E112FAD00CBE394066B52B5A79 /* Validation.swift */,
+				098645DA87D782BEABE701F4C111A500 /* Support Files */,
+			);
+			name = Alamofire;
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		5C8C51657A2B9070D742B36C8D29A75B /* FlatUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				10FB1B545DB52A44161D02D85202FF97 /* FlatUIKit.h */,
+				3C0FFF6AF2078AF54845B2D69E7DA56B /* FUIAlertView.h */,
+				EF2CFC77B90B8125E44DBA3D1E5773EF /* FUIAlertView.m */,
+				BD6ED69F533426F90B4B11024A9B988A /* FUIButton.h */,
+				9AB8996395E55948BF03C5D672AD4173 /* FUIButton.m */,
+				62411091D7C429E370B0796D418EE7BE /* FUICellBackgroundView.h */,
+				C6137D0222157D014D456A06E5EF2670 /* FUICellBackgroundView.m */,
+				4FBFD57FCD69BE3CC341DD19DDA38831 /* FUIPopoverBackgroundView.h */,
+				A3D4CE8BDBCD9450338A9F45C2A78890 /* FUIPopoverBackgroundView.m */,
+				1C867D9755A71AAE1E2C2681C27FE9AA /* FUISegmentedControl.h */,
+				757C980A683AF196D846D816CEFF8500 /* FUISegmentedControl.m */,
+				AA756B6B4E866CF387C80CAC7BD650C8 /* FUISwitch.h */,
+				A35C879BFC169E5543484E231181CF2F /* FUISwitch.m */,
+				E4A8C3D21AE883AF6E3229DA201F2DC1 /* FUITextField.h */,
+				D4DA04DD70EF58EA514A6C82140E2F6E /* FUITextField.m */,
+				F52E3DFD21B156A274469CBD4EBC12C4 /* NSString+Icons.h */,
+				DA1A44051607FC4BB05DF650D6C4F091 /* NSString+Icons.m */,
+				AE62148EB893599101580CEFB211136C /* UIBarButtonItem+FlatUI.h */,
+				DB4B71F5F2F880057EC79452F1C34C97 /* UIBarButtonItem+FlatUI.m */,
+				C40A682423D84279C32112A3831E30CA /* UIColor+FlatUI.h */,
+				F7B7E3368ADA8F7290736E04B96A7AD3 /* UIColor+FlatUI.m */,
+				4B380F423A9FAEAB4E5A20112A875479 /* UIFont+FlatUI.h */,
+				D3A8A38CC37A3DAD624D0D27B9E71350 /* UIFont+FlatUI.m */,
+				B61BE22614B278A802363CBA95A33D14 /* UIImage+FlatUI.h */,
+				75E2FD0A046B1C05A97F53D2B5B9ADCA /* UIImage+FlatUI.m */,
+				36DF9529C7F1FABB1DC89B3EFAE2A16E /* UINavigationBar+FlatUI.h */,
+				926D64B7C9203092A74E18C1DB7A8CA1 /* UINavigationBar+FlatUI.m */,
+				C0F8D347AB9B619A838EF38716528F16 /* UIPopoverController+FlatUI.h */,
+				EFA75B28F79AF541F2A0FF6A7147E5DC /* UIPopoverController+FlatUI.m */,
+				36584B44C3856C908DBBED1D00BEAC13 /* UIProgressView+FlatUI.h */,
+				7A87D0D285A7183F281095205B56588A /* UIProgressView+FlatUI.m */,
+				17E706DC71CD91589E8E5D131E341E25 /* UISlider+FlatUI.h */,
+				2FAC55F3FAD85003E4F951DFE8056C97 /* UISlider+FlatUI.m */,
+				8C6DE5E7153CE7E01763A08F402AB3C8 /* UIStepper+FlatUI.h */,
+				09437AF8533F5C5960AEFA2DF392007E /* UIStepper+FlatUI.m */,
+				FC72F9ED647E4E8F896A03C1D38BE14D /* UITabBar+FlatUI.h */,
+				0FEAAC5E5094E5EEBF97BE6AC1162CB0 /* UITabBar+FlatUI.m */,
+				7760EFC4F6CEDB34D59161FAC2ECC0AD /* UITableViewCell+FlatUI.h */,
+				419B97A36679E2D919CDB4531914163E /* UITableViewCell+FlatUI.m */,
+				F65A48BBEF1FB2FAA24A05622912D400 /* UIToolbar+FlatUI.h */,
+				B8529C4CC5BF3C8E791FD545985F0845 /* UIToolbar+FlatUI.m */,
+				3CD27B0F1A4D2BE9E7EE0FBC7E60D8FD /* Resources */,
+				681BE35FBAC20300A99B5DE19E6C01BC /* Support Files */,
+			);
+			name = FlatUIKit;
+			path = FlatUIKit;
+			sourceTree = "<group>";
+		};
+		681BE35FBAC20300A99B5DE19E6C01BC /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				59E49D7B8C8CC8F5FD065CAA7FE6E16F /* FlatUIKit.modulemap */,
+				A15F5105C10BCF91BE45DC3202A62E83 /* FlatUIKit.xcconfig */,
+				7BCE05D144D932849B1882094EC238D5 /* FlatUIKit-dummy.m */,
+				CE9A2628CB0A69C9BB9BA4DC49D4FB45 /* FlatUIKit-prefix.pch */,
+				93843A6E35BF3F6DAFAA1F01DCE89962 /* FlatUIKit-umbrella.h */,
+				4E0D63BE970A609504C20F86F11C85F0 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/FlatUIKit";
@@ -341,8 +477,8 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				EB6F44C079007D3054B6D5DE6A8CE409 /* Pods */,
-				1962B81728315AB79512D4FD059E9DE4 /* Products */,
+				A7F52900A13780B874B7097D57392FA1 /* Pods */,
+				A9B7CB8544D3218B9463138341B3A830 /* Products */,
 				EC15F3E10A99CEC5B80CBA9FECB9A03C /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -365,102 +501,26 @@
 			path = "Target Support Files/Pods-FieldTasksApp";
 			sourceTree = "<group>";
 		};
-		B42DE8FDA43B99F4DC3E800AEBF09B28 /* Resources */ = {
+		A7F52900A13780B874B7097D57392FA1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2B4B00FCE111DFAC9A89165942D9E9F5 /* flat-ui-icons-regular.ttf */,
-				CF88398866A8B7A2CA10CF76555A22BF /* Lato-Bold.ttf */,
-				E0D2F9E5613872E9CFEBFF07160269C5 /* Lato-Italic.ttf */,
-				47EAD5995CB4AD064024FB956A6F60E6 /* Lato-Light.ttf */,
-				E177ED9EB9730D497ABFEEEA47F6BFCF /* Lato-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		B6C8964EBD58B91BB670D4225150CBFD /* FlatUIKit */ = {
-			isa = PBXGroup;
-			children = (
-				5F2A0D5FEAC2B9DA7D3404A5E55CC1E7 /* FlatUIKit.h */,
-				F9790E4149D33826AB2D938047CB2645 /* FUIAlertView.h */,
-				D5B8AC49EC830E8CCBCC158EEFC0A6D0 /* FUIAlertView.m */,
-				A06DFEB8632E9670597EC0854C8E718A /* FUIButton.h */,
-				63CD00916B655B8BB3C58D259D951FDA /* FUIButton.m */,
-				9A38CAFB59175920B31083A01931C6A4 /* FUICellBackgroundView.h */,
-				D9032CAC7FFFA51FBC388B34EC851B22 /* FUICellBackgroundView.m */,
-				A0C69B05F9645592DAF6323086916167 /* FUIPopoverBackgroundView.h */,
-				1D1995F850F49B171E6A5D1DD28CADC3 /* FUIPopoverBackgroundView.m */,
-				E97353C1D5BA7EAA8D54396085B1B68A /* FUISegmentedControl.h */,
-				B13FD1DC77FC61915200C9359BE0A43E /* FUISegmentedControl.m */,
-				7E5BAB3DB940C089BB54AAB679B15717 /* FUISwitch.h */,
-				5AEEE9C740733142FDEF0CA882F99C43 /* FUISwitch.m */,
-				68B53A9592E52FEEECA45875C802602D /* FUITextField.h */,
-				8C3397D290AA756D7D0ABB200C22D468 /* FUITextField.m */,
-				24CD8BB76BA7765D1B7A92175FF7BA7C /* NSString+Icons.h */,
-				6F5458BFCC47D81336B97301E0F86923 /* NSString+Icons.m */,
-				6CBE4931968CF5A21A221FB74D1F16AB /* UIBarButtonItem+FlatUI.h */,
-				67927C82D60946B10E9F0CCB221D1720 /* UIBarButtonItem+FlatUI.m */,
-				BD22B42D3CE0AC13B8ECA79A610BB50B /* UIColor+FlatUI.h */,
-				D529928A3F4C4B78B22A63ACB6107FA7 /* UIColor+FlatUI.m */,
-				9F111B0277958FC769AA2B986BCA21B4 /* UIFont+FlatUI.h */,
-				A5A6106AA01C49D0016A2CE07FB15390 /* UIFont+FlatUI.m */,
-				AB7D1D1D3007DCFD8D15C3E192E17AC6 /* UIImage+FlatUI.h */,
-				8CE488DA2D207D80786CB85F700076A2 /* UIImage+FlatUI.m */,
-				DDB24E7F679EEE83C89790830B7A890B /* UINavigationBar+FlatUI.h */,
-				D866D27CA399128F449098C5F89628A3 /* UINavigationBar+FlatUI.m */,
-				AD10A4AC3FF7B8702FFAEAA54BF9CBDC /* UIPopoverController+FlatUI.h */,
-				0C59089119C38D2C088310BB33FCFA77 /* UIPopoverController+FlatUI.m */,
-				5210B6A6E473A1E58BCD4802FDFCC389 /* UIProgressView+FlatUI.h */,
-				6CAC46C087760A53E0EFDE541AD96612 /* UIProgressView+FlatUI.m */,
-				55F2BB78BC52EFA2A26CA655275239CE /* UISlider+FlatUI.h */,
-				E92BEA125E2EE3301A923A81F4E7E683 /* UISlider+FlatUI.m */,
-				A4F5AC7E311CE1D9F599DD2FDAE460F4 /* UIStepper+FlatUI.h */,
-				9B1327B52D8A663AE1147CFB844F2163 /* UIStepper+FlatUI.m */,
-				963D5D2F6ABAA8403A7A7FB5DCBBA180 /* UITabBar+FlatUI.h */,
-				76D0616E3C05C1ECB80F2AA7BD08C2B7 /* UITabBar+FlatUI.m */,
-				52E391B34D0A66D4A33A073CFE88AE9E /* UITableViewCell+FlatUI.h */,
-				C32E3C8BC3C1ABD37BBD3F33A8BB3CDE /* UITableViewCell+FlatUI.m */,
-				B7100AE6380C0A777DF9BBCD85C092D7 /* UIToolbar+FlatUI.h */,
-				B41CADA7C8AEF6A4C3D0A0F59FAAB580 /* UIToolbar+FlatUI.m */,
-				B42DE8FDA43B99F4DC3E800AEBF09B28 /* Resources */,
-				4C23B664E90C1C865DE37007B900075E /* Support Files */,
-			);
-			name = FlatUIKit;
-			path = FlatUIKit;
-			sourceTree = "<group>";
-		};
-		E526E25E56D6082585CCF1BAA9288450 /* Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				BA31966F04E0B88DE28833075EDDE677 /* AFError.swift */,
-				A630CE6B4F4BD0A80AACC58CDB9A1A98 /* Alamofire.swift */,
-				E4E4AEE17FFE0C8C2C338B83331CA530 /* DispatchQueue+Alamofire.swift */,
-				E655FFF7DC29BD091D89FCD3920E1AE2 /* MultipartFormData.swift */,
-				01A80BDC21991CD0723732DCDF51795A /* NetworkReachabilityManager.swift */,
-				BB0BB5D85F177BCBF7D6F23A04628C59 /* Notifications.swift */,
-				D6B21326765D512C024179ADA98DA2FE /* ParameterEncoding.swift */,
-				1B61AE56E41703F4315D6996002CFE3E /* Request.swift */,
-				9353B099FD9EC0F1F451DD4EC62C0831 /* Response.swift */,
-				2B8370169F4CC0B91621D94F8A7294D5 /* ResponseSerialization.swift */,
-				8D98F770A0B526E15AF2844DFD24DAC3 /* Result.swift */,
-				518A26A235E98644833FA06881DFCB9F /* ServerTrustPolicy.swift */,
-				68F4B09F234B681F46665EE4D5B27B9B /* SessionDelegate.swift */,
-				547B7D9BFBDAA3183BC268F9054B3E2A /* SessionManager.swift */,
-				DEC74AF7CF11F33065B5676C4BDE56D7 /* TaskDelegate.swift */,
-				5F735F0F2727C3B895C15C142F3447B9 /* Timeline.swift */,
-				A7A34B68B5429653B6CFBC3231D86125 /* Validation.swift */,
-				37FAC9A1CA079DFAEE4B3C7277EBF103 /* Support Files */,
-			);
-			name = Alamofire;
-			path = Alamofire;
-			sourceTree = "<group>";
-		};
-		EB6F44C079007D3054B6D5DE6A8CE409 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E526E25E56D6082585CCF1BAA9288450 /* Alamofire */,
-				B6C8964EBD58B91BB670D4225150CBFD /* FlatUIKit */,
+				57F142D9F9B9C22B953D5B9A4F5B46FB /* Alamofire */,
+				5C8C51657A2B9070D742B36C8D29A75B /* FlatUIKit */,
+				2F2685C70ED860DDA34A006F10097A7C /* Just */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A9B7CB8544D3218B9463138341B3A830 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				556883944B774EAD152388AAF2A4E6D7 /* Alamofire.framework */,
+				6FD6A77F9E44C5A1DB29721694D0DF44 /* FlatUIKit.framework */,
+				5535AE75EDA5E3ABBB821A527C73D2D5 /* Just.framework */,
+				B229A5688706520234988B7EA5B2F941 /* Pods_FieldTasksApp.framework */,
+				8D175E6F985565FA40415B41D37906C7 /* Pods_FieldTasksApp_Local.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		EC15F3E10A99CEC5B80CBA9FECB9A03C /* Targets Support Files */ = {
@@ -504,6 +564,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		693547FE05B54BD76B6F1211C108E27B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C1079403715F54F4EE427C95C273FF1 /* Pods-FieldTasksApp Local-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		802F32B19661CB58044D9A0732DAC20E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0277B38BB4233F97F2EBAB6F5503D988 /* Just-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0ECA21B1AAA0D94F940BB3C4BEBCDCE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE3BB8E787726A684C6195A43FB105F4 /* Pods-FieldTasksApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4002B6E97835FDCCAA5963EFE09A3E0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,42 +596,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C454AA8B5A4630A72350A5F3044FD1FA /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				08EF1423F8D32121765277EB17771FA2 /* Pods-FieldTasksApp-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C54D33773A43A72F79C426BF861BC24F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				90DD950FD1304EC230CA473884A61595 /* Pods-FieldTasksApp Local-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		56F76F7912A61A16C706EFB5725206F0 /* Pods-FieldTasksApp Local */ = {
+		3098119FBDFC19D36C53453FF6472BDB /* Pods-FieldTasksApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE7804D41E46DAB11BB0442142CDC492 /* Build configuration list for PBXNativeTarget "Pods-FieldTasksApp Local" */;
+			buildConfigurationList = 14AC4BE7EDB7CF036BADD6F3579B478C /* Build configuration list for PBXNativeTarget "Pods-FieldTasksApp" */;
 			buildPhases = (
-				6553639FA5A7DE03E6761641BBA91CF0 /* Sources */,
-				8E5F41848B89D1B40B48598345203AAC /* Frameworks */,
-				C54D33773A43A72F79C426BF861BC24F /* Headers */,
+				BF2DCBF706FE5EA04D5DB48892CE53CC /* Sources */,
+				F2E65449EFECD8D5CBA5132AD65D361B /* Frameworks */,
+				B0ECA21B1AAA0D94F940BB3C4BEBCDCE /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4A846BDCA1224792D7E655CD2377CC30 /* PBXTargetDependency */,
-				D530BD8FD7BDF318ABF27E963014C813 /* PBXTargetDependency */,
+				4E0F125FABFD5223F5B389FA01756C5D /* PBXTargetDependency */,
+				A6095C811EA58B6DB08931200168FDCF /* PBXTargetDependency */,
+				79FC2371FECF2690A629BEF4E5433455 /* PBXTargetDependency */,
+			);
+			name = "Pods-FieldTasksApp";
+			productName = "Pods-FieldTasksApp";
+			productReference = B229A5688706520234988B7EA5B2F941 /* Pods_FieldTasksApp.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5F9D0319127A07C2E2129F52D4D8A01F /* Pods-FieldTasksApp Local */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A1BBF77FD4B7C99B4750BB1DC3CA1CA /* Build configuration list for PBXNativeTarget "Pods-FieldTasksApp Local" */;
+			buildPhases = (
+				4E678AB32790E6E9722328DB1629C2AA /* Sources */,
+				4CFBDB2BB9030E23AC6E112D9FE6D741 /* Frameworks */,
+				693547FE05B54BD76B6F1211C108E27B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8BFF21650BA3ACAF4CB4841EE6FEA1D8 /* PBXTargetDependency */,
+				E994D8E5D1436DF2B0FC35EC90C09968 /* PBXTargetDependency */,
+				A4DFBE8D84F94CC5AF3E66A4C24FAACB /* PBXTargetDependency */,
 			);
 			name = "Pods-FieldTasksApp Local";
 			productName = "Pods-FieldTasksApp Local";
-			productReference = 1609DB5BD7BAFDE9143E2F951585E3ED /* Pods_FieldTasksApp_Local.framework */;
+			productReference = 8D175E6F985565FA40415B41D37906C7 /* Pods_FieldTasksApp_Local.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */ = {
@@ -564,7 +653,24 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = A4820BF9E6409C4DD0E5A915FAFA9233 /* Alamofire.framework */;
+			productReference = 556883944B774EAD152388AAF2A4E6D7 /* Alamofire.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D5D3BD952D57AD3D47FE6178401E5BEC /* Just */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0376684EA40CCE086F2CBE4CBA53C8C5 /* Build configuration list for PBXNativeTarget "Just" */;
+			buildPhases = (
+				E9B824957EF9F189F7550277980ABBEF /* Sources */,
+				72E28B410CDAA2F7A1DD58793A92F6D3 /* Frameworks */,
+				802F32B19661CB58044D9A0732DAC20E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Just;
+			productName = Just;
+			productReference = 5535AE75EDA5E3ABBB821A527C73D2D5 /* Just.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D88D87F9C08CC6014A19D5865226133B /* FlatUIKit */ = {
@@ -582,26 +688,7 @@
 			);
 			name = FlatUIKit;
 			productName = FlatUIKit;
-			productReference = D8B51629739DACBB262B383446B7DFB6 /* FlatUIKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		ED6A1BE380D196FB4B430BD0C0CBA096 /* Pods-FieldTasksApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8971589D4DC9545E8258234674E6D57E /* Build configuration list for PBXNativeTarget "Pods-FieldTasksApp" */;
-			buildPhases = (
-				E9B90F268CD5F32ACB71379F70CEE9E0 /* Sources */,
-				2CFFE180F61BC04D8F9940F09D7CE8A8 /* Frameworks */,
-				C454AA8B5A4630A72350A5F3044FD1FA /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				192EC0382E005517737D87DA45C0C263 /* PBXTargetDependency */,
-				FD4683F785E7DA03414EC55D3701BBEB /* PBXTargetDependency */,
-			);
-			name = "Pods-FieldTasksApp";
-			productName = "Pods-FieldTasksApp";
-			productReference = 6983A62C48530A2935DD74E7578B048B /* Pods_FieldTasksApp.framework */;
+			productReference = 6FD6A77F9E44C5A1DB29721694D0DF44 /* FlatUIKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -621,14 +708,15 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 1962B81728315AB79512D4FD059E9DE4 /* Products */;
+			productRefGroup = A9B7CB8544D3218B9463138341B3A830 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */,
 				D88D87F9C08CC6014A19D5865226133B /* FlatUIKit */,
-				ED6A1BE380D196FB4B430BD0C0CBA096 /* Pods-FieldTasksApp */,
-				56F76F7912A61A16C706EFB5725206F0 /* Pods-FieldTasksApp Local */,
+				D5D3BD952D57AD3D47FE6178401E5BEC /* Just */,
+				3098119FBDFC19D36C53453FF6472BDB /* Pods-FieldTasksApp */,
+				5F9D0319127A07C2E2129F52D4D8A01F /* Pods-FieldTasksApp Local */,
 			);
 		};
 /* End PBXProject section */
@@ -674,11 +762,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6553639FA5A7DE03E6761641BBA91CF0 /* Sources */ = {
+		4E678AB32790E6E9722328DB1629C2AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B7FA2C7D685ACF178D114813B694262 /* Pods-FieldTasksApp Local-dummy.m in Sources */,
+				D40BA24962EBF690C89591510FBF81E3 /* Pods-FieldTasksApp Local-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF2DCBF706FE5EA04D5DB48892CE53CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB5B1193D5CA3A6DAB6014B9FEEBED1D /* Pods-FieldTasksApp-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,45 +806,58 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9B90F268CD5F32ACB71379F70CEE9E0 /* Sources */ = {
+		E9B824957EF9F189F7550277980ABBEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A08169E67C88B9B9EDAB41246EB8F9AA /* Pods-FieldTasksApp-dummy.m in Sources */,
+				35DF85193C6C4FEBAC2D3D81129F01E1 /* Just-dummy.m in Sources */,
+				BD6CCCA6FB2C2ED41C2DBD17D475D2A8 /* Just.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		192EC0382E005517737D87DA45C0C263 /* PBXTargetDependency */ = {
+		4E0F125FABFD5223F5B389FA01756C5D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Alamofire;
 			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
-			targetProxy = 632B1127C446BAAF23258F553CEF0275 /* PBXContainerItemProxy */;
+			targetProxy = C0E118BF5D13E1954E5243A43B2D93ED /* PBXContainerItemProxy */;
 		};
-		4A846BDCA1224792D7E655CD2377CC30 /* PBXTargetDependency */ = {
+		79FC2371FECF2690A629BEF4E5433455 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Just;
+			target = D5D3BD952D57AD3D47FE6178401E5BEC /* Just */;
+			targetProxy = B373D8C5724EE561CE87CC86C2D289ED /* PBXContainerItemProxy */;
+		};
+		8BFF21650BA3ACAF4CB4841EE6FEA1D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Alamofire;
 			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
-			targetProxy = C28DC3F794A1B2E724AFAA0A00833478 /* PBXContainerItemProxy */;
+			targetProxy = C89943F935BD5624B88A26089C556540 /* PBXContainerItemProxy */;
 		};
-		D530BD8FD7BDF318ABF27E963014C813 /* PBXTargetDependency */ = {
+		A4DFBE8D84F94CC5AF3E66A4C24FAACB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Just;
+			target = D5D3BD952D57AD3D47FE6178401E5BEC /* Just */;
+			targetProxy = 22137C7EF5B0408454B5D5009A7BDC29 /* PBXContainerItemProxy */;
+		};
+		A6095C811EA58B6DB08931200168FDCF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FlatUIKit;
 			target = D88D87F9C08CC6014A19D5865226133B /* FlatUIKit */;
-			targetProxy = 3574DFA7EC7EBDCFC1809F40C87B2105 /* PBXContainerItemProxy */;
+			targetProxy = A20560338E396E13EFD6820798BBD2D5 /* PBXContainerItemProxy */;
 		};
-		FD4683F785E7DA03414EC55D3701BBEB /* PBXTargetDependency */ = {
+		E994D8E5D1436DF2B0FC35EC90C09968 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FlatUIKit;
 			target = D88D87F9C08CC6014A19D5865226133B /* FlatUIKit */;
-			targetProxy = 73CDABE41FC46D8C6D62BD8E748CBB87 /* PBXContainerItemProxy */;
+			targetProxy = E6052AECD8357399460F7B92B00D2283 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		04AAF4528F9DCA217ABAD6F411379F91 /* Release */ = {
+		0921BE97054627C20D437F10D9041700 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E66C1E9B4D9082ED0FA191CAC8952CD5 /* Pods-FieldTasksApp.release.xcconfig */;
 			buildSettings = {
@@ -765,7 +874,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-FieldTasksApp/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.modulemap";
@@ -785,7 +894,7 @@
 		};
 		0A29B6F510198AF64EFD762EF6FA97A5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F3E5D8EDD09E57FAE82C49828D70CC8 /* Alamofire.xcconfig */;
+			baseConfigurationReference = 3B1160FAF693849E9C5C157D02DE589A /* Alamofire.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -815,7 +924,112 @@
 			};
 			name = Release;
 		};
-		13E96A645A77DAD1FD4F541F18F5DDBF /* Debug */ = {
+		0DECE1B6A5D2AE1074F5824BDF88763A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65E89204404AD50C7A377DBFE3163EF7 /* Pods-FieldTasksApp.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-FieldTasksApp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_FieldTasksApp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		13DCE4BA81FCF593039751A1FD428B39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94976842B3109C1F22745F07FC2D481E /* Pods-FieldTasksApp Local.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-FieldTasksApp Local/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_FieldTasksApp_Local;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2CB8197ABDCB9FF641AC6016CCB2DE09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BAE5E0C3E194D392AFBFD3190DD9E68 /* Just.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Just/Just-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Just/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Just/Just.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Just;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -851,7 +1065,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -859,79 +1073,7 @@
 			};
 			name = Debug;
 		};
-		15943E27F8284E6F978AC9846A0629D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65E89204404AD50C7A377DBFE3163EF7 /* Pods-FieldTasksApp.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-FieldTasksApp/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_FieldTasksApp;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		166CA67AD6DAD960DE333E94AB228478 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94976842B3109C1F22745F07FC2D481E /* Pods-FieldTasksApp Local.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-FieldTasksApp Local/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_FieldTasksApp_Local;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		5F707B8F68E1CDCD84F5130D85D18655 /* Release */ = {
+		779D3018DC98737B456A9997DC042EC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4EB3B0002A4144F0A9C540704155CC92 /* Pods-FieldTasksApp Local.release.xcconfig */;
 			buildSettings = {
@@ -948,7 +1090,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-FieldTasksApp Local/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local.modulemap";
@@ -966,49 +1108,9 @@
 			};
 			name = Release;
 		};
-		862AF3139CD84E18D34FAF2F43CD0DA6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		99F53E61AAEEAC409F5FDE665227C796 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82436319D80EED36E7AF1A55D03D1F7F /* FlatUIKit.xcconfig */;
+			baseConfigurationReference = A15F5105C10BCF91BE45DC3202A62E83 /* FlatUIKit.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1040,7 +1142,7 @@
 		};
 		9DCE7E1E31B47265F67133F7A9F2ECD3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82436319D80EED36E7AF1A55D03D1F7F /* FlatUIKit.xcconfig */;
+			baseConfigurationReference = A15F5105C10BCF91BE45DC3202A62E83 /* FlatUIKit.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1070,9 +1172,49 @@
 			};
 			name = Release;
 		};
+		B7324857C38B065FEB1EEE3105C2367A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		F383079BFBF927813EA3613CFB679FDE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F3E5D8EDD09E57FAE82C49828D70CC8 /* Alamofire.xcconfig */;
+			baseConfigurationReference = 3B1160FAF693849E9C5C157D02DE589A /* Alamofire.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1103,9 +1245,59 @@
 			};
 			name = Debug;
 		};
+		F5F97DCE9672F875E9143037440E358F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BAE5E0C3E194D392AFBFD3190DD9E68 /* Just.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Just/Just-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Just/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Just/Just.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Just;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0376684EA40CCE086F2CBE4CBA53C8C5 /* Build configuration list for PBXNativeTarget "Just" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CB8197ABDCB9FF641AC6016CCB2DE09 /* Debug */,
+				F5F97DCE9672F875E9143037440E358F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14AC4BE7EDB7CF036BADD6F3579B478C /* Build configuration list for PBXNativeTarget "Pods-FieldTasksApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DECE1B6A5D2AE1074F5824BDF88763A /* Debug */,
+				0921BE97054627C20D437F10D9041700 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		26CCCD51C100FAEF10DF7F47E354178D /* Build configuration list for PBXNativeTarget "FlatUIKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1118,8 +1310,17 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				13E96A645A77DAD1FD4F541F18F5DDBF /* Debug */,
-				862AF3139CD84E18D34FAF2F43CD0DA6 /* Release */,
+				59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */,
+				B7324857C38B065FEB1EEE3105C2367A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A1BBF77FD4B7C99B4750BB1DC3CA1CA /* Build configuration list for PBXNativeTarget "Pods-FieldTasksApp Local" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13DCE4BA81FCF593039751A1FD428B39 /* Debug */,
+				779D3018DC98737B456A9997DC042EC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1129,24 +1330,6 @@
 			buildConfigurations = (
 				F383079BFBF927813EA3613CFB679FDE /* Debug */,
 				0A29B6F510198AF64EFD762EF6FA97A5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8971589D4DC9545E8258234674E6D57E /* Build configuration list for PBXNativeTarget "Pods-FieldTasksApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				15943E27F8284E6F978AC9846A0629D3 /* Debug */,
-				04AAF4528F9DCA217ABAD6F411379F91 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE7804D41E46DAB11BB0442142CDC492 /* Build configuration list for PBXNativeTarget "Pods-FieldTasksApp Local" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				166CA67AD6DAD960DE333E94AB228478 /* Debug */,
-				5F707B8F68E1CDCD84F5130D85D18655 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

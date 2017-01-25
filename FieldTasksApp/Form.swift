@@ -6,7 +6,7 @@
 //  Copyright © 2016 CRH. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Template {
     var id = ""
@@ -32,6 +32,14 @@ class Template {
             }
         }
     }
+
+    init(template: Template) {
+        self.id = template.id
+        self.name = template.name
+        self.description = template.description
+        self.tasks = template.tasks
+    }
+
     func toDict() -> [String : AnyObject]{
         var formDict = [String : AnyObject]()
 
@@ -46,6 +54,7 @@ class Template {
         formDict["tasks"] = taskDicts as AnyObject?
         return formDict
     }
+
     func isComplete() -> Bool {
         for task in tasks {
             if !task.isComplete() {
@@ -57,10 +66,6 @@ class Template {
 }
 
 class Form : Template {
-//    var id = ""
-//    var name = ""
-//    var description = ""
-//    var tasks = [FormTask]()
     var createDate = Date()
 
     init(formDict : [String : AnyObject]) {
@@ -72,9 +77,34 @@ class Form : Template {
         }
     }
 
+    override init(template: Template) {
+        super.init(template: template)
+    }
+
     override func toDict() -> [String : AnyObject] {
         var formDict = super.toDict()
         formDict["createDate"] = Globals.shared.utcFormatter.string(from: createDate) as AnyObject?
         return formDict
+    }
+
+    func submit(controller: UIViewController) {
+        // upload all the Photos from PhotoTasks first.
+        ServerMgr.shared.uploadImages(photoFileList: PhotoFileList(tasks: tasks), progress: { percentage in
+            print("Progress: \(percentage)")
+        }, completion: { (photoFileList, error) in
+            if let _ = photoFileList {
+                // Photo file names should have been copied to photo tasks, we can submit form now
+                ServerMgr.shared.saveAsForm(form: self) { (result, error) in
+                    if error != nil {
+                        controller.showAlert(title: "Form Submission Failed", message: error!)
+                    } else {
+                        controller.showAlert(title: "Success", message: "Form submitted successfuly")
+                    }
+                }
+            } else {
+                controller.showAlert(title: "Submission Failed", message: "Photos upload failed because of: \(error!)")
+            }
+
+        })
     }
 }

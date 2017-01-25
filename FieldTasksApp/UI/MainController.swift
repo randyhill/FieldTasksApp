@@ -14,14 +14,14 @@ class MainController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Welcome"
+        self.title = "FieldTasks"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
         configureNavBar()
     }
 
     func refreshList() {
         // Do any additional setup after loading the view, typically from a nib.
-        ServerManager.sharedInstance.loadForms { (result, error) in
+        ServerMgr.shared.loadForms { (result, error) in
             if error != nil {
                 print("Failed to load forms: \(error)")
             } else {
@@ -73,7 +73,7 @@ class MainController: UITableViewController {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubmissionCell", for: indexPath as IndexPath)
         if indexPath.section == 0 {
-            cell.textLabel!.text = "Add New Form"
+            cell.textLabel!.text = "Complete New Form"
             cell.textLabel!.textAlignment = .center
             cell.detailTextLabel!.text = ""
             cell.configureHeaderCell()

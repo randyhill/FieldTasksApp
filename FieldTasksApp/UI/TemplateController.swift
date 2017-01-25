@@ -9,7 +9,7 @@
 import UIKit
 
 class TemplateController : UITableViewController {
-    var form : Template?
+    var form : Form?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +28,7 @@ class TemplateController : UITableViewController {
         if !form!.isComplete() {
             self.showAlert(title: "Form Incomplete", message: "You must complete all required fields before submitting the form")
         } else {
-            ServerManager.sharedInstance.saveAsForm(form: form!) { (result, error) in
-                if error != nil {
-                    self.showAlert(title: "Form Submission Failed", message: error!)
-                } else {
-                    self.showAlert(title: "Success", message: "Form submitted successfuly")
-                }
-            }
+            form?.submit(controller: self)
         }
     }
 

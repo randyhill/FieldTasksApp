@@ -34,14 +34,16 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
         container.addSubview(pictureView)
 
         // Picture button
-        pictureButton.frame = CGRect(x: container.frame.width - kButtonSize.width, y: 0, width: kButtonSize.width, height: kButtonSize.height)
-        pictureButton.setTitle("Take Picture", for: .normal)
-        pictureButton.setTitleColor(container.tintColor, for: .normal)
-        pictureButton.backgroundColor = UIColor.lightGray
-        pictureButton.layer.cornerRadius = 8.0
-        pictureButton.isUserInteractionEnabled = true
-        pictureButton.addTarget(self, action: #selector(PhotoTaskHandler.snapIt), for: .touchUpInside)
-        container.addSubview(pictureButton)
+        if isEditable {
+            pictureButton.frame = CGRect(x: container.frame.width - kButtonSize.width, y: 0, width: kButtonSize.width, height: kButtonSize.height)
+            pictureButton.setTitle("Take Picture", for: .normal)
+            pictureButton.setTitleColor(container.tintColor, for: .normal)
+            pictureButton.backgroundColor = UIColor.lightGray
+            pictureButton.layer.cornerRadius = 8.0
+            pictureButton.isUserInteractionEnabled = true
+            pictureButton.addTarget(self, action: #selector(PhotoTaskHandler.snapIt), for: .touchUpInside)
+            container.addSubview(pictureButton)
+        }
     }
 
     @objc func snapIt(sender: UIButton!) {

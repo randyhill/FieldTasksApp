@@ -51,5 +51,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Use the camera to add photos to forms you submit</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Use your photo library to add photoes to forms you submit</string>
 </dict>
 </plist>
