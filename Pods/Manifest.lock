@@ -2,17 +2,20 @@ PODS:
   - Alamofire (4.3.0)
   - FlatUIKit (1.6.2)
   - Just (0.5.7)
+  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - FlatUIKit
   - Just
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
   Just: d19e769d86b965e39ae58cb3c0cbad07706634a8
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 1497d9de3be46bb25a995f0e4934e6a8640ed447
+PODFILE CHECKSUM: c9af1c1a04dc2ef310a54bc29a6a6a26758809cb
 
 COCOAPODS: 1.1.1

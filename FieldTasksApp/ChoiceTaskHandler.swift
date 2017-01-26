@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-let kSwitchSize = CGSize(width: 48.0, height: 44.0)
+import FlatUIKit
 
 // MARK: Choice Class -------------------------------------------------------------------------------
 class Choice {
@@ -23,15 +22,17 @@ class Choice {
 
         }
     }
+    var switchSize = CGSize(width: 64.0, height: 44.0)
 
     func toggle() {
         self.on = !self.on
     }
 
-    init(frame : CGRect, handler: ChoiceTaskHandler, title: String) {
+    init(frame : CGRect, width: CGFloat, handler: ChoiceTaskHandler, title: String) {
         // Make label for title
         var labelFrame = frame
-        labelFrame.origin.x = kSwitchSize.width + 10.0
+        labelFrame.origin.x = width + 8.0
+        switchSize.width = width
         label.frame = labelFrame
         label.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: handler, action: #selector(ChoiceTaskHandler.labelTap))
@@ -64,7 +65,7 @@ class Checkbox : Choice {
     }
 
     init(frame : CGRect, handler: ChoiceTaskHandler, title : String, isEnabled: Bool) {
-        super.init(frame : frame, handler: handler, title: title)
+        super.init(frame : frame, width: 34.0, handler: handler, title: title)
         button.frame = frame
         button.frame.size.width = frame.height
         button.layer.borderWidth = 2.0
@@ -83,7 +84,7 @@ class Checkbox : Choice {
 
 // MARK: Switchbox Class -------------------------------------------------------------------------------
 class Switchbox : Choice {
-    private var _switch = UISwitch()
+    private var _switch = FUISwitch()
     override var on : Bool {
         get {
             return _switch.isOn
@@ -93,12 +94,19 @@ class Switchbox : Choice {
         }
     }
     init(frame : CGRect, handler: ChoiceTaskHandler, title : String, isEnabled: Bool) {
-        super.init(frame : frame, handler: handler, title: title)
+        super.init(frame : frame, width: 64.0, handler: handler, title: title)
         _switch.frame = frame
-        _switch.frame.size.width = kSwitchSize.width;
+        _switch.frame.size.width = switchSize.width;
         _switch.addTarget(handler, action: #selector(ChoiceTaskHandler.didSwitch), for: .valueChanged)
         _switch.isEnabled = isEnabled
         view = _switch
+        _switch.onColor = UIColor.turquoise()
+        _switch.offColor = UIColor.clouds()
+        _switch.onBackgroundColor = UIColor.midnightBlue()
+        _switch.offBackgroundColor = UIColor.silver()
+        _switch.offLabel.font = UIFont.boldFlatFont(ofSize: 14)
+        _switch.onLabel.font = UIFont.boldFlatFont(ofSize: 14)
+        _switch.isOn = false
     }
 }
 
@@ -122,12 +130,12 @@ class ChoiceTaskHandler : TaskHandler {
         var choiceFrame = CGRect(x: 0, y: 0, width: container.frame.width, height: 28)
         let isRadio = (task.taskDescription as! ChoicesTaskDescription).isRadio
         for title in choiceData.titles {
-            makeSwitchbox(container: container, title: title, frame: choiceFrame, isRadio: isRadio)
-            choiceFrame.origin.y += kSwitchSize.height;
+            let choice = makeSwitchbox(container: container, title: title, frame: choiceFrame, isRadio: isRadio)
+            choiceFrame.origin.y += choice.switchSize.height;
         }
     }
 
-    func makeSwitchbox(container: UIView, title: String, frame : CGRect, isRadio: Bool) {
+    func makeSwitchbox(container: UIView, title: String, frame : CGRect, isRadio: Bool) -> Choice {
         // Make switch control
         var choice : Choice?
         if isRadio {
@@ -139,6 +147,7 @@ class ChoiceTaskHandler : TaskHandler {
         container.addSubview(choice!.view!)
         container.addSubview(choice!.label)
         choice!.setIndex(listIndex: options.count - 1)
+        return choice!
     }
 
     func labelTap(tap : UIGestureRecognizer) {

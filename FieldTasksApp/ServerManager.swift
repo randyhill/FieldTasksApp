@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import Just
+import SVProgressHUD
 
 #if LOCALHOST
 let cBaseURL = "http://localhost:8080"
@@ -153,35 +154,42 @@ class ServerMgr {
 
 
     func uploadImages(photoFileList: PhotoFileList, progress : @escaping (Float)->(), completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
-        // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
-        var files = [String:HTTPFile]()
-        var fileNumber = 0
-        for image in photoFileList.asImageArray() {
-            if let data = UIImagePNGRepresentation(image) {
-                files["\(fileNumber)"] = HTTPFile.data("\(fileNumber)", data, nil)
-                fileNumber += 1
-            }
-        }
+        DispatchQueue.main.async() {
+            // Start spinner
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            SVProgressHUD.showProgress(0)
 
-        if let jsonDict = Just.post(cUploadPhotoURL, files: files, asyncProgressHandler: {(p) in
-            progress(p.percent)
-        }).json {
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
-            if let fileArray = jsonDict as? [Any] {
-                for element in fileArray {
-                    if let elementDict = element as? [String: String] {
-                        if let fileIndex = elementDict["fileIndex"], let fileName = elementDict["fileName"] {
-                             photoFileList.addFileName(name: fileName, listIndex: fileIndex)
-                        }
-                    }
+            var files = [String:HTTPFile]()
+            var fileNumber = 0
+            for image in photoFileList.asImageArray() {
+                if let data = UIImagePNGRepresentation(image) {
+                    files["\(fileNumber)"] = HTTPFile.data("\(fileNumber)", data, nil)
+                    fileNumber += 1
                 }
-                completion(photoFileList, nil)
-            } else {
-                completion(nil, "Couldn't parse JSON")
+            }
+
+            if let jsonDict = Just.post(cUploadPhotoURL, files: files, asyncProgressHandler: {(p) in
+                progress(p.percent)
+                SVProgressHUD.showProgress(p.percent)
+            }).json {
+                DispatchQueue.main.async() {
+                    SVProgressHUD.dismiss(completion: { 
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        if let fileArray = jsonDict as? [Any] {
+                            for element in fileArray {
+                                if let elementDict = element as? [String: String] {
+                                    if let fileIndex = elementDict["fileIndex"], let fileName = elementDict["fileName"] {
+                                        photoFileList.addFileName(name: fileName, listIndex: fileIndex)
+                                    }
+                                }
+                            }
+                            completion(photoFileList, nil)
+                        } else {
+                            completion(nil, "Couldn't parse JSON")
+                        }
+                    })
+                }
             }
         }
     }

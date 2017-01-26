@@ -9,6 +9,7 @@ target 'FieldTasksApp' do
   pod 'Alamofire', '~> 4.3'
   pod 'FlatUIKit'
   pod 'Just'
+  pod 'SVProgressHUD'
 
 end
 
@@ -20,5 +21,6 @@ target 'FieldTasksApp Local' do
   pod 'Alamofire', '~> 4.3'
   pod 'FlatUIKit'
   pod 'Just'
+  pod 'SVProgressHUD'
   
 end

@@ -136,7 +136,7 @@ class TaskController : UIViewController {
                 self.updateViewValues()
                 self.createNewTask()
                 setBackButton(title: taskIndex == 0 ? "Done" : "Back")
-                doneButton.isHidden = taskIndex == 0
+                //doneButton.isHidden = taskIndex == 0
             } else {
                 dismiss(animated: true, completion: nil)
             }
@@ -151,7 +151,7 @@ class TaskController : UIViewController {
                 self.updateViewValues()
                 self.createNewTask()
                 setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
-                doneButton.isHidden = taskIndex == (form!.tasks.count - 1)
+                //doneButton.isHidden = taskIndex == (form!.tasks.count - 1)
             } else {
                 dismiss(animated: true, completion: nil)
             }
