@@ -89,9 +89,7 @@ class Form : Template {
 
     func submit(controller: UIViewController) {
         // upload all the Photos from PhotoTasks first.
-        ServerMgr.shared.uploadImages(photoFileList: PhotoFileList(tasks: tasks), progress: { percentage in
-            print("Progress: \(percentage)")
-        }, completion: { (photoFileList, error) in
+        ServerMgr.shared.uploadImages(photoFileList: PhotoFileList(tasks: tasks), completion: { (photoFileList, error) in
             if let _ = photoFileList {
                 // Photo file names should have been copied to photo tasks, we can submit form now
                 ServerMgr.shared.saveAsForm(form: self) { (result, error) in

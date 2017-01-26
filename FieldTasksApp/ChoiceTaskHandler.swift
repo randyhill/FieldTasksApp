@@ -73,6 +73,7 @@ class Checkbox : Choice {
         button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 18.0)
         button.addTarget(handler, action: #selector(ChoiceTaskHandler.didCheck), for: .touchUpInside)
         button.isEnabled = isEnabled
+        button.backgroundColor = UIColor.silver()
         view = button
      }
 
@@ -103,7 +104,7 @@ class Switchbox : Choice {
         _switch.onColor = UIColor.turquoise()
         _switch.offColor = UIColor.clouds()
         _switch.onBackgroundColor = UIColor.midnightBlue()
-        _switch.offBackgroundColor = UIColor.silver()
+        _switch.offBackgroundColor = UIColor.asbestos()
         _switch.offLabel.font = UIFont.boldFlatFont(ofSize: 14)
         _switch.onLabel.font = UIFont.boldFlatFont(ofSize: 14)
         _switch.isOn = false

@@ -153,13 +153,14 @@ class ServerMgr {
     }
 
 
-    func uploadImages(photoFileList: PhotoFileList, progress : @escaping (Float)->(), completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
+    func uploadImages(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
 
-        DispatchQueue.main.async() {
-            // Start spinner
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            SVProgressHUD.showProgress(0)
+        // Start spinner
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        SVProgressHUD.showProgress(0.01, status: "Uploading photos")
 
+        // SVProgressHUD is addded to queue, so add upload to queue second so it doesn't start until the alert is visible.
+        OperationQueue.main.addOperation({ 
             var files = [String:HTTPFile]()
             var fileNumber = 0
             for image in photoFileList.asImageArray() {
@@ -170,11 +171,10 @@ class ServerMgr {
             }
 
             if let jsonDict = Just.post(cUploadPhotoURL, files: files, asyncProgressHandler: {(p) in
-                progress(p.percent)
-                SVProgressHUD.showProgress(p.percent)
+                SVProgressHUD.showProgress(p.percent, status: "Uploading photos")
             }).json {
                 DispatchQueue.main.async() {
-                    SVProgressHUD.dismiss(completion: { 
+                    SVProgressHUD.dismiss(completion: {
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         if let fileArray = jsonDict as? [Any] {
                             for element in fileArray {
@@ -191,6 +191,7 @@ class ServerMgr {
                     })
                 }
             }
-        }
-    }
+        })
+
+     }
 }
