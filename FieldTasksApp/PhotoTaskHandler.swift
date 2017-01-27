@@ -66,14 +66,16 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
     }
 
     func setPicture(picture : UIImage) {
+        self.result.photo = picture
         pictureView.image = picture
         let picProportion = picture.size.height/picture.size.width
-        if picProportion < 1.0 {
-            let newHeight = containerFrame.height * picProportion
+        let viewProportion = containerFrame.height/containerFrame.width
+        if picProportion < viewProportion {
+            let newHeight = containerFrame.height * picProportion/viewProportion
             pictureView.frame.size.height = newHeight
             pictureView.frame.origin.y = (containerFrame.height - newHeight)/2
         } else {
-            let newWidth = containerFrame.width / picProportion
+            let newWidth = containerFrame.width * viewProportion/picProportion
             pictureView.frame.size.width = newWidth
             pictureView.frame.origin.x = (containerFrame.width - newWidth)/2
         }
@@ -105,9 +107,9 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
                     // Lets do UI stuff on main thread.
                     DispatchQueue.main.async {
                         if let imData = imageData {
-                            let image = UIImage(data: imData)
-                            self.pictureView.image = image
-                            self.result.photo = image
+                            if let image = UIImage(data: imData) {
+                                  self.setPicture(picture: image)
+                            }
                         } else {
                             SVProgressHUD.showError(withStatus: errorString)
                         }

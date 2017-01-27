@@ -151,7 +151,10 @@ class ServerMgr {
             var files = [String:HTTPFile]()
             var fileNumber = 0
             for image in photoFileList.asImageArray() {
-                if let data = UIImagePNGRepresentation(image) {
+                // Images saved to server are saved without proper orientation flag
+                // This flag is not being saved to the exif data in the uploaded jpeg image, so make sure image is uploaded in 
+                // vertical orientation as that's what it will display in when read back.
+                if let data = UIImagePNGRepresentation(image.fixOrientation()) {
                     files["\(fileNumber)"] = HTTPFile.data("\(fileNumber)", data, nil)
                     fileNumber += 1
                 }
