@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var pictureButton = UIButton()
@@ -49,11 +50,18 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
     @objc func snapIt(sender: UIButton!) {
         let picker = UIImagePickerController()
         picker.delegate = self
+        picker.configureNavBar()
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
         }
+        // Hack to work around different text color for picker buttons. FlatUIKit's color specific nav bar buttons can't be called from Swift.
+        // So I just change them globally before picker is displayed and restore after
+        UINavigationBar.appearance().barTintColor = Globals.shared.barColor
+        UINavigationBar.appearance().barStyle = UIBarStyle.default
+        UINavigationBar.appearance().tintColor = UIColor.clouds()   // Text color
         controller?.present(picker, animated: true, completion: {
-            print("done")
+            // Restore
+            UIBarButtonItem.configureFlatButtons(with: Globals.shared.barButtonColor, highlightedColor: Globals.shared.barButtonColor, cornerRadius: 3.0)
         })
     }
 
@@ -91,6 +99,21 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
     override func restore() {
         if let picture = result.photo {
             setPicture(picture: picture)
+        } else {
+            if let fileName = result.fileName {
+                ServerMgr.shared.downloadFile(imageFileName: fileName, completion: { (imageData, errorString) in
+                    // Lets do UI stuff on main thread.
+                    DispatchQueue.main.async {
+                        if let imData = imageData {
+                            let image = UIImage(data: imData)
+                            self.pictureView.image = image
+                            self.result.photo = image
+                        } else {
+                            SVProgressHUD.showError(withStatus: errorString)
+                        }
+                    }
+                })
+            }
         }
     }
 }

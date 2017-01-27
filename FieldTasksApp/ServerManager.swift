@@ -21,45 +21,7 @@ let cBaseURL = "http://www.fieldtasks.co"
 let cTemplatesURL = cBaseURL + "/templates"
 let cFormsURL = cBaseURL + "/forms"
 let cUploadPhotoURL = cBaseURL + "/upload"
-
-
-// Class used to pass multiple photos to server, and match results coming back to their tasks
-class PhotoFileList {
-    var photoResults = [PhotoResult]()
-
-    init(tasks: [FormTask]) {
-        self.addPhotoResults(tasks: tasks)
-    }
-
-    // Create a list of all the form tasks that have photos
-    func addPhotoResults(tasks : [FormTask]) {
-        for task in tasks {
-            if let photoResult = task.result as? PhotoResult {
-                if photoResult.photo != nil {
-                    photoResults += [photoResult]
-                    photoResults += [photoResult]
-                }
-            }
-        }
-    }
-
-    // File names are sent to/recieved from server with indexes 1,2,3..etc
-    func addFileName(name: String, listIndex : String) {
-        if let index = Int(listIndex) {
-            if index >= 0 && index < photoResults.count {
-                photoResults[index].fileName = name
-            }
-        }
-    }
-
-    func asImageArray() -> [UIImage] {
-        var array = [UIImage]()
-        for photoResult in photoResults {
-            array += [photoResult.photo!]
-        }
-        return array
-    }
-}
+let cDownloadPhotoURL = cBaseURL + "/download/"
 
 class ServerMgr {
     static let shared = ServerMgr()
@@ -152,6 +114,31 @@ class ServerMgr {
         }
     }
 
+    func downloadFile(imageFileName : String, completion : @escaping (_ data : Data?, _ error: String?)->()) {
+        // Start spinner
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        SVProgressHUD.showProgress(0.01, status: "Downloading photo")
+
+        // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
+        OperationQueue.main.addOperation({
+           let path = cDownloadPhotoURL + imageFileName
+            _ = Just.get(path, params: [:], asyncProgressHandler: {(p) in
+                SVProgressHUD.showProgress(p.percent, status: "Downloading photo")
+            }) { (result) in
+                SVProgressHUD.dismiss()
+                if let code = result.statusCode, code == 200   {
+                    if let data = result.content {
+                        return completion(data, nil)
+                    } else {
+                        return completion(nil, "Server did not have that image")
+                    }
+                } else {
+                    return completion(nil, result.error != nil ?  result.error!.localizedDescription : "Server did not have that image")
+                 }
+            }
+        })
+    }
+
 
     func uploadImages(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
 
@@ -159,7 +146,7 @@ class ServerMgr {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         SVProgressHUD.showProgress(0.01, status: "Uploading photos")
 
-        // SVProgressHUD is addded to queue, so add upload to queue second so it doesn't start until the alert is visible.
+        // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
         OperationQueue.main.addOperation({ 
             var files = [String:HTTPFile]()
             var fileNumber = 0

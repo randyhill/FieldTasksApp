@@ -61,6 +61,8 @@
 		D85D53D71D710750006D31F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8549B9E1D67871B009DBE7A /* Main.storyboard */; };
 		D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85D53DD1D710D94006D31F2 /* Globals.swift */; };
 		D85D53E11D711051006D31F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85D53DD1D710D94006D31F2 /* Globals.swift */; };
+		D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87390161E3BCC5500142FD6 /* PhotoFileList.swift */; };
+		D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87390161E3BCC5500142FD6 /* PhotoFileList.swift */; };
 		D88B94E11E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DA1E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m */; };
 		D88B94E21E36CC4800465793 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DC1E36CC4800465793 /* TPKeyboardAvoidingScrollView.m */; };
 		D88B94E31E36CC4800465793 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DE1E36CC4800465793 /* TPKeyboardAvoidingTableView.m */; };
@@ -106,6 +108,7 @@
 		D85D53DB1D710750006D31F2 /* FieldTasksApp Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FieldTasksApp Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85D53DC1D710750006D31F2 /* FieldTasksApp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "FieldTasksApp copy-Info.plist"; path = "/Users/clarkehill2/Documents/source/FieldTasksApp/FieldTasksApp copy-Info.plist"; sourceTree = "<absolute>"; };
 		D85D53DD1D710D94006D31F2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = ../Globals.swift; sourceTree = "<group>"; };
+		D87390161E3BCC5500142FD6 /* PhotoFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFileList.swift; path = Data/PhotoFileList.swift; sourceTree = "<group>"; };
 		D88B94D81E36CC4800465793 /* FieldTasksApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FieldTasksApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		D88B94D91E36CC4800465793 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingCollectionView.h; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingCollectionView.h"; sourceTree = "<group>"; };
 		D88B94DA1E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingCollectionView.m; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingCollectionView.m"; sourceTree = "<group>"; };
@@ -269,6 +272,7 @@
 				D8549BD61D68C9CC009DBE7A /* FormTask.swift */,
 				D8346CF11D6E215000CDC34E /* TaskDescriptions.swift */,
 				D8346CF31D6E21A400CDC34E /* TaskResults.swift */,
+				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
 			);
 			name = "Data Classes";
 			sourceTree = "<group>";
@@ -522,6 +526,7 @@
 				D8346CF21D6E215000CDC34E /* TaskDescriptions.swift in Sources */,
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
+				D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D8549BD51D68A3C3009DBE7A /* TaskController.swift in Sources */,
 				D826E6C31D6D2B48002B91AE /* ChoiceTaskHandler.swift in Sources */,
 				D8549BDA1D6B862F009DBE7A /* TaskHandlers.swift in Sources */,
@@ -545,6 +550,7 @@
 				D85D53CC1D710750006D31F2 /* ServerManager.swift in Sources */,
 				D85D53CD1D710750006D31F2 /* PhotoTaskHandler.swift in Sources */,
 				D85D53CE1D710750006D31F2 /* TaskDescriptions.swift in Sources */,
+				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
 				D85D53E11D711051006D31F2 /* Globals.swift in Sources */,
 				D85D53D01D710750006D31F2 /* TaskController.swift in Sources */,

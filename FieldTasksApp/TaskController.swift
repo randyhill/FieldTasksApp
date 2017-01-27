@@ -8,7 +8,7 @@
 
 import UIKit
 import FlatUIKit
-
+import SVProgressHUD
 
 class TaskController : UIViewController {
     var form : Template?
@@ -122,7 +122,7 @@ class TaskController : UIViewController {
             return true
         }
         if let errorMessage = taskHandler?.validate() {
-            self.showAlert(title: "Invalid value", message: errorMessage)
+            SVProgressHUD.showError(withStatus: "Incomplete: \(errorMessage)")
             return false
         }
         return true

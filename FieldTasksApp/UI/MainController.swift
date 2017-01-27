@@ -74,7 +74,7 @@ class MainController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubmissionCell", for: indexPath as IndexPath)
         if indexPath.section == 0 {
             cell.textLabel!.text = "Complete New Form"
-            cell.textLabel!.textAlignment = .center
+            cell.textLabel!.textAlignment = .right
             cell.detailTextLabel!.text = ""
             cell.configureHeaderCell()
        } else {

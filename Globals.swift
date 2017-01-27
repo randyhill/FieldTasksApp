@@ -8,7 +8,7 @@
 
 import UIKit
 import FlatUIKit
-
+import SVProgressHUD
 
 class Globals {
     static let shared = Globals()
@@ -19,7 +19,7 @@ class Globals {
     let bigFont = UIFont.boldFlatFont(ofSize: 18.0)!
     let textColor = UIColor.clouds()
     let bgColor = UIColor.greenSea()
-    let barColor = UIColor.midnightBlue()
+    let barColor = UIColor.asbestos()
     let barButtonColor = UIColor.belizeHole()
 
     init() {
@@ -35,12 +35,12 @@ class Globals {
 }
 
 extension UIViewController {
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func showAlert(title: String, message: String) {
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+//        alert.addAction(ok)
+//        self.present(alert, animated: true, completion: nil)
+//    }
 
     func configureNavBar() {
         self.navigationController?.navigationBar.configureFlatNavigationBar(with: Globals.shared.barColor)

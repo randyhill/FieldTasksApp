@@ -172,6 +172,15 @@ class PhotoResult : TaskResult {
 
     override init(formTask : FormTask, results: [String : AnyObject]) {
         super.init(formTask: formTask, results: results)
+        if let fileResult = results["fileName"] as? String {
+            fileName = fileResult
+        }
+    }
+
+    override func toDict() -> [String : AnyObject]{
+        var dict = super.toDict()
+        dict["fileName"] = fileName as AnyObject?
+        return dict
     }
 
     func save(newPhoto: UIImage?) {

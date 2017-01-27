@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class Template {
     var id = ""
@@ -94,13 +95,13 @@ class Form : Template {
                 // Photo file names should have been copied to photo tasks, we can submit form now
                 ServerMgr.shared.saveAsForm(form: self) { (result, error) in
                     if error != nil {
-                        controller.showAlert(title: "Form Submission Failed", message: error!)
+                        SVProgressHUD.showError(withStatus: "Form Submission Failed: \(error!)")
                     } else {
-                        controller.showAlert(title: "Success", message: "Form submitted successfuly")
+                        SVProgressHUD.showSuccess(withStatus: "Form submitted successfuly")
                     }
                 }
             } else {
-                controller.showAlert(title: "Submission Failed", message: "Photos upload failed because of: \(error!)")
+                SVProgressHUD.showError(withStatus: "Photos upload failed because of: \(error!)")
             }
 
         })

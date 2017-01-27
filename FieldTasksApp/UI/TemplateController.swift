@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class TemplateController : UITableViewController {
     var form : Form?
@@ -26,7 +27,7 @@ class TemplateController : UITableViewController {
 
     func submitForm() {
         if !form!.isComplete() {
-            self.showAlert(title: "Form Incomplete", message: "You must complete all required fields before submitting the form")
+            SVProgressHUD.show(withStatus: "You must complete all required fields before submitting the form")
         } else {
             form?.submit(controller: self)
         }
