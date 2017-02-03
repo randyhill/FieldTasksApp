@@ -20,6 +20,7 @@ let cBaseURL = "http://www.fieldtasks.co"
 
 let cTemplatesURL = cBaseURL + "/templates"
 let cFormsURL = cBaseURL + "/forms"
+let cLocationsURL = cBaseURL + "/locations"
 let cUploadPhotoURL = cBaseURL + "/upload"
 let cDownloadPhotoURL = cBaseURL + "/download/"
 
@@ -42,6 +43,14 @@ class ServerMgr {
             loadList(url: url, completion: completion)
         }
     }
+
+
+    func loadLocations(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
+        if let url = NSURL(string: cLocationsURL) {
+            loadList(url: url, completion: completion)
+        }
+    }
+
 
     private func loadList(url: NSURL, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

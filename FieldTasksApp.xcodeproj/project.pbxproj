@@ -29,6 +29,8 @@
 		D826E6C31D6D2B48002B91AE /* ChoiceTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6C21D6D2B48002B91AE /* ChoiceTaskHandler.swift */; };
 		D8346CF21D6E215000CDC34E /* TaskDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8346CF11D6E215000CDC34E /* TaskDescriptions.swift */; };
 		D8346CF41D6E21A400CDC34E /* TaskResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8346CF31D6E21A400CDC34E /* TaskResults.swift */; };
+		D84AAF2D1E4531EA000D584F /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C8C0D1E45289300B5404F /* LocationsController.swift */; };
+		D84AAF2E1E45321D000D584F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C8C0F1E45291600B5404F /* Location.swift */; };
 		D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549B9A1D67871B009DBE7A /* AppDelegate.swift */; };
 		D8549B9D1D67871B009DBE7A /* FormListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549B9C1D67871B009DBE7A /* FormListController.swift */; };
 		D8549BA01D67871B009DBE7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8549B9E1D67871B009DBE7A /* Main.storyboard */; };
@@ -41,6 +43,8 @@
 		D8549BD51D68A3C3009DBE7A /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BD41D68A3C3009DBE7A /* TaskController.swift */; };
 		D8549BD71D68C9CC009DBE7A /* FormTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BD61D68C9CC009DBE7A /* FormTask.swift */; };
 		D8549BDA1D6B862F009DBE7A /* TaskHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BD91D6B862F009DBE7A /* TaskHandlers.swift */; };
+		D85C8C0E1E45289300B5404F /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C8C0D1E45289300B5404F /* LocationsController.swift */; };
+		D85C8C101E45291600B5404F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C8C0F1E45291600B5404F /* Location.swift */; };
 		D85D53C41D710750006D31F2 /* FormTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549BD61D68C9CC009DBE7A /* FormTask.swift */; };
 		D85D53C51D710750006D31F2 /* TaskResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8346CF31D6E21A400CDC34E /* TaskResults.swift */; };
 		D85D53C61D710750006D31F2 /* FormListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549B9C1D67871B009DBE7A /* FormListController.swift */; };
@@ -105,6 +109,8 @@
 		D8549BD41D68A3C3009DBE7A /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskController.swift; sourceTree = "<group>"; };
 		D8549BD61D68C9CC009DBE7A /* FormTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FormTask.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D8549BD91D6B862F009DBE7A /* TaskHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHandlers.swift; sourceTree = "<group>"; };
+		D85C8C0D1E45289300B5404F /* LocationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsController.swift; path = UI/LocationsController.swift; sourceTree = "<group>"; };
+		D85C8C0F1E45291600B5404F /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D85D53DB1D710750006D31F2 /* FieldTasksApp Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FieldTasksApp Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85D53DC1D710750006D31F2 /* FieldTasksApp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "FieldTasksApp copy-Info.plist"; path = "/Users/clarkehill2/Documents/source/FieldTasksApp/FieldTasksApp copy-Info.plist"; sourceTree = "<absolute>"; };
 		D85D53DD1D710D94006D31F2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = ../Globals.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 				D8549BD41D68A3C3009DBE7A /* TaskController.swift */,
 				D82411A41E315517006D06E2 /* TemplateController.swift */,
 				D88B94D71E36CBE100465793 /* TPKeyboardAvoiding */,
+				D85C8C0D1E45289300B5404F /* LocationsController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -273,6 +280,7 @@
 				D8346CF11D6E215000CDC34E /* TaskDescriptions.swift */,
 				D8346CF31D6E21A400CDC34E /* TaskResults.swift */,
 				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
+				D85C8C0F1E45291600B5404F /* Location.swift */,
 			);
 			name = "Data Classes";
 			sourceTree = "<group>";
@@ -514,6 +522,7 @@
 				D8549B9D1D67871B009DBE7A /* FormListController.swift in Sources */,
 				D88B94E41E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				D826E6C11D6D2B24002B91AE /* TextTaskHandler.swift in Sources */,
+				D85C8C101E45291600B5404F /* Location.swift in Sources */,
 				D8549BD31D67E85A009DBE7A /* FormController.swift in Sources */,
 				D82411A51E315517006D06E2 /* TemplateController.swift in Sources */,
 				D826E6BF1D6D2B02002B91AE /* NumberTaskHandler.swift in Sources */,
@@ -527,6 +536,7 @@
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
 				D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
+				D85C8C0E1E45289300B5404F /* LocationsController.swift in Sources */,
 				D8549BD51D68A3C3009DBE7A /* TaskController.swift in Sources */,
 				D826E6C31D6D2B48002B91AE /* ChoiceTaskHandler.swift in Sources */,
 				D8549BDA1D6B862F009DBE7A /* TaskHandlers.swift in Sources */,
@@ -541,6 +551,7 @@
 				D85D53C51D710750006D31F2 /* TaskResults.swift in Sources */,
 				D85D53C61D710750006D31F2 /* FormListController.swift in Sources */,
 				D85D53C71D710750006D31F2 /* TextTaskHandler.swift in Sources */,
+				D84AAF2D1E4531EA000D584F /* LocationsController.swift in Sources */,
 				D85D53C81D710750006D31F2 /* FormController.swift in Sources */,
 				D82411A61E315517006D06E2 /* TemplateController.swift in Sources */,
 				D85D53C91D710750006D31F2 /* NumberTaskHandler.swift in Sources */,
@@ -549,6 +560,7 @@
 				D85D53CB1D710750006D31F2 /* Form.swift in Sources */,
 				D85D53CC1D710750006D31F2 /* ServerManager.swift in Sources */,
 				D85D53CD1D710750006D31F2 /* PhotoTaskHandler.swift in Sources */,
+				D84AAF2E1E45321D000D584F /* Location.swift in Sources */,
 				D85D53CE1D710750006D31F2 /* TaskDescriptions.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,

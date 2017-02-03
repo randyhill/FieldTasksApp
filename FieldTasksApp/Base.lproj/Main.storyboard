@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aNW-LY-f8l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1413" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pHr-u3-8Qm">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -59,7 +59,7 @@
         <!--Navigation Controller-->
         <scene sceneID="QHZ-Ac-a4A">
             <objects>
-                <navigationController id="aNW-LY-f8l" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavController" id="aNW-LY-f8l" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QGG-bg-J17">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -111,13 +111,14 @@
                             <outlet property="delegate" destination="hKQ-bT-TB1" id="9AU-0h-j1s"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Forms" image="success.png" id="zMI-9K-Qzn"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Forms List Controller" id="Tso-9j-TOX"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uq7-4V-3LU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050" y="521"/>
+            <point key="canvasLocation" x="1086" y="437"/>
         </scene>
         <!--Form-->
         <scene sceneID="Su1-SJ-Eqs">
@@ -158,6 +159,7 @@
                             <outlet property="delegate" destination="pHz-AP-0hF" id="KlJ-hf-a4e"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="EV1-dH-kra"/>
                     <navigationItem key="navigationItem" title="Template Controller" id="Zjt-3p-1xp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJK-FH-uKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -236,6 +238,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOz-0N-UaI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1850.625" y="1217.9577464788733"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="MC3-ix-lWp">
+            <objects>
+                <tabBarController id="pHr-u3-8Qm" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ouN-uW-G9F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="7x3-Ci-Czd" kind="relationship" relationship="viewControllers" id="cLB-YG-XyH"/>
+                        <segue destination="nQQ-iW-EBF" kind="relationship" relationship="viewControllers" id="Z5p-Yn-CDg"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="US1-lz-x9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-784" y="303"/>
+        </scene>
+        <!--Locations-->
+        <scene sceneID="iwz-zw-Cki">
+            <objects>
+                <tableViewController storyboardIdentifier="LocationsController" title="Locations" id="AlL-mB-4CL" customClass="LocationsController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bWU-2x-6yb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationsCell" textLabel="eTd-0r-KGQ" detailTextLabel="bXA-o3-dV3" style="IBUITableViewCellStyleValue1" id="lmG-Lb-yEz">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lmG-Lb-yEz" id="Yz2-Zx-FPs">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eTd-0r-KGQ">
+                                            <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bXA-o3-dV3">
+                                            <rect key="frame" x="261" y="12" width="44" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="AlL-mB-4CL" id="L2K-io-C85"/>
+                            <outlet property="delegate" destination="AlL-mB-4CL" id="Jze-ip-48r"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Locations Controller" id="Ei6-N4-KTd"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="118-d9-nVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-521" y="1053"/>
+        </scene>
+        <!--Locations-->
+        <scene sceneID="7vK-Jn-Hip">
+            <objects>
+                <navigationController id="nQQ-iW-EBF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Locations" id="ORS-Es-WFT"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rm2-7T-zsE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="AlL-mB-4CL" kind="relationship" relationship="rootViewController" id="QOU-Cp-NX5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k1j-7L-qGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1228" y="1053"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hqK-K3-lI2">
@@ -328,10 +411,11 @@
             </objects>
             <point key="canvasLocation" x="376" y="1910"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Forms-->
         <scene sceneID="WXc-li-aM6">
             <objects>
                 <navigationController storyboardIdentifier="FormsNavController" id="7x3-Ci-Czd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Forms" id="Gtk-4U-c42"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mKm-CJ-ESf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -342,7 +426,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXe-hU-kIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="342" y="513"/>
+            <point key="canvasLocation" x="218" y="438"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="success.png" width="28" height="28"/>
+    </resources>
 </document>
