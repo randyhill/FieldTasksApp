@@ -19,8 +19,25 @@ class Location {
     var zip = ""
     var phone = ""
     var coordinates : CLLocation?
+    var fullAddress : String {
+        get {
+            var addr = address
+            addr += addAddressString(string: address2)
+            addr += addAddressString(string: city)
+            addr += addAddressString(string: state)
+            addr += addAddressString(string: zip)
+            return addr
+        }
+    }
 
-    init(locationDict : [String : AnyObject]) {
+    private func addAddressString(string : String) -> String {
+        if string.characters.count > 0 {
+            return ", " + string
+        }
+        return ""
+    }
+
+    init(locationDict : [String : AnyObject]) throws {
         if let name = locationDict["name"] as? String {
             self.name = name
         }
@@ -39,12 +56,29 @@ class Location {
         if let zip = locationDict["zip"] as? String {
             self.zip = zip
         }
-        if let coordinates = locationDict["coordinates"] as? String {
-            //self.zip = zip
-        }
         if let id = locationDict["_id"] as? String {
             self.id = id
         }
+        if let coordinateDict = locationDict["coordinates"] {
+            guard let latString = coordinateDict["lat"] as? String, let lat = Double(latString) else {
+                throw FTError.RunTimeError("Could not convert latitude to double")
+            }
+            guard let lngString = coordinateDict["lng"] as? String, let lng = Double(lngString) else {
+                throw FTError.RunTimeError("Could not convert longitude to double")
+            }
+            self.coordinates = CLLocation(latitude: lat, longitude: lng)
+        }
+    }
+
+    init() {
+
+    }
+
+    func distanceFrom(location : CLLocation) -> CLLocationDistance {
+        guard let locCoords = coordinates else {
+            return Double.greatestFiniteMagnitude
+        }
+        return location.distance(from: locCoords)
     }
 
     func toDict() -> [String : AnyObject]{

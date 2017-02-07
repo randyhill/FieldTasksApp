@@ -22,7 +22,7 @@ class FormController : UITableViewController {
         self.title = form?.name
         self.tableView.allowsSelection = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
-        configureNavBar()
+        makeNavBarFlat()
     }
 
     func goBack(){
@@ -51,7 +51,7 @@ class FormController : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FormTaskCell", for: indexPath as IndexPath)
-        cell.configureDataCell()
+        cell.makeCellFlat()
         if let formTaskCell = cell as? FormTaskCell {
             let task = form!.tasks[indexPath.row]
 

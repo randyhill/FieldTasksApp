@@ -32,6 +32,12 @@
 			<string></string>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Used to let you add images to forms</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to let you add images to forms</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>FieldTasks uses current location to show forms assigned to it.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

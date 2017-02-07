@@ -23,6 +23,18 @@
 		D82411B81E36B405006D06E2 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AE1E36B405006D06E2 /* Lato-Light.ttf */; };
 		D82411B91E36B405006D06E2 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AF1E36B405006D06E2 /* Lato-Regular.ttf */; };
 		D82411BA1E36B405006D06E2 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AF1E36B405006D06E2 /* Lato-Regular.ttf */; };
+		D82514301E49020A000CFCD4 /* text.png in Resources */ = {isa = PBXBuildFile; fileRef = D825142A1E49020A000CFCD4 /* text.png */; };
+		D82514311E49020A000CFCD4 /* text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D825142B1E49020A000CFCD4 /* text@2x.png */; };
+		D82514321E49020A000CFCD4 /* text@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D825142C1E49020A000CFCD4 /* text@3x.png */; };
+		D82514361E492D69000CFCD4 /* text.png in Resources */ = {isa = PBXBuildFile; fileRef = D825142A1E49020A000CFCD4 /* text.png */; };
+		D82514371E492D69000CFCD4 /* text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D825142B1E49020A000CFCD4 /* text@2x.png */; };
+		D82514381E492D69000CFCD4 /* text@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D825142C1E49020A000CFCD4 /* text@3x.png */; };
+		D82514421E492ECD000CFCD4 /* favorites-w.png in Resources */ = {isa = PBXBuildFile; fileRef = D825143F1E492ECD000CFCD4 /* favorites-w.png */; };
+		D82514431E492ECD000CFCD4 /* favorites-w@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82514401E492ECD000CFCD4 /* favorites-w@2x.png */; };
+		D82514441E492ECD000CFCD4 /* favorites-w@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82514411E492ECD000CFCD4 /* favorites-w@3x.png */; };
+		D82514451E492ED5000CFCD4 /* favorites-w.png in Resources */ = {isa = PBXBuildFile; fileRef = D825143F1E492ECD000CFCD4 /* favorites-w.png */; };
+		D82514461E492ED5000CFCD4 /* favorites-w@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82514401E492ECD000CFCD4 /* favorites-w@2x.png */; };
+		D82514471E492ED5000CFCD4 /* favorites-w@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D82514411E492ECD000CFCD4 /* favorites-w@3x.png */; };
 		D826E6BD1D6D2AD8002B91AE /* PhotoTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6BC1D6D2AD8002B91AE /* PhotoTaskHandler.swift */; };
 		D826E6BF1D6D2B02002B91AE /* NumberTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6BE1D6D2B01002B91AE /* NumberTaskHandler.swift */; };
 		D826E6C11D6D2B24002B91AE /* TextTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826E6C01D6D2B24002B91AE /* TextTaskHandler.swift */; };
@@ -71,6 +83,16 @@
 		D88B94E21E36CC4800465793 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DC1E36CC4800465793 /* TPKeyboardAvoidingScrollView.m */; };
 		D88B94E31E36CC4800465793 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DE1E36CC4800465793 /* TPKeyboardAvoidingTableView.m */; };
 		D88B94E41E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94E01E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		D8C165CD1E47EC1900129439 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165CC1E47EC1900129439 /* UIViewController.swift */; };
+		D8C165CF1E47EC5F00129439 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165CE1E47EC5F00129439 /* UIImage.swift */; };
+		D8C165D31E47ECB200129439 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165D21E47ECB200129439 /* UITableViewCell.swift */; };
+		D8C165D41E47ECCF00129439 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165CC1E47EC1900129439 /* UIViewController.swift */; };
+		D8C165D51E47ECD200129439 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165CE1E47EC5F00129439 /* UIImage.swift */; };
+		D8C165D61E47ECD500129439 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165D21E47ECB200129439 /* UITableViewCell.swift */; };
+		D8C165D81E47F52A00129439 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165D71E47F52A00129439 /* Locations.swift */; };
+		D8C165D91E47FF2400129439 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165D71E47F52A00129439 /* Locations.swift */; };
+		D8DB034C1E4A5247001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
+		D8DB034D1E4A5274001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +108,12 @@
 		D82411AD1E36B405006D06E2 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Italic.ttf"; path = "Resources/Lato-Italic.ttf"; sourceTree = "<group>"; };
 		D82411AE1E36B405006D06E2 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "Resources/Lato-Light.ttf"; sourceTree = "<group>"; };
 		D82411AF1E36B405006D06E2 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "Resources/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		D825142A1E49020A000CFCD4 /* text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text.png; sourceTree = "<group>"; };
+		D825142B1E49020A000CFCD4 /* text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text@2x.png"; sourceTree = "<group>"; };
+		D825142C1E49020A000CFCD4 /* text@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text@3x.png"; sourceTree = "<group>"; };
+		D825143F1E492ECD000CFCD4 /* favorites-w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites-w.png"; sourceTree = "<group>"; };
+		D82514401E492ECD000CFCD4 /* favorites-w@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites-w@2x.png"; sourceTree = "<group>"; };
+		D82514411E492ECD000CFCD4 /* favorites-w@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites-w@3x.png"; sourceTree = "<group>"; };
 		D826E6BC1D6D2AD8002B91AE /* PhotoTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PhotoTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D826E6BE1D6D2B01002B91AE /* NumberTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NumberTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D826E6C01D6D2B24002B91AE /* TextTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TextTaskHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -99,8 +127,6 @@
 		D8549BA21D67871B009DBE7A /* FieldTasksApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldTasksApp.xcdatamodel; sourceTree = "<group>"; };
 		D8549BA41D67871B009DBE7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8549BA71D67871B009DBE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D8549BA91D67871B009DBE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8549BB41D67871B009DBE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8549BBD1D67871B009DBE7A /* FieldTasksAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTasksAppUITests.swift; sourceTree = "<group>"; };
 		D8549BBF1D67871B009DBE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8549BCB1D678DFF009DBE7A /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServerManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -124,6 +150,11 @@
 		D88B94DE1E36CC4800465793 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingTableView.m; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingTableView.m"; sourceTree = "<group>"; };
 		D88B94DF1E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+TPKeyboardAvoidingAdditions.h"; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		D88B94E01E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+TPKeyboardAvoidingAdditions.m"; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		D8C165CC1E47EC1900129439 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = UI/Extensions/UIViewController.swift; sourceTree = "<group>"; };
+		D8C165CE1E47EC5F00129439 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = UI/Extensions/UIImage.swift; sourceTree = "<group>"; };
+		D8C165D21E47ECB200129439 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITableViewCell.swift; path = UI/Extensions/UITableViewCell.swift; sourceTree = "<group>"; };
+		D8C165D71E47F52A00129439 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Locations.swift; path = Data/Locations.swift; sourceTree = "<group>"; };
+		D8DB034B1E4A5247001BA901 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Template.swift; path = Data/Template.swift; sourceTree = "<group>"; };
 		FE8420CBC9B3A1B24799E213 /* Pods_FieldTasksApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FieldTasksApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -176,8 +207,9 @@
 				D8549BD21D67E85A009DBE7A /* FormController.swift */,
 				D8549BD41D68A3C3009DBE7A /* TaskController.swift */,
 				D82411A41E315517006D06E2 /* TemplateController.swift */,
-				D88B94D71E36CBE100465793 /* TPKeyboardAvoiding */,
 				D85C8C0D1E45289300B5404F /* LocationsController.swift */,
+				D8C165CB1E47EBEE00129439 /* Extensions */,
+				D88B94D71E36CBE100465793 /* TPKeyboardAvoiding */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -245,7 +277,6 @@
 		D8549BB11D67871B009DBE7A /* FieldTasksAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				D8549BB41D67871B009DBE7A /* Info.plist */,
 			);
 			path = FieldTasksAppTests;
 			sourceTree = "<group>";
@@ -262,10 +293,10 @@
 		D8549BCF1D67B652009DBE7A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D8C165E61E48FFD000129439 /* Images */,
 				D82411B01E36B405006D06E2 /* FlatUIKit Resources */,
 				D8549BA41D67871B009DBE7A /* Assets.xcassets */,
 				D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */,
-				D8549BA91D67871B009DBE7A /* Info.plist */,
 				D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */,
 			);
 			name = "Supporting Files";
@@ -281,6 +312,8 @@
 				D8346CF31D6E21A400CDC34E /* TaskResults.swift */,
 				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
 				D85C8C0F1E45291600B5404F /* Location.swift */,
+				D8C165D71E47F52A00129439 /* Locations.swift */,
+				D8DB034B1E4A5247001BA901 /* Template.swift */,
 			);
 			name = "Data Classes";
 			sourceTree = "<group>";
@@ -299,6 +332,29 @@
 				D88B94D81E36CC4800465793 /* FieldTasksApp-Bridging-Header.h */,
 			);
 			name = TPKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
+		D8C165CB1E47EBEE00129439 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D8C165CC1E47EC1900129439 /* UIViewController.swift */,
+				D8C165CE1E47EC5F00129439 /* UIImage.swift */,
+				D8C165D21E47ECB200129439 /* UITableViewCell.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		D8C165E61E48FFD000129439 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D825143F1E492ECD000CFCD4 /* favorites-w.png */,
+				D82514401E492ECD000CFCD4 /* favorites-w@2x.png */,
+				D82514411E492ECD000CFCD4 /* favorites-w@3x.png */,
+				D825142A1E49020A000CFCD4 /* text.png */,
+				D825142B1E49020A000CFCD4 /* text@2x.png */,
+				D825142C1E49020A000CFCD4 /* text@3x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,14 +445,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D82514431E492ECD000CFCD4 /* favorites-w@2x.png in Resources */,
 				D8549BA81D67871B009DBE7A /* LaunchScreen.storyboard in Resources */,
+				D82514301E49020A000CFCD4 /* text.png in Resources */,
+				D82514321E49020A000CFCD4 /* text@3x.png in Resources */,
 				D82411B31E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
 				D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */,
 				D82411B91E36B405006D06E2 /* Lato-Regular.ttf in Resources */,
+				D82514441E492ECD000CFCD4 /* favorites-w@3x.png in Resources */,
 				D8549BA01D67871B009DBE7A /* Main.storyboard in Resources */,
 				D82411B51E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
 				D82411B11E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */,
+				D82514421E492ECD000CFCD4 /* favorites-w.png in Resources */,
 				D82411B71E36B405006D06E2 /* Lato-Light.ttf in Resources */,
+				D82514311E49020A000CFCD4 /* text@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,12 +466,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D82514461E492ED5000CFCD4 /* favorites-w@2x.png in Resources */,
+				D82514381E492D69000CFCD4 /* text@3x.png in Resources */,
 				D85D53D51D710750006D31F2 /* LaunchScreen.storyboard in Resources */,
 				D82411B41E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
 				D85D53D61D710750006D31F2 /* Assets.xcassets in Resources */,
 				D82411BA1E36B405006D06E2 /* Lato-Regular.ttf in Resources */,
 				D85D53D71D710750006D31F2 /* Main.storyboard in Resources */,
+				D82514471E492ED5000CFCD4 /* favorites-w@3x.png in Resources */,
+				D82514361E492D69000CFCD4 /* text.png in Resources */,
 				D82411B61E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
+				D82514371E492D69000CFCD4 /* text@2x.png in Resources */,
+				D82514451E492ED5000CFCD4 /* favorites-w.png in Resources */,
 				D82411B21E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */,
 				D82411B81E36B405006D06E2 /* Lato-Light.ttf in Resources */,
 			);
@@ -520,13 +588,17 @@
 				D88B94E11E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				D8346CF41D6E21A400CDC34E /* TaskResults.swift in Sources */,
 				D8549B9D1D67871B009DBE7A /* FormListController.swift in Sources */,
+				D8C165D31E47ECB200129439 /* UITableViewCell.swift in Sources */,
 				D88B94E41E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				D8C165CF1E47EC5F00129439 /* UIImage.swift in Sources */,
 				D826E6C11D6D2B24002B91AE /* TextTaskHandler.swift in Sources */,
+				D8C165D81E47F52A00129439 /* Locations.swift in Sources */,
 				D85C8C101E45291600B5404F /* Location.swift in Sources */,
 				D8549BD31D67E85A009DBE7A /* FormController.swift in Sources */,
 				D82411A51E315517006D06E2 /* TemplateController.swift in Sources */,
 				D826E6BF1D6D2B02002B91AE /* NumberTaskHandler.swift in Sources */,
 				D88B94E31E36CC4800465793 /* TPKeyboardAvoidingTableView.m in Sources */,
+				D8DB034C1E4A5247001BA901 /* Template.swift in Sources */,
 				D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */,
 				D82411A11E301BE6006D06E2 /* MainController.swift in Sources */,
 				D8549BCE1D67B5D5009DBE7A /* Form.swift in Sources */,
@@ -535,6 +607,7 @@
 				D8346CF21D6E215000CDC34E /* TaskDescriptions.swift in Sources */,
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
+				D8C165CD1E47EC1900129439 /* UIViewController.swift in Sources */,
 				D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85C8C0E1E45289300B5404F /* LocationsController.swift in Sources */,
 				D8549BD51D68A3C3009DBE7A /* TaskController.swift in Sources */,
@@ -556,15 +629,20 @@
 				D82411A61E315517006D06E2 /* TemplateController.swift in Sources */,
 				D85D53C91D710750006D31F2 /* NumberTaskHandler.swift in Sources */,
 				D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */,
+				D8C165D61E47ECD500129439 /* UITableViewCell.swift in Sources */,
 				D82411A31E301D5A006D06E2 /* MainController.swift in Sources */,
 				D85D53CB1D710750006D31F2 /* Form.swift in Sources */,
+				D8C165D91E47FF2400129439 /* Locations.swift in Sources */,
 				D85D53CC1D710750006D31F2 /* ServerManager.swift in Sources */,
 				D85D53CD1D710750006D31F2 /* PhotoTaskHandler.swift in Sources */,
+				D8DB034D1E4A5274001BA901 /* Template.swift in Sources */,
 				D84AAF2E1E45321D000D584F /* Location.swift in Sources */,
+				D8C165D41E47ECCF00129439 /* UIViewController.swift in Sources */,
 				D85D53CE1D710750006D31F2 /* TaskDescriptions.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
 				D85D53E11D711051006D31F2 /* Globals.swift in Sources */,
+				D8C165D51E47ECD200129439 /* UIImage.swift in Sources */,
 				D85D53D01D710750006D31F2 /* TaskController.swift in Sources */,
 				D85D53D11D710750006D31F2 /* ChoiceTaskHandler.swift in Sources */,
 				D85D53D21D710750006D31F2 /* TaskHandlers.swift in Sources */,

@@ -29,7 +29,7 @@ class TaskController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureNavBar()
+        makeNavBarFlat()
         self.view.backgroundColor = Globals.shared.bgColor
         self.descriptionLabel.textColor = Globals.shared.textColor
         self.descriptionLabel.font = Globals.shared.bigFont

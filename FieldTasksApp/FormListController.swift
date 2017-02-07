@@ -17,7 +17,7 @@ class FormListController: UITableViewController {
         self.title = "Forms"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(goBack))
-        configureNavBar()
+        makeNavBarFlat()
 
         self.refreshList()
     }
@@ -77,7 +77,7 @@ class FormListController: UITableViewController {
         let form = formsList[indexPath.row]
         cell.textLabel!.text = "\(form.name) Tasks: \(form.tasks.count)"
         cell.detailTextLabel!.text = "Description: \(form.description)"
-        cell.configureDataCell()
+        cell.makeCellFlat()
         return cell
     }
 

@@ -20,7 +20,9 @@ let cBaseURL = "http://www.fieldtasks.co"
 
 let cTemplatesURL = cBaseURL + "/templates"
 let cFormsURL = cBaseURL + "/forms"
+let cAllFormsURL = cBaseURL + "/allforms"
 let cLocationsURL = cBaseURL + "/locations"
+let cLocationTemplatesURL = cBaseURL + "/locations/templates"
 let cUploadPhotoURL = cBaseURL + "/upload"
 let cDownloadPhotoURL = cBaseURL + "/download/"
 
@@ -33,26 +35,30 @@ class ServerMgr {
     }
 
     func loadTemplates(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
-        if let url = NSURL(string: cTemplatesURL) {
+        if let url = URL(string: cTemplatesURL) {
             loadList(url: url, completion: completion)
         }
     }
 
-    func loadForms(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
-        if let url = NSURL(string: cFormsURL) {
+    // Filter by location if set
+    func loadForms(location: Location?, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
+        if var url = URL(string: cAllFormsURL) {
+            if let location = location {
+                url.appendPathComponent("/\(location.id)")
+            }
             loadList(url: url, completion: completion)
         }
     }
 
 
     func loadLocations(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
-        if let url = NSURL(string: cLocationsURL) {
+        if let url = URL(string: cLocationsURL) {
             loadList(url: url, completion: completion)
         }
     }
 
 
-    private func loadList(url: NSURL, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
+    private func loadList(url: URL, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let dataTask = defaultSession.dataTask(with: url as URL, completionHandler: { (data, response, error) in
             DispatchQueue.main.async() {
@@ -95,7 +101,7 @@ class ServerMgr {
             DispatchQueue.main.async() {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
-            completion(nil, nil)
+            completion(response, response.result.isSuccess ? nil : "Failed to save form")
         })
     }
 

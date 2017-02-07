@@ -20,5 +20,7 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSLocationUsageDescription</key>
+	<string>FieldTasks uses current location to show you forms assigned to it.</string>
 </dict>
 </plist>

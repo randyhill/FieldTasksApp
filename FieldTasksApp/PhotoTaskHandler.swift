@@ -50,7 +50,7 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
     @objc func snapIt(sender: UIButton!) {
         let picker = UIImagePickerController()
         picker.delegate = self
-        picker.configureNavBar()
+        picker.makeNavBarFlat()
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
         }

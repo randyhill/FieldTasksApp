@@ -10,18 +10,28 @@ import UIKit
 
 class MainController: UITableViewController {
     var formsList = [Form]()
+    var location : Location?    // Filter by location if set
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "FieldTasks"
+        self.title = "Forms"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
-        configureNavBar()
+        if location != nil {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(goBack))
+        }
+        makeNavBarFlat()
+    }
+
+    func goBack() {
+        self.dismiss(animated: true) {
+
+        }
     }
 
     func refreshList() {
         // Do any additional setup after loading the view, typically from a nib.
-        ServerMgr.shared.loadForms { (result, error) in
+        ServerMgr.shared.loadForms(location: location) { (result, error) in
             if error != nil {
                 print("Failed to load forms: \(error)")
             } else {
@@ -81,7 +91,7 @@ class MainController: UITableViewController {
             let form = formsList[indexPath.row]
             cell.textLabel!.text = form.name
             cell.detailTextLabel!.text = Globals.shared.dateFormatter.string(from: form.createDate)
-             cell.configureDataCell()
+             cell.makeCellFlat()
        }
         return cell
     }

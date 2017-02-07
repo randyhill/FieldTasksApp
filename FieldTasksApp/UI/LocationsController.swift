@@ -7,29 +7,48 @@
 //
 
 import UIKit
+import CoreLocation
 
-class LocationsController: UITableViewController {
-    var locationList = [Location]()
+class LocationCell : UITableViewCell {
+    @IBOutlet weak var cellIcon: UIImageView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var address: UILabel!
+
+}
+
+class LocationsController: UITableViewController, LocationUpdates {
+    var locations = Locations.shared
+//    var closest : Location?
+    let selectedCellIcon = UIImage(named: "favorites-w.png")!.withRenderingMode(.alwaysTemplate)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Locations"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
-        configureNavBar()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshFromServer))
+        makeNavBarFlat()
+        locations.delegate = self
     }
 
-    func refreshList() {
+    func refreshFromServer() {
+        self.locations.mgr.requestLocation()
         // Do any additional setup after loading the view, typically from a nib.
         ServerMgr.shared.loadLocations { (result, error) in
             if error != nil {
                 print("Failed to load forms: \(error)")
             } else {
                 if let newList = result  {
-                    self.locationList.removeAll()
+                    self.locations.removeAll()
                     for location in newList {
                         if let locationDict = location as? [String : AnyObject] {
-                            self.locationList += [Location(locationDict: locationDict)]
+                            do {
+                                let location = try Location(locationDict: locationDict)
+                                self.locations.add(location: location)
+                            } catch FTError.RunTimeError(let errorMessage) {
+                                self.showAlert(title: "Error creating location", message: errorMessage)
+                            } catch {
+                                self.showAlert(title: "Error creating location", message: error.localizedDescription)
+                            }
                         }
                     }
                     DispatchQueue.main.async(execute: {
@@ -41,12 +60,32 @@ class LocationsController: UITableViewController {
         }
     }
 
+    func newlocation(location: Location?) {
+        self.tableView.reloadData()
+    }
+
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations newLocations: [CLLocation]) {
+//        if newLocations.count > 0 {
+//            let curLocation = newLocations[0]
+//            if let closestLocation = self.locations.closestLocation(to: curLocation) {
+//                print("Closest: \(closestLocation.name)")
+//                if closestLocation !== closest {
+//                    closest = closestLocation
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print(error.localizedDescription)
+//    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.refreshList()
+        self.refreshFromServer()
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,7 +94,7 @@ class LocationsController: UITableViewController {
 
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locationList.count
+        return locations.list.count
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -69,15 +108,30 @@ class LocationsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationsCell", for: indexPath as IndexPath)
+        if let cell = cell as? LocationCell {
 
-        let location = locationList[indexPath.row]
-        cell.textLabel!.text = location.name
-        cell.detailTextLabel!.text = location.address
-        cell.configureDataCell()
+            let location = locations.list[indexPath.row]
+            if location === locations.currentLocation {
+                cell.cellIcon.image = self.selectedCellIcon
+                cell.cellIcon.tintColor = UIColor.midnightBlue()
+            }
+
+            cell.title!.text = location.name
+            cell.address!.text = location.fullAddress
+            cell.makeCellFlat()
+            return cell
+        }
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let location = locations.list[indexPath.row]
+        if let mainController = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as? MainController {
+            mainController.location = location
+            let navController = UINavigationController(rootViewController: mainController) // Creating a navigation controller with resultController at the root of the navigation stack.
+            self.present(navController, animated: true, completion: {
 
+            })
+        }
     }
 }

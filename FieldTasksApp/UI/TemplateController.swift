@@ -11,6 +11,7 @@ import SVProgressHUD
 
 class TemplateController : UITableViewController {
     var form : Form?
+    var location : Location?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +19,7 @@ class TemplateController : UITableViewController {
         self.title = "Form: \(form!.name)"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(submitForm))
-        configureNavBar()
+        makeNavBarFlat()
     }
 
     func goBack(){
@@ -66,7 +67,7 @@ class TemplateController : UITableViewController {
 
         let detailText = "\(task.type)"
         cell.detailTextLabel!.text = detailText
-        cell.configureDataCell()
+        cell.makeCellFlat()
         return cell
     }
 
