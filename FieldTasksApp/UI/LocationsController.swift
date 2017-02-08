@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 
 class LocationCell : UITableViewCell {
-    @IBOutlet weak var cellIcon: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var address: UILabel!
 
@@ -18,8 +17,6 @@ class LocationCell : UITableViewCell {
 
 class LocationsController: UITableViewController, LocationUpdates {
     var locations = Locations.shared
-//    var closest : Location?
-    let selectedCellIcon = UIImage(named: "favorites-w.png")!.withRenderingMode(.alwaysTemplate)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,55 +28,19 @@ class LocationsController: UITableViewController, LocationUpdates {
     }
 
     func refreshFromServer() {
-        self.locations.mgr.requestLocation()
-        // Do any additional setup after loading the view, typically from a nib.
-        ServerMgr.shared.loadLocations { (result, error) in
-            if error != nil {
-                print("Failed to load forms: \(error)")
-            } else {
-                if let newList = result  {
-                    self.locations.removeAll()
-                    for location in newList {
-                        if let locationDict = location as? [String : AnyObject] {
-                            do {
-                                let location = try Location(locationDict: locationDict)
-                                self.locations.add(location: location)
-                            } catch FTError.RunTimeError(let errorMessage) {
-                                self.showAlert(title: "Error creating location", message: errorMessage)
-                            } catch {
-                                self.showAlert(title: "Error creating location", message: error.localizedDescription)
-                            }
-                        }
-                    }
-                    DispatchQueue.main.async(execute: {
-                        self.tableView.reloadData()
-                    })
-                }
-
+        self.locations.refresh { (error) in
+            if let error = error {
+                self.showAlert(title: "Error creating location", message: error)
             }
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
         }
     }
 
     func newlocation(location: Location?) {
         self.tableView.reloadData()
     }
-
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations newLocations: [CLLocation]) {
-//        if newLocations.count > 0 {
-//            let curLocation = newLocations[0]
-//            if let closestLocation = self.locations.closestLocation(to: curLocation) {
-//                print("Closest: \(closestLocation.name)")
-//                if closestLocation !== closest {
-//                    closest = closestLocation
-//                    self.tableView.reloadData()
-//                }
-//            }
-//        }
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        print(error.localizedDescription)
-//    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -112,13 +73,14 @@ class LocationsController: UITableViewController, LocationUpdates {
 
             let location = locations.list[indexPath.row]
             if location === locations.currentLocation {
-                cell.cellIcon.image = self.selectedCellIcon
-                cell.cellIcon.tintColor = UIColor.midnightBlue()
+                cell.configureHeaderCell()
+            } else {
+                cell.makeCellFlat()
             }
-
+            cell.title.makeTitleLabel()
+            cell.address.makeDetailLabel()
             cell.title!.text = location.name
             cell.address!.text = location.fullAddress
-            cell.makeCellFlat()
             return cell
         }
         return cell

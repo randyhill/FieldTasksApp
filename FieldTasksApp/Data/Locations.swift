@@ -27,7 +27,9 @@ class Locations : NSObject, CLLocationManagerDelegate {
         // Request access and initial location
         self.mgr.delegate = self;
         self.mgr.requestWhenInUseAuthorization()
-        self.mgr.requestLocation()
+        self.refresh(completion: { (error) in
+            print("unable to load locations at initialize: \(error)")
+        })
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations newLocations: [CLLocation]) {
@@ -47,12 +49,56 @@ class Locations : NSObject, CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
 
+    func refresh(completion: @escaping (_ error: String?)->()) {
+        self.mgr.requestLocation()
+        ServerMgr.shared.loadLocations { (result, error) in
+            if error != nil {
+                completion(error)
+            } else if let newList = result  {
+                self.list.removeAll()
+                for location in newList {
+                    if let locationDict = location as? [String : AnyObject] {
+                        do {
+                            let location = try Location(locationDict: locationDict)
+                            self.list += [location]
+                        } catch FTError.RunTimeError(let errorMessage) {
+                            completion(errorMessage)
+                         } catch {
+                             completion(error.localizedDescription)
+                       }
+                    }
+                }
+                self.sort()
+                completion(nil)
+            }
+        }
+    }
+
+    // Resort to put current location at top.
+    func sort() {
+        if let currentLoc = currentLocation {
+            var newList = [Location]()
+            newList += [currentLoc]
+            for location in list {
+                if location.id != currentLoc.id {
+                    newList += [location]
+                }
+            }
+            self.list = newList
+        }
+    }
+
     func removeAll() {
         list.removeAll()
     }
-    
-    func add(location: Location) {
-        self.list += [location]
+
+    func getBy(id: String) -> Location? {
+        for location in list {
+            if location.id == id {
+                return location
+            }
+        }
+        return nil
     }
 
     func closestLocation(to: CLLocation) -> Location? {

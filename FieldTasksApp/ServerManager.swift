@@ -19,6 +19,7 @@ let cBaseURL = "http://www.fieldtasks.co"
 #endif
 
 let cTemplatesURL = cBaseURL + "/templates"
+let cAllTemplatesURL = cBaseURL + "/alltemplates"
 let cFormsURL = cBaseURL + "/forms"
 let cAllFormsURL = cBaseURL + "/allforms"
 let cLocationsURL = cBaseURL + "/locations"
@@ -34,8 +35,11 @@ class ServerMgr {
 
     }
 
-    func loadTemplates(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
-        if let url = URL(string: cTemplatesURL) {
+    func loadTemplates(location: Location?, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
+        if var url = URL(string: cAllTemplatesURL) {
+            if let location = location {
+                url.appendPathComponent("/\(location.id)")
+            }
             loadList(url: url, completion: completion)
         }
     }
@@ -50,13 +54,11 @@ class ServerMgr {
         }
     }
 
-
     func loadLocations(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
         if let url = URL(string: cLocationsURL) {
             loadList(url: url, completion: completion)
         }
     }
-
 
     private func loadList(url: URL, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

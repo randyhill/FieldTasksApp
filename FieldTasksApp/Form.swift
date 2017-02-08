@@ -12,7 +12,7 @@ import CoreLocation
 
 class Form : Template {
     var createDate = Date()
-    var location : Location?
+    var locationId : String?
     var coordinates = CLLocation();
 
     init(formDict : [String : AnyObject]) {
@@ -21,6 +21,10 @@ class Form : Template {
             if let date = Globals.shared.utcFormatter.date(from: createDate) {
                 self.createDate = date
             }
+        }
+        // Locations list isn't allocated yet so we can't save location here
+        if let locationId = formDict["location"] as? String {
+            self.locationId =  locationId
         }
     }
 
@@ -31,8 +35,8 @@ class Form : Template {
     override func toDict() -> [String : AnyObject] {
         var formDict = super.toDict()
         formDict["createDate"] = Globals.shared.utcFormatter.string(from: createDate) as AnyObject?
-        if let location = location {
-            formDict["location"] = location.id as AnyObject;
+        if let locationId = locationId {
+            formDict["location"] = locationId as AnyObject;
         }
         formDict["coordinates"] = ["lat" : coordinates.coordinate.latitude, "lng" : coordinates.coordinate.longitude] as AnyObject
         return formDict
@@ -52,7 +56,7 @@ class Form : Template {
             self.coordinates = coordinates
         }
         if let location = Locations.shared.currentLocation {
-            self.location = location
+            self.locationId = location.id
         }
         let photosList = PhotoFileList(tasks: tasks)
         if photosList.photoResults.count == 0 {

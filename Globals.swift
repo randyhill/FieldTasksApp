@@ -31,6 +31,7 @@ class Globals {
         dateFormatter.timeStyle = .short
 
         UIBarButtonItem.configureFlatButtons(with: barButtonColor, highlightedColor: barButtonColor, cornerRadius: 3.0)
+        SVProgressHUD.setMinimumDismissTimeInterval(3)
     }
 }
 

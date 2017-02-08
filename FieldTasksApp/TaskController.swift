@@ -60,11 +60,16 @@ class TaskController : UIViewController {
     }
 
     func updateViewValues() {
+        var barTitle = ""
          if curTask.name.characters.count > 0 {
-            self.title = curTask.name
+            barTitle = curTask.name
         } else {
-            self.title = "Task"
+            barTitle = "Task"
         }
+        if curTask.required {
+            barTitle += " (required)"
+        }
+        self.title = barTitle;
         self.taskDescription.text = curTask.description
 
         setBackButton(title: taskIndex == 0 ? "Done" : "Back")

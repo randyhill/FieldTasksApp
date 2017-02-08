@@ -11,12 +11,11 @@ import SVProgressHUD
 
 class TemplateController : UITableViewController {
     var form : Form?
-    var location : Location?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Form: \(form!.name)"
+        self.title = "New Form: \(form!.name)"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(submitForm))
         makeNavBarFlat()

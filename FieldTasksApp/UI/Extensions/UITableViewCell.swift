@@ -11,6 +11,16 @@ import UIKit
 extension UITableViewCell {
     func makeCellFlat() {
         configureFlatCell(with: UIColor.greenSea(), selectedColor: UIColor.clouds(), roundingCorners: .allCorners)
+        if let title = self.textLabel {
+            title.font = UIFont.boldFlatFont(ofSize: 17)
+        }
+        if let body = self.detailTextLabel {
+            body.font = UIFont.flatFont(ofSize: 14)
+        }
+    }
+
+    func makeCellFlat(backgroundColor: UIColor, selectedColor: UIColor) {
+        configureFlatCell(with: backgroundColor, selectedColor: selectedColor, roundingCorners: .allCorners)
     }
 
     func configureHeaderCell() {

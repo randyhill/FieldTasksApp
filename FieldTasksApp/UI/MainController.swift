@@ -81,25 +81,28 @@ class MainController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SubmissionCell", for: indexPath as IndexPath)
         if indexPath.section == 0 {
-            cell.textLabel!.text = "Complete New Form"
-            cell.textLabel!.textAlignment = .right
-            cell.detailTextLabel!.text = ""
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath as IndexPath)
+            cell.textLabel?.text = "Complete New Form"
+            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.font = UIFont.boldFlatFont(ofSize: 17)
             cell.configureHeaderCell()
-       } else {
+            return cell
+      } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SubmissionCell", for: indexPath as IndexPath)
             let form = formsList[indexPath.row]
             cell.textLabel!.text = form.name
             cell.detailTextLabel!.text = Globals.shared.dateFormatter.string(from: form.createDate)
-             cell.makeCellFlat()
+            cell.makeCellFlat()
+            return cell
        }
-        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            if let formController = self.storyboard?.instantiateViewController(withIdentifier: "FormListController") as? FormListController {
-                let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
+            if let formController = self.storyboard?.instantiateViewController(withIdentifier: "TemplatesController") as? TemplatesController {
+                formController.location = location
+                 let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
                 self.present(navController, animated: true, completion: {
 
                 })

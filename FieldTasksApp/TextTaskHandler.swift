@@ -43,4 +43,11 @@ class TextTaskHandler : TaskHandler {
     override func restore() {
         textView.text = result.text
     }
+    override func validate() -> String? {
+        if textView.text.characters.count > 0 {
+            return nil
+        } else {
+            return "You must enter text, it's required"
+        }
+    }
 }
