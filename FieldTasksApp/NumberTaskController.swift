@@ -1,5 +1,5 @@
 //
-//  NumberTaskHandler.swift
+//  NumberTaskController.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -9,8 +9,10 @@
 import UIKit
 import FlatUIKit
 
-class NumberTaskHandler : TextTaskHandler {
-    var rangeLabel = UILabel()
+class NumberTaskController : TextTaskController {
+    @IBOutlet weak var numberField: UITextField!
+    @IBOutlet weak var rangeLabel: UILabel!
+
     var taskData : NumberTaskDescription {
         get {
             return task!.taskDescription as! NumberTaskDescription
@@ -28,7 +30,7 @@ class NumberTaskHandler : TextTaskHandler {
             // Describe range to users
             rangeLabel.frame = CGRect(x: textView.frame.origin.x, y: textView.frame.height, width: textView.frame.width, height: 28)
             rangeLabel.text = "Range: \(taskData.min) to \(taskData.max)"
-            container.addSubview(rangeLabel)
+            self.view.addSubview(rangeLabel)
         }
         if taskData.isDecimal {
             textView.keyboardType = .decimalPad

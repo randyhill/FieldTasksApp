@@ -105,11 +105,11 @@ class FormController : UITableViewController {
         if indexPath.row == 0 {
             return
         }
-        if let taskController = self.storyboard?.instantiateViewController(withIdentifier: "TaskController") as? TaskController {
-            taskController.form = form
-            taskController.taskIndex = indexPath.row - 1
-            taskController.isEditable = false
-            let navController = UINavigationController(rootViewController: taskController) // Creating a navigation controller with resultController at the root of the navigation stack.
+        if let tasksController = self.storyboard?.instantiateViewController(withIdentifier: "TasksController") as? TasksController {
+            tasksController.form = form
+            tasksController.taskIndex = indexPath.row - 1
+            tasksController.isEditable = false
+            let navController = UINavigationController(rootViewController: tasksController) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {
 
             })

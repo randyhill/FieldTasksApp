@@ -20,7 +20,7 @@ class PhotoFileList {
     func addPhotoResults(tasks : [FormTask]) {
         for task in tasks {
             if let photoResult = task.result as? PhotoResult {
-                if photoResult.photo != nil {
+                if photoResult.photos.count > 0 {
                     photoResults += [photoResult]
                 }
             }
@@ -39,7 +39,7 @@ class PhotoFileList {
     func asImageArray() -> [UIImage] {
         var array = [UIImage]()
         for photoResult in photoResults {
-            array += [photoResult.photo!]
+            array += [photoResult.photos[0]]
         }
         return array
     }

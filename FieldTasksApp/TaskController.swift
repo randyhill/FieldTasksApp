@@ -2,172 +2,68 @@
 //  TaskController.swift
 //  FieldTasksApp
 //
-//  Created by CRH on 8/20/16.
+//  Created by CRH on 8/22/16.
 //  Copyright © 2016 CRH. All rights reserved.
 //
 
 import UIKit
-import FlatUIKit
-import SVProgressHUD
 
+// MARK: Task Handlers -------------------------------------------------------------------------------
 class TaskController : UIViewController {
-    var form : Template?
+    var task : FormTask?
     var isEditable = true
-    var taskIndex = 0
-    var viewLayoutInited = false
-    var taskHandler : TaskHandler?
-    var curTask : FormTask {
-        get {
-            return form!.tasks[taskIndex]
-        }
-    }
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet var taskDescription : UITextView!
-    @IBOutlet var taskView : UIView!
-    @IBOutlet var doneButton : UIButton!
+   // var container = UIView()
+    var parentController : TasksController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       // container.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+       // self.view.addSubview(container)
+        self.view.backgroundColor = parentController!.view.backgroundColor
 
-        makeNavBarFlat()
-        self.view.backgroundColor = Globals.shared.bgColor
-        self.descriptionLabel.textColor = Globals.shared.textColor
-        self.descriptionLabel.font = Globals.shared.bigFont
-        self.taskDescription.textColor = Globals.shared.textColor
-        self.taskDescription.font = Globals.shared.mediumFont
-        self.taskView.backgroundColor = Globals.shared.bgColor
+        // Adjust location of description field based on it's size
+        if let textView = parentController?.taskDescription, let label = parentController?.descriptionLabel {
+            if task?.description.characters.count == 0 {
+                // No Description, hide title/field
+                label.isHidden = true
+                textView.isHidden = true
+                textView.frame.origin.x = 0
+                textView.frame.size.height = 10
+            } else {
+                parentController?.descriptionLabel.isHidden = false
+                textView.isHidden = false
 
-        doneButton.backgroundColor = Globals.shared.barButtonColor
-        doneButton.setTitleColor(Globals.shared.textColor, for: .normal)
-        doneButton.titleLabel!.font = Globals.shared.mediumFont
-        doneButton.layer.cornerRadius = 4.0
-        doneButton.isHidden = true
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.updateViewValues()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        if !viewLayoutInited {
-            self.createNewTask()
-            viewLayoutInited = true
+                let contentSize = textView.sizeThatFits(textView.bounds.size)
+                var frame = textView.frame
+                frame.size.height = contentSize.height
+                textView.frame = frame
+            }
+            let aspectRatioTextViewConstraint = NSLayoutConstraint(item: textView, attribute: .height, relatedBy: .equal, toItem: textView, attribute: .width, multiplier: textView.bounds.height/textView.bounds.width, constant: 1)
+            textView.addConstraint(aspectRatioTextViewConstraint)
         }
     }
 
-    func updateViewValues() {
-        var barTitle = ""
-         if curTask.name.characters.count > 0 {
-            barTitle = curTask.name
+    // Calculate offset where top field should start beased on whether
+    // description field is visible or not
+    func firstFieldOrigin() -> CGFloat {
+        if task?.description.characters.count == 0 {
+            return parentController!.descriptionLabel.frame.origin.x
         } else {
-            barTitle = "Task"
-        }
-        if curTask.required {
-            barTitle += " (required)"
-        }
-        self.title = barTitle;
-        self.taskDescription.text = curTask.description
-
-        setBackButton(title: taskIndex == 0 ? "Done" : "Back")
-        setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
-    }
-
-    func setBackButton(title: String) {
-        let backButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(prevTask))
-        navigationItem.leftBarButtonItem = backButton
-    }
-
-    func setNextButton(title: String) {
-        let nextButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextTask))
-        navigationItem.rightBarButtonItem = nextButton
-    }
-    
-
-    func createNewTask() {
-        let task = form!.tasks[taskIndex]
-
-        // Swap out previous task UI and replace it with ours
-        for view in taskView!.subviews {
-            view.removeFromSuperview()
-        }
-        let subView = UIView()
-        subView.frame = CGRect(x: 0, y: 0, width: taskView!.frame.width, height: taskView!.frame.height)
-        taskView!.addSubview(subView)
-        switch task.type {
-        case "Text":
-            taskHandler = TextTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
-        case "Number":
-            taskHandler = NumberTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
-        case "Choices":
-            taskHandler = ChoiceTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
-        case "Photo":
-            taskHandler = PhotoTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
-        case "Worker":
-            taskHandler = WorkerTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
-        case "Customer":
-            taskHandler = CustomerTaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
-        default:
-            taskHandler = TaskHandler(controller : self, container: subView, task: task, isEditable: isEditable)
-        }
-        taskHandler?.restore()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: Actions -------------------------------------------------------------------------------
-    func validateFields() -> Bool {
-        if !curTask.required {
-            return true
-        }
-        if let errorMessage = taskHandler?.validate() {
-            SVProgressHUD.showError(withStatus: "Incomplete: \(errorMessage)")
-            return false
-        }
-        return true
-    }
-
-    @IBAction func prevTask(){
-        if validateFields() {
-            taskHandler!.save()
-            taskIndex -= 1
-            if taskIndex >= 0 {
-                self.updateViewValues()
-                self.createNewTask()
-                setBackButton(title: taskIndex == 0 ? "Done" : "Back")
-                //doneButton.isHidden = taskIndex == 0
-            } else {
-                dismiss(animated: true, completion: nil)
-            }
+            let descriptionFrame = parentController!.taskDescription.frame
+            return descriptionFrame.origin.x + descriptionFrame.size.height + 10
         }
     }
 
-    @IBAction func nextTask() {
-        if validateFields() {
-            taskHandler!.save()
-            taskIndex += 1
-            if taskIndex < form!.tasks.count {
-                self.updateViewValues()
-                self.createNewTask()
-                setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
-                //doneButton.isHidden = taskIndex == (form!.tasks.count - 1)
-            } else {
-                dismiss(animated: true, completion: nil)
-            }
-        }
+    // Return nil if data user entered is valid or error message if not
+    func validate() -> String? {
+        return nil
     }
 
-    @IBAction func done() {
-        if validateFields() {
-            taskHandler!.save()
-            dismiss(animated: true, completion: nil)
-        }
+    func save() {
+
+    }
+
+    func restore() {
+
     }
 }
-

@@ -1,5 +1,5 @@
 //
-//  PhotoTaskHandler.swift
+//  PhotoTaskController.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -9,9 +9,10 @@
 import UIKit
 import SVProgressHUD
 
-class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PhotoTaskController : TaskController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var pictureButton = UIButton()
     var pictureView = UIImageView()
+//    var collectionView : UICollectionView!
     var containerFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
     var photoData : PhotoTaskDescription {
         get {
@@ -25,25 +26,31 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
     }
     let kButtonSize = CGSize(width: 120.0, height: 34.0)
 
-    override init(controller : TaskController, container : UIView, task: FormTask, isEditable: Bool) {
-        super.init(controller : controller, container: container, task: task, isEditable: isEditable)
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
         // Picture frame
-        containerFrame = container.frame
+        containerFrame = (self.view.frame)
         pictureView.frame = CGRect(x: 0, y: 0, width: containerFrame.width, height: containerFrame.height)
         pictureView.layer.borderWidth = 2.0
-        container.addSubview(pictureView)
+        self.view.addSubview(pictureView)
 
         // Picture button
         if isEditable {
-            pictureButton.frame = CGRect(x: container.frame.width - kButtonSize.width, y: 0, width: kButtonSize.width, height: kButtonSize.height)
+            pictureButton.frame = CGRect(x: (self.view.frame.width) - kButtonSize.width, y: 0, width: kButtonSize.width, height: kButtonSize.height)
             pictureButton.setTitle("Take Picture", for: .normal)
-            pictureButton.setTitleColor(container.tintColor, for: .normal)
+            pictureButton.setTitleColor(self.view.tintColor, for: .normal)
             pictureButton.backgroundColor = UIColor.lightGray
             pictureButton.layer.cornerRadius = 8.0
             pictureButton.isUserInteractionEnabled = true
-            pictureButton.addTarget(self, action: #selector(PhotoTaskHandler.snapIt), for: .touchUpInside)
-            container.addSubview(pictureButton)
+            pictureButton.addTarget(self, action: #selector(PhotoTaskController.snapIt), for: .touchUpInside)
+            self.view.addSubview(pictureButton)
+        }
+        if let photoTaskDescriptor = task?.taskDescription as? PhotoTaskDescription {
+            if (!photoTaskDescriptor.isSingle) {
+                // Create UI for multiple photos
+
+            }
         }
     }
 
@@ -59,14 +66,14 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
         UINavigationBar.appearance().barTintColor = Globals.shared.barColor
         UINavigationBar.appearance().barStyle = UIBarStyle.default
         UINavigationBar.appearance().tintColor = UIColor.clouds()   // Text color
-        controller?.present(picker, animated: true, completion: {
+        self.present(picker, animated: true, completion: {
             // Restore
             UIBarButtonItem.configureFlatButtons(with: Globals.shared.barButtonColor, highlightedColor: Globals.shared.barButtonColor, cornerRadius: 3.0)
         })
     }
 
     func setPicture(picture : UIImage) {
-        self.result.photo = picture
+        self.result.photos += [picture]
         pictureView.image = picture
         let picProportion = picture.size.height/picture.size.width
         let viewProportion = containerFrame.height/containerFrame.width
@@ -99,8 +106,8 @@ class PhotoTaskHandler : TaskHandler, UIImagePickerControllerDelegate, UINavigat
         result.save(newPhoto: self.pictureView.image)
     }
     override func restore() {
-        if let picture = result.photo {
-            setPicture(picture: picture)
+        if result.photos.count > 0 {
+            setPicture(picture:  result.photos[0] )
         } else {
             if let fileName = result.fileName {
                 ServerMgr.shared.downloadFile(imageFileName: fileName, completion: { (imageData, errorString) in

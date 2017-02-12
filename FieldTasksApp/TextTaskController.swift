@@ -1,5 +1,5 @@
 //
-//  TextTaskHandler.swift
+//  TextTaskController.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -9,7 +9,7 @@
 import UIKit
 import FlatUIKit
 
-class TextTaskHandler : TaskHandler {
+class TextTaskController : TaskController {
     let textView = UITextView()
     var textDescription : TextTaskDescription {
         get {
@@ -21,16 +21,16 @@ class TextTaskHandler : TaskHandler {
             return task!.result as! TextResult
         }
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-    override init(controller : TaskController,  container : UIView, task: FormTask, isEditable: Bool) {
-        super.init(controller : controller, container: container, task: task, isEditable: isEditable)
-        textView.frame = container.frame
+        textView.frame = (self.view.frame)
         textView.layer.borderWidth =  1.0
         textView.isEditable = isEditable
         textView.font = Globals.shared.mediumFont
         textView.backgroundColor = UIColor.clouds()
-        configureTextView(container: container)
-        container.addSubview(textView)
+        configureTextView(container: self.view)
+        self.view.addSubview(textView)
     }
 
     func configureTextView(container : UIView) {

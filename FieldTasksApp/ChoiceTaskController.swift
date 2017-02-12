@@ -1,5 +1,5 @@
 //
-//  ChoiceTaskHandler.swift
+//  ChoiceTaskController.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -28,14 +28,14 @@ class Choice {
         self.on = !self.on
     }
 
-    init(frame : CGRect, width: CGFloat, handler: ChoiceTaskHandler, title: String) {
+    init(frame : CGRect, width: CGFloat, handler: ChoiceTaskController, title: String) {
         // Make label for title
         var labelFrame = frame
         labelFrame.origin.x = width + 8.0
         switchSize.width = width
         label.frame = labelFrame
         label.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: handler, action: #selector(ChoiceTaskHandler.labelTap))
+        let tapGesture = UITapGestureRecognizer(target: handler, action: #selector(ChoiceTaskController.labelTap))
         label.addGestureRecognizer(tapGesture)
         label.text = title;
     }
@@ -64,14 +64,14 @@ class Checkbox : Choice {
         }
     }
 
-    init(frame : CGRect, handler: ChoiceTaskHandler, title : String, isEnabled: Bool) {
+    init(frame : CGRect, handler: ChoiceTaskController, title : String, isEnabled: Bool) {
         super.init(frame : frame, width: 34.0, handler: handler, title: title)
         button.frame = frame
         button.frame.size.width = frame.height
         button.layer.borderWidth = 2.0
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 18.0)
-        button.addTarget(handler, action: #selector(ChoiceTaskHandler.didCheck), for: .touchUpInside)
+        button.addTarget(handler, action: #selector(ChoiceTaskController.didCheck), for: .touchUpInside)
         button.isEnabled = isEnabled
         button.backgroundColor = UIColor.silver()
         view = button
@@ -94,11 +94,11 @@ class Switchbox : Choice {
             _switch.isOn = newOn
         }
     }
-    init(frame : CGRect, handler: ChoiceTaskHandler, title : String, isEnabled: Bool) {
+    init(frame : CGRect, handler: ChoiceTaskController, title : String, isEnabled: Bool) {
         super.init(frame : frame, width: 64.0, handler: handler, title: title)
         _switch.frame = frame
         _switch.frame.size.width = switchSize.width;
-        _switch.addTarget(handler, action: #selector(ChoiceTaskHandler.didSwitch), for: .valueChanged)
+        _switch.addTarget(handler, action: #selector(ChoiceTaskController.didSwitch), for: .valueChanged)
         _switch.isEnabled = isEnabled
         view = _switch
         _switch.onColor = UIColor.turquoise()
@@ -111,8 +111,8 @@ class Switchbox : Choice {
     }
 }
 
-// MARK: ChoiceTaskHandler Class -------------------------------------------------------------------------------
-class ChoiceTaskHandler : TaskHandler {
+// MARK: ChoiceTaskController Class -------------------------------------------------------------------------------
+class ChoiceTaskController : TaskController {
     var options = [Choice]()
     var choiceData : ChoicesTaskDescription {
         get {
@@ -125,13 +125,17 @@ class ChoiceTaskHandler : TaskHandler {
         }
     }
 
-    override init(controller : TaskController, container : UIView, task: FormTask, isEditable: Bool) {
-        super.init(controller : controller,  container: container, task: task, isEditable: isEditable)
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-        var choiceFrame = CGRect(x: 0, y: 0, width: container.frame.width, height: 28)
-        let isRadio = (task.taskDescription as! ChoicesTaskDescription).isRadio
+        createChoices()
+    }
+
+    func createChoices() {
+        var choiceFrame = CGRect(x: 8, y: 8, width: (self.view.frame.width), height: 28)
+        let isRadio = (task?.taskDescription as! ChoicesTaskDescription).isRadio
         for title in choiceData.titles {
-            let choice = makeSwitchbox(container: container, title: title, frame: choiceFrame, isRadio: isRadio)
+            let choice = makeSwitchbox(container: self.view, title: title, frame: choiceFrame, isRadio: isRadio)
             choiceFrame.origin.y += choice.switchSize.height;
         }
     }
@@ -145,8 +149,8 @@ class ChoiceTaskHandler : TaskHandler {
             choice = Checkbox(frame: frame, handler: self, title: title, isEnabled: isEditable)
         }
         options += [choice!]
-        container.addSubview(choice!.view!)
-        container.addSubview(choice!.label)
+        self.view.addSubview(choice!.view!)
+        self.view.addSubview(choice!.label)
         choice!.setIndex(listIndex: options.count - 1)
         return choice!
     }
@@ -157,7 +161,6 @@ class ChoiceTaskHandler : TaskHandler {
             option.on = !option.on
             selectBoxView(selectedOption: option.view!)
         }
-
     }
 
     func didSwitch(sender: UISwitch) {
@@ -200,6 +203,7 @@ class ChoiceTaskHandler : TaskHandler {
         result.save(newValues: boolValues)
     }
     override func restore() {
+        //createChoices()
         for i in 0 ..< result.values.count {
             options[i].on = result.values[i]
         }

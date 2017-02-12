@@ -38,6 +38,8 @@
 	<string>Used to let you add images to forms</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>FieldTasks uses current location to show forms assigned to it.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to allow you to add photos to forms</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

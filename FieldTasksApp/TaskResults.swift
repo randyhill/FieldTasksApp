@@ -167,7 +167,7 @@ class ChoicesResult : TaskResult {
 }
 
 class PhotoResult : TaskResult {
-    var photo : UIImage?
+    var photos = [UIImage]()
     var fileName : String?
 
     override init(formTask : FormTask, results: [String : AnyObject]) {
@@ -184,7 +184,9 @@ class PhotoResult : TaskResult {
     }
 
     func save(newPhoto: UIImage?) {
-        photo = newPhoto
+        if let photo = newPhoto {
+            photos += [photo]
+        }
         completed = (newPhoto != nil)
     }
 }
