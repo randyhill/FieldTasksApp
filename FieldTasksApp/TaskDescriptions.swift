@@ -20,7 +20,19 @@ class TaskDescription {
 }
 
 class TextTaskDescription : TaskDescription {
+    var isUnlimited = true  // defaults to no range limits
+    var max = 0
 
+    override init(dataDict : [String : AnyObject]) {
+        super.init(dataDict: dataDict)
+
+        if let limitBool = dataDict["range"] as? String {
+            self.isUnlimited = (limitBool == "unlimited")
+        }
+        if let maxVal = dataDict["max"] as? Int {
+            self.max = maxVal
+        }
+    }
 }
 
 class NumberTaskDescription  : TaskDescription {

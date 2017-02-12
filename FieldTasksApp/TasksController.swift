@@ -42,9 +42,7 @@ class TasksController : UIViewController {
         doneButton.setTitleColor(Globals.shared.textColor, for: .normal)
         doneButton.titleLabel!.font = Globals.shared.mediumFont
         doneButton.layer.cornerRadius = 4.0
-        doneButton.isHidden = true
-
-
+//        doneButton.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +123,7 @@ class TasksController : UIViewController {
             return true
         }
         if let errorMessage = taskController?.validate() {
-            SVProgressHUD.showError(withStatus: "Incomplete: \(errorMessage)")
+            SVProgressHUD.showError(withStatus: "Invalid: \(errorMessage)")
             return false
         }
         return true
@@ -139,7 +137,7 @@ class TasksController : UIViewController {
                 self.updateViewValues()
                 self.createNewTask()
                 setBackButton(title: taskIndex == 0 ? "Done" : "Back")
-                //doneButton.isHidden = taskIndex == 0
+//                doneButton.isHidden = (taskIndex == 0)
             } else {
                 dismiss(animated: true, completion: nil)
             }
@@ -154,7 +152,7 @@ class TasksController : UIViewController {
                 self.updateViewValues()
                 self.createNewTask()
                 setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
-                //doneButton.isHidden = taskIndex == (form!.tasks.count - 1)
+//                doneButton.isHidden = taskIndex == (form!.tasks.count - 1)
             } else {
                 dismiss(animated: true, completion: nil)
             }

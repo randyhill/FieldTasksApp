@@ -9,7 +9,7 @@
 import UIKit
 import FlatUIKit
 
-class NumberTaskController : TextTaskController {
+class NumberTaskController : TaskController {
     @IBOutlet weak var numberField: UITextField!
     @IBOutlet weak var rangeLabel: UILabel!
 
@@ -24,26 +24,26 @@ class NumberTaskController : TextTaskController {
         }
     }
 
-    override func configureTextView(container : UIView) {
-        textView.frame.size.height = 34.0
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         if !taskData.isUnlimited {
-            // Describe range to users
-            rangeLabel.frame = CGRect(x: textView.frame.origin.x, y: textView.frame.height, width: textView.frame.width, height: 28)
             rangeLabel.text = "Range: \(taskData.min) to \(taskData.max)"
-            self.view.addSubview(rangeLabel)
+            rangeLabel.isHidden = false
+        } else {
+            rangeLabel.isHidden = true
         }
         if taskData.isDecimal {
-            textView.keyboardType = .decimalPad
+            numberField.keyboardType = .decimalPad
         } else {
-            textView.keyboardType = .numberPad
+            numberField.keyboardType = .numberPad
         }
-        textView.isEditable = isEditable
-        textView.becomeFirstResponder()
-        textView.font = Globals.shared.mediumFont
+        numberField.becomeFirstResponder()
+        numberField.font = Globals.shared.mediumFont
     }
 
     override func validate() -> String? {
-        guard let text = textView.text, let value = Float(text) else {
+        guard let text = numberField.text, let value = Float(text) else {
             return "No number value entered"
         }
         if taskData.isUnlimited {
@@ -59,17 +59,17 @@ class NumberTaskController : TextTaskController {
     }
 
     override func save() {
-        numberResult.save(newText: textView.text)
+        numberResult.save(newText: numberField.text!)
     }
 
     private func setNumberValue() {
         if taskData.isDecimal {
-            textView.text = String(describing: numberResult.value)
+            numberField.text = String(describing: numberResult.value)
         } else {
             if let numberValue = numberResult.value {
-                textView.text = String(describing: Int(numberValue))
+                numberField.text = String(describing: Int(numberValue))
             } else {
-                textView.text = ""
+                numberField.text = ""
             }
         }
     }

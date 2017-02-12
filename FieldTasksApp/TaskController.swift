@@ -12,13 +12,11 @@ import UIKit
 class TaskController : UIViewController {
     var task : FormTask?
     var isEditable = true
-   // var container = UIView()
     var parentController : TasksController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       // container.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-       // self.view.addSubview(container)
+
         self.view.backgroundColor = parentController!.view.backgroundColor
 
         // Adjust location of description field based on it's size

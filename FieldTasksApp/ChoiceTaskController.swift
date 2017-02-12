@@ -31,7 +31,7 @@ class Choice {
     init(frame : CGRect, width: CGFloat, handler: ChoiceTaskController, title: String) {
         // Make label for title
         var labelFrame = frame
-        labelFrame.origin.x = width + 8.0
+        labelFrame.origin.x = width + 16.0
         switchSize.width = width
         label.frame = labelFrame
         label.isUserInteractionEnabled = true

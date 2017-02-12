@@ -10,7 +10,8 @@ import UIKit
 import FlatUIKit
 
 class TextTaskController : TaskController {
-    let textView = UITextView()
+    @IBOutlet weak var textView: UITextView!
+
     var textDescription : TextTaskDescription {
         get {
             return task!.taskDescription as! TextTaskDescription
@@ -44,10 +45,16 @@ class TextTaskController : TaskController {
         textView.text = result.text
     }
     override func validate() -> String? {
-        if textView.text.characters.count > 0 {
-            return nil
-        } else {
-            return "You must enter text, it's required"
+        if let taskDescription = task?.taskDescription as? TextTaskDescription {
+            if textView.text.characters.count > 0 {
+                if !taskDescription.isUnlimited && textView.text.characters.count > taskDescription.max {
+                    return "Too many characters, max allowed is \(taskDescription.max)"
+                }
+                return nil
+            } else {
+                return "You must enter text, it's required"
+            }
         }
+        return nil;
     }
 }
