@@ -26,8 +26,9 @@ class TemplateController : UITableViewController {
     }
 
     func submitForm() {
-        if !form!.isComplete() {
-            SVProgressHUD.show(withStatus: "You must complete all required fields before submitting the form")
+        if let incompleteTasks = form!.tasksStillIncomplete() {
+
+            SVProgressHUD.showInfo(withStatus: "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form")
         } else {
             form?.submit(controller: self)
         }

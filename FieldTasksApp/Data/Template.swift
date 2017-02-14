@@ -55,12 +55,18 @@ class Template {
         return formDict
     }
 
-    func isComplete() -> Bool {
+    func tasksStillIncomplete() -> String? {
+        var incompleteTasks : String?
         for task in tasks {
             if !task.isComplete() {
-                return false
+                if incompleteTasks == nil {
+                    incompleteTasks = ""
+                } else {
+                    incompleteTasks! += ", "
+                }
+                incompleteTasks! += task.name
             }
         }
-        return true
+        return incompleteTasks
     }
 }

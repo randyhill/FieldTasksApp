@@ -95,7 +95,7 @@ class PhotoTaskDescription  : TaskDescription {
     override init(dataDict : [String : AnyObject]) {
         super.init(dataDict: dataDict)
 
-        if let typeString = dataDict["type"] as? String {
+        if let typeString = dataDict["selections"] as? String {
             if typeString == "single" {
                 self.isSingle = true
             } else if typeString == "multiple" {
@@ -103,11 +103,4 @@ class PhotoTaskDescription  : TaskDescription {
             }
         }
     }
-}
-
-class WorkerTaskDescription  : TaskDescription {
-
-}
-
-class CustomerTaskDescription  : TaskDescription {
 }

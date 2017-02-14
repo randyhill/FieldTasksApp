@@ -59,7 +59,7 @@ class Form : Template {
             self.locationId = location.id
         }
         let photosList = PhotoFileList(tasks: tasks)
-        if photosList.photoResults.count == 0 {
+        if photosList.count == 0 {
             submitForm()
         } else {
             // upload Photos to server first.

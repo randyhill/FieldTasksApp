@@ -168,18 +168,18 @@ class ChoicesResult : TaskResult {
 
 class PhotoResult : TaskResult {
     var photos = [UIImage]()
-    var fileName : String?
+    var fileNames = [String]()
 
     override init(formTask : FormTask, results: [String : AnyObject]) {
         super.init(formTask: formTask, results: results)
-        if let fileResult = results["fileName"] as? String {
-            fileName = fileResult
+        if let fileNames = results["fileNames"] as? [String] {
+            self.fileNames = fileNames
         }
     }
 
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
-        dict["fileName"] = fileName as AnyObject?
+        dict["fileNames"] = fileNames as AnyObject?
         return dict
     }
 

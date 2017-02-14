@@ -21,7 +21,7 @@ class TasksController : UIViewController {
             return form!.tasks[taskIndex]
         }
     }
-    private var embeddedVC : TaskController?
+    //private var embeddedVC : TaskController?
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var taskDescription : UITextView!
     @IBOutlet var taskView : UIView!
@@ -86,7 +86,6 @@ class TasksController : UIViewController {
         let nextButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextTask))
         navigationItem.rightBarButtonItem = nextButton
     }
-    
 
     func createNewTask() {
         let task = form!.tasks[taskIndex]
@@ -100,8 +99,15 @@ class TasksController : UIViewController {
         case "Choices":
             taskController = storyboard.instantiateViewController(withIdentifier: "ChoiceTaskController") as? TaskController
        case "Photo":
-            taskController = storyboard.instantiateViewController(withIdentifier: "PhotoTaskController") as? TaskController
-        default:
+        taskController = storyboard.instantiateViewController(withIdentifier: "MultiPhotoTaskController") as? TaskController
+//        if let taskDescription = task.taskDescription as? PhotoTaskDescription {
+////            if taskDescription.isSingle {
+////                taskController = storyboard.instantiateViewController(withIdentifier: "PhotoTaskController") as? TaskController
+////            } else {
+////                taskController = storyboard.instantiateViewController(withIdentifier: "MultiPhotoTaskController") as? TaskController
+////            }
+//        }
+         default:
             taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskController") as? TaskController
         }
         taskController?.task = task
