@@ -31,20 +31,20 @@ class TextTaskController : TaskController {
 
     func configureTextView(container : UIView) {
         textView.frame = (self.view.frame)
-        textView.layer.borderWidth =  1.0
+        textView.makeFlatTextView()
         textView.isEditable = isEditable
-        textView.font = Globals.shared.mediumFont
-        textView.backgroundColor = UIColor.clouds()
-        textView.addKeyboardButton(title: "Hide", target: self, completion: #selector(self.hideButton))
+        textView.addDoneHideKeyboardButtons(title: "Done", target: self, completion: #selector(self.doneButton))
         textView.becomeFirstResponder()
     }
 
-    func hideButton() {
+    func doneButton() {
         textView.resignFirstResponder()
+        parentController?.dismiss(animated: true, completion: nil)
     }
 
     override func save() {
         result.save(newText: textView.text)
+        textView.resignFirstResponder()
     }
     override func restore() {
         textView.text = result.text

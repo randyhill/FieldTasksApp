@@ -25,10 +25,16 @@ class PhotosHeader : UICollectionReusableView {
     var delegate: PhotosTaskController?
     @IBOutlet weak var addButton: FUIButton!
     @IBOutlet weak var headerText: UILabel!
+    @IBOutlet weak var cameraButton: FUIButton!
 
-    @IBAction func tapped(_ sender: UIButton) {
+    @IBAction func cameraTapped(_ sender: UIButton) {
         if let controller = delegate {
             controller.snapIt(sender: sender)
+        }
+    }
+    @IBAction func tapped(_ sender: UIButton) {
+        if let controller = delegate {
+            controller.pickIt(sender: sender)
         }
     }
 
@@ -43,6 +49,7 @@ class PhotosTaskController : TaskController, UIImagePickerControllerDelegate, UI
         collectionView.backgroundColor = self.view.backgroundColor
         let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.sectionHeadersPinToVisibleBounds = true
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -117,12 +124,18 @@ class PhotosTaskController : TaskController, UIImagePickerControllerDelegate, UI
     }
 
     @objc func snapIt(sender: UIButton!) {
+        getImage(sourceType: .camera)
+    }
+    @objc func pickIt(sender: UIButton!) {
+        getImage(sourceType: .photoLibrary)
+    }
+
+    func getImage(sourceType : UIImagePickerControllerSourceType) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.makeNavBarFlat()
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.sourceType = .camera
-        }
+        picker.sourceType = sourceType
+
         // Hack to work around different text color for picker buttons. FlatUIKit's color specific nav bar buttons can't be called from Swift.
         // So I just change them globally before picker is displayed and restore after
         UINavigationBar.appearance().barTintColor = Globals.shared.barColor
@@ -187,28 +200,18 @@ class PhotosTaskController : TaskController, UIImagePickerControllerDelegate, UI
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "PhotosHeader",
                                                                              for: indexPath) as! PhotosHeader
+            let data = photoData
             headerView.delegate = self
             headerView.backgroundColor = Globals.shared.barColor
-            headerView.addButton.buttonColor = Globals.shared.barButtonColor
-            headerView.addButton.titleLabel?.font = Globals.shared.mediumFont
-            headerView.addButton.setTitleColor(UIColor.clouds(), for: .normal)
-            if isEditable {
-                let data = photoData
-                headerView.addButton.setTitle(data.isSingle ? "Set Image" : "Add Image", for: .normal)
-                headerView.addButton.isHidden = false
-            } else {
-                headerView.addButton.isHidden = true
-            }
-            let data = photoData
-            if data.isSingle {
-                headerView.headerText.isHidden = true
-            } else {
-                headerView.headerText.text = "Images: \(result.photos.count)"
-                headerView.headerText.textColor = UIColor.clouds()
-                headerView.headerText.font = Globals.shared.mediumFont
-                headerView.headerText.isHidden = false
-            }
-             return headerView
+            headerView.addButton.makeFlatButton()
+            headerView.addButton.setTitle(data.isSingle ? "Set Image" : "Add Image", for: .normal)
+            headerView.addButton.isHidden = !isEditable
+            headerView.cameraButton.makeFlatButton()
+            headerView.cameraButton.isHidden = !UIImagePickerController.isSourceTypeAvailable(.camera)
+            headerView.headerText.makeTitleStyle()
+            headerView.headerText.text = "Images: \(result.photos.count)"
+            headerView.headerText.isHidden = data.isSingle
+            return headerView
         default:
             //4
             assert(false, "Unexpected element kind")

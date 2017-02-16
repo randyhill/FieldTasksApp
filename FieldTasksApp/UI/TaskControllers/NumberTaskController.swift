@@ -44,7 +44,8 @@ class NumberTaskController : TaskController {
     }
 
     func doneButtonAction() {
-        print("done")
+        numberField.resignFirstResponder()
+        parentController?.dismiss(animated: true, completion: nil)
     }
 
     override func validate() -> String? {
@@ -65,6 +66,7 @@ class NumberTaskController : TaskController {
 
     override func save() {
         numberResult.save(newText: numberField.text!)
+        numberField.resignFirstResponder()
     }
 
     private func setNumberValue() {

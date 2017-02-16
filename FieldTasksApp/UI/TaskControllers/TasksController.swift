@@ -24,7 +24,7 @@ class TasksController : UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var taskDescription : UITextView!
     @IBOutlet var taskView : UIView!
-    @IBOutlet var doneButton : UIButton!
+    @IBOutlet var doneButton : FUIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +36,7 @@ class TasksController : UIViewController {
         self.taskDescription.textColor = Globals.shared.textColor
         self.taskDescription.font = Globals.shared.mediumFont
         self.taskView.backgroundColor = Globals.shared.bgColor
-
-        doneButton.backgroundColor = Globals.shared.barButtonColor
-        doneButton.setTitleColor(Globals.shared.textColor, for: .normal)
-        doneButton.titleLabel!.font = Globals.shared.mediumFont
-        doneButton.layer.cornerRadius = 4.0
+        doneButton.makeFlatButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
