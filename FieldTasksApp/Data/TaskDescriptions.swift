@@ -38,8 +38,26 @@ class TextTaskDescription : TaskDescription {
 class NumberTaskDescription  : TaskDescription {
     var isDecimal = false
     var isUnlimited = true  // defaults to no range limits
-    var min = 0             // We don't know if min/max types should be float or int yet
-    var max = 0
+    var min = 0.0            // We don't know if min/max types should be float or int yet
+    var max = 0.0
+    var minString : String {
+        get {
+            if isDecimal {
+                return "\(min)"
+            } else {
+                return "\(min.toInt())"
+            }
+         }
+    }
+    var maxString : String {
+        get {
+            if isDecimal {
+                return "\(max)"
+            } else {
+                return "\(max.toInt())"
+            }
+        }
+    }
 
     override init(dataDict : [String : AnyObject]) {
         super.init(dataDict: dataDict)
@@ -50,13 +68,14 @@ class NumberTaskDescription  : TaskDescription {
         if let limitBool = dataDict["range"] as? String {
             self.isUnlimited = (limitBool == "unlimited")
         }
-        if let minVal = dataDict["min"] as? Int {
+        if let minVal = dataDict["min"] as? Double {
             self.min = minVal
         }
-        if let maxVal = dataDict["max"] as? Int {
+        if let maxVal = dataDict["max"] as? Double {
             self.max = maxVal
         }
     }
+
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
         dict["isDecimal"] = isDecimal as AnyObject?

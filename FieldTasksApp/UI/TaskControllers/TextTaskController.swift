@@ -25,17 +25,22 @@ class TextTaskController : TaskController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+         configureTextView(container: self.view)
+        self.view.addSubview(textView)
+    }
+
+    func configureTextView(container : UIView) {
         textView.frame = (self.view.frame)
         textView.layer.borderWidth =  1.0
         textView.isEditable = isEditable
         textView.font = Globals.shared.mediumFont
         textView.backgroundColor = UIColor.clouds()
-        configureTextView(container: self.view)
-        self.view.addSubview(textView)
+        textView.addKeyboardButton(title: "Hide", target: self, completion: #selector(self.hideButton))
+        textView.becomeFirstResponder()
     }
 
-    func configureTextView(container : UIView) {
-        textView.becomeFirstResponder()
+    func hideButton() {
+        textView.resignFirstResponder()
     }
 
     override func save() {

@@ -9,12 +9,12 @@
 import UIKit
 
 extension UILabel {
-    func makeTitleLabel() {
+    func makeTitleStyle() {
         self.textColor = UIColor.clouds()
         self.font = UIFont.boldFlatFont(ofSize: 17)
     }
 
-    func makeDetailLabel() {
+    func makeDetailStyle() {
         self.textColor = UIColor.clouds()
         self.font = UIFont.flatFont(ofSize: 14)
     }

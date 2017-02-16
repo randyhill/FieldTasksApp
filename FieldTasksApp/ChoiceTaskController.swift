@@ -203,7 +203,6 @@ class ChoiceTaskController : TaskController {
         result.save(newValues: boolValues)
     }
     override func restore() {
-        //createChoices()
         for i in 0 ..< result.values.count {
             options[i].on = result.values[i]
         }

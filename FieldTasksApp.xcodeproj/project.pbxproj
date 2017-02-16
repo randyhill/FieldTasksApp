@@ -11,8 +11,8 @@
 		2A93717BDF54F2F84376DF30 /* Pods_FieldTasksApp_Local.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE7A32FB2AD4BDB1E5B9D84 /* Pods_FieldTasksApp_Local.framework */; };
 		D82411A11E301BE6006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
 		D82411A31E301D5A006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
-		D82411A51E315517006D06E2 /* TemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* TemplateController.swift */; };
-		D82411A61E315517006D06E2 /* TemplateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* TemplateController.swift */; };
+		D82411A51E315517006D06E2 /* FormTasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* FormTasksController.swift */; };
+		D82411A61E315517006D06E2 /* FormTasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* FormTasksController.swift */; };
 		D82411B11E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */; };
 		D82411B21E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */; };
 		D82411B31E36B405006D06E2 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AC1E36B405006D06E2 /* Lato-Bold.ttf */; };
@@ -30,6 +30,8 @@
 		D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */; };
 		D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8549BA41D67871B009DBE7A /* Assets.xcassets */; };
 		D8549BA81D67871B009DBE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */; };
+		D858D94D1E54F4D80059E0EF /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D94C1E54F4D80059E0EF /* Double.swift */; };
+		D858D94E1E54F5380059E0EF /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D94C1E54F4D80059E0EF /* Double.swift */; };
 		D85C8C0E1E45289300B5404F /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C8C0D1E45289300B5404F /* LocationsController.swift */; };
 		D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */; };
 		D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549B9A1D67871B009DBE7A /* AppDelegate.swift */; };
@@ -59,8 +61,8 @@
 		D8C165D91E47FF2400129439 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165D71E47F52A00129439 /* Locations.swift */; };
 		D8DB034C1E4A5247001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
 		D8DB034D1E4A5274001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
-		D8F1D6D21E521CFB00A07F70 /* MultiPhotoTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6D11E521CFB00A07F70 /* MultiPhotoTaskController.swift */; };
-		D8F1D6D81E522A8600A07F70 /* MultiPhotoTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6D11E521CFB00A07F70 /* MultiPhotoTaskController.swift */; };
+		D8F1D6D21E521CFB00A07F70 /* PhotosTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */; };
+		D8F1D6D81E522A8600A07F70 /* PhotosTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */; };
 		D8F1D6E51E53A8F200A07F70 /* favorites-w.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6D91E53A8F200A07F70 /* favorites-w.png */; };
 		D8F1D6E61E53A8F200A07F70 /* favorites-w.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6D91E53A8F200A07F70 /* favorites-w.png */; };
 		D8F1D6E71E53A8F200A07F70 /* favorites-w@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DA1E53A8F200A07F70 /* favorites-w@2x.png */; };
@@ -118,7 +120,7 @@
 		CAEB5688752EF3DB8FAD426F /* Pods-FieldTasksApp Local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp Local.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local.release.xcconfig"; sourceTree = "<group>"; };
 		D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D82411A01E301BE6006D06E2 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = UI/MainController.swift; sourceTree = "<group>"; };
-		D82411A41E315517006D06E2 /* TemplateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateController.swift; path = UI/TemplateController.swift; sourceTree = "<group>"; };
+		D82411A41E315517006D06E2 /* FormTasksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormTasksController.swift; path = UI/FormTasksController.swift; sourceTree = "<group>"; };
 		D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "flat-ui-icons-regular.ttf"; path = "Resources/flat-ui-icons-regular.ttf"; sourceTree = "<group>"; };
 		D82411AC1E36B405006D06E2 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "Resources/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		D82411AD1E36B405006D06E2 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Italic.ttf"; path = "Resources/Lato-Italic.ttf"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		D8549BA71D67871B009DBE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8549BBD1D67871B009DBE7A /* FieldTasksAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTasksAppUITests.swift; sourceTree = "<group>"; };
 		D8549BBF1D67871B009DBE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D858D94C1E54F4D80059E0EF /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		D85C8C0D1E45289300B5404F /* LocationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsController.swift; path = UI/LocationsController.swift; sourceTree = "<group>"; };
 		D85D53DB1D710750006D31F2 /* FieldTasksApp Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FieldTasksApp Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85D53DD1D710D94006D31F2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = ../Globals.swift; sourceTree = "<group>"; };
@@ -153,7 +156,7 @@
 		D8C165D21E47ECB200129439 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITableViewCell.swift; path = UI/Extensions/UITableViewCell.swift; sourceTree = "<group>"; };
 		D8C165D71E47F52A00129439 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Locations.swift; path = Data/Locations.swift; sourceTree = "<group>"; };
 		D8DB034B1E4A5247001BA901 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Template.swift; path = Data/Template.swift; sourceTree = "<group>"; };
-		D8F1D6D11E521CFB00A07F70 /* MultiPhotoTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPhotoTaskController.swift; path = UI/TaskControllers/MultiPhotoTaskController.swift; sourceTree = "<group>"; };
+		D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosTaskController.swift; path = UI/TaskControllers/PhotosTaskController.swift; sourceTree = "<group>"; };
 		D8F1D6D91E53A8F200A07F70 /* favorites-w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favorites-w.png"; path = "Images/favorites-w.png"; sourceTree = "<group>"; };
 		D8F1D6DA1E53A8F200A07F70 /* favorites-w@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favorites-w@2x.png"; path = "Images/favorites-w@2x.png"; sourceTree = "<group>"; };
 		D8F1D6DB1E53A8F200A07F70 /* favorites-w@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favorites-w@3x.png"; path = "Images/favorites-w@3x.png"; sourceTree = "<group>"; };
@@ -227,10 +230,10 @@
 				D8549B9E1D67871B009DBE7A /* Main.storyboard */,
 				D8F1D70C1E53A92700A07F70 /* FormController.swift */,
 				D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */,
-				D82411A01E301BE6006D06E2 /* MainController.swift */,
-				D826E6C41D6D2B87002B91AE /* TaskControllers */,
-				D82411A41E315517006D06E2 /* TemplateController.swift */,
 				D85C8C0D1E45289300B5404F /* LocationsController.swift */,
+				D82411A01E301BE6006D06E2 /* MainController.swift */,
+				D82411A41E315517006D06E2 /* FormTasksController.swift */,
+				D826E6C41D6D2B87002B91AE /* TaskControllers */,
 				D8C165CB1E47EBEE00129439 /* Extensions */,
 				D88B94D71E36CBE100465793 /* TPKeyboardAvoiding */,
 			);
@@ -253,11 +256,11 @@
 		D826E6C41D6D2B87002B91AE /* TaskControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D8F1D6FD1E53A91800A07F70 /* NumberTaskController.swift */,
-				D8F1D6FF1E53A91800A07F70 /* TaskController.swift */,
 				D8F1D7001E53A91800A07F70 /* TasksController.swift */,
+				D8F1D6FF1E53A91800A07F70 /* TaskController.swift */,
+				D8F1D6FD1E53A91800A07F70 /* NumberTaskController.swift */,
 				D8F1D7011E53A91800A07F70 /* TextTaskController.swift */,
-				D8F1D6D11E521CFB00A07F70 /* MultiPhotoTaskController.swift */,
+				D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */,
 				D826E6C21D6D2B48002B91AE /* ChoiceTaskController.swift */,
 			);
 			name = TaskControllers;
@@ -327,17 +330,25 @@
 		D8549BD81D68C9D7009DBE7A /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D858D94B1E54DDC00059E0EF /* Tasks */,
 				D8F1D7121E53A96900A07F70 /* Form.swift */,
-				D8F1D7131E53A96900A07F70 /* FormTask.swift */,
-				D8F1D7141E53A96900A07F70 /* Location.swift */,
 				D8F1D7151E53A96900A07F70 /* ServerManager.swift */,
-				D8F1D7161E53A96900A07F70 /* TaskDescriptions.swift */,
-				D8F1D7171E53A96900A07F70 /* TaskResults.swift */,
 				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
+				D8F1D7141E53A96900A07F70 /* Location.swift */,
 				D8C165D71E47F52A00129439 /* Locations.swift */,
 				D8DB034B1E4A5247001BA901 /* Template.swift */,
 			);
 			name = "Data Classes";
+			sourceTree = "<group>";
+		};
+		D858D94B1E54DDC00059E0EF /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				D8F1D7131E53A96900A07F70 /* FormTask.swift */,
+				D8F1D7161E53A96900A07F70 /* TaskDescriptions.swift */,
+				D8F1D7171E53A96900A07F70 /* TaskResults.swift */,
+			);
+			name = Tasks;
 			sourceTree = "<group>";
 		};
 		D88B94D71E36CBE100465793 /* TPKeyboardAvoiding */ = {
@@ -364,6 +375,7 @@
 				D8C165D21E47ECB200129439 /* UITableViewCell.swift */,
 				D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */,
 				D8B9DBA91E4BDAF30054C454 /* UITextView.swift */,
+				D858D94C1E54F4D80059E0EF /* Double.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -627,7 +639,7 @@
 			files = (
 				D8F1D71E1E53A96900A07F70 /* ServerManager.swift in Sources */,
 				D88B94E21E36CC4800465793 /* TPKeyboardAvoidingScrollView.m in Sources */,
-				D8F1D6D21E521CFB00A07F70 /* MultiPhotoTaskController.swift in Sources */,
+				D8F1D6D21E521CFB00A07F70 /* PhotosTaskController.swift in Sources */,
 				D8F1D7181E53A96900A07F70 /* Form.swift in Sources */,
 				D88B94E11E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				D8B9DBA71E4BD9CA0054C454 /* UILabel.swift in Sources */,
@@ -638,7 +650,7 @@
 				D8F1D7221E53A96900A07F70 /* TaskResults.swift in Sources */,
 				D8F1D7021E53A91800A07F70 /* NumberTaskController.swift in Sources */,
 				D8C165D81E47F52A00129439 /* Locations.swift in Sources */,
-				D82411A51E315517006D06E2 /* TemplateController.swift in Sources */,
+				D82411A51E315517006D06E2 /* FormTasksController.swift in Sources */,
 				D88B94E31E36CC4800465793 /* TPKeyboardAvoidingTableView.m in Sources */,
 				D8F1D70A1E53A91800A07F70 /* TextTaskController.swift in Sources */,
 				D8DB034C1E4A5247001BA901 /* Template.swift in Sources */,
@@ -656,6 +668,7 @@
 				D8F1D7061E53A91800A07F70 /* TaskController.swift in Sources */,
 				D8F1D71C1E53A96900A07F70 /* Location.swift in Sources */,
 				D826E6C31D6D2B48002B91AE /* ChoiceTaskController.swift in Sources */,
+				D858D94D1E54F4D80059E0EF /* Double.swift in Sources */,
 				D8F1D7101E53A92700A07F70 /* TemplatesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,7 +680,7 @@
 				D8B9DBA81E4BDA4C0054C454 /* UILabel.swift in Sources */,
 				D8F1D7231E53A96900A07F70 /* TaskResults.swift in Sources */,
 				D84AAF2D1E4531EA000D584F /* LocationsController.swift in Sources */,
-				D82411A61E315517006D06E2 /* TemplateController.swift in Sources */,
+				D82411A61E315517006D06E2 /* FormTasksController.swift in Sources */,
 				D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */,
 				D8F1D71F1E53A96900A07F70 /* ServerManager.swift in Sources */,
 				D8C165D61E47ECD500129439 /* UITableViewCell.swift in Sources */,
@@ -681,7 +694,7 @@
 				D8F1D71D1E53A96900A07F70 /* Location.swift in Sources */,
 				D8F1D7211E53A96900A07F70 /* TaskDescriptions.swift in Sources */,
 				D8F1D70F1E53A92700A07F70 /* FormController.swift in Sources */,
-				D8F1D6D81E522A8600A07F70 /* MultiPhotoTaskController.swift in Sources */,
+				D8F1D6D81E522A8600A07F70 /* PhotosTaskController.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
 				D85D53E11D711051006D31F2 /* Globals.swift in Sources */,
@@ -691,6 +704,7 @@
 				D8F1D70B1E53A91800A07F70 /* TextTaskController.swift in Sources */,
 				D8F1D7031E53A91800A07F70 /* NumberTaskController.swift in Sources */,
 				D8F1D7071E53A91800A07F70 /* TaskController.swift in Sources */,
+				D858D94E1E54F5380059E0EF /* Double.swift in Sources */,
 				D8F1D7091E53A91800A07F70 /* TasksController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

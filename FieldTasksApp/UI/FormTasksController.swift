@@ -1,5 +1,5 @@
 //
-//  TemplateController.swift
+//  FormTasksController.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/19/16.
@@ -9,16 +9,24 @@
 import UIKit
 import SVProgressHUD
 
-class TemplateController : UITableViewController {
+class FormTasksCell : UITableViewCell {
+
+    @IBOutlet weak var checkMark: UILabel!
+    @IBOutlet weak var titleText: UILabel!
+    @IBOutlet weak var typeText: UILabel!
+}
+
+class FormTasksController : UITableViewController {
     var form : Form?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "New Form: \(form!.name)"
+        self.title = "New: \(form!.name)"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(submitForm))
         makeNavBarFlat()
+        //self.tableView.backgroundColor = Globals.shared.barColor
     }
 
     func goBack(){
@@ -27,10 +35,16 @@ class TemplateController : UITableViewController {
 
     func submitForm() {
         if let incompleteTasks = form!.tasksStillIncomplete() {
-
             SVProgressHUD.showInfo(withStatus: "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form")
         } else {
-            form?.submit(controller: self)
+            form?.submit(completion: { (error) in
+                if error != nil {
+                    SVProgressHUD.showError(withStatus: "Form Submission Failed: \(error!)")
+                } else {
+                    SVProgressHUD.showSuccess(withStatus: "Form submitted successfuly")
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
         }
     }
 
@@ -55,19 +69,21 @@ class TemplateController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath as IndexPath)
-        let task = form!.tasks[indexPath.row]
-
-        var titleText = "\(task.name)"
-        if (task.result?.completed)! {
-            titleText = "√ " + titleText
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FormTasksCell", for: indexPath as IndexPath)
+        if let cell = cell as? FormTasksCell {
+            let task = form!.tasks[indexPath.row]
+            var titleText = task.name
+            if task.required {
+                titleText += " (required)"
+            }
+            cell.titleText.text = titleText
+            cell.titleText.makeTitleStyle()
+            cell.checkMark.text = (task.result!.completed) ? "√" : ""
+            cell.checkMark.makeTitleStyle()
+            cell.typeText.text = task.type;
+            cell.typeText.makeDetailStyle()
+            cell.makeCellFlat()
         }
-        let requiredText = task.required ? " (required)" : ""
-        cell.textLabel!.text = titleText + requiredText
-
-        let detailText = "\(task.type)"
-        cell.detailTextLabel!.text = detailText
-        cell.makeCellFlat()
         return cell
     }
 

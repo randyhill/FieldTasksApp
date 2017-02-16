@@ -28,7 +28,7 @@ class NumberTaskController : TaskController {
         super.viewDidLoad()
 
         if !taskData.isUnlimited {
-            rangeLabel.text = "Range: \(taskData.min) to \(taskData.max)"
+            rangeLabel.text = "Range: \(taskData.minString) to \(taskData.maxString)"
             rangeLabel.isHidden = false
         } else {
             rangeLabel.isHidden = true
@@ -38,8 +38,13 @@ class NumberTaskController : TaskController {
         } else {
             numberField.keyboardType = .numberPad
         }
+        numberField.addDoneHideKeyboardButtons(title: "Done", target: self, completion: #selector(doneButtonAction))
         numberField.becomeFirstResponder()
         numberField.font = Globals.shared.mediumFont
+    }
+
+    func doneButtonAction() {
+        print("done")
     }
 
     override func validate() -> String? {
@@ -63,15 +68,7 @@ class NumberTaskController : TaskController {
     }
 
     private func setNumberValue() {
-        if taskData.isDecimal {
-            numberField.text = String(describing: numberResult.value)
-        } else {
-            if let numberValue = numberResult.value {
-                numberField.text = String(describing: Int(numberValue))
-            } else {
-                numberField.text = ""
-            }
-        }
+        numberField.text = numberResult.description()
     }
 
     override func restore() {

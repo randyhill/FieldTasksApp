@@ -77,8 +77,8 @@ class LocationsController: UITableViewController, LocationUpdates {
             } else {
                 cell.makeCellFlat()
             }
-            cell.title.makeTitleLabel()
-            cell.address.makeDetailLabel()
+            cell.title.makeTitleStyle()
+            cell.address.makeDetailStyle()
             cell.title!.text = location.name
             cell.address!.text = location.fullAddress
             return cell

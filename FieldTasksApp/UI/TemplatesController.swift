@@ -91,15 +91,15 @@ class TemplatesController: UITableViewController {
                 cell.body!.text = ""
             }
             cell.makeCellFlat()
-            cell.title.makeTitleLabel()
-            cell.tasks.makeTitleLabel()
-            cell.body.makeDetailLabel()
+            cell.title.makeTitleStyle()
+            cell.tasks.makeTitleStyle()
+            cell.body.makeDetailStyle()
         }
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "TemplateController") as? TemplateController {
+        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "FormTasksController") as? FormTasksController {
             // Create form so it's editable.
             formController.form = Form(template: templatesList[indexPath.row])
             let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.

@@ -184,14 +184,7 @@ class ServerMgr {
                     SVProgressHUD.dismiss(completion: {
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         if let fileArray = jsonDict as? [Any] {
-                            photoFileList.mapNamesFromJson(fileArray: fileArray)
-//                            for element in fileArray {
-//                                if let elementDict = element as? [String: String] {
-//                                    if let fileIndex = elementDict["fileIndex"], let fileName = elementDict["fileName"] {
-//                                        photoFileList.addFileName(name: fileName, listIndex: fileIndex)
-//                                    }
-//                                }
-//                            }
+                            photoFileList.addNamesFromJson(fileArray: fileArray)
                             completion(photoFileList, nil)
                         } else {
                             completion(nil, "Couldn't parse JSON")

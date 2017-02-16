@@ -21,7 +21,6 @@ class TasksController : UIViewController {
             return form!.tasks[taskIndex]
         }
     }
-    //private var embeddedVC : TaskController?
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var taskDescription : UITextView!
     @IBOutlet var taskView : UIView!
@@ -42,7 +41,6 @@ class TasksController : UIViewController {
         doneButton.setTitleColor(Globals.shared.textColor, for: .normal)
         doneButton.titleLabel!.font = Globals.shared.mediumFont
         doneButton.layer.cornerRadius = 4.0
-//        doneButton.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -99,14 +97,7 @@ class TasksController : UIViewController {
         case "Choices":
             taskController = storyboard.instantiateViewController(withIdentifier: "ChoiceTaskController") as? TaskController
        case "Photo":
-        taskController = storyboard.instantiateViewController(withIdentifier: "MultiPhotoTaskController") as? TaskController
-//        if let taskDescription = task.taskDescription as? PhotoTaskDescription {
-////            if taskDescription.isSingle {
-////                taskController = storyboard.instantiateViewController(withIdentifier: "PhotoTaskController") as? TaskController
-////            } else {
-////                taskController = storyboard.instantiateViewController(withIdentifier: "MultiPhotoTaskController") as? TaskController
-////            }
-//        }
+        taskController = storyboard.instantiateViewController(withIdentifier: "PhotosTaskController") as? TaskController
          default:
             taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskController") as? TaskController
         }
@@ -124,19 +115,19 @@ class TasksController : UIViewController {
     }
 
     // MARK: Actions -------------------------------------------------------------------------------
-    func validateFields() -> Bool {
-        if !curTask.required {
-            return true
-        }
-        if let errorMessage = taskController?.validate() {
-            SVProgressHUD.showError(withStatus: "Invalid: \(errorMessage)")
-            return false
-        }
-        return true
-    }
+//    func validateFields() -> Bool {
+//        if !curTask.required {
+//            return true
+//        }
+//        if let errorMessage = taskController?.validate() {
+//            SVProgressHUD.showError(withStatus: "Invalid: \(errorMessage)")
+//            return false
+//        }
+//        return true
+//    }
 
     @IBAction func prevTask(){
-        if validateFields() {
+//        if validateFields() {
             taskController!.save()
             taskIndex -= 1
             if taskIndex >= 0 {
@@ -147,11 +138,11 @@ class TasksController : UIViewController {
             } else {
                 dismiss(animated: true, completion: nil)
             }
-        }
+//        }
     }
 
     @IBAction func nextTask() {
-        if validateFields() {
+//        if validateFields() {
             taskController!.save()
             taskIndex += 1
             if taskIndex < form!.tasks.count {
@@ -162,14 +153,14 @@ class TasksController : UIViewController {
             } else {
                 dismiss(animated: true, completion: nil)
             }
-        }
+//        }
     }
 
     @IBAction func done() {
-        if validateFields() {
+//        if validateFields() {
             taskController!.save()
             dismiss(animated: true, completion: nil)
-        }
+//        }
     }
 }
 

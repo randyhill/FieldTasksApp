@@ -10,9 +10,13 @@ import UIKit
 
 
 class TaskResult {
-    var completed = false
+    var _completed = false
     var formTask : FormTask?
-
+    var completed: Bool {
+        get {
+            return _completed
+        }
+    }
     init(formTask : FormTask, results: [String : AnyObject]) {
         self.formTask = formTask
     }
@@ -44,10 +48,10 @@ class TextResult : TaskResult {
     }
 
     override func save(newText : String) {
-        completed = false
+        _completed = false
         text = newText
         if text.characters.count > 0 {
-            completed = true
+            _completed = true
         }
     }
     override func toDict() -> [String : AnyObject]{
@@ -63,14 +67,6 @@ class TextResult : TaskResult {
 
 class NumberResult : TaskResult {
     var value : Double?
-//    var value : Double {
-//        get {
-//            return _value ?? 0.0
-//        }
-//        set(newValue) {
-//            _value = new
-//        }
-//    }
 
     override init(formTask : FormTask, results: [String : AnyObject]) {
         super.init(formTask: formTask, results: results)
@@ -81,10 +77,14 @@ class NumberResult : TaskResult {
      }
 
     override func save(newText : String) {
-        completed = false
+        _completed = false
         if let newValue = Double(newText) {
             value = newValue
-            completed = true
+            if let numberDescription = formTask?.taskDescription as? NumberTaskDescription, let value = value {
+                if value >= numberDescription.min && value <= numberDescription.max {
+                    _completed = true
+                }
+            }
         }
     }
     override func toDict() -> [String : AnyObject]{
@@ -102,12 +102,10 @@ class NumberResult : TaskResult {
                 if description.isDecimal {
                     return "\(numberValue)"
                 } else {
-                    let intValue  = Int(numberValue)
-                    return "\(intValue)"
+                    return "\(numberValue.toInt())"
                 }
             }
         }
-
         return ""
     }
 }
@@ -126,13 +124,12 @@ class ChoicesResult : TaskResult {
 
     func save(newValues: [Bool]) {
         values.removeAll()
+        _completed = false
         for newValue in newValues {
             values += [newValue]
-        }
-        if formTask!.required {
-            completed = values.count > 0
-        } else {
-            completed = true
+            if newValue {
+                _completed = true;
+            }
         }
     }
 
@@ -169,6 +166,11 @@ class ChoicesResult : TaskResult {
 class PhotoResult : TaskResult {
     var photos = [UIImage]()
     var fileNames = [String]()
+    override var completed: Bool {
+        get {
+            return (photos.count > 0)
+        }
+    }
 
     override init(formTask : FormTask, results: [String : AnyObject]) {
         super.init(formTask: formTask, results: results)
@@ -181,12 +183,5 @@ class PhotoResult : TaskResult {
         var dict = super.toDict()
         dict["fileNames"] = fileNames as AnyObject?
         return dict
-    }
-
-    func save(newPhoto: UIImage?) {
-        if let photo = newPhoto {
-            photos += [photo]
-        }
-        completed = (newPhoto != nil)
     }
 }

@@ -64,7 +64,7 @@ class FormController : UITableViewController {
             cell.configureHeaderCell()
             if let formTitleCell = cell as? FormTitleCell, let form = form {
                 formTitleCell.title.text = "Name: " + form.name
-                formTitleCell.title.makeTitleLabel()
+                formTitleCell.title.makeTitleStyle()
                 var locationString = "At: Unknown Location"
                 if let locationId = form.locationId {
                     if let location = Locations.shared.getBy(id: locationId){
@@ -74,7 +74,7 @@ class FormController : UITableViewController {
                 var descriptionString = locationString + "\nWhen: " + Globals.shared.dateFormatter.string(from: form.createDate)
                 descriptionString += "\nPurpose: " + form.description
                 formTitleCell.body.text = descriptionString
-                formTitleCell.body.makeDetailLabel()
+                formTitleCell.body.makeDetailStyle()
                 formTitleCell.body.backgroundColor = cell.contentView.backgroundColor
             }
             return cell
@@ -85,7 +85,7 @@ class FormController : UITableViewController {
                 let task = form!.tasks[indexPath.row-1]
 
                 formTaskCell.title!.text = task.name
-                formTaskCell.title.makeTitleLabel()
+                formTaskCell.title.makeTitleStyle()
                 if let result = task.result {
                     formTaskCell.body!.text = result.description()
                 } else {
@@ -94,7 +94,7 @@ class FormController : UITableViewController {
                 formTaskCell.selectionStyle = .default
                 formTaskCell.body.layer.cornerRadius = 4.0
                 formTaskCell.body.backgroundColor = Globals.shared.bgColor
-                formTaskCell.body.makeDetailLabel()
+                formTaskCell.body.makeDetailStyle()
             }
             return cell
         }

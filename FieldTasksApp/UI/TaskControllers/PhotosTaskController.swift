@@ -1,5 +1,5 @@
 //
-//  MultiPhotoTaskController
+//  PhotosTaskController
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -11,7 +11,7 @@ import SVProgressHUD
 import FlatUIKit
 
 class PhotoCell : UICollectionViewCell {
-    var delegate: MultiPhotoTaskController?
+    var delegate: PhotosTaskController?
     var image : UIImage?
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
@@ -22,7 +22,7 @@ class PhotoCell : UICollectionViewCell {
 }
 
 class PhotosHeader : UICollectionReusableView {
-    var delegate: MultiPhotoTaskController?
+    var delegate: PhotosTaskController?
     @IBOutlet weak var addButton: FUIButton!
     @IBOutlet weak var headerText: UILabel!
 
@@ -34,7 +34,7 @@ class PhotosHeader : UICollectionReusableView {
 
 }
 
-class MultiPhotoTaskController : TaskController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class PhotosTaskController : TaskController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
@@ -75,11 +75,13 @@ class MultiPhotoTaskController : TaskController, UIImagePickerControllerDelegate
 
     // Return nil if data user entered is valid or error message if not
     override func validate() -> String? {
+        if (result.photos.count == 0) {
+            return "No photo selected/taken"
+        }
         return nil
     }
 
     override func save() {
-        //        result.save(newPhoto: self.pictureView.image)
     }
 
     override func restore() {

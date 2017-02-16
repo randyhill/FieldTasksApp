@@ -42,16 +42,17 @@ class Form : Template {
         return formDict
     }
 
-    func submit(controller: UIViewController) {
-        func submitForm() {
-            ServerMgr.shared.saveAsForm(form: self) { (result, error) in
-                if error != nil {
-                    SVProgressHUD.showError(withStatus: "Form Submission Failed: \(error!)")
-                } else {
-                    SVProgressHUD.showSuccess(withStatus: "Form submitted successfuly")
-                }
+    func submitForm(completion : @escaping (_ error: String?)->()) {
+        ServerMgr.shared.saveAsForm(form: self) { (result, error) in
+            if error != nil {
+                completion(error)
+            } else {
+                completion(nil)
             }
         }
+    }
+
+    func submit(completion : @escaping (_ error: String?)->()) {
         if let coordinates = Locations.shared.mgr.location {
             self.coordinates = coordinates
         }
@@ -60,15 +61,15 @@ class Form : Template {
         }
         let photosList = PhotoFileList(tasks: tasks)
         if photosList.count == 0 {
-            submitForm()
+            submitForm(completion: completion)
         } else {
             // upload Photos to server first.
             ServerMgr.shared.uploadImages(photoFileList: photosList, completion: { (photoFileList, error) in
                 if let _ = photoFileList {
                     // Photo file names should have been copied to photo tasks, we can submit form now
-                    submitForm()
+                    self.submitForm(completion: completion)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Photos upload failed because of: \(error!)")
+                    completion("Photos upload failed because of: \(error!)")
                 }
             })
         }
