@@ -86,13 +86,13 @@ class TasksController : UIViewController {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch task.type {
-        case "Text":
+        case cFormTaskText:
              taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskController") as? TaskController
-        case "Number":
+        case cFormTaskNumber:
             taskController = storyboard.instantiateViewController(withIdentifier: "NumberTaskController") as? TaskController
-        case "Choices":
+        case cFormTaskChoices:
             taskController = storyboard.instantiateViewController(withIdentifier: "ChoiceTaskController") as? TaskController
-       case "Photo":
+       case cFormTaskPhoto:
         taskController = storyboard.instantiateViewController(withIdentifier: "PhotosTaskController") as? TaskController
          default:
             taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskController") as? TaskController
@@ -123,40 +123,32 @@ class TasksController : UIViewController {
 //    }
 
     @IBAction func prevTask(){
-//        if validateFields() {
-            taskController!.save()
-            taskIndex -= 1
-            if taskIndex >= 0 {
-                self.updateViewValues()
-                self.createNewTask()
-                setBackButton(title: taskIndex == 0 ? "Done" : "Back")
-//                doneButton.isHidden = (taskIndex == 0)
-            } else {
-                dismiss(animated: true, completion: nil)
-            }
-//        }
+        taskController!.save()
+        taskIndex -= 1
+        if taskIndex >= 0 {
+            self.updateViewValues()
+            self.createNewTask()
+            setBackButton(title: taskIndex == 0 ? "Done" : "Back")
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
 
     @IBAction func nextTask() {
-//        if validateFields() {
-            taskController!.save()
-            taskIndex += 1
-            if taskIndex < form!.tasks.count {
-                self.updateViewValues()
-                self.createNewTask()
-                setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
-//                doneButton.isHidden = taskIndex == (form!.tasks.count - 1)
-            } else {
-                dismiss(animated: true, completion: nil)
-            }
-//        }
+        taskController!.save()
+        taskIndex += 1
+        if taskIndex < form!.tasks.count {
+            self.updateViewValues()
+            self.createNewTask()
+            setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
 
     @IBAction func done() {
-//        if validateFields() {
-            taskController!.save()
-            dismiss(animated: true, completion: nil)
-//        }
+        taskController!.save()
+        dismiss(animated: true, completion: nil)
     }
 }
 

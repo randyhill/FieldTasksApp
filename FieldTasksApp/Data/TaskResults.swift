@@ -81,7 +81,7 @@ class NumberResult : TaskResult {
         if let newValue = Double(newText) {
             value = newValue
             if let numberDescription = formTask?.taskDescription as? NumberTaskDescription, let value = value {
-                if value >= numberDescription.min && value <= numberDescription.max {
+                if numberDescription.isUnlimited || (value >= numberDescription.min && value <= numberDescription.max) {
                     _completed = true
                 }
             }

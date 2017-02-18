@@ -13,6 +13,11 @@ class FormTaskCell : UITableViewCell {
     @IBOutlet weak var body: UITextView!
 }
 
+class FormPhotoTaskCell : UITableViewCell {
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
+}
+
 class FormTitleCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UITextView!
@@ -79,25 +84,50 @@ class FormController : UITableViewController {
             }
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FormTaskCell", for: indexPath as IndexPath)
-            cell.makeCellFlat()
-            if let formTaskCell = cell as? FormTaskCell {
-                let task = form!.tasks[indexPath.row-1]
+            let task = form!.tasks[indexPath.row-1]
+            if task.type == cFormTaskPhoto {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FormPhotoTaskCell", for: indexPath as IndexPath)
+                cell.makeCellFlat()
+                if let formTaskCell = cell as? FormPhotoTaskCell {
+                    formTaskCell.title!.text = task.name
+                    formTaskCell.title.makeTitleStyle()
 
-                formTaskCell.title!.text = task.name
-                formTaskCell.title.makeTitleStyle()
-                if let result = task.result {
-                    formTaskCell.body!.text = result.description()
-                } else {
-                    formTaskCell.body!.text = "Not entered"
+                    // Clear old views so we don't have old photos hanging around.
+                    for oldView in formTaskCell.stackView.subviews {
+                        oldView.removeFromSuperview()
+                    }
+                    formTaskCell.stackView.axis = .horizontal
+                    formTaskCell.stackView.distribution = .fillEqually
+                    if let photoResult = task.result as? PhotoResult {
+                        for image in photoResult.photos {
+                            let imageView = UIImageView(image: image)
+                            imageView.frame = CGRect(x: 0, y: 0, width: formTaskCell.stackView.frame.height, height: formTaskCell.stackView.frame.height)
+                            formTaskCell.stackView.addArrangedSubview(imageView)
+                        }
+                    }
+                    formTaskCell.selectionStyle = .default
                 }
-                formTaskCell.selectionStyle = .default
-                formTaskCell.body.layer.cornerRadius = 4.0
-                formTaskCell.body.backgroundColor = Globals.shared.bgColor
-                formTaskCell.body.makeDetailStyle()
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FormTaskCell", for: indexPath as IndexPath)
+                cell.makeCellFlat()
+                if let formTaskCell = cell as? FormTaskCell {
+
+                    formTaskCell.title!.text = task.name
+                    formTaskCell.title.makeTitleStyle()
+                    if let result = task.result {
+                        formTaskCell.body!.text = result.description()
+                    } else {
+                        formTaskCell.body!.text = "Not entered"
+                    }
+                    formTaskCell.selectionStyle = .default
+                    formTaskCell.body.layer.cornerRadius = 4.0
+                    formTaskCell.body.backgroundColor = Globals.shared.bgColor
+                    formTaskCell.body.makeDetailStyle()
+                }
+                return cell
             }
-            return cell
-        }
+         }
      }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

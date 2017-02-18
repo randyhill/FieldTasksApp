@@ -38,7 +38,7 @@ class TextTaskController : TaskController {
     }
 
     func doneButton() {
-        textView.resignFirstResponder()
+        self.save()
         parentController?.dismiss(animated: true, completion: nil)
     }
 

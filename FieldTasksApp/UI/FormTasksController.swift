@@ -10,14 +10,14 @@ import UIKit
 import SVProgressHUD
 
 class FormTasksCell : UITableViewCell {
-
-    @IBOutlet weak var checkMark: UILabel!
+    @IBOutlet weak var checkmark: UIImageView!
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var typeText: UILabel!
 }
 
 class FormTasksController : UITableViewController {
     var form : Form?
+    let checkmark = UIImage(named: "checkmark.png")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,8 +78,7 @@ class FormTasksController : UITableViewController {
             }
             cell.titleText.text = titleText
             cell.titleText.makeTitleStyle()
-            cell.checkMark.text = (task.result!.completed) ? "√" : ""
-            cell.checkMark.makeTitleStyle()
+            cell.checkmark.image = (task.result!.completed) ? checkmark : nil
             cell.typeText.text = task.type;
             cell.typeText.makeDetailStyle()
             cell.makeCellFlat()

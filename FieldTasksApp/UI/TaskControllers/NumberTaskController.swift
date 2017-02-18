@@ -44,7 +44,7 @@ class NumberTaskController : TaskController {
     }
 
     func doneButtonAction() {
-        numberField.resignFirstResponder()
+        self.save()
         parentController?.dismiss(animated: true, completion: nil)
     }
 

@@ -36,6 +36,12 @@
 		D858D9521E55389D0059E0EF /* FUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D9511E55389D0059E0EF /* FUIButton.swift */; };
 		D858D9531E553DE10059E0EF /* FUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D9511E55389D0059E0EF /* FUIButton.swift */; };
 		D858D9541E553DE50059E0EF /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D94F1E5538810059E0EF /* UITextField.swift */; };
+		D858D9561E576B220059E0EF /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9551E576B220059E0EF /* checkmark@2x.png */; };
+		D858D9591E576B720059E0EF /* checkmark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9571E576B720059E0EF /* checkmark@3x.png */; };
+		D858D95A1E576B720059E0EF /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9581E576B720059E0EF /* checkmark.png */; };
+		D858D95B1E576D770059E0EF /* checkmark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9571E576B720059E0EF /* checkmark@3x.png */; };
+		D858D95C1E576D770059E0EF /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9581E576B720059E0EF /* checkmark.png */; };
+		D858D95D1E576D770059E0EF /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9551E576B220059E0EF /* checkmark@2x.png */; };
 		D85C8C0E1E45289300B5404F /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C8C0D1E45289300B5404F /* LocationsController.swift */; };
 		D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */; };
 		D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549B9A1D67871B009DBE7A /* AppDelegate.swift */; };
@@ -142,6 +148,9 @@
 		D858D94C1E54F4D80059E0EF /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		D858D94F1E5538810059E0EF /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = UI/Extensions/UITextField.swift; sourceTree = "<group>"; };
 		D858D9511E55389D0059E0EF /* FUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FUIButton.swift; path = UI/Extensions/FUIButton.swift; sourceTree = "<group>"; };
+		D858D9551E576B220059E0EF /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "Images/checkmark@2x.png"; sourceTree = "<group>"; };
+		D858D9571E576B720059E0EF /* checkmark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@3x.png"; path = "Images/checkmark@3x.png"; sourceTree = "<group>"; };
+		D858D9581E576B720059E0EF /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmark.png; path = Images/checkmark.png; sourceTree = "<group>"; };
 		D85C8C0D1E45289300B5404F /* LocationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsController.swift; path = UI/LocationsController.swift; sourceTree = "<group>"; };
 		D85D53DB1D710750006D31F2 /* FieldTasksApp Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FieldTasksApp Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85D53DD1D710D94006D31F2 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = ../Globals.swift; sourceTree = "<group>"; };
@@ -391,6 +400,9 @@
 		D8C165E61E48FFD000129439 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D858D9581E576B720059E0EF /* checkmark.png */,
+				D858D9551E576B220059E0EF /* checkmark@2x.png */,
+				D858D9571E576B720059E0EF /* checkmark@3x.png */,
 				D8F1D6D91E53A8F200A07F70 /* favorites-w.png */,
 				D8F1D6DA1E53A8F200A07F70 /* favorites-w@2x.png */,
 				D8F1D6DB1E53A8F200A07F70 /* favorites-w@3x.png */,
@@ -504,6 +516,8 @@
 				D8F1D6FB1E53A8F200A07F70 /* text@3x.png in Resources */,
 				D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */,
 				D8F1D6F51E53A8F200A07F70 /* Icon 228.png in Resources */,
+				D858D9591E576B720059E0EF /* checkmark@3x.png in Resources */,
+				D858D9561E576B220059E0EF /* checkmark@2x.png in Resources */,
 				D8F1D6ED1E53A8F200A07F70 /* Icon 120.png in Resources */,
 				D8F1D6E51E53A8F200A07F70 /* favorites-w.png in Resources */,
 				D82411B91E36B405006D06E2 /* Lato-Regular.ttf in Resources */,
@@ -511,6 +525,7 @@
 				D82411B51E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
 				D8F1D6EB1E53A8F200A07F70 /* Icon 76.png in Resources */,
 				D8F1D6E91E53A8F200A07F70 /* favorites-w@3x.png in Resources */,
+				D858D95A1E576B720059E0EF /* checkmark.png in Resources */,
 				D82411B11E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */,
 				D8F1D6EF1E53A8F200A07F70 /* Icon 152.png in Resources */,
 				D82411B71E36B405006D06E2 /* Lato-Light.ttf in Resources */,
@@ -523,9 +538,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8F1D6E81E53A8F200A07F70 /* favorites-w@2x.png in Resources */,
+				D858D95D1E576D770059E0EF /* checkmark@2x.png in Resources */,
 				D8F1D6F41E53A8F200A07F70 /* Icon 180.png in Resources */,
 				D8F1D6F81E53A8F200A07F70 /* text.png in Resources */,
 				D8F1D6F21E53A8F200A07F70 /* Icon 167.png in Resources */,
+				D858D95B1E576D770059E0EF /* checkmark@3x.png in Resources */,
 				D85D53D51D710750006D31F2 /* LaunchScreen.storyboard in Resources */,
 				D82411B41E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
 				D8F1D6FC1E53A8F200A07F70 /* text@3x.png in Resources */,
@@ -540,6 +557,7 @@
 				D8F1D6EA1E53A8F200A07F70 /* favorites-w@3x.png in Resources */,
 				D82411B21E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */,
 				D8F1D6F01E53A8F200A07F70 /* Icon 152.png in Resources */,
+				D858D95C1E576D770059E0EF /* checkmark.png in Resources */,
 				D82411B81E36B405006D06E2 /* Lato-Light.ttf in Resources */,
 				D8F1D6FA1E53A8F200A07F70 /* text@2x.png in Resources */,
 			);

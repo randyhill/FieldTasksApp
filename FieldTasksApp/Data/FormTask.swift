@@ -8,6 +8,11 @@
 
 import UIKit
 
+let cFormTaskText = "Text"
+let cFormTaskNumber = "Number"
+let cFormTaskChoices = "Choices"
+let cFormTaskPhoto = "Photo"
+
 class FormTask {
     var id = ""
     var name = ""

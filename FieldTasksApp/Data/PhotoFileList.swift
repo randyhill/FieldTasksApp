@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Map image from index to it's photoresult record
 class PhotoMap {
     var image : UIImage?
     var result : PhotoResult?
