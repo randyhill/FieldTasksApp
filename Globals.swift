@@ -39,4 +39,14 @@ enum FTError : Error {
     case RunTimeError(String)
 }
 
+func FTAssert(isTrue: Bool, error: String, file: String = #file, line: Int = #line) {
+    if !isTrue {
+        FTErrorMessage(error: error, file: file, line: line)
+    }
+}
+
+func FTErrorMessage(error: String, file: String = #file, line: Int = #line) {
+    print("Assert failure - file: \(file) line: \(line) error:\(error)")
+}
+
 

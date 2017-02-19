@@ -8,14 +8,48 @@
 
 import UIKit
 
-// Map image from index to it's photoresult record
+// Map individual image to it's photoresult record and array index
 class PhotoMap {
-    var image : UIImage?
+    var imageIndex = 0
+    var resultIndex = 0
     var result : PhotoResult?
+    var image : UIImage? {
+        get {
+            if imageIndex < result!.photos.count {
+                return result?.photos[imageIndex]
+            }
+            return nil
+        }
+        set (newImage) {
+            FTAssert(isTrue: newImage != nil, error: "Attempted to set nil image to photo result")
+            if imageIndex < result!.photos.count {
+                result!.photos[imageIndex] = newImage!
+            } else {
+                result!.photos += [newImage!]
+            }
+        }
+    }
+    var fileName : String? {
+        get {
+            if imageIndex < result!.fileNames.count {
+                return result?.fileNames[imageIndex]
+            }
+            return nil
+        }
+        set (newFileName) {
+            FTAssert(isTrue: newFileName != nil, error: "Attempted to set nil file name to photo result")
+            if imageIndex < result!.fileNames.count {
+                result!.fileNames[imageIndex] = newFileName!
+            } else {
+                result!.fileNames += [newFileName!]
+            }
+        }
+    }
 
-    init(image: UIImage, result : PhotoResult) {
-        self.image = image
+    init(imageIndex: Int, resultIndex : Int, result : PhotoResult) {
         self.result = result
+        self.imageIndex = imageIndex
+        self.resultIndex = resultIndex
     }
 }
 
@@ -35,17 +69,22 @@ class PhotoFileList {
         }
     }
 
-    init(tasks: [FormTask]) {
-        self.addPhotoResults(tasks: tasks)
+    init(tasks: [FormTask], buildWithImages: Bool) {
+        if buildWithImages {
+            self.buildWithPhotos(tasks: tasks)
+        } else {
+            self.buildWithFileNames(tasks: tasks)
+        }
     }
 
-    // Create a list of all the form tasks that have photos
-    func addPhotoResults(tasks : [FormTask]) {
-        for task in tasks {
+    // Create a list of all the form tasks that have images
+    func buildWithPhotos(tasks : [FormTask]) {
+        for resultIndex in 0 ..< tasks.count {
+            let task = tasks[resultIndex]
             if let photoResult = task.result as? PhotoResult {
                 if photoResult.photos.count > 0 {
-                    for photo in photoResult.photos {
-                        let map = PhotoMap(image: photo, result: photoResult)
+                    for imageIndex in 0 ..< photoResult.photos.count {
+                        let map = PhotoMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)
                         mapArray += [map]
                     }
                     photoResults += [photoResult]
@@ -54,8 +93,30 @@ class PhotoFileList {
         }
     }
 
-    func asImageArray() -> [PhotoMap] {
+    // Create a list of all the form tasks that have file names set
+    func buildWithFileNames(tasks : [FormTask]) {
+        for resultIndex in 0 ..< tasks.count {
+            let task = tasks[resultIndex]
+            if let photoResult = task.result as? PhotoResult {
+                if photoResult.fileNames.count > 0 {
+                    for imageIndex in 0 ..< photoResult.fileNames.count {
+                        let map = PhotoMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)
+                        mapArray += [map]
+                    }
+                    photoResults += [photoResult]
+                }
+            }
+        }
+    }
+
+    func mapOfAllImages() -> [PhotoMap] {
         return mapArray
+    }
+
+    func mapOfUnloaded() -> [PhotoMap] {
+        return mapArray.filter { (map) -> Bool in
+            return (map.image == nil)
+        }
     }
 
     // JSON contains array index in mapArray for each fileName, add each to correct result in mapArray with

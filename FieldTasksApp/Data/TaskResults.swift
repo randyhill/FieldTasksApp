@@ -166,6 +166,7 @@ class ChoicesResult : TaskResult {
 class PhotoResult : TaskResult {
     var photos = [UIImage]()
     var fileNames = [String]()
+
     override var completed: Bool {
         get {
             return (photos.count > 0)

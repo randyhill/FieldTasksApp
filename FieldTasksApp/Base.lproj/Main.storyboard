@@ -252,10 +252,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMj-7X-5jE">
-                                <rect key="frame" x="8" y="12" width="296" height="21"/>
+                                <rect key="frame" x="8" y="12" width="304" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="0v3-I3-Oee"/>
-                                    <constraint firstAttribute="width" constant="296" id="Tv6-CP-Wld"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -264,7 +263,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0Ih-IX-xfY">
                                 <rect key="frame" x="8" y="36" width="304" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="6Xg-pg-aKs"/>
+                                    <constraint firstAttribute="height" constant="46" id="jMn-qY-GD9"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -289,6 +288,7 @@
                         <constraints>
                             <constraint firstItem="0Ih-IX-xfY" firstAttribute="leading" secondItem="bR7-c1-D97" secondAttribute="leading" constant="8" id="2QM-Lb-5sN"/>
                             <constraint firstItem="mHp-5S-msq" firstAttribute="leading" secondItem="bR7-c1-D97" secondAttribute="leading" id="5fL-Vw-h6U"/>
+                            <constraint firstAttribute="trailing" secondItem="eMj-7X-5jE" secondAttribute="trailing" constant="8" id="8yP-Lw-seu"/>
                             <constraint firstAttribute="trailing" secondItem="0Ih-IX-xfY" secondAttribute="trailing" constant="8" id="DQh-24-bMR"/>
                             <constraint firstItem="0Ih-IX-xfY" firstAttribute="top" secondItem="eMj-7X-5jE" secondAttribute="bottom" constant="3" id="EUQ-47-RaV"/>
                             <constraint firstItem="wgO-eI-Kgd" firstAttribute="top" secondItem="g7s-W2-m3q" secondAttribute="bottom" constant="8" id="Had-Sh-oFa"/>
@@ -526,7 +526,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-GK-NBd">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-GK-NBd">
                                             <rect key="frame" x="98" y="8" width="214" height="63"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </stackView>

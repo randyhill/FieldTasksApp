@@ -29,6 +29,7 @@ class FormController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        FTAssert(isTrue: form != nil, error: "Form was not set before opening view")
         self.title = "Form"
         self.tableView.allowsSelection = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
@@ -42,6 +43,23 @@ class FormController : UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        let photosList = PhotoFileList(tasks: form!.tasks, buildWithImages: false)
+        ServerMgr.shared.downloadFiles(photoFileList: photosList, imageUpdate: { (index) in
+            DispatchQueue.main.async {
+                print("Update index: \(index)")
+                self.tableView.beginUpdates()
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                self.tableView.endUpdates()
+            }
+        }, completion: { (error) in
+            if let error = error {
+                FTErrorMessage(error: "Could not download all photos: \(error)")
+            }
+            DispatchQueue.main.async {
+                print("update table")
+                self.tableView.reloadData()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,12 +114,14 @@ class FormController : UITableViewController {
                     for oldView in formTaskCell.stackView.subviews {
                         oldView.removeFromSuperview()
                     }
-                    formTaskCell.stackView.axis = .horizontal
-                    formTaskCell.stackView.distribution = .fillEqually
                     if let photoResult = task.result as? PhotoResult {
                         for image in photoResult.photos {
                             let imageView = UIImageView(image: image)
-                            imageView.frame = CGRect(x: 0, y: 0, width: formTaskCell.stackView.frame.height, height: formTaskCell.stackView.frame.height)
+                            imageView.contentMode = .scaleAspectFit
+                            imageView.translatesAutoresizingMaskIntoConstraints = false
+//                            let sizeConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute:  .width, multiplier: 1.0, constant: 0.0)
+//                            imageView.addConstraint(sizeConstraint)
+                            //imageView.frame = CGRect(x: 0, y: 0, width: formTaskCell.stackView.frame.height, height: formTaskCell.stackView.frame.height)
                             formTaskCell.stackView.addArrangedSubview(imageView)
                         }
                     }

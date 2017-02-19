@@ -59,7 +59,7 @@ class Form : Template {
         if let location = Locations.shared.currentLocation {
             self.locationId = location.id
         }
-        let photosList = PhotoFileList(tasks: tasks)
+        let photosList = PhotoFileList(tasks: tasks, buildWithImages: true)
         if photosList.count == 0 {
             submitForm(completion: completion)
         } else {

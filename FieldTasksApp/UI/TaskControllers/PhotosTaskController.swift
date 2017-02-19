@@ -152,7 +152,7 @@ class PhotosTaskController : TaskController, UIImagePickerControllerDelegate, UI
             setPicture(picture: picture)
         }
         picker.dismiss(animated: true) {
-            print("done")
+
         }
     }
 

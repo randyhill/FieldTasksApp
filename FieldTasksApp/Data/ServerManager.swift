@@ -156,9 +156,39 @@ class ServerMgr {
         })
     }
 
+    func downloadFiles(photoFileList: PhotoFileList, imageUpdate : @escaping (_ updatedIndex: Int)->(), completion : @escaping (_ error: String?)->()) {
+        // Start spinner
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+        // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
+        let mapArray = photoFileList.mapOfUnloaded()
+        for map in mapArray {
+            OperationQueue.main.addOperation({
+               let path = cDownloadPhotoURL + map.fileName!
+                _ = Just.get(path, params: [:]) { (result) in
+                    if let code = result.statusCode, code == 200   {
+                        // Copy image back to original photo result array
+                        if let data = result.content {
+                            if let image = UIImage(data: data) {
+                                map.image = image
+                            }
+                            return imageUpdate(map.resultIndex)
+                        } else {
+                            FTErrorMessage(error: "Server did not have image: \(map.fileName!)")
+                        }
+                    } else {
+                        FTErrorMessage(error: result.error != nil ?  result.error!.localizedDescription : "Server did not have that image")
+                    }
+                }
+            })
+        }
+        OperationQueue.main.addOperation({
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            return completion(nil)
+        })
+   }
 
     func uploadImages(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
-
         // Start spinner
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         SVProgressHUD.showProgress(0.01, status: "Uploading photos")
@@ -166,14 +196,14 @@ class ServerMgr {
         // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
         OperationQueue.main.addOperation({ 
             var files = [String:HTTPFile]()
-            var fileNumber = 0
-            for map in photoFileList.asImageArray() {
+            var fileIndex = 0
+            for map in photoFileList.mapOfAllImages() {
                 // Images saved to server are saved without proper orientation flag
                 // This flag is not being saved to the exif data in the uploaded jpeg image, so make sure image is uploaded in 
                 // vertical orientation as that's what it will display in when read back.
                 if let data = UIImagePNGRepresentation(map.image!.fixOrientation()) {
-                    files["\(fileNumber)"] = HTTPFile.data("\(fileNumber)", data, nil)
-                    fileNumber += 1
+                    files["\(fileIndex)"] = HTTPFile.data("\(fileIndex)", data, nil)
+                    fileIndex += 1
                 }
             }
 
@@ -193,6 +223,5 @@ class ServerMgr {
                 }
             }
         })
-
      }
 }
