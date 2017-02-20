@@ -73,16 +73,24 @@ class TasksController : UIViewController {
         self.requiredLabel.isHidden = !curTask.required
         taskDescription.text = curTask.description
 
-        setBackButton(title: taskIndex == 0 ? "Done" : "Back")
-        setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
+        setBackButton(index: taskIndex)
+        setNextButton(index: taskIndex)
     }
 
-    func setBackButton(title: String) {
-        navigationItem.leftBarButtonItem = FlatBarButton(title: title, target: self, action: #selector(prevTask))
+    func setBackButton(index: Int) {
+        if index == 0 {
+            navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(prevTask))
+        } else {
+            navigationItem.leftBarButtonItem = FlatBarButton(withImageNamed: "leftarrow", target: self, action: #selector(prevTask))
+        }
     }
 
-    func setNextButton(title: String) {
-        navigationItem.rightBarButtonItem = FlatBarButton(title: title, target: self, action: #selector(nextTask))
+    func setNextButton(index: Int) {
+        if index == (form!.tasks.count - 1) {
+            navigationItem.rightBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(nextTask))
+        } else {
+            navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "rightarrow", target: self, action: #selector(nextTask))
+        }
     }
 
     func createNewTask() {
@@ -132,7 +140,7 @@ class TasksController : UIViewController {
         if taskIndex >= 0 {
             self.updateViewValues()
             self.createNewTask()
-            setBackButton(title: taskIndex == 0 ? "Done" : "Back")
+            setBackButton(index: taskIndex)
         } else {
             dismiss(animated: true, completion: nil)
         }
@@ -144,7 +152,7 @@ class TasksController : UIViewController {
         if taskIndex < form!.tasks.count {
             self.updateViewValues()
             self.createNewTask()
-            setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
+            setNextButton(index: taskIndex)
         } else {
             dismiss(animated: true, completion: nil)
         }

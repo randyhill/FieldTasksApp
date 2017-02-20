@@ -9,7 +9,7 @@
 import UIKit
 import FlatUIKit
 
-class NumberTaskController : TaskController {
+class NumberTaskController : TaskController, UITextFieldDelegate {
     @IBOutlet weak var numberField: UITextField!
     @IBOutlet weak var rangeLabel: UILabel!
     @IBOutlet weak var rangeHeight: NSLayoutConstraint!
@@ -28,6 +28,7 @@ class NumberTaskController : TaskController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        numberField.delegate = self
         if !taskData.isUnlimited {
             rangeLabel.text = "Range: \(taskData.minString) to \(taskData.maxString)"
             rangeLabel.isHidden = false
@@ -42,15 +43,16 @@ class NumberTaskController : TaskController {
             numberField.keyboardType = .numberPad
         }
         numberField.addDoneHideKeyboardButtons(title: "Done", target: self, completion: #selector(doneButtonAction))
-        numberField.becomeFirstResponder()
-        numberField.font = Globals.shared.mediumFont
+        if isEditable {
+            numberField.becomeFirstResponder()
+        }
         rangeLabel.makeTitleStyle()
+        numberField.setActiveStyle(isActive: isEditable)
     }
 
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        rangeLabel.isHidden = true
-//    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return isEditable
+    }
 
     func doneButtonAction() {
         self.save()

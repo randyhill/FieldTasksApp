@@ -15,7 +15,11 @@ class MainController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Forms"
+        if let location = location {
+            self.title = location.name
+        } else {
+            self.title = "Forms"
+        }
         self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshList))
         if location != nil {
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))

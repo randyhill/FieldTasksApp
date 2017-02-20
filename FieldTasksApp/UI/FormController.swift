@@ -111,7 +111,6 @@ class FormController : UITableViewController {
                         oldView.removeFromSuperview()
                     }
                     if let photoResult = task.result as? PhotoResult {
-                        print("Create cell: \(indexPath.row) with \(photoResult.photos.count) photos")
                         for image in photoResult.photos {
                             let imageView = UIImageView(image: image)
                             imageView.contentMode = .scaleAspectFit

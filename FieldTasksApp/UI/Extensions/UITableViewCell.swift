@@ -24,7 +24,7 @@ extension UITableViewCell {
     }
 
     func configureHeaderCell() {
-        configureFlatCell(with: UIColor.peterRiver(), selectedColor: UIColor.clouds(), roundingCorners: .allCorners)
+        configureFlatCell(with: UIColor.belizeHole(), selectedColor: UIColor.clouds(), roundingCorners: .allCorners)
         cornerRadius = 5.0
     }
 

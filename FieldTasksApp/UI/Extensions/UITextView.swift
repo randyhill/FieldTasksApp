@@ -54,6 +54,17 @@ extension UITextView {
         self.font = UIFont.flatFont(ofSize: 14)
     }
 
+    func setActiveStyle(isActive : Bool) {
+        if isActive {
+            self.backgroundColor = UIColor.clouds()
+        } else {
+            self.backgroundColor = UIColor.silver()
+        }
+        self.textColor = UIColor.wetAsphalt()
+        self.font = UIFont.boldFlatFont(ofSize: 17)
+        self.isEditable = isActive
+    }
+
     // Keyboard
     func addDoneHideKeyboardButtons(title: String, target: Any?, completion : Selector) {
         let barFrame = CGRect(x: 0, y: 0, width: 320, height: 50)

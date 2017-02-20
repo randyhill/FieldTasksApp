@@ -21,7 +21,7 @@ extension FUIButton {
     }
     func makeFlatBarButton(target: Any?, action: Selector) -> UIBarButtonItem  {
         self.makeFlatButton()
-        self.frame = CGRect(x: 0, y: 0, width: 53, height: 31)
+        self.frame = CGRect(x: 0, y: 0, width: 68, height: 31)
         self.addTarget(target, action: action, for: .touchUpInside)
         return UIBarButtonItem(customView: self)
     }

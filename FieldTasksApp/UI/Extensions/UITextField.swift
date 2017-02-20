@@ -29,4 +29,14 @@ extension UITextField {
     internal func hideKeyboard() {
         self.resignFirstResponder()
     }
+
+    func setActiveStyle(isActive : Bool) {
+        if isActive {
+            self.backgroundColor = UIColor.clouds()
+        } else {
+            self.backgroundColor = UIColor.silver()
+        }
+        self.textColor = UIColor.wetAsphalt()
+        self.font = UIFont.boldFlatFont(ofSize: 17)
+    }
 }
