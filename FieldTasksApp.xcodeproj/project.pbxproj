@@ -57,6 +57,12 @@
 		D88B94E21E36CC4800465793 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DC1E36CC4800465793 /* TPKeyboardAvoidingScrollView.m */; };
 		D88B94E31E36CC4800465793 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94DE1E36CC4800465793 /* TPKeyboardAvoidingTableView.m */; };
 		D88B94E41E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D88B94E01E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		D89770861E5A98C100A9318D /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770831E5A98C100A9318D /* refresh@3x.png */; };
+		D89770871E5A98C100A9318D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770841E5A98C100A9318D /* refresh.png */; };
+		D89770881E5A98C100A9318D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770851E5A98C100A9318D /* refresh@2x.png */; };
+		D89770891E5A99C900A9318D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770841E5A98C100A9318D /* refresh.png */; };
+		D897708A1E5A99C900A9318D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770851E5A98C100A9318D /* refresh@2x.png */; };
+		D897708B1E5A99C900A9318D /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770831E5A98C100A9318D /* refresh@3x.png */; };
 		D8B9DBA71E4BD9CA0054C454 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */; };
 		D8B9DBA81E4BDA4C0054C454 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */; };
 		D8B9DBAA1E4BDAF30054C454 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA91E4BDAF30054C454 /* UITextView.swift */; };
@@ -164,6 +170,9 @@
 		D88B94DE1E36CC4800465793 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingTableView.m; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/TPKeyboardAvoidingTableView.m"; sourceTree = "<group>"; };
 		D88B94DF1E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+TPKeyboardAvoidingAdditions.h"; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		D88B94E01E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+TPKeyboardAvoidingAdditions.m"; path = "../../Downloads/TPKeyboardAvoiding-master/TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		D89770831E5A98C100A9318D /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@3x.png"; path = "Images/refresh@3x.png"; sourceTree = "<group>"; };
+		D89770841E5A98C100A9318D /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
+		D89770851E5A98C100A9318D /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Images/refresh@2x.png"; sourceTree = "<group>"; };
 		D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILabel.swift; path = UI/Extensions/UILabel.swift; sourceTree = "<group>"; };
 		D8B9DBA91E4BDAF30054C454 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextView.swift; path = UI/Extensions/UITextView.swift; sourceTree = "<group>"; };
 		D8C165CC1E47EC1900129439 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = UI/Extensions/UIViewController.swift; sourceTree = "<group>"; };
@@ -400,6 +409,9 @@
 		D8C165E61E48FFD000129439 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D89770841E5A98C100A9318D /* refresh.png */,
+				D89770851E5A98C100A9318D /* refresh@2x.png */,
+				D89770831E5A98C100A9318D /* refresh@3x.png */,
 				D858D9581E576B720059E0EF /* checkmark.png */,
 				D858D9551E576B220059E0EF /* checkmark@2x.png */,
 				D858D9571E576B720059E0EF /* checkmark@3x.png */,
@@ -509,6 +521,7 @@
 			files = (
 				D8F1D6E71E53A8F200A07F70 /* favorites-w@2x.png in Resources */,
 				D8F1D6F31E53A8F200A07F70 /* Icon 180.png in Resources */,
+				D89770881E5A98C100A9318D /* refresh@2x.png in Resources */,
 				D8F1D6F71E53A8F200A07F70 /* text.png in Resources */,
 				D8F1D6F11E53A8F200A07F70 /* Icon 167.png in Resources */,
 				D8549BA81D67871B009DBE7A /* LaunchScreen.storyboard in Resources */,
@@ -518,6 +531,7 @@
 				D8F1D6F51E53A8F200A07F70 /* Icon 228.png in Resources */,
 				D858D9591E576B720059E0EF /* checkmark@3x.png in Resources */,
 				D858D9561E576B220059E0EF /* checkmark@2x.png in Resources */,
+				D89770861E5A98C100A9318D /* refresh@3x.png in Resources */,
 				D8F1D6ED1E53A8F200A07F70 /* Icon 120.png in Resources */,
 				D8F1D6E51E53A8F200A07F70 /* favorites-w.png in Resources */,
 				D82411B91E36B405006D06E2 /* Lato-Regular.ttf in Resources */,
@@ -525,6 +539,7 @@
 				D82411B51E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
 				D8F1D6EB1E53A8F200A07F70 /* Icon 76.png in Resources */,
 				D8F1D6E91E53A8F200A07F70 /* favorites-w@3x.png in Resources */,
+				D89770871E5A98C100A9318D /* refresh.png in Resources */,
 				D858D95A1E576B720059E0EF /* checkmark.png in Resources */,
 				D82411B11E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */,
 				D8F1D6EF1E53A8F200A07F70 /* Icon 152.png in Resources */,
@@ -540,16 +555,19 @@
 				D8F1D6E81E53A8F200A07F70 /* favorites-w@2x.png in Resources */,
 				D858D95D1E576D770059E0EF /* checkmark@2x.png in Resources */,
 				D8F1D6F41E53A8F200A07F70 /* Icon 180.png in Resources */,
+				D897708A1E5A99C900A9318D /* refresh@2x.png in Resources */,
 				D8F1D6F81E53A8F200A07F70 /* text.png in Resources */,
 				D8F1D6F21E53A8F200A07F70 /* Icon 167.png in Resources */,
 				D858D95B1E576D770059E0EF /* checkmark@3x.png in Resources */,
 				D85D53D51D710750006D31F2 /* LaunchScreen.storyboard in Resources */,
 				D82411B41E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
+				D897708B1E5A99C900A9318D /* refresh@3x.png in Resources */,
 				D8F1D6FC1E53A8F200A07F70 /* text@3x.png in Resources */,
 				D85D53D61D710750006D31F2 /* Assets.xcassets in Resources */,
 				D8F1D6F61E53A8F200A07F70 /* Icon 228.png in Resources */,
 				D8F1D6EE1E53A8F200A07F70 /* Icon 120.png in Resources */,
 				D8F1D6E61E53A8F200A07F70 /* favorites-w.png in Resources */,
+				D89770891E5A99C900A9318D /* refresh.png in Resources */,
 				D82411BA1E36B405006D06E2 /* Lato-Regular.ttf in Resources */,
 				D85D53D71D710750006D31F2 /* Main.storyboard in Resources */,
 				D82411B61E36B405006D06E2 /* Lato-Italic.ttf in Resources */,

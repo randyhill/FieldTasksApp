@@ -23,10 +23,9 @@ class FormTasksController : UITableViewController {
         super.viewDidLoad()
 
         self.title = "New: \(form!.name)"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(submitForm))
+        self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Back", target: self, action: #selector(goBack))
+        self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Submit", target: self, action: #selector(submitForm))
         makeNavBarFlat()
-        //self.tableView.backgroundColor = Globals.shared.barColor
     }
 
     func goBack(){

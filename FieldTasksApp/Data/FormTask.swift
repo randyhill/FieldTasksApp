@@ -62,7 +62,7 @@ class FormTask {
                 self.taskDescription = PhotoTaskDescription(dataDict: data!)
                 self.result = PhotoResult(formTask: self, results: results!)
             default:
-                print("can't find type of data")
+                FTErrorMessage(error: "can't find type of data")
                 self.taskDescription = TaskDescription(dataDict: data!)
                 self.result = TaskResult(formTask: self, results: results!)
         }

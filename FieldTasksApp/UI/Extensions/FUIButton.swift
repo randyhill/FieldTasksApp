@@ -19,4 +19,10 @@ extension FUIButton {
         self.setTitleColor(UIColor.clouds(), for: .normal)
         self.setTitleColor(UIColor.clouds(), for: .highlighted)
     }
+    func makeFlatBarButton(target: Any?, action: Selector) -> UIBarButtonItem  {
+        self.makeFlatButton()
+        self.frame = CGRect(x: 0, y: 0, width: 53, height: 31)
+        self.addTarget(target, action: action, for: .touchUpInside)
+        return UIBarButtonItem(customView: self)
+    }
 }

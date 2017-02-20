@@ -26,11 +26,11 @@ class TextTaskController : TaskController {
         super.viewDidLoad()
 
          configureTextView(container: self.view)
-        self.view.addSubview(textView)
+        //self.view.addSubview(textView)
     }
 
     func configureTextView(container : UIView) {
-        textView.frame = (self.view.frame)
+        //textView.frame = (self.view.frame)
         textView.makeFlatTextView()
         textView.isEditable = isEditable
         textView.addDoneHideKeyboardButtons(title: "Done", target: self, completion: #selector(self.doneButton))

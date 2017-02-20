@@ -12,6 +12,7 @@ import FlatUIKit
 class NumberTaskController : TaskController {
     @IBOutlet weak var numberField: UITextField!
     @IBOutlet weak var rangeLabel: UILabel!
+    @IBOutlet weak var rangeHeight: NSLayoutConstraint!
 
     var taskData : NumberTaskDescription {
         get {
@@ -30,8 +31,10 @@ class NumberTaskController : TaskController {
         if !taskData.isUnlimited {
             rangeLabel.text = "Range: \(taskData.minString) to \(taskData.maxString)"
             rangeLabel.isHidden = false
+            rangeHeight.constant = rangeLabel.sizeThatFits(rangeLabel.bounds.size).height
         } else {
             rangeLabel.isHidden = true
+            rangeHeight.constant = 0
         }
         if taskData.isDecimal {
             numberField.keyboardType = .decimalPad
@@ -41,7 +44,13 @@ class NumberTaskController : TaskController {
         numberField.addDoneHideKeyboardButtons(title: "Done", target: self, completion: #selector(doneButtonAction))
         numberField.becomeFirstResponder()
         numberField.font = Globals.shared.mediumFont
+        rangeLabel.makeTitleStyle()
     }
+
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        rangeLabel.isHidden = true
+//    }
 
     func doneButtonAction() {
         self.save()
@@ -67,6 +76,7 @@ class NumberTaskController : TaskController {
     override func save() {
         numberResult.save(newText: numberField.text!)
         numberField.resignFirstResponder()
+        rangeLabel.isHidden = true
     }
 
     private func setNumberValue() {

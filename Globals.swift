@@ -35,6 +35,22 @@ class Globals {
     }
 }
 
+func FlatBarButton(title: String, target: Any?, action: Selector) -> UIBarButtonItem {
+    let customButton = FUIButton(type: .custom)
+    customButton.setTitle(title, for: .normal)
+    customButton.setTitle(title, for: .highlighted)
+    return customButton.makeFlatBarButton(target: target, action: action)
+}
+
+func FlatBarButton(withImageNamed: String, target: Any?, action: Selector) -> UIBarButtonItem {
+    let customButton = FUIButton(type: .custom)
+    let image = UIImage(named: withImageNamed)
+    FTAssert(isTrue: image != nil, error: "Couldn't load button image: \(withImageNamed)")
+    customButton.setImage(image, for: .normal)
+    customButton.setImage(image, for: .normal)
+    return customButton.makeFlatBarButton(target: target, action: action)
+}
+
 enum FTError : Error {
     case RunTimeError(String)
 }

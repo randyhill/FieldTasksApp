@@ -162,6 +162,7 @@ class ServerMgr {
 
         // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
         let mapArray = photoFileList.mapOfUnloaded()
+        var fileCount = mapArray.count
         for map in mapArray {
             OperationQueue.main.addOperation({
                let path = cDownloadPhotoURL + map.fileName!
@@ -172,20 +173,25 @@ class ServerMgr {
                             if let image = UIImage(data: data) {
                                 map.image = image
                             }
-                            return imageUpdate(map.resultIndex)
+                            imageUpdate(map.resultIndex)
                         } else {
                             FTErrorMessage(error: "Server did not have image: \(map.fileName!)")
                         }
                     } else {
                         FTErrorMessage(error: result.error != nil ?  result.error!.localizedDescription : "Server did not have that image")
                     }
+                    fileCount -= 1
+                    if fileCount == 0 {
+                        // Completely done, let view do full update
+                        OperationQueue.main.addOperation({
+                            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                            return completion(nil)
+                        })
+                    }
                 }
             })
         }
-        OperationQueue.main.addOperation({
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            return completion(nil)
-        })
+
    }
 
     func uploadImages(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {

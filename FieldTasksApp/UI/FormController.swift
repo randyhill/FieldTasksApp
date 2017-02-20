@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlatUIKit
 
 class FormTaskCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
@@ -32,7 +33,7 @@ class FormController : UITableViewController {
         FTAssert(isTrue: form != nil, error: "Form was not set before opening view")
         self.title = "Form"
         self.tableView.allowsSelection = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(goBack))
+        navigationItem.leftBarButtonItem = FlatBarButton(title: "Back", target: self, action: #selector(goBack))
         makeNavBarFlat()
     }
 
@@ -46,18 +47,13 @@ class FormController : UITableViewController {
         let photosList = PhotoFileList(tasks: form!.tasks, buildWithImages: false)
         ServerMgr.shared.downloadFiles(photoFileList: photosList, imageUpdate: { (index) in
             DispatchQueue.main.async {
-                print("Update index: \(index)")
                 self.tableView.beginUpdates()
-                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                self.tableView.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .automatic)
                 self.tableView.endUpdates()
             }
         }, completion: { (error) in
             if let error = error {
                 FTErrorMessage(error: "Could not download all photos: \(error)")
-            }
-            DispatchQueue.main.async {
-                print("update table")
-                self.tableView.reloadData()
             }
         })
     }
@@ -115,13 +111,11 @@ class FormController : UITableViewController {
                         oldView.removeFromSuperview()
                     }
                     if let photoResult = task.result as? PhotoResult {
+                        print("Create cell: \(indexPath.row) with \(photoResult.photos.count) photos")
                         for image in photoResult.photos {
                             let imageView = UIImageView(image: image)
                             imageView.contentMode = .scaleAspectFit
                             imageView.translatesAutoresizingMaskIntoConstraints = false
-//                            let sizeConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute:  .width, multiplier: 1.0, constant: 0.0)
-//                            imageView.addConstraint(sizeConstraint)
-                            //imageView.frame = CGRect(x: 0, y: 0, width: formTaskCell.stackView.frame.height, height: formTaskCell.stackView.frame.height)
                             formTaskCell.stackView.addArrangedSubview(imageView)
                         }
                     }

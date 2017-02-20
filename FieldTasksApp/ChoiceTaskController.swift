@@ -31,55 +31,19 @@ class Choice {
     init(frame : CGRect, width: CGFloat, handler: ChoiceTaskController, title: String) {
         // Make label for title
         var labelFrame = frame
-        labelFrame.origin.x = width + 16.0
+        labelFrame.origin.x = width + 24.0
         switchSize.width = width
         label.frame = labelFrame
         label.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: handler, action: #selector(ChoiceTaskController.labelTap))
         label.addGestureRecognizer(tapGesture)
         label.text = title;
+        label.makeTitleStyle()
     }
 
     func setIndex(listIndex : Int) {
         self.listIndex = listIndex
         label.tag = listIndex
-    }
-}
-
-// MARK: Checkbox Class -------------------------------------------------------------------------------
-class Checkbox : Choice {
-    private var _on = false
-    private var button = UIButton()
-    override var on : Bool {
-        get {
-            return _on
-        }
-        set(newOn) {
-            _on = newOn
-            if newOn {
-                button.setTitle("X", for: .normal)
-            } else {
-                button.setTitle("", for: .normal)
-            }
-        }
-    }
-
-    init(frame : CGRect, handler: ChoiceTaskController, title : String, isEnabled: Bool) {
-        super.init(frame : frame, width: 34.0, handler: handler, title: title)
-        button.frame = frame
-        button.frame.size.width = frame.height
-        button.layer.borderWidth = 2.0
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 18.0)
-        button.addTarget(handler, action: #selector(ChoiceTaskController.didCheck), for: .touchUpInside)
-        button.isEnabled = isEnabled
-        button.backgroundColor = UIColor.silver()
-        view = button
-     }
-
-    override func setIndex(listIndex : Int) {
-        super.setIndex(listIndex: listIndex)
-        button.tag = listIndex
     }
 }
 
@@ -108,6 +72,44 @@ class Switchbox : Choice {
         _switch.offLabel.font = UIFont.boldFlatFont(ofSize: 14)
         _switch.onLabel.font = UIFont.boldFlatFont(ofSize: 14)
         _switch.isOn = false
+    }
+}
+
+
+// MARK: Checkbox Class -------------------------------------------------------------------------------
+class Checkbox : Switchbox {
+    private var _on = false
+    //private var button = UIButton()
+//    override var on : Bool {
+//        get {
+//            return _on
+//        }
+//        set(newOn) {
+//            _on = newOn
+//            if newOn {
+//                button.setTitle("X", for: .normal)
+//            } else {
+//                button.setTitle("", for: .normal)
+//            }
+//        }
+//    }
+
+//    init(frame : CGRect, handler: ChoiceTaskController, title : String, isEnabled: Bool) {
+//        super.init(frame : frame, width: 34.0, handler: handler, title: title)
+//        button.frame = frame
+//        button.frame.size.width = frame.height
+//        button.layer.borderWidth = 2.0
+//        button.setTitleColor(UIColor.black, for: .normal)
+//        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 18.0)
+//        button.addTarget(handler, action: #selector(ChoiceTaskController.didCheck), for: .touchUpInside)
+//        button.isEnabled = isEnabled
+//        button.backgroundColor = UIColor.silver()
+//        view = button
+//    }
+
+    override func setIndex(listIndex : Int) {
+        super.setIndex(listIndex: listIndex)
+//        button.tag = listIndex
     }
 }
 

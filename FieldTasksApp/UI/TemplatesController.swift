@@ -22,10 +22,9 @@ class TemplatesController: UITableViewController {
         super.viewDidLoad()
 
         self.title = "Templates"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(goBack))
+        self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshList))
+        self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
         makeNavBarFlat()
-
         self.refreshList()
     }
 
@@ -39,7 +38,7 @@ class TemplatesController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         ServerMgr.shared.loadTemplates(location: location) { (result, error) in
             if error != nil {
-                print("Failed to load forms: \(error)")
+                FTErrorMessage(error: "Failed to load forms: \(error)")
             } else {
                 if let formList = result  {
                     self.templatesList.removeAll()

@@ -28,7 +28,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
         self.mgr.delegate = self;
         self.mgr.requestWhenInUseAuthorization()
         self.refresh(completion: { (error) in
-            print("unable to load locations at initialize: \(error)")
+            FTErrorMessage(error: "unable to load locations at initialize: \(error)")
         })
     }
 
@@ -46,7 +46,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
+        FTErrorMessage(error: error.localizedDescription)
     }
 
     func refresh(completion: @escaping (_ error: String?)->()) {

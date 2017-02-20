@@ -22,7 +22,7 @@ class LocationsController: UITableViewController, LocationUpdates {
         super.viewDidLoad()
 
         self.title = "Locations"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshFromServer))
+        self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshFromServer))
         makeNavBarFlat()
         locations.delegate = self
     }

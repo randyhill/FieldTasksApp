@@ -22,19 +22,26 @@ class TasksController : UIViewController {
         }
     }
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var requiredLabel: UILabel!
     @IBOutlet var taskDescription : UITextView!
     @IBOutlet var taskView : UIView!
     @IBOutlet var doneButton : FUIButton!
+    @IBOutlet weak var descriptionHeight: NSLayoutConstraint!
+    @IBOutlet weak var descriptionTitleConstraint: NSLayoutConstraint!
+    @IBOutlet weak var requiredConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         makeNavBarFlat()
         self.view.backgroundColor = Globals.shared.bgColor
-        self.descriptionLabel.textColor = Globals.shared.textColor
-        self.descriptionLabel.font = Globals.shared.bigFont
-        self.taskDescription.textColor = Globals.shared.textColor
-        self.taskDescription.font = Globals.shared.mediumFont
+        self.descriptionLabel.makeTitleStyle()
+        self.taskDescription.makeDetailStyle()
+        self.requiredLabel.makeTitleStyle()
+//        self.descriptionLabel.textColor = Globals.shared.textColor
+//        self.descriptionLabel.font = Globals.shared.bigFont
+//        self.taskDescription.textColor = Globals.shared.textColor
+//        self.taskDescription.font = Globals.shared.mediumFont
         self.taskView.backgroundColor = Globals.shared.bgColor
         doneButton.makeFlatButton()
     }
@@ -61,24 +68,21 @@ class TasksController : UIViewController {
         } else {
             barTitle = "Task"
         }
-        if curTask.required {
-            barTitle += " (required)"
-        }
+
         self.title = barTitle;
-        self.taskDescription.text = curTask.description
+        self.requiredLabel.isHidden = !curTask.required
+        taskDescription.text = curTask.description
 
         setBackButton(title: taskIndex == 0 ? "Done" : "Back")
         setNextButton(title: taskIndex == (form!.tasks.count - 1) ? "Done" : "Next")
     }
 
     func setBackButton(title: String) {
-        let backButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(prevTask))
-        navigationItem.leftBarButtonItem = backButton
+        navigationItem.leftBarButtonItem = FlatBarButton(title: title, target: self, action: #selector(prevTask))
     }
 
     func setNextButton(title: String) {
-        let nextButton = UIBarButtonItem(title: title, style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextTask))
-        navigationItem.rightBarButtonItem = nextButton
+        navigationItem.rightBarButtonItem = FlatBarButton(title: title, target: self, action: #selector(nextTask))
     }
 
     func createNewTask() {

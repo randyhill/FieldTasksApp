@@ -16,10 +16,10 @@ class MainController: UITableViewController {
         super.viewDidLoad()
 
         self.title = "Forms"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
+        self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshList))
         if location != nil {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(goBack))
-        }
+            self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
+         }
         makeNavBarFlat()
     }
 
@@ -33,7 +33,7 @@ class MainController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         ServerMgr.shared.loadForms(location: location) { (result, error) in
             if error != nil {
-                print("Failed to load forms: \(error)")
+                FTErrorMessage(error: "Failed to load forms: \(error)")
             } else {
                 if let formList = result  {
                     self.formsList.removeAll()

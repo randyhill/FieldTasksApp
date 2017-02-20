@@ -22,24 +22,31 @@ func initParentTaskControllerArea(view: UIView, parentController: TasksControlle
     view.backgroundColor = parentController.view.backgroundColor
 
     // Adjust location of description field based on it's size
-    if let textView = parentController.taskDescription, let label = parentController.descriptionLabel {
+    if let descriptionView = parentController.taskDescription, let label = parentController.descriptionLabel,
+        let descriptionHeight = parentController.descriptionHeight, let descriptionTitle = parentController.descriptionTitleConstraint,
+        let requiredConstraint = parentController.requiredConstraint, let requiredLabel = parentController.requiredLabel {
         if task.description.characters.count == 0 {
             // No Description, hide title/field
             label.isHidden = true
-            textView.isHidden = true
-            textView.frame.origin.x = 0
-            textView.frame.size.height = 10
+            descriptionView.isHidden = true
+            descriptionHeight.constant = 0
+            descriptionTitle.constant = 0
+            if requiredLabel.isHidden {
+                // Only hide the title area if the required text isn't
+                requiredConstraint.constant = 0
+             } else {
+                requiredConstraint.constant = requiredLabel.sizeThatFits(requiredLabel.bounds.size).height
+            }
         } else {
             parentController.descriptionLabel.isHidden = false
-            textView.isHidden = false
+            descriptionView.isHidden = false
 
-            let contentSize = textView.sizeThatFits(textView.bounds.size)
-            var frame = textView.frame
-            frame.size.height = contentSize.height
-            textView.frame = frame
+            let contentSize = descriptionView.sizeThatFits(descriptionView.bounds.size)
+            descriptionHeight.constant = contentSize.height
+            descriptionTitle.constant = label.sizeThatFits(label.bounds.size).height
+            requiredConstraint.constant = requiredLabel.sizeThatFits(requiredLabel.bounds.size).height
         }
-        let aspectRatioTextViewConstraint = NSLayoutConstraint(item: textView, attribute: .height, relatedBy: .equal, toItem: textView, attribute: .width, multiplier: textView.bounds.height/textView.bounds.width, constant: 1)
-        textView.addConstraint(aspectRatioTextViewConstraint)
+        view.layoutIfNeeded()
     }
 }
 
