@@ -20,7 +20,7 @@ class Globals {
     let textColor = UIColor.clouds()
     let bgColor = UIColor.greenSea()
     let barColor = UIColor.asbestos()
-    let barButtonColor = UIColor.belizeHole()
+    let barButtonColor = UIColor.peterRiver()
 
     init() {
         utcFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -32,6 +32,11 @@ class Globals {
 
         UIBarButtonItem.configureFlatButtons(with: barButtonColor, highlightedColor: barButtonColor, cornerRadius: 3.0)
         SVProgressHUD.setMinimumDismissTimeInterval(3)
+
+        // tab bar
+        UITabBar.appearance().tintColor = barButtonColor
+        UITabBar.appearance().barTintColor = UIColor.clouds()
+
     }
 }
 

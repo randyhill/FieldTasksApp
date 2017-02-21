@@ -19,6 +19,16 @@ extension FUIButton {
         self.setTitleColor(UIColor.clouds(), for: .normal)
         self.setTitleColor(UIColor.clouds(), for: .highlighted)
     }
+
+    func makeFlatImageButton(imageNamed: String) {
+        if let image = UIImage(named: imageNamed) {
+            self.setImage(image, for: .normal)
+            self.setImage(image, for: .highlighted)
+            self.tintColor = UIColor.clouds()
+            self.makeFlatButton()
+        }
+    }
+
     func makeFlatBarButton(target: Any?, action: Selector) -> UIBarButtonItem  {
         self.makeFlatButton()
         self.frame = CGRect(x: 0, y: 0, width: 68, height: 31)

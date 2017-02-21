@@ -88,9 +88,9 @@ class LocationsController: UITableViewController, LocationUpdates {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let location = locations.list[indexPath.row]
-        if let mainController = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as? MainController {
-            mainController.location = location
-            let navController = UINavigationController(rootViewController: mainController) // Creating a navigation controller with resultController at the root of the navigation stack.
+        if let formsController = self.storyboard?.instantiateViewController(withIdentifier: "FormsController") as? FormsController {
+            formsController.location = location
+            let navController = UINavigationController(rootViewController: formsController) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {
 
             })

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		02DC79A19BED6F37D1045500 /* Pods_FieldTasksApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE8420CBC9B3A1B24799E213 /* Pods_FieldTasksApp.framework */; };
 		2A93717BDF54F2F84376DF30 /* Pods_FieldTasksApp_Local.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE7A32FB2AD4BDB1E5B9D84 /* Pods_FieldTasksApp_Local.framework */; };
-		D82411A11E301BE6006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
-		D82411A31E301D5A006D06E2 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* MainController.swift */; };
+		D82411A11E301BE6006D06E2 /* FormsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* FormsController.swift */; };
+		D82411A31E301D5A006D06E2 /* FormsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A01E301BE6006D06E2 /* FormsController.swift */; };
 		D82411A51E315517006D06E2 /* FormTasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* FormTasksController.swift */; };
 		D82411A61E315517006D06E2 /* FormTasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82411A41E315517006D06E2 /* FormTasksController.swift */; };
 		D82411B11E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */; };
@@ -87,6 +87,16 @@
 		D89770AD1E5B801100A9318D /* forms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770A81E5B801100A9318D /* forms@2x.png */; };
 		D89770AE1E5B801100A9318D /* forms.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770A91E5B801100A9318D /* forms.png */; };
 		D89770AF1E5B801100A9318D /* forms.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770A91E5B801100A9318D /* forms.png */; };
+		D89770B41E5BBE6400A9318D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770B31E5BBE6400A9318D /* CustomTabBar.swift */; };
+		D89770B51E5BBE6400A9318D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770B31E5BBE6400A9318D /* CustomTabBar.swift */; };
+		D89770B91E5BC09F00A9318D /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B61E5BC09F00A9318D /* plus.png */; };
+		D89770BA1E5BC09F00A9318D /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B61E5BC09F00A9318D /* plus.png */; };
+		D89770BB1E5BC09F00A9318D /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B71E5BC09F00A9318D /* plus@2x.png */; };
+		D89770BC1E5BC09F00A9318D /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B71E5BC09F00A9318D /* plus@2x.png */; };
+		D89770BD1E5BC09F00A9318D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B81E5BC09F00A9318D /* refresh.png */; };
+		D89770BE1E5BC09F00A9318D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B81E5BC09F00A9318D /* refresh.png */; };
+		D89770C01E5BC49200A9318D /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsListController.swift */; };
+		D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsListController.swift */; };
 		D8B9DBA71E4BD9CA0054C454 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */; };
 		D8B9DBA81E4BDA4C0054C454 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */; };
 		D8B9DBAA1E4BDAF30054C454 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA91E4BDAF30054C454 /* UITextView.swift */; };
@@ -153,7 +163,7 @@
 		7BE7A32FB2AD4BDB1E5B9D84 /* Pods_FieldTasksApp_Local.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FieldTasksApp_Local.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEB5688752EF3DB8FAD426F /* Pods-FieldTasksApp Local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp Local.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local.release.xcconfig"; sourceTree = "<group>"; };
 		D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.debug.xcconfig"; sourceTree = "<group>"; };
-		D82411A01E301BE6006D06E2 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = UI/MainController.swift; sourceTree = "<group>"; };
+		D82411A01E301BE6006D06E2 /* FormsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsController.swift; path = UI/FormsController.swift; sourceTree = "<group>"; };
 		D82411A41E315517006D06E2 /* FormTasksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormTasksController.swift; path = UI/FormTasksController.swift; sourceTree = "<group>"; };
 		D82411AB1E36B405006D06E2 /* flat-ui-icons-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "flat-ui-icons-regular.ttf"; path = "Resources/flat-ui-icons-regular.ttf"; sourceTree = "<group>"; };
 		D82411AC1E36B405006D06E2 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "Resources/Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -203,6 +213,11 @@
 		D89770A71E5B801100A9318D /* forms@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forms@3x.png"; path = "Images/forms@3x.png"; sourceTree = "<group>"; };
 		D89770A81E5B801100A9318D /* forms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forms@2x.png"; path = "Images/forms@2x.png"; sourceTree = "<group>"; };
 		D89770A91E5B801100A9318D /* forms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = forms.png; path = Images/forms.png; sourceTree = "<group>"; };
+		D89770B31E5BBE6400A9318D /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomTabBar.swift; path = UI/CustomTabBar.swift; sourceTree = "<group>"; };
+		D89770B61E5BC09F00A9318D /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = Images/plus.png; sourceTree = "<group>"; };
+		D89770B71E5BC09F00A9318D /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus@2x.png"; path = "Images/plus@2x.png"; sourceTree = "<group>"; };
+		D89770B81E5BC09F00A9318D /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
+		D89770BF1E5BC49200A9318D /* FormsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsListController.swift; path = UI/FormsListController.swift; sourceTree = "<group>"; };
 		D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILabel.swift; path = UI/Extensions/UILabel.swift; sourceTree = "<group>"; };
 		D8B9DBA91E4BDAF30054C454 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextView.swift; path = UI/Extensions/UITextView.swift; sourceTree = "<group>"; };
 		D8C165CC1E47EC1900129439 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = UI/Extensions/UIViewController.swift; sourceTree = "<group>"; };
@@ -279,11 +294,13 @@
 			isa = PBXGroup;
 			children = (
 				D8549B9E1D67871B009DBE7A /* Main.storyboard */,
+				D82411A01E301BE6006D06E2 /* FormsController.swift */,
+				D89770BF1E5BC49200A9318D /* FormsListController.swift */,
 				D8F1D70C1E53A92700A07F70 /* FormController.swift */,
 				D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */,
 				D85C8C0D1E45289300B5404F /* LocationsController.swift */,
-				D82411A01E301BE6006D06E2 /* MainController.swift */,
 				D82411A41E315517006D06E2 /* FormTasksController.swift */,
+				D89770B31E5BBE6400A9318D /* CustomTabBar.swift */,
 				D826E6C41D6D2B87002B91AE /* TaskControllers */,
 				D8C165CB1E47EBEE00129439 /* Extensions */,
 				D88B94D71E36CBE100465793 /* TPKeyboardAvoiding */,
@@ -436,6 +453,9 @@
 		D8C165E61E48FFD000129439 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D89770B61E5BC09F00A9318D /* plus.png */,
+				D89770B71E5BC09F00A9318D /* plus@2x.png */,
+				D89770B81E5BC09F00A9318D /* refresh.png */,
 				D858D9581E576B720059E0EF /* checkmark.png */,
 				D858D9551E576B220059E0EF /* checkmark@2x.png */,
 				D858D9571E576B720059E0EF /* checkmark@3x.png */,
@@ -556,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8F1D6E71E53A8F200A07F70 /* favorites-w@2x.png in Resources */,
+				D89770BD1E5BC09F00A9318D /* refresh.png in Resources */,
 				D89770AE1E5B801100A9318D /* forms.png in Resources */,
 				D8F1D6F31E53A8F200A07F70 /* Icon 180.png in Resources */,
 				D89770AC1E5B801100A9318D /* forms@2x.png in Resources */,
@@ -566,7 +587,9 @@
 				D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */,
 				D89770AA1E5B801100A9318D /* forms@3x.png in Resources */,
 				D8F1D6F51E53A8F200A07F70 /* Icon 228.png in Resources */,
+				D89770B91E5BC09F00A9318D /* plus.png in Resources */,
 				D897709A1E5B731600A9318D /* rightarrow@2x.png in Resources */,
+				D89770BB1E5BC09F00A9318D /* plus@2x.png in Resources */,
 				D897708F1E5B730700A9318D /* leftarrow.png in Resources */,
 				D858D9591E576B720059E0EF /* checkmark@3x.png in Resources */,
 				D858D9561E576B220059E0EF /* checkmark@2x.png in Resources */,
@@ -598,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8F1D6E81E53A8F200A07F70 /* favorites-w@2x.png in Resources */,
+				D89770BE1E5BC09F00A9318D /* refresh.png in Resources */,
 				D89770AF1E5B801100A9318D /* forms.png in Resources */,
 				D858D95D1E576D770059E0EF /* checkmark@2x.png in Resources */,
 				D89770AD1E5B801100A9318D /* forms@2x.png in Resources */,
@@ -608,7 +632,9 @@
 				D85D53D51D710750006D31F2 /* LaunchScreen.storyboard in Resources */,
 				D82411B41E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
 				D89770AB1E5B801100A9318D /* forms@3x.png in Resources */,
+				D89770BA1E5BC09F00A9318D /* plus.png in Resources */,
 				D897708B1E5A99C900A9318D /* refresh@3x.png in Resources */,
+				D89770BC1E5BC09F00A9318D /* plus@2x.png in Resources */,
 				D897709B1E5B731600A9318D /* rightarrow@2x.png in Resources */,
 				D89770901E5B730700A9318D /* leftarrow.png in Resources */,
 				D85D53D61D710750006D31F2 /* Assets.xcassets in Resources */,
@@ -739,6 +765,7 @@
 				D88B94E21E36CC4800465793 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				D8F1D6D21E521CFB00A07F70 /* PhotosTaskController.swift in Sources */,
 				D8F1D7181E53A96900A07F70 /* Form.swift in Sources */,
+				D89770B41E5BBE6400A9318D /* CustomTabBar.swift in Sources */,
 				D88B94E11E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				D8B9DBA71E4BD9CA0054C454 /* UILabel.swift in Sources */,
 				D8F1D71A1E53A96900A07F70 /* FormTask.swift in Sources */,
@@ -754,8 +781,9 @@
 				D8F1D70A1E53A91800A07F70 /* TextTaskController.swift in Sources */,
 				D8DB034C1E4A5247001BA901 /* Template.swift in Sources */,
 				D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */,
-				D82411A11E301BE6006D06E2 /* MainController.swift in Sources */,
+				D82411A11E301BE6006D06E2 /* FormsController.swift in Sources */,
 				D8F1D7081E53A91800A07F70 /* TasksController.swift in Sources */,
+				D89770C01E5BC49200A9318D /* FormsListController.swift in Sources */,
 				D8B9DBAA1E4BDAF30054C454 /* UITextView.swift in Sources */,
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
@@ -784,12 +812,13 @@
 				D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */,
 				D8F1D71F1E53A96900A07F70 /* ServerManager.swift in Sources */,
 				D8C165D61E47ECD500129439 /* UITableViewCell.swift in Sources */,
-				D82411A31E301D5A006D06E2 /* MainController.swift in Sources */,
+				D82411A31E301D5A006D06E2 /* FormsController.swift in Sources */,
 				D8C165D91E47FF2400129439 /* Locations.swift in Sources */,
 				D8F1D7191E53A96900A07F70 /* Form.swift in Sources */,
 				D8F1D7111E53A92700A07F70 /* TemplatesController.swift in Sources */,
 				D8DB034D1E4A5274001BA901 /* Template.swift in Sources */,
 				D8C165D41E47ECCF00129439 /* UIViewController.swift in Sources */,
+				D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */,
 				D8F1D71B1E53A96900A07F70 /* FormTask.swift in Sources */,
 				D8F1D71D1E53A96900A07F70 /* Location.swift in Sources */,
 				D8F1D7211E53A96900A07F70 /* TaskDescriptions.swift in Sources */,
@@ -797,6 +826,7 @@
 				D8F1D70F1E53A92700A07F70 /* FormController.swift in Sources */,
 				D8F1D6D81E522A8600A07F70 /* PhotosTaskController.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
+				D89770B51E5BBE6400A9318D /* CustomTabBar.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
 				D858D9531E553DE10059E0EF /* FUIButton.swift in Sources */,
 				D85D53E11D711051006D31F2 /* Globals.swift in Sources */,

@@ -17,7 +17,7 @@ extension UIViewController {
     }
 
     func makeNavBarFlat() {
-        self.navigationController?.navigationBar.configureFlatNavigationBar(with: Globals.shared.barColor)
+        self.navigationController?.navigationBar.configureFlatNavigationBar(with: UIColor.belizeHole())//Globals.shared.barColor)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.clouds(), NSFontAttributeName : Globals.shared.bigFont]
         self.navigationController?.navigationBar.tintColor = UIColor.clouds()
     }
