@@ -8,7 +8,6 @@
 
 import UIKit
 import FlatUIKit
-import SVProgressHUD
 
 class TasksController : UIViewController {
     var form : Template?
@@ -38,10 +37,6 @@ class TasksController : UIViewController {
         self.descriptionLabel.makeTitleStyle()
         self.taskDescription.makeDetailStyle()
         self.requiredLabel.makeTitleStyle()
-//        self.descriptionLabel.textColor = Globals.shared.textColor
-//        self.descriptionLabel.font = Globals.shared.bigFont
-//        self.taskDescription.textColor = Globals.shared.textColor
-//        self.taskDescription.font = Globals.shared.mediumFont
         self.taskView.backgroundColor = Globals.shared.bgColor
         doneButton.makeFlatButton()
     }

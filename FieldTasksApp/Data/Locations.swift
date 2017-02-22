@@ -10,14 +10,14 @@ import UIKit
 import CoreLocation
 
 protocol LocationUpdates {
-    func newlocation(location : Location?)
+    func newlocation(location : FTLocation?)
 }
 
 class Locations : NSObject, CLLocationManagerDelegate {
     static let shared = Locations()
-    var mgr = CLLocationManager()
-    var list = [Location]()
-    var currentLocation : Location?
+    private var mgr = CLLocationManager()
+    var list = [FTLocation]()
+    var currentLocation : FTLocation?
     var delegate : LocationUpdates?
     var curAccuracy = CLLocationAccuracy()
 
@@ -59,7 +59,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
                 for location in newList {
                     if let locationDict = location as? [String : AnyObject] {
                         do {
-                            let location = try Location(locationDict: locationDict)
+                            let location = try FTLocation(locationDict: locationDict)
                             self.list += [location]
                         } catch FTError.RunTimeError(let errorMessage) {
                             completion(errorMessage)
@@ -77,7 +77,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
     // Resort to put current location at top.
     func sort() {
         if let currentLoc = currentLocation {
-            var newList = [Location]()
+            var newList = [FTLocation]()
             newList += [currentLoc]
             for location in list {
                 if location.id != currentLoc.id {
@@ -92,7 +92,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
         list.removeAll()
     }
 
-    func getBy(id: String) -> Location? {
+    func getBy(id: String) -> FTLocation? {
         for location in list {
             if location.id == id {
                 return location
@@ -101,8 +101,8 @@ class Locations : NSObject, CLLocationManagerDelegate {
         return nil
     }
 
-    func closestLocation(to: CLLocation) -> Location? {
-        var closest : Location?
+    func closestLocation(to: CLLocation) -> FTLocation? {
+        var closest : FTLocation?
         var closestDistance = Double.greatestFiniteMagnitude
         for loc in list {
             let distance = loc.distanceFrom(location: to)
@@ -114,8 +114,8 @@ class Locations : NSObject, CLLocationManagerDelegate {
         return closest
     }
 
-    func inLocation(to: CLLocation) -> Location? {
-        var closest : Location?
+    func inLocation(to: CLLocation) -> FTLocation? {
+        var closest : FTLocation?
         var closestDistance = Double.greatestFiniteMagnitude
         for loc in list {
             let distance = loc.distanceFrom(location: to)
@@ -129,5 +129,39 @@ class Locations : NSObject, CLLocationManagerDelegate {
         } else {
             return nil;
         }
+    }
+
+    func inLocation() -> FTLocation? {
+        if let cloc = mgr.location {
+            return inLocation(to: cloc)
+        }
+        return nil
+    }
+
+    func currentAddress(completion: @escaping (_ locationDict: [AnyHashable : Any])->()) {
+        if let location = mgr.location {
+            clLocationToAddress(location: location, completion: completion)
+        }
+    }
+
+    func coordinatesToAddress(coordinates: CLLocationCoordinate2D, completion: @escaping (_ locationDict: [AnyHashable : Any])->()) {
+        let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        clLocationToAddress(location: location, completion: completion)
+    }
+
+    func clLocationToAddress(location: CLLocation, completion: @escaping (_ locationDict: [AnyHashable : Any])->()) {
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, err) in
+            if err != nil {
+                FTErrorMessage(error: "Failed to get address: \(err)")
+            } else if let locationDict = placemarks?[0].addressDictionary {
+                completion(locationDict)
+            }
+        })
+    }
+
+
+    func currentCLLocation() -> CLLocation? {
+        return mgr.location
     }
 }

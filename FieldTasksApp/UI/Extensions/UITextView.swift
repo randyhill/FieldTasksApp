@@ -61,7 +61,7 @@ extension UITextView {
             self.backgroundColor = UIColor.silver()
         }
         self.textColor = UIColor.wetAsphalt()
-        self.font = UIFont.boldFlatFont(ofSize: 17)
+        self.font = UIFont.boldFlatFont(ofSize: 15)
         self.isEditable = isActive
     }
 

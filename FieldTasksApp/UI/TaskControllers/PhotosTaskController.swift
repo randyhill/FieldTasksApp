@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 import FlatUIKit
 
 class PhotoCell : UICollectionViewCell {
@@ -104,7 +103,7 @@ class PhotosTaskController : TaskController, UIImagePickerControllerDelegate, UI
                                 self.setPicture(picture: image)
                             }
                         } else {
-                            SVProgressHUD.showError(withStatus: errorString)
+                            FTAlertError(message: errorString ?? "Unknown error")
                         }
                     }
                 })

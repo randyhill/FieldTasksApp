@@ -97,6 +97,14 @@
 		D89770BE1E5BC09F00A9318D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B81E5BC09F00A9318D /* refresh.png */; };
 		D89770C01E5BC49200A9318D /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsListController.swift */; };
 		D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsListController.swift */; };
+		D89770CB1E5CB5B600A9318D /* active-location.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770C81E5CB5B600A9318D /* active-location.png */; };
+		D89770CC1E5CB5B600A9318D /* active-location.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770C81E5CB5B600A9318D /* active-location.png */; };
+		D89770CD1E5CB5B600A9318D /* active-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770C91E5CB5B600A9318D /* active-location@2x.png */; };
+		D89770CE1E5CB5B600A9318D /* active-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770C91E5CB5B600A9318D /* active-location@2x.png */; };
+		D89770CF1E5CB5B600A9318D /* active-location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770CA1E5CB5B600A9318D /* active-location@3x.png */; };
+		D89770D01E5CB5B600A9318D /* active-location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770CA1E5CB5B600A9318D /* active-location@3x.png */; };
+		D89770D21E5CBBFD00A9318D /* NewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* NewLocationController.swift */; };
+		D89770D31E5CBBFD00A9318D /* NewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* NewLocationController.swift */; };
 		D8B9DBA71E4BD9CA0054C454 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */; };
 		D8B9DBA81E4BDA4C0054C454 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */; };
 		D8B9DBAA1E4BDAF30054C454 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA91E4BDAF30054C454 /* UITextView.swift */; };
@@ -147,8 +155,8 @@
 		D8F1D7191E53A96900A07F70 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7121E53A96900A07F70 /* Form.swift */; };
 		D8F1D71A1E53A96900A07F70 /* FormTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7131E53A96900A07F70 /* FormTask.swift */; };
 		D8F1D71B1E53A96900A07F70 /* FormTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7131E53A96900A07F70 /* FormTask.swift */; };
-		D8F1D71C1E53A96900A07F70 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7141E53A96900A07F70 /* Location.swift */; };
-		D8F1D71D1E53A96900A07F70 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7141E53A96900A07F70 /* Location.swift */; };
+		D8F1D71C1E53A96900A07F70 /* FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7141E53A96900A07F70 /* FTLocation.swift */; };
+		D8F1D71D1E53A96900A07F70 /* FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7141E53A96900A07F70 /* FTLocation.swift */; };
 		D8F1D71E1E53A96900A07F70 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7151E53A96900A07F70 /* ServerManager.swift */; };
 		D8F1D71F1E53A96900A07F70 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7151E53A96900A07F70 /* ServerManager.swift */; };
 		D8F1D7201E53A96900A07F70 /* TaskDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7161E53A96900A07F70 /* TaskDescriptions.swift */; };
@@ -218,6 +226,10 @@
 		D89770B71E5BC09F00A9318D /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus@2x.png"; path = "Images/plus@2x.png"; sourceTree = "<group>"; };
 		D89770B81E5BC09F00A9318D /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
 		D89770BF1E5BC49200A9318D /* FormsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsListController.swift; path = UI/FormsListController.swift; sourceTree = "<group>"; };
+		D89770C81E5CB5B600A9318D /* active-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "active-location.png"; path = "Images/active-location.png"; sourceTree = "<group>"; };
+		D89770C91E5CB5B600A9318D /* active-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "active-location@2x.png"; path = "Images/active-location@2x.png"; sourceTree = "<group>"; };
+		D89770CA1E5CB5B600A9318D /* active-location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "active-location@3x.png"; path = "Images/active-location@3x.png"; sourceTree = "<group>"; };
+		D89770D11E5CBBFD00A9318D /* NewLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewLocationController.swift; path = UI/NewLocationController.swift; sourceTree = "<group>"; };
 		D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILabel.swift; path = UI/Extensions/UILabel.swift; sourceTree = "<group>"; };
 		D8B9DBA91E4BDAF30054C454 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextView.swift; path = UI/Extensions/UITextView.swift; sourceTree = "<group>"; };
 		D8C165CC1E47EC1900129439 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = UI/Extensions/UIViewController.swift; sourceTree = "<group>"; };
@@ -243,7 +255,7 @@
 		D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesController.swift; path = UI/TemplatesController.swift; sourceTree = "<group>"; };
 		D8F1D7121E53A96900A07F70 /* Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Form.swift; path = Data/Form.swift; sourceTree = "<group>"; };
 		D8F1D7131E53A96900A07F70 /* FormTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormTask.swift; path = Data/FormTask.swift; sourceTree = "<group>"; };
-		D8F1D7141E53A96900A07F70 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Data/Location.swift; sourceTree = "<group>"; };
+		D8F1D7141E53A96900A07F70 /* FTLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FTLocation.swift; path = Data/FTLocation.swift; sourceTree = "<group>"; };
 		D8F1D7151E53A96900A07F70 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServerManager.swift; path = Data/ServerManager.swift; sourceTree = "<group>"; };
 		D8F1D7161E53A96900A07F70 /* TaskDescriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskDescriptions.swift; path = Data/TaskDescriptions.swift; sourceTree = "<group>"; };
 		D8F1D7171E53A96900A07F70 /* TaskResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskResults.swift; path = Data/TaskResults.swift; sourceTree = "<group>"; };
@@ -299,6 +311,7 @@
 				D8F1D70C1E53A92700A07F70 /* FormController.swift */,
 				D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */,
 				D85C8C0D1E45289300B5404F /* LocationsController.swift */,
+				D89770D11E5CBBFD00A9318D /* NewLocationController.swift */,
 				D82411A41E315517006D06E2 /* FormTasksController.swift */,
 				D89770B31E5BBE6400A9318D /* CustomTabBar.swift */,
 				D826E6C41D6D2B87002B91AE /* TaskControllers */,
@@ -402,7 +415,7 @@
 				D8F1D7121E53A96900A07F70 /* Form.swift */,
 				D8F1D7151E53A96900A07F70 /* ServerManager.swift */,
 				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
-				D8F1D7141E53A96900A07F70 /* Location.swift */,
+				D8F1D7141E53A96900A07F70 /* FTLocation.swift */,
 				D8C165D71E47F52A00129439 /* Locations.swift */,
 				D8DB034B1E4A5247001BA901 /* Template.swift */,
 			);
@@ -453,6 +466,9 @@
 		D8C165E61E48FFD000129439 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D89770C81E5CB5B600A9318D /* active-location.png */,
+				D89770C91E5CB5B600A9318D /* active-location@2x.png */,
+				D89770CA1E5CB5B600A9318D /* active-location@3x.png */,
 				D89770B61E5BC09F00A9318D /* plus.png */,
 				D89770B71E5BC09F00A9318D /* plus@2x.png */,
 				D89770B81E5BC09F00A9318D /* refresh.png */,
@@ -577,6 +593,7 @@
 			files = (
 				D8F1D6E71E53A8F200A07F70 /* favorites-w@2x.png in Resources */,
 				D89770BD1E5BC09F00A9318D /* refresh.png in Resources */,
+				D89770CF1E5CB5B600A9318D /* active-location@3x.png in Resources */,
 				D89770AE1E5B801100A9318D /* forms.png in Resources */,
 				D8F1D6F31E53A8F200A07F70 /* Icon 180.png in Resources */,
 				D89770AC1E5B801100A9318D /* forms@2x.png in Resources */,
@@ -603,9 +620,11 @@
 				D82411B51E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
 				D89770911E5B730700A9318D /* leftarrow@2x.png in Resources */,
 				D8F1D6EB1E53A8F200A07F70 /* Icon 76.png in Resources */,
+				D89770CD1E5CB5B600A9318D /* active-location@2x.png in Resources */,
 				D8F1D6E91E53A8F200A07F70 /* favorites-w@3x.png in Resources */,
 				D89770981E5B731600A9318D /* rightarrow.png in Resources */,
 				D897709C1E5B731600A9318D /* rightarrow@3x.png in Resources */,
+				D89770CB1E5CB5B600A9318D /* active-location.png in Resources */,
 				D89770871E5A98C100A9318D /* refresh.png in Resources */,
 				D89770A31E5B797500A9318D /* location@2x.png in Resources */,
 				D858D95A1E576B720059E0EF /* checkmark.png in Resources */,
@@ -622,6 +641,7 @@
 			files = (
 				D8F1D6E81E53A8F200A07F70 /* favorites-w@2x.png in Resources */,
 				D89770BE1E5BC09F00A9318D /* refresh.png in Resources */,
+				D89770D01E5CB5B600A9318D /* active-location@3x.png in Resources */,
 				D89770AF1E5B801100A9318D /* forms.png in Resources */,
 				D858D95D1E576D770059E0EF /* checkmark@2x.png in Resources */,
 				D89770AD1E5B801100A9318D /* forms@2x.png in Resources */,
@@ -648,9 +668,11 @@
 				D85D53D71D710750006D31F2 /* Main.storyboard in Resources */,
 				D89770921E5B730700A9318D /* leftarrow@2x.png in Resources */,
 				D82411B61E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
+				D89770CE1E5CB5B600A9318D /* active-location@2x.png in Resources */,
 				D8F1D6EC1E53A8F200A07F70 /* Icon 76.png in Resources */,
 				D89770991E5B731600A9318D /* rightarrow.png in Resources */,
 				D897709D1E5B731600A9318D /* rightarrow@3x.png in Resources */,
+				D89770CC1E5CB5B600A9318D /* active-location.png in Resources */,
 				D8F1D6EA1E53A8F200A07F70 /* favorites-w@3x.png in Resources */,
 				D89770A41E5B797500A9318D /* location@2x.png in Resources */,
 				D82411B21E36B405006D06E2 /* flat-ui-icons-regular.ttf in Resources */,
@@ -784,6 +806,7 @@
 				D82411A11E301BE6006D06E2 /* FormsController.swift in Sources */,
 				D8F1D7081E53A91800A07F70 /* TasksController.swift in Sources */,
 				D89770C01E5BC49200A9318D /* FormsListController.swift in Sources */,
+				D89770D21E5CBBFD00A9318D /* NewLocationController.swift in Sources */,
 				D8B9DBAA1E4BDAF30054C454 /* UITextView.swift in Sources */,
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
@@ -794,7 +817,7 @@
 				D85C8C0E1E45289300B5404F /* LocationsController.swift in Sources */,
 				D8F1D70E1E53A92700A07F70 /* FormController.swift in Sources */,
 				D8F1D7061E53A91800A07F70 /* TaskController.swift in Sources */,
-				D8F1D71C1E53A96900A07F70 /* Location.swift in Sources */,
+				D8F1D71C1E53A96900A07F70 /* FTLocation.swift in Sources */,
 				D826E6C31D6D2B48002B91AE /* ChoiceTaskController.swift in Sources */,
 				D858D94D1E54F4D80059E0EF /* Double.swift in Sources */,
 				D8F1D7101E53A92700A07F70 /* TemplatesController.swift in Sources */,
@@ -820,7 +843,7 @@
 				D8C165D41E47ECCF00129439 /* UIViewController.swift in Sources */,
 				D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */,
 				D8F1D71B1E53A96900A07F70 /* FormTask.swift in Sources */,
-				D8F1D71D1E53A96900A07F70 /* Location.swift in Sources */,
+				D8F1D71D1E53A96900A07F70 /* FTLocation.swift in Sources */,
 				D8F1D7211E53A96900A07F70 /* TaskDescriptions.swift in Sources */,
 				D858D9541E553DE50059E0EF /* UITextField.swift in Sources */,
 				D8F1D70F1E53A92700A07F70 /* FormController.swift in Sources */,
@@ -836,6 +859,7 @@
 				D8F1D70B1E53A91800A07F70 /* TextTaskController.swift in Sources */,
 				D8F1D7031E53A91800A07F70 /* NumberTaskController.swift in Sources */,
 				D8F1D7071E53A91800A07F70 /* TaskController.swift in Sources */,
+				D89770D31E5CBBFD00A9318D /* NewLocationController.swift in Sources */,
 				D858D94E1E54F5380059E0EF /* Double.swift in Sources */,
 				D8F1D7091E53A91800A07F70 /* TasksController.swift in Sources */,
 			);

@@ -70,4 +70,26 @@ func FTErrorMessage(error: String, file: String = #file, line: Int = #line) {
     print("Assert failure - file: \(file) line: \(line) error:\(error)")
 }
 
+func FTAlertMessage(message: String) {
+    SVProgressHUD.showInfo(withStatus: message)
+}
+
+func FTAlertError(message: String) {
+    SVProgressHUD.showError(withStatus: message)
+}
+
+func FTAlertSuccess(message: String) {
+    SVProgressHUD.showSuccess(withStatus: message)
+}
+
+func FTAlertProgress(progress: Float, status: String) {
+    SVProgressHUD.showProgress(progress, status: status)
+}
+
+func FTAlertDismiss(completion: @escaping ()->() ) {
+    SVProgressHUD.dismiss { 
+        completion()
+    }
+}
+
 

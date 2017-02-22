@@ -16,7 +16,7 @@ class TemplateCell : UITableViewCell {
 
 class TemplatesController: UITableViewController {
     var templatesList = [Template]()
-    var location : Location?
+    var location : FTLocation?
 
     override func viewDidLoad() {
         super.viewDidLoad()

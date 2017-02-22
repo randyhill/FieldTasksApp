@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 
 class FormTasksCell : UITableViewCell {
     @IBOutlet weak var checkmark: UIImageView!
@@ -34,13 +33,13 @@ class FormTasksController : UITableViewController {
 
     func submitForm() {
         if let incompleteTasks = form!.tasksStillIncomplete() {
-            SVProgressHUD.showInfo(withStatus: "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form")
+            FTAlertMessage(message: "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form")
         } else {
             form?.submit(completion: { (error) in
                 if error != nil {
-                    SVProgressHUD.showError(withStatus: "Form Submission Failed: \(error!)")
+                    FTAlertError(message: "Form Submission Failed: \(error!)")
                 } else {
-                    SVProgressHUD.showSuccess(withStatus: "Form submitted successfuly")
+                    FTAlertSuccess(message: "Form submitted successfuly")
                     self.dismiss(animated: true, completion: nil)
                 }
             })

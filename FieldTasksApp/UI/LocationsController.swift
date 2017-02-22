@@ -12,7 +12,7 @@ import CoreLocation
 class LocationCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var address: UILabel!
-
+    @IBOutlet weak var locationImage: UIImageView!
 }
 
 class LocationsController: UITableViewController, LocationUpdates {
@@ -23,6 +23,7 @@ class LocationsController: UITableViewController, LocationUpdates {
 
         self.title = "Locations"
         self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshFromServer))
+        self.navigationItem.leftBarButtonItem = FlatBarButton(withImageNamed: "plus.png", target: self, action: #selector(addLocation))
         makeNavBarFlat()
         locations.delegate = self
     }
@@ -38,7 +39,20 @@ class LocationsController: UITableViewController, LocationUpdates {
         }
     }
 
-    func newlocation(location: Location?) {
+    func addLocation() {
+        self.performSegue(withIdentifier: "NewLocationController", sender: self)
+//        if let _ = Locations.shared.inLocation() {
+//            self.performSegue(withIdentifier: "NewLocationController", sender: self)
+//        } else {
+//            FTAlertMessage(message: "You are in a saved location already, you can't create a duplicate of it")
+//        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    }
+
+    func newlocation(location: FTLocation?) {
         self.tableView.reloadData()
     }
 
@@ -72,10 +86,12 @@ class LocationsController: UITableViewController, LocationUpdates {
         if let cell = cell as? LocationCell {
 
             let location = locations.list[indexPath.row]
+            cell.makeCellFlat()
             if location === locations.currentLocation {
-                cell.configureHeaderCell()
+                cell.locationImage.tintColor = UIColor.silver()
+                cell.locationImage.image = UIImage(named: "location.png")?.withRenderingMode(.alwaysTemplate)
             } else {
-                cell.makeCellFlat()
+                cell.locationImage.image = nil
             }
             cell.title.makeTitleStyle()
             cell.address.makeDetailStyle()

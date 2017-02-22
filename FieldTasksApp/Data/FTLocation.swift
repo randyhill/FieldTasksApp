@@ -9,20 +9,20 @@
 import UIKit
 import CoreLocation
 
-class Location {
+class FTLocation {
     var id = ""
     var name = ""
-    var address = ""
-    var address2 = ""
+    var street = ""
+    var street2 = ""
     var city = ""
     var state = ""
     var zip = ""
     var phone = ""
-    var coordinates : CLLocation?
+    var coordinates : CLLocationCoordinate2D?
     var fullAddress : String {
         get {
-            var addr = address
-            addr += addAddressString(string: address2)
+            var addr = street
+            addr += addAddressString(string: street2)
             addr += addAddressString(string: city)
             addr += addAddressString(string: state)
             addr += addAddressString(string: zip)
@@ -41,11 +41,11 @@ class Location {
         if let name = locationDict["name"] as? String {
             self.name = name
         }
-        if let address = locationDict["address"] as? String {
-            self.address = address
+        if let street = locationDict["address"] as? String {
+            self.street = street
         }
-        if let address2 = locationDict["address2"] as? String {
-            self.address2 = address2
+        if let street2 = locationDict["address2"] as? String {
+            self.street2 = street2
         }
         if let city = locationDict["city"] as? String {
             self.city = city
@@ -66,7 +66,7 @@ class Location {
             guard let lngString = coordinateDict["lng"] as? String, let lng = Double(lngString) else {
                 throw FTError.RunTimeError("Could not convert longitude to double")
             }
-            self.coordinates = CLLocation(latitude: lat, longitude: lng)
+            self.coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lng)
         }
     }
 
@@ -74,11 +74,47 @@ class Location {
 
     }
 
+    func updateFromPlacemarkDict(locationDict: [AnyHashable : Any]) {
+        self.name = locationDict["Name"] as? String ?? ""
+        self.street = locationDict["Street"] as? String ?? ""
+        self.city = locationDict["City"] as? String ?? ""
+        self.state = locationDict["State"] as? String ?? ""
+        self.zip = locationDict["Zip"] as? String ?? ""
+    }
+
+    func toPlacemarkDict() -> [AnyHashable : Any] {
+        var locationDict = [AnyHashable : Any]()
+        locationDict["Name"] = self.name
+        locationDict["Street"] = self.street
+        locationDict["City"] = self.city
+        locationDict["State"] = self.state
+        locationDict["Zip"] = self.zip
+        return locationDict
+    }
+
+    func toCLLocation(completion: @escaping (_ location: CLLocation)->()) {
+        let coder = CLGeocoder()
+        coder.geocodeAddressDictionary(self.toPlacemarkDict()) { (placeMarks, err) in
+            if let err = err as? String {
+                FTErrorMessage(error: err)
+            } else {
+                if let location = placeMarks?[0].location {
+                    completion(location)
+                }
+            }
+        }
+    }
+
+    func fromCLLocation(clLoc : CLLocation) {
+        coordinates = clLoc.coordinate
+    }
+
     func distanceFrom(location : CLLocation) -> CLLocationDistance {
         guard let locCoords = coordinates else {
             return Double.greatestFiniteMagnitude
         }
-        return location.distance(from: locCoords)
+        let ourLocation = CLLocation(latitude: locCoords.latitude, longitude: locCoords.longitude)
+        return location.distance(from: ourLocation)
     }
 
     func toDict() -> [String : AnyObject]{
@@ -86,8 +122,8 @@ class Location {
 
         // Dont' write id, as this is a different object to database
         taskDict["name"] = name as AnyObject?
-        taskDict["address"] = address as AnyObject?
-        taskDict["address2"] = address2 as AnyObject?
+        taskDict["address"] = street as AnyObject?
+        taskDict["address2"] = street2 as AnyObject?
         taskDict["city"] = city as AnyObject?
         taskDict["state"] = state as AnyObject?
         taskDict["zip"] = zip as AnyObject?

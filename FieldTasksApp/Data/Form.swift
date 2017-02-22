@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import SVProgressHUD
 import CoreLocation
 
 class Form : Template {
     var createDate = Date()
     var locationId : String?
-    var coordinates = CLLocation();
+    var coordinates : CLLocationCoordinate2D?
 
     init(formDict : [String : AnyObject]) {
         super.init(templateDict: formDict)
@@ -38,7 +37,9 @@ class Form : Template {
         if let locationId = locationId {
             formDict["location"] = locationId as AnyObject;
         }
-        formDict["coordinates"] = ["lat" : coordinates.coordinate.latitude, "lng" : coordinates.coordinate.longitude] as AnyObject
+        if let coordinate = coordinates {
+            formDict["coordinates"] = ["lat" : coordinate.latitude, "lng" : coordinate.longitude] as AnyObject
+        }
         return formDict
     }
 
@@ -53,8 +54,8 @@ class Form : Template {
     }
 
     func submit(completion : @escaping (_ error: String?)->()) {
-        if let coordinates = Locations.shared.mgr.location {
-            self.coordinates = coordinates
+        if let cLoc = Locations.shared.currentCLLocation() {
+            self.coordinates = cLoc.coordinate
         }
         if let location = Locations.shared.currentLocation {
             self.locationId = location.id

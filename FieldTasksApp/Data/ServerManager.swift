@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Alamofire
 import Just
-import SVProgressHUD
 
 #if LOCALHOST
 let cBaseURL = "http://localhost:8080"
@@ -35,7 +34,7 @@ class ServerMgr {
 
     }
 
-    func loadTemplates(location: Location?, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
+    func loadTemplates(location: FTLocation?, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
         if var url = URL(string: cAllTemplatesURL) {
             if let location = location {
                 url.appendPathComponent("/\(location.id)")
@@ -45,7 +44,7 @@ class ServerMgr {
     }
 
     // Filter by location if set
-    func loadForms(location: Location?, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
+    func loadForms(location: FTLocation?, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
         if var url = URL(string: cAllFormsURL) {
             if let location = location {
                 url.appendPathComponent("/\(location.id)")
@@ -134,15 +133,17 @@ class ServerMgr {
     func downloadFile(imageFileName : String, completion : @escaping (_ data : Data?, _ error: String?)->()) {
         // Start spinner
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        SVProgressHUD.showProgress(0.01, status: "Downloading photo")
+        FTAlertProgress(progress: 0.01, status: "Downloading photo")
 
         // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
         OperationQueue.main.addOperation({
            let path = cDownloadPhotoURL + imageFileName
             _ = Just.get(path, params: [:], asyncProgressHandler: {(p) in
-                SVProgressHUD.showProgress(p.percent, status: "Downloading photo")
+                FTAlertProgress(progress: p.percent, status: "Downloading photo")
             }) { (result) in
-                SVProgressHUD.dismiss()
+                FTAlertDismiss(completion: { 
+
+                })
                 if let code = result.statusCode, code == 200   {
                     if let data = result.content {
                         return completion(data, nil)
@@ -197,7 +198,7 @@ class ServerMgr {
     func uploadImages(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
         // Start spinner
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        SVProgressHUD.showProgress(0.01, status: "Uploading photos")
+        FTAlertProgress(progress: 0.01, status: "Uploading photos")
 
         // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
         OperationQueue.main.addOperation({ 
@@ -214,10 +215,10 @@ class ServerMgr {
             }
 
             if let jsonDict = Just.post(cUploadPhotoURL, files: files, asyncProgressHandler: {(p) in
-                SVProgressHUD.showProgress(p.percent, status: "Uploading photos")
+                FTAlertProgress(progress: p.percent, status: "Uploading photos")
             }).json {
                 DispatchQueue.main.async() {
-                    SVProgressHUD.dismiss(completion: {
+                    FTAlertDismiss(completion: {
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         if let fileArray = jsonDict as? [Any] {
                             photoFileList.addNamesFromJson(fileArray: fileArray)
