@@ -13,16 +13,15 @@ class FTLocation {
     var id = ""
     var name = ""
     var street = ""
-    var street2 = ""
     var city = ""
     var state = ""
     var zip = ""
     var phone = ""
     var coordinates : CLLocationCoordinate2D?
+    var perimeter = 100
     var fullAddress : String {
         get {
             var addr = street
-            addr += addAddressString(string: street2)
             addr += addAddressString(string: city)
             addr += addAddressString(string: state)
             addr += addAddressString(string: zip)
@@ -41,11 +40,8 @@ class FTLocation {
         if let name = locationDict["name"] as? String {
             self.name = name
         }
-        if let street = locationDict["address"] as? String {
+        if let street = locationDict["street"] as? String {
             self.street = street
-        }
-        if let street2 = locationDict["address2"] as? String {
-            self.street2 = street2
         }
         if let city = locationDict["city"] as? String {
             self.city = city
@@ -55,6 +51,9 @@ class FTLocation {
         }
         if let zip = locationDict["zip"] as? String {
             self.zip = zip
+        }
+        if let perimeter = locationDict["perimeter"] as? Int {
+            self.perimeter = perimeter
         }
         if let id = locationDict["_id"] as? String {
             self.id = id
@@ -75,7 +74,6 @@ class FTLocation {
     }
 
     func updateFromPlacemarkDict(locationDict: [AnyHashable : Any]) {
-        self.name = locationDict["Name"] as? String ?? ""
         self.street = locationDict["Street"] as? String ?? ""
         self.city = locationDict["City"] as? String ?? ""
         self.state = locationDict["State"] as? String ?? ""
@@ -123,10 +121,14 @@ class FTLocation {
         // Dont' write id, as this is a different object to database
         taskDict["name"] = name as AnyObject?
         taskDict["address"] = street as AnyObject?
-        taskDict["address2"] = street2 as AnyObject?
         taskDict["city"] = city as AnyObject?
         taskDict["state"] = state as AnyObject?
         taskDict["zip"] = zip as AnyObject?
+        taskDict["perimeter"] = perimeter as AnyObject?
+        if let coordinate = coordinates {
+            let coordinateDict = ["lat" : String(coordinate.latitude), "lng": String(coordinate.longitude)]
+            taskDict["coordinates"] = coordinateDict as AnyObject?
+        }
         return taskDict
     }
 }

@@ -56,12 +56,6 @@ class LocationsController: UITableViewController, LocationUpdates {
         self.tableView.reloadData()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.refreshFromServer()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,7 +63,8 @@ class LocationsController: UITableViewController, LocationUpdates {
 
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.list.count
+        let count = locations.list.count
+        return count
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,7 +79,6 @@ class LocationsController: UITableViewController, LocationUpdates {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationsCell", for: indexPath as IndexPath)
         if let cell = cell as? LocationCell {
-
             let location = locations.list[indexPath.row]
             cell.makeCellFlat()
             if location === locations.currentLocation {

@@ -34,8 +34,8 @@ class Globals {
         SVProgressHUD.setMinimumDismissTimeInterval(3)
 
         // tab bar
-        UITabBar.appearance().tintColor = barButtonColor
-        UITabBar.appearance().barTintColor = UIColor.clouds()
+        UITabBar.appearance().tintColor = UIColor.clouds()
+        UITabBar.appearance().barTintColor = UIColor.peterRiver()
 
     }
 }

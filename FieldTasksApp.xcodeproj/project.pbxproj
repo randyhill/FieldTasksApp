@@ -105,6 +105,8 @@
 		D89770D01E5CB5B600A9318D /* active-location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770CA1E5CB5B600A9318D /* active-location@3x.png */; };
 		D89770D21E5CBBFD00A9318D /* NewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* NewLocationController.swift */; };
 		D89770D31E5CBBFD00A9318D /* NewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* NewLocationController.swift */; };
+		D89770D51E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */; };
+		D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */; };
 		D8B9DBA71E4BD9CA0054C454 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */; };
 		D8B9DBA81E4BDA4C0054C454 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */; };
 		D8B9DBAA1E4BDAF30054C454 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B9DBA91E4BDAF30054C454 /* UITextView.swift */; };
@@ -230,6 +232,7 @@
 		D89770C91E5CB5B600A9318D /* active-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "active-location@2x.png"; path = "Images/active-location@2x.png"; sourceTree = "<group>"; };
 		D89770CA1E5CB5B600A9318D /* active-location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "active-location@3x.png"; path = "Images/active-location@3x.png"; sourceTree = "<group>"; };
 		D89770D11E5CBBFD00A9318D /* NewLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewLocationController.swift; path = UI/NewLocationController.swift; sourceTree = "<group>"; };
+		D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SynchronizedArray.swift; path = Data/SynchronizedArray.swift; sourceTree = "<group>"; };
 		D8B9DBA61E4BD9CA0054C454 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILabel.swift; path = UI/Extensions/UILabel.swift; sourceTree = "<group>"; };
 		D8B9DBA91E4BDAF30054C454 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextView.swift; path = UI/Extensions/UITextView.swift; sourceTree = "<group>"; };
 		D8C165CC1E47EC1900129439 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = UI/Extensions/UIViewController.swift; sourceTree = "<group>"; };
@@ -418,6 +421,7 @@
 				D8F1D7141E53A96900A07F70 /* FTLocation.swift */,
 				D8C165D71E47F52A00129439 /* Locations.swift */,
 				D8DB034B1E4A5247001BA901 /* Template.swift */,
+				D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */,
 			);
 			name = "Data Classes";
 			sourceTree = "<group>";
@@ -802,6 +806,7 @@
 				D858D9501E5538810059E0EF /* UITextField.swift in Sources */,
 				D8F1D70A1E53A91800A07F70 /* TextTaskController.swift in Sources */,
 				D8DB034C1E4A5247001BA901 /* Template.swift in Sources */,
+				D89770D51E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
 				D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */,
 				D82411A11E301BE6006D06E2 /* FormsController.swift in Sources */,
 				D8F1D7081E53A91800A07F70 /* TasksController.swift in Sources */,
@@ -857,6 +862,7 @@
 				D8C165D51E47ECD200129439 /* UIImage.swift in Sources */,
 				D85D53D11D710750006D31F2 /* ChoiceTaskController.swift in Sources */,
 				D8F1D70B1E53A91800A07F70 /* TextTaskController.swift in Sources */,
+				D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
 				D8F1D7031E53A91800A07F70 /* NumberTaskController.swift in Sources */,
 				D8F1D7071E53A91800A07F70 /* TaskController.swift in Sources */,
 				D89770D31E5CBBFD00A9318D /* NewLocationController.swift in Sources */,

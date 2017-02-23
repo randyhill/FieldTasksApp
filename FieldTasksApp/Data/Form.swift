@@ -48,6 +48,7 @@ class Form : Template {
             if error != nil {
                 completion(error)
             } else {
+                // shouldn't we update id?
                 completion(nil)
             }
         }

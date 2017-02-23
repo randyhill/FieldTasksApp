@@ -16,7 +16,7 @@ protocol LocationUpdates {
 class Locations : NSObject, CLLocationManagerDelegate {
     static let shared = Locations()
     private var mgr = CLLocationManager()
-    var list = [FTLocation]()
+    var list = SynchronizedArray<FTLocation>()
     var currentLocation : FTLocation?
     var delegate : LocationUpdates?
     var curAccuracy = CLLocationAccuracy()
@@ -40,8 +40,8 @@ class Locations : NSObject, CLLocationManagerDelegate {
             if atLocation !== currentLocation {
                 currentLocation = atLocation
                 delegate?.newlocation(location: currentLocation)
+                self.sort()
             }
-
         }
     }
 
@@ -60,7 +60,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
                     if let locationDict = location as? [String : AnyObject] {
                         do {
                             let location = try FTLocation(locationDict: locationDict)
-                            self.list += [location]
+                            self.list.append(newElement: location)
                         } catch FTError.RunTimeError(let errorMessage) {
                             completion(errorMessage)
                          } catch {
@@ -69,7 +69,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
                     }
                 }
                 self.sort()
-                completion(nil)
+               completion(nil)
             }
         }
     }
@@ -84,7 +84,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
                     newList += [location]
                 }
             }
-            self.list = newList
+            self.list.replace(newArray: newList)
         }
     }
 

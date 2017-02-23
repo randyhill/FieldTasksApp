@@ -34,6 +34,7 @@ class ServerMgr {
 
     }
 
+    // MARK: Template/Forms Methods -------------------------------------------------------------------------------
     func loadTemplates(location: FTLocation?, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
         if var url = URL(string: cAllTemplatesURL) {
             if let location = location {
@@ -49,12 +50,6 @@ class ServerMgr {
             if let location = location {
                 url.appendPathComponent("/\(location.id)")
             }
-            loadList(url: url, completion: completion)
-        }
-    }
-
-    func loadLocations(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
-        if let url = URL(string: cLocationsURL) {
             loadList(url: url, completion: completion)
         }
     }
@@ -79,9 +74,7 @@ class ServerMgr {
                         } catch {
                             completion(nil, "Couldn't parse JSON: \(error)")
                         }
-
                     }
-
                 }
             }
         })
@@ -106,6 +99,42 @@ class ServerMgr {
         })
     }
 
+    // MARK: Locations  -------------------------------------------------------------------------------
+    func loadLocations(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
+        if let url = URL(string: cLocationsURL) {
+            loadList(url: url, completion: completion)
+        }
+    }
+
+    class func createLocation(location: FTLocation, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
+        // Start spinner
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let locationDict = location.toDict()
+
+        // for some reason POST requests require the path to end with / or the server will redirect to GET
+        Alamofire.request(cBaseURL + "/locations/", method: .post, parameters: locationDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
+            DispatchQueue.main.async() {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            if !response.result.isSuccess {
+                completion(nil, "Failed to save location")
+            } else {
+                if let jsonData = response.data {
+                    do {
+                        let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
+                        if let locationDict = jsonDict as? [String: Any] {
+                            completion(locationDict, nil)
+                        }
+
+                    } catch {
+                        completion(nil, "Couldn't parse JSON: \(error)")
+                    }
+                }
+            }
+        })
+    }
+
+    // MARK: Images  -------------------------------------------------------------------------------
     func uploadImage(image: UIImage, progress : @escaping (Float)->(), completion : @escaping (_ fileName: String, _ error: String?)->()) {
         // Start spinner
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

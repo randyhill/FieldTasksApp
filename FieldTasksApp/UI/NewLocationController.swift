@@ -11,9 +11,12 @@ import FlatUIKit
 import MapKit
 import Contacts
 
-private enum fieldType : Int {
-    case name = 0, phone, street, street2, city, state, zip
+private enum FieldType : Int {
+    case name = 0, phone, street, city, state, zip, perimeter
 }
+
+let cMinPerimeter = 40
+let cMaxPerimeter = 400
 
 class MyAnnotation : NSObject, MKAnnotation {
     var title : String?
@@ -38,18 +41,19 @@ class MyAnnotation : NSObject, MKAnnotation {
     }
 }
 
-class NewLocationController : UIViewController, MKMapViewDelegate {
+class NewLocationController : UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var titles: [UILabel]!
     @IBOutlet var fields: [UITextField]!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var cancelButton: FUIButton!
     @IBOutlet weak var createButton: FUIButton!
-
+    @IBOutlet weak var perimeterSlider: UISlider!
     var location = FTLocation()
     var annotation : MyAnnotation?
+    var perimeter : MKCircle?
 
-    // MARK: View Methods -------------------------------------------------------------------------------
+     // MARK: View Methods -------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,15 +62,21 @@ class NewLocationController : UIViewController, MKMapViewDelegate {
         for title in titles {
             title.makeDetailStyle()
         }
+        var tagNumber = 0
         for field in fields {
             field.setActiveStyle(isActive: true)
             field.addHideKeyboardButton()
+            field.delegate = self
+            field.tag = tagNumber
+            tagNumber += 1
         }
         cancelButton.makeFlatButton()
         createButton.makeFlatButton()
         initMap()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(updateMapFromFields), name: .UITextFieldTextDidEndEditing, object: nil)
+        perimeterSlider.configureFlatSlider(withTrackColor: UIColor.silver(), progressColor: UIColor.peterRiver(), thumbColor: UIColor.clouds())
+        perimeterSlider.minimumValue = Float(cMinPerimeter)
+        perimeterSlider.maximumValue = Float(cMaxPerimeter)
+        updatePerimeterText(meters: Int(perimeterSlider.value))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -78,11 +88,12 @@ class NewLocationController : UIViewController, MKMapViewDelegate {
     func initMap() {
         map.delegate = self
         if let clLoc = Locations.shared.currentCLLocation() {
-            map.centerCoordinate = clLoc.coordinate
             let span = 0.01
+            map.centerCoordinate = clLoc.coordinate
             map.region = MKCoordinateRegion(center: clLoc.coordinate, span: MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span))
             annotation = MyAnnotation(title: "title", subtitle: "sub title", coordinate: clLoc.coordinate)
-            map.addAnnotation(annotation!)
+            updateAnnotationLocation(coordinate: clLoc.coordinate)
+            updatePerimeterOverlay(coordinate: clLoc.coordinate, radius: CLLocationDistance(perimeterSlider.value))
         }
         Locations.shared.currentAddress { (locationDict) in
             self.location.updateFromPlacemarkDict(locationDict: locationDict)
@@ -94,22 +105,26 @@ class NewLocationController : UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? MyAnnotation {
             let identifier = "pin"
-            var view: MKPinAnnotationView
+            var pinView: MKPinAnnotationView?
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
                 as? MKPinAnnotationView {
                 dequeuedView.annotation = annotation
-                view = dequeuedView
+                pinView = dequeuedView
             } else {
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.isDraggable = true
-                view.animatesDrop = true
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                pinView?.isDraggable = true
+                pinView?.animatesDrop = true
             }
-            return view
+            return pinView
         }
         return nil
+    }
+
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleRenderer = MKCircleRenderer(circle: overlay as! MKCircle)
+        circleRenderer.strokeColor = UIColor.peterRiver()
+        circleRenderer.lineWidth = 1.0
+        return circleRenderer
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
@@ -119,7 +134,8 @@ class NewLocationController : UIViewController, MKMapViewDelegate {
         location.mapItem().openInMaps(launchOptions: launchOptions)
     }
 
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState,
+                 fromOldState oldState: MKAnnotationViewDragState) {
         if newState == MKAnnotationViewDragState.ending {
             if let newCoord = view.annotation?.coordinate {
                 location.coordinates = newCoord
@@ -132,38 +148,82 @@ class NewLocationController : UIViewController, MKMapViewDelegate {
     }
 
     func updateMapFromFields() {
-        updateLocationFromFields()
+        updateLocationFromFields(theLocation: location)
+//        updateOverlaysFromLocation(theLocation: location)
         location.toCLLocation(completion: { (newLocation) in
             self.location.fromCLLocation(clLoc: newLocation)
-            self.annotation?.coordinate = newLocation.coordinate
+            self.updateAnnotationLocation(coordinate: newLocation.coordinate)
+            self.updatePerimeterOverlay(coordinate: newLocation.coordinate, radius: CLLocationDistance(self.perimeterSlider.value))
         })
     }
 
-
     // MARK: Fields -------------------------------------------------------------------------------
+    func textFieldDidEndEditing(_ textField: UITextField) // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or 
+    {
+        if let type = FieldType(rawValue: textField.tag) {
+            switch type {
+            case FieldType.street, .city, .state, .zip:
+                updateMapFromFields()
+            case FieldType.perimeter:
+                updatePerimeterFromField(textField: textField)
+            default:
+                break
+            }
+        }
+    }
+
+    func updatePerimeterFromField(textField: UITextField) {
+        if var meters = Int(textField.text!) {
+            // restrict to min max range
+            meters = meters < cMinPerimeter ? cMinPerimeter : meters
+            meters = meters > cMaxPerimeter ? cMaxPerimeter : meters
+            if let annotation = self.annotation {
+                updatePerimeterOverlay(coordinate: annotation.coordinate, radius: Double(meters))
+            }
+            // Update text if we restricted range or converted to int
+            updatePerimeter(meters: meters)
+        }
+    }
+
     func updateFieldsFromLocation(theLocation : FTLocation) {
-        self.fields[fieldType.name.rawValue].text = location.name
-        self.fields[fieldType.street.rawValue].text = location.street
-        self.fields[fieldType.street2.rawValue].text = location.street2
-        self.fields[fieldType.city.rawValue].text = location.city
-        self.fields[fieldType.state.rawValue].text = location.state
-        self.fields[fieldType.zip.rawValue].text = location.zip
+        self.fields[FieldType.name.rawValue].text = location.name
+        self.fields[FieldType.street.rawValue].text = location.street
+        self.fields[FieldType.city.rawValue].text = location.city
+        self.fields[FieldType.state.rawValue].text = location.state
+        self.fields[FieldType.zip.rawValue].text = location.zip
         annotation?.title = location.name
         annotation?.subtitle = location.street
         if let coordinate = theLocation.coordinates {
             annotation?.coordinate = coordinate
+            self.updatePerimeterOverlay(coordinate: coordinate, radius: CLLocationDistance(perimeterSlider.value))
         }
+        self.updatePerimeter(meters: location.perimeter)
     }
 
-    func updateLocationFromFields() {
-        location.name = self.fields[fieldType.name.rawValue].text ?? ""
-        location.street = self.fields[fieldType.street.rawValue].text  ?? ""
-        location.street2 = self.fields[fieldType.street2.rawValue].text ?? ""
-        location.city = self.fields[fieldType.city.rawValue].text  ?? ""
-        location.state = self.fields[fieldType.state.rawValue].text ?? ""
-        location.zip = self.fields[fieldType.zip.rawValue].text ?? ""
-        annotation?.title = location.name
-        annotation?.subtitle = location.street
+    func updateLocationFromFields(theLocation : FTLocation) {
+        theLocation.name = self.fields[FieldType.name.rawValue].text ?? ""
+        theLocation.street = self.fields[FieldType.street.rawValue].text  ?? ""
+        theLocation.city = self.fields[FieldType.city.rawValue].text  ?? ""
+        theLocation.state = self.fields[FieldType.state.rawValue].text ?? ""
+        theLocation.zip = self.fields[FieldType.zip.rawValue].text ?? ""
+        theLocation.perimeter = Int(self.perimeterSlider.value)
+        theLocation.coordinates = self.annotation?.coordinate
+    }
+
+    func validateFields() -> String? {
+        if self.fields[FieldType.name.rawValue].text?.characters.count == 0 {
+            return "Locations must have names"
+        }
+        if self.fields[FieldType.street.rawValue].text?.characters.count == 0 {
+            return "Locations must have street addresses"
+        }
+        if self.fields[FieldType.city.rawValue].text?.characters.count == 0 {
+            return "Locations must have city"
+        }
+        if self.fields[FieldType.state.rawValue].text?.characters.count == 0 {
+            return "Locations must have state"
+        }
+        return nil
     }
 
     // MARK: Actions Methods -------------------------------------------------------------------------------
@@ -174,6 +234,63 @@ class NewLocationController : UIViewController, MKMapViewDelegate {
     }
 
     @IBAction func createAction(_ sender: Any) {
+        if let errorMessage = validateFields() {
+            FTAlertMessage(message: "Can't create location: \(errorMessage)")
+        } else {
+            self.updateLocationFromFields(theLocation: self.location)
+            ServerMgr.createLocation(location: location) { (locationDict, error) in
+                if let error = error {
+                    FTAlertMessage(message: "Creation failed: \(error)")
+                } else if let locationId = locationDict?["_id"] as? String {
+                    self.location.id = locationId
+                    FTAlertMessage(message: "Location created")
+                    self.dismiss(animated: true, completion: { 
+                        FTAlertDismiss {
+                            
+                        }
+                    })
+                }
+            }
+        }
 
+    }
+
+    @IBAction func perimeterChanged(_ slider: UISlider) {
+        // Constrain to specfic increments
+        let meters = Int(slider.value/Float(cMinPerimeter))*Int(cMinPerimeter)
+        updatePerimeter(meters: meters)
+    }
+
+    // MARK: Overlays Methods -------------------------------------------------------------------------------
+//    func updateOverlaysFromLocation(theLocation: FTLocation) {
+//        annotation?.title = theLocation.name
+//        annotation?.subtitle = theLocation.street
+//    }
+
+    func updatePerimeterText(meters: Int) {
+        fields[FieldType.perimeter.rawValue].text = "\(meters)"
+    }
+
+    func updatePerimeter(meters: Int) {
+        updatePerimeterText(meters: meters)
+        updatePerimeterOverlay(coordinate: annotation!.coordinate, radius: CLLocationDistance(meters))
+        perimeterSlider.value = Float(meters)
+    }
+
+    func updatePerimeterOverlay(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance) {
+        if let perimeter = self.perimeter {
+            self.map.remove(perimeter)
+        }
+        self.perimeter = MKCircle(center: coordinate, radius: radius)
+        self.map.add(self.perimeter!)
+    }
+
+    func updateAnnotationLocation(coordinate: CLLocationCoordinate2D) {
+        if let annotation = self.annotation {
+            self.map.removeAnnotation(annotation)
+            annotation.coordinate = coordinate
+            self.map.addAnnotation(annotation)
+            self.map.setCenter(coordinate, animated: true)
+        }
     }
 }
