@@ -17,6 +17,7 @@ class LocationCell : UITableViewCell {
 
 class LocationsController: UITableViewController, LocationUpdates {
     var locations = Locations.shared
+    var list = [FTLocation]()   // use read-only copy of live list so it's thread safe, otherwise live list could be in mid-update when we refresh
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class LocationsController: UITableViewController, LocationUpdates {
         self.navigationItem.leftBarButtonItem = FlatBarButton(withImageNamed: "plus.png", target: self, action: #selector(addLocation))
         makeNavBarFlat()
         locations.delegate = self
+        self.list = locations.list.copy()
     }
 
     func refreshFromServer() {
@@ -33,6 +35,8 @@ class LocationsController: UITableViewController, LocationUpdates {
             if let error = error {
                 self.showAlert(title: "Error creating location", message: error)
             }
+            // Refresh list data before updating visual list
+            self.list = self.locations.list.copy()
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
@@ -63,7 +67,7 @@ class LocationsController: UITableViewController, LocationUpdates {
 
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = locations.list.count
+        let count = list.count
         return count
     }
 
@@ -79,9 +83,9 @@ class LocationsController: UITableViewController, LocationUpdates {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationsCell", for: indexPath as IndexPath)
         if let cell = cell as? LocationCell {
-            let location = locations.list[indexPath.row]
+            let location = list[indexPath.row]
             cell.makeCellFlat()
-            if location === locations.currentLocation {
+            if location === locations.curLocation {
                 cell.locationImage.tintColor = UIColor.silver()
                 cell.locationImage.image = UIImage(named: "location.png")?.withRenderingMode(.alwaysTemplate)
             } else {
@@ -97,7 +101,7 @@ class LocationsController: UITableViewController, LocationUpdates {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let location = locations.list[indexPath.row]
+        let location = list[indexPath.row]
         if let formsController = self.storyboard?.instantiateViewController(withIdentifier: "FormsController") as? FormsController {
             formsController.location = location
             let navController = UINavigationController(rootViewController: formsController) // Creating a navigation controller with resultController at the root of the navigation stack.

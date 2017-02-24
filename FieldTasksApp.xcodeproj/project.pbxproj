@@ -121,6 +121,8 @@
 		D8C165D91E47FF2400129439 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C165D71E47F52A00129439 /* Locations.swift */; };
 		D8DB034C1E4A5247001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
 		D8DB034D1E4A5274001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
+		D8E9547A1E5FBA02004D5D4C /* TemplatesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E954791E5FBA02004D5D4C /* TemplatesListController.swift */; };
+		D8E9547B1E5FBA02004D5D4C /* TemplatesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E954791E5FBA02004D5D4C /* TemplatesListController.swift */; };
 		D8F1D6D21E521CFB00A07F70 /* PhotosTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */; };
 		D8F1D6D81E522A8600A07F70 /* PhotosTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */; };
 		D8F1D6E51E53A8F200A07F70 /* favorites-w.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6D91E53A8F200A07F70 /* favorites-w.png */; };
@@ -240,6 +242,7 @@
 		D8C165D21E47ECB200129439 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITableViewCell.swift; path = UI/Extensions/UITableViewCell.swift; sourceTree = "<group>"; };
 		D8C165D71E47F52A00129439 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Locations.swift; path = Data/Locations.swift; sourceTree = "<group>"; };
 		D8DB034B1E4A5247001BA901 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Template.swift; path = Data/Template.swift; sourceTree = "<group>"; };
+		D8E954791E5FBA02004D5D4C /* TemplatesListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesListController.swift; path = UI/TemplatesListController.swift; sourceTree = "<group>"; };
 		D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosTaskController.swift; path = UI/TaskControllers/PhotosTaskController.swift; sourceTree = "<group>"; };
 		D8F1D6D91E53A8F200A07F70 /* favorites-w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favorites-w.png"; path = "Images/favorites-w.png"; sourceTree = "<group>"; };
 		D8F1D6DA1E53A8F200A07F70 /* favorites-w@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favorites-w@2x.png"; path = "Images/favorites-w@2x.png"; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 				D89770BF1E5BC49200A9318D /* FormsListController.swift */,
 				D8F1D70C1E53A92700A07F70 /* FormController.swift */,
 				D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */,
+				D8E954791E5FBA02004D5D4C /* TemplatesListController.swift */,
 				D85C8C0D1E45289300B5404F /* LocationsController.swift */,
 				D89770D11E5CBBFD00A9318D /* NewLocationController.swift */,
 				D82411A41E315517006D06E2 /* FormTasksController.swift */,
@@ -794,6 +798,7 @@
 				D89770B41E5BBE6400A9318D /* CustomTabBar.swift in Sources */,
 				D88B94E11E36CC4800465793 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				D8B9DBA71E4BD9CA0054C454 /* UILabel.swift in Sources */,
+				D8E9547A1E5FBA02004D5D4C /* TemplatesListController.swift in Sources */,
 				D8F1D71A1E53A96900A07F70 /* FormTask.swift in Sources */,
 				D8C165D31E47ECB200129439 /* UITableViewCell.swift in Sources */,
 				D88B94E41E36CC4800465793 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
@@ -848,6 +853,7 @@
 				D8C165D41E47ECCF00129439 /* UIViewController.swift in Sources */,
 				D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */,
 				D8F1D71B1E53A96900A07F70 /* FormTask.swift in Sources */,
+				D8E9547B1E5FBA02004D5D4C /* TemplatesListController.swift in Sources */,
 				D8F1D71D1E53A96900A07F70 /* FTLocation.swift in Sources */,
 				D8F1D7211E53A96900A07F70 /* TaskDescriptions.swift in Sources */,
 				D858D9541E553DE50059E0EF /* UITextField.swift in Sources */,

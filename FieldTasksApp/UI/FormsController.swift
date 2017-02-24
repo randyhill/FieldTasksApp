@@ -12,14 +12,16 @@ import FlatUIKit
 class FormsController : UIViewController {
     var listController : FormsListController?
     @IBOutlet weak var newButton: FUIButton!
-    @IBOutlet weak var newTitle: UILabel!
+    @IBOutlet weak var formNameLabel: UILabel!
+    @IBOutlet weak var formDateLabel: UILabel!
     var location : FTLocation?    // Filter by location if set
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         newButton.makeFlatImageButton(imageNamed: "plus.png")
-        newTitle.makeTitleStyle()
+        formDateLabel.makeDetailStyle()
+        formNameLabel.makeDetailStyle()
         self.view.backgroundColor = UIColor.wetAsphalt()
 
         if let location = location {

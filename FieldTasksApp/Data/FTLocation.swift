@@ -115,12 +115,21 @@ class FTLocation {
         return location.distance(from: ourLocation)
     }
 
+    func inLocation(location : CLLocation) -> Bool {
+        guard let locCoords = coordinates else {
+            return false
+        }
+        let ourLocation = CLLocation(latitude: locCoords.latitude, longitude: locCoords.longitude)
+        let distance = Int(location.distance(from: ourLocation))
+        return distance <= self.perimeter
+    }
+
     func toDict() -> [String : AnyObject]{
         var taskDict = [String : AnyObject]()
 
         // Dont' write id, as this is a different object to database
         taskDict["name"] = name as AnyObject?
-        taskDict["address"] = street as AnyObject?
+        taskDict["street"] = street as AnyObject?
         taskDict["city"] = city as AnyObject?
         taskDict["state"] = state as AnyObject?
         taskDict["zip"] = zip as AnyObject?

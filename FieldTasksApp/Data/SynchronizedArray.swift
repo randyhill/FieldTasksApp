@@ -21,7 +21,7 @@ public class SynchronizedArray<T> : Collection {
 
     var iteration: Int = 0
     public var startIndex: Int { return 0 }
-    public var endIndex: Int { return array.count - 1}
+    public var endIndex: Int { return array.count }
     public func index(after: Int) -> Int {
         return after + 1
     }
@@ -49,6 +49,16 @@ public class SynchronizedArray<T> : Collection {
         self.accessQueue.async(flags:.barrier) {
             self.array = newArray
         }
+    }
+
+    public func copy() -> [T] {
+        var copy = [T]()
+        self.accessQueue.sync {
+            for item in self.array {
+                copy += [item]
+            }
+        }
+        return copy
     }
 
     public var count: Int {

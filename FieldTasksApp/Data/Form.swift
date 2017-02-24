@@ -58,7 +58,7 @@ class Form : Template {
         if let cLoc = Locations.shared.currentCLLocation() {
             self.coordinates = cLoc.coordinate
         }
-        if let location = Locations.shared.currentLocation {
+        if let location = Locations.shared.currentLocation() {
             self.locationId = location.id
         }
         let photosList = PhotoFileList(tasks: tasks, buildWithImages: true)

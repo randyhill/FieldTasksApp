@@ -35,6 +35,9 @@ class FormTasksController : UITableViewController {
         if let incompleteTasks = form!.tasksStillIncomplete() {
             FTAlertMessage(message: "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form")
         } else {
+            if let currentLocation = Locations.shared.curLocation {
+                form?.locationId = currentLocation.id
+            }
             form?.submit(completion: { (error) in
                 if error != nil {
                     FTAlertError(message: "Form Submission Failed: \(error!)")

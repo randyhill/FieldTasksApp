@@ -46,7 +46,6 @@ class Template {
         // Dont' write id, as this is a different object to database
         formDict["name"] = name as AnyObject?
         formDict["description"] = description as AnyObject?
-        //formDict["id"] = id as AnyObject?
         var taskDicts = [[String : AnyObject]]()
         for task in tasks {
             taskDicts += [task.toDict()]

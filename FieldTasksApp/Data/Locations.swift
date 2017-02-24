@@ -17,7 +17,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
     static let shared = Locations()
     private var mgr = CLLocationManager()
     var list = SynchronizedArray<FTLocation>()
-    var currentLocation : FTLocation?
+    var curLocation : FTLocation?
     var delegate : LocationUpdates?
     var curAccuracy = CLLocationAccuracy()
 
@@ -34,13 +34,21 @@ class Locations : NSObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations newLocations: [CLLocation]) {
         if newLocations.count > 0 {
-            let curLocation = newLocations[0]
-            curAccuracy = curLocation.horizontalAccuracy
-            let atLocation = self.inLocation(to: curLocation)
-            if atLocation !== currentLocation {
-                currentLocation = atLocation
-                delegate?.newlocation(location: currentLocation)
+            let firstCLoc = newLocations[0]
+            curAccuracy = firstCLoc.horizontalAccuracy
+            let atLocation = self.inLocation(to: firstCLoc)
+            if atLocation == nil && curLocation == nil {
+                return
+            } else if atLocation == nil || curLocation == nil {
+                curLocation = atLocation
+                delegate?.newlocation(location: curLocation)
                 self.sort()
+            } else if let atLoc = atLocation, let curLoc = curLocation {
+                if atLoc.id != curLoc.id {
+                    curLocation = atLoc
+                    delegate?.newlocation(location: curLocation)
+                    self.sort()
+                }
             }
         }
     }
@@ -76,7 +84,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
 
     // Resort to put current location at top.
     func sort() {
-        if let currentLoc = currentLocation {
+        if let currentLoc = curLocation {
             var newList = [FTLocation]()
             newList += [currentLoc]
             for location in list {
@@ -115,23 +123,15 @@ class Locations : NSObject, CLLocationManagerDelegate {
     }
 
     func inLocation(to: CLLocation) -> FTLocation? {
-        var closest : FTLocation?
-        var closestDistance = Double.greatestFiniteMagnitude
         for loc in list {
-            let distance = loc.distanceFrom(location: to)
-            if distance < closestDistance {
-                closestDistance = distance
-                closest = loc
+            if loc.inLocation(location: to) {
+                return loc
             }
         }
-        if (closestDistance + curAccuracy) < 100 {
-            return closest
-        } else {
-            return nil;
-        }
+        return nil
     }
 
-    func inLocation() -> FTLocation? {
+    func currentLocation() -> FTLocation? {
         if let cloc = mgr.location {
             return inLocation(to: cloc)
         }

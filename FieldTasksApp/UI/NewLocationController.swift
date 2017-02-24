@@ -30,8 +30,8 @@ class MyAnnotation : NSObject, MKAnnotation {
         self.coordinate = coordinate
     }
 
-    func mapItem() -> MKMapItem {
-        let addressDictionary = [String(CNPostalAddressStreetKey): subtitle]
+   func mapItem() -> MKMapItem {
+    let addressDictionary = [String(CNPostalAddressStreetKey) : subtitle ?? ""]
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
 
         let mapItem = MKMapItem(placemark: placemark)
@@ -262,10 +262,6 @@ class NewLocationController : UIViewController, MKMapViewDelegate, UITextFieldDe
     }
 
     // MARK: Overlays Methods -------------------------------------------------------------------------------
-//    func updateOverlaysFromLocation(theLocation: FTLocation) {
-//        annotation?.title = theLocation.name
-//        annotation?.subtitle = theLocation.street
-//    }
 
     func updatePerimeterText(meters: Int) {
         fields[FieldType.perimeter.rawValue].text = "\(meters)"
