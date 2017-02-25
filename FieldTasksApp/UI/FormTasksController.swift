@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlatUIKit
 
 class FormTasksCell : UITableViewCell {
     @IBOutlet weak var checkmark: UIImageView!
@@ -14,8 +15,16 @@ class FormTasksCell : UITableViewCell {
     @IBOutlet weak var typeText: UILabel!
 }
 
+class FormTasksLocationCell : UITableViewCell {
+    @IBOutlet weak var locationName: UILabel!
+    @IBOutlet weak var locationButton: FUIButton!
+    @IBAction func changeLocation(_ sender: Any) {
+    }
+}
+
 class FormTasksController : UITableViewController {
     var form : Form?
+    var location : FTLocation?
     let checkmark = UIImage(named: "checkmark.png")
 
     override func viewDidLoad() {
@@ -35,7 +44,9 @@ class FormTasksController : UITableViewController {
         if let incompleteTasks = form!.tasksStillIncomplete() {
             FTAlertMessage(message: "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form")
         } else {
-            if let currentLocation = Locations.shared.curLocation {
+            if let curLocation = location {
+                form?.locationId = curLocation.id
+            } else if let currentLocation = Locations.shared.curLocation {
                 form?.locationId = currentLocation.id
             }
             form?.submit(completion: { (error) in
@@ -51,6 +62,17 @@ class FormTasksController : UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // Use location from form if set, otherwise use current lcoation
+        if let locationId = form?.locationId {
+            location = Locations.shared.getBy(id: locationId)
+        }
+        if location == nil {
+            location = Locations.shared.curLocation
+        }
+        if let location = self.location {
+            form?.locationId = location.id
+        }
         self.tableView.reloadData()
     }
 
@@ -59,8 +81,22 @@ class FormTasksController : UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LocationPicker", let navController = segue.destination as? UINavigationController {
+            if let locationsController = navController.viewControllers[0] as? LocationsController {
+                locationsController.form = self.form
+            }
+        }
+    }
+
     // MARK: Table Methods -------------------------------------------------------------------------------
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
         return form!.tasks.count
     }
 
@@ -70,21 +106,36 @@ class FormTasksController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FormTasksCell", for: indexPath as IndexPath)
-        if let cell = cell as? FormTasksCell {
-            let task = form!.tasks[indexPath.row]
-            var titleText = task.name
-            if task.required {
-                titleText += " (required)"
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FormTasksLocationCell", for: indexPath as IndexPath)
+            if let cell = cell as? FormTasksLocationCell {
+                cell.locationButton.makeFlatButton()
+                cell.locationName.makeTitleStyle()
+                cell.makeCellFlat()
+                if let location = location {
+                    cell.locationButton.setTitle(location.name, for: .normal)
+                    cell.locationButton.setTitle(location.name, for: .highlighted)
+                }
             }
-            cell.titleText.text = titleText
-            cell.titleText.makeTitleStyle()
-            cell.checkmark.image = (task.result!.completed) ? checkmark : nil
-            cell.typeText.text = task.type;
-            cell.typeText.makeDetailStyle()
-            cell.makeCellFlat()
+            return cell
+
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FormTasksCell", for: indexPath as IndexPath)
+            if let cell = cell as? FormTasksCell {
+                let task = form!.tasks[indexPath.row]
+                var titleText = task.name
+                if task.required {
+                    titleText += " (required)"
+                }
+                cell.titleText.text = titleText
+                cell.titleText.makeTitleStyle()
+                cell.checkmark.image = (task.result!.completed) ? checkmark : nil
+                cell.typeText.text = task.type;
+                cell.typeText.makeDetailStyle()
+                cell.makeCellFlat()
+            }
+            return cell
         }
-        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
