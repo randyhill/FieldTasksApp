@@ -74,7 +74,7 @@ class TemplatesListController: UITableViewController {
         if let cell = cell as? TemplateCell {
             let form = templatesList[indexPath.row]
             cell.title!.text = form.name
-            cell.tasks!.text = "Tasks: \(form.tasks.count)"
+            cell.tasks!.text = "\(form.tasks.count)"
             if form.description.characters.count > 0 {
                 cell.body!.text = "Description: \(form.description)"
             } else {

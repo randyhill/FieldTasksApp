@@ -117,7 +117,7 @@ class LocationsController: UITableViewController, LocationUpdates {
             cell.address.makeDetailStyle()
             cell.title!.text = location.name
             cell.address!.text = location.fullAddress
-            cell.selectedBackgroundView?.backgroundColor = UIColor.wetAsphalt()
+//            cell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
             return cell
         }
         return cell

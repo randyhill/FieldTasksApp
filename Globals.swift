@@ -21,6 +21,7 @@ class Globals {
     let bgColor = UIColor.greenSea()
     let barColor = UIColor.asbestos()
     let barButtonColor = UIColor.peterRiver()
+    let selectionColor = UIColor.wetAsphalt()
 
     init() {
         utcFormatter.locale = Locale(identifier: "en_US_POSIX")

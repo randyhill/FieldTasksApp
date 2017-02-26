@@ -32,7 +32,11 @@ class Locations : NSObject, CLLocationManagerDelegate {
         })
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations newLocations: [CLLocation]) {
+    func coordinates() -> CLLocationCoordinate2D? {
+        return curLocation?.coordinates
+    }
+
+    internal func locationManager(_ manager: CLLocationManager, didUpdateLocations newLocations: [CLLocation]) {
         if newLocations.count > 0 {
             let firstCLoc = newLocations[0]
             curAccuracy = firstCLoc.horizontalAccuracy
@@ -159,7 +163,6 @@ class Locations : NSObject, CLLocationManagerDelegate {
             }
         })
     }
-
 
     func currentCLLocation() -> CLLocation? {
         return mgr.location

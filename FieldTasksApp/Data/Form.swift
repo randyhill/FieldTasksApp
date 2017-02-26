@@ -25,6 +25,11 @@ class Form : Template {
         if let locationId = formDict["location"] as? String {
             self.locationId =  locationId
         }
+        // Locations list isn't allocated yet so we can't save location here
+        if let locationId = formDict["coordinates"] as? String {
+            self.locationId =  locationId
+        }
+
     }
 
     override init(template: Template) {
@@ -55,11 +60,8 @@ class Form : Template {
     }
 
     func submit(completion : @escaping (_ error: String?)->()) {
-        if let cLoc = Locations.shared.currentCLLocation() {
-            self.coordinates = cLoc.coordinate
-        }
-        if let location = Locations.shared.currentLocation() {
-            self.locationId = location.id
+        if let coordinates = Locations.shared.coordinates() {
+            self.coordinates = coordinates
         }
         let photosList = PhotoFileList(tasks: tasks, buildWithImages: true)
         if photosList.count == 0 {

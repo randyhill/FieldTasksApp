@@ -10,7 +10,7 @@ import UIKit
 
 extension UITableViewCell {
     func makeCellFlat() {
-        configureFlatCell(with: UIColor.greenSea(), selectedColor: UIColor.clouds(), roundingCorners: .allCorners)
+        configureFlatCell(with: UIColor.greenSea(), selectedColor: UIColor.wetAsphalt(), roundingCorners: .allCorners)
         if let title = self.textLabel {
             title.font = UIFont.boldFlatFont(ofSize: 17)
         }

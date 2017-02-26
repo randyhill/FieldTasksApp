@@ -16,15 +16,12 @@ class FormTasksCell : UITableViewCell {
 }
 
 class FormTasksLocationCell : UITableViewCell {
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationName: UILabel!
-    @IBOutlet weak var locationButton: FUIButton!
-    @IBAction func changeLocation(_ sender: Any) {
-    }
 }
 
 class FormTasksController : UITableViewController {
     var form : Form?
-    var location : FTLocation?
     let checkmark = UIImage(named: "checkmark.png")
 
     override func viewDidLoad() {
@@ -44,11 +41,6 @@ class FormTasksController : UITableViewController {
         if let incompleteTasks = form!.tasksStillIncomplete() {
             FTAlertMessage(message: "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form")
         } else {
-            if let curLocation = location {
-                form?.locationId = curLocation.id
-            } else if let currentLocation = Locations.shared.curLocation {
-                form?.locationId = currentLocation.id
-            }
             form?.submit(completion: { (error) in
                 if error != nil {
                     FTAlertError(message: "Form Submission Failed: \(error!)")
@@ -62,17 +54,6 @@ class FormTasksController : UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        // Use location from form if set, otherwise use current lcoation
-        if let locationId = form?.locationId {
-            location = Locations.shared.getBy(id: locationId)
-        }
-        if location == nil {
-            location = Locations.shared.curLocation
-        }
-        if let location = self.location {
-            form?.locationId = location.id
-        }
         self.tableView.reloadData()
     }
 
@@ -109,13 +90,23 @@ class FormTasksController : UITableViewController {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FormTasksLocationCell", for: indexPath as IndexPath)
             if let cell = cell as? FormTasksLocationCell {
-                cell.locationButton.makeFlatButton()
+                cell.locationLabel.makeTitleStyle()
                 cell.locationName.makeTitleStyle()
                 cell.makeCellFlat()
-                if let location = location {
-                    cell.locationButton.setTitle(location.name, for: .normal)
-                    cell.locationButton.setTitle(location.name, for: .highlighted)
+                // Use location from form if set, otherwise use current lcoation
+                var location : FTLocation?
+                if let locationId = form?.locationId {
+                    location = Locations.shared.getBy(id: locationId)
                 }
+                if location == nil {
+                    location = Locations.shared.curLocation
+                }
+                var locationTitle = "Unknown"
+                if let location = location {
+                    locationTitle = location.name
+                }
+                cell.locationName.text = locationTitle
+//                cell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
             }
             return cell
 
@@ -133,6 +124,7 @@ class FormTasksController : UITableViewController {
                 cell.typeText.text = task.type;
                 cell.typeText.makeDetailStyle()
                 cell.makeCellFlat()
+//                cell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
             }
             return cell
         }
@@ -140,13 +132,17 @@ class FormTasksController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if let tasksController = self.storyboard?.instantiateViewController(withIdentifier: "TasksController") as? TasksController {
-            tasksController.form = form
-            tasksController.taskIndex = indexPath.row
-            let navController = UINavigationController(rootViewController: tasksController) // Creating a navigation controller with resultController at the root of the navigation stack.
-            self.present(navController, animated: true, completion: {
-                
-            })
+        if indexPath.row == 0 {
+            self.performSegue(withIdentifier: "LocationPicker", sender: self)
+        } else {
+            if let tasksController = self.storyboard?.instantiateViewController(withIdentifier: "TasksController") as? TasksController {
+                tasksController.form = form
+                tasksController.taskIndex = indexPath.row
+                let navController = UINavigationController(rootViewController: tasksController) // Creating a navigation controller with resultController at the root of the navigation stack.
+                self.present(navController, animated: true, completion: {
+
+                })
+            }
         }
     }
 }

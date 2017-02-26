@@ -31,7 +31,7 @@ class FormController : UITableViewController {
         super.viewDidLoad()
 
         FTAssert(isTrue: form != nil, error: "Form was not set before opening view")
-        self.title = "Form"
+        self.title = form?.name ?? "Form"
         self.tableView.allowsSelection = true
         navigationItem.leftBarButtonItem = FlatBarButton(title: "Back", target: self, action: #selector(goBack))
         makeNavBarFlat()
@@ -82,20 +82,23 @@ class FormController : UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FormTitleCell", for: indexPath as IndexPath)
             cell.configureHeaderCell()
             if let formTitleCell = cell as? FormTitleCell, let form = form {
-                formTitleCell.title.text = "Name: " + form.name
-                formTitleCell.title.makeTitleStyle()
-                var locationString = "At: Unknown Location"
+                var locationString = "Location: Unknown"
                 if let locationId = form.locationId {
                     if let location = Locations.shared.getBy(id: locationId){
-                        locationString = "Submitted At: " + location.name
+                        locationString = "For: " + location.name
                     }
                 }
-                var descriptionString = locationString + "\nWhen: " + Globals.shared.dateFormatter.string(from: form.createDate)
-                descriptionString += "\nPurpose: " + form.description
+                formTitleCell.title.text = locationString
+                formTitleCell.title.makeTitleStyle()
+
+                let coordinatesString = "lat: \(form.coordinates?.latitude) long: \(form.coordinates?.longitude)"
+                var descriptionString = Globals.shared.dateFormatter.string(from: form.createDate) + " " + coordinatesString
+                descriptionString += "\n" + form.description
                 formTitleCell.body.text = descriptionString
                 formTitleCell.body.makeDetailStyle()
                 formTitleCell.body.backgroundColor = cell.contentView.backgroundColor
-            }
+                formTitleCell.selectionStyle = .none
+           }
             return cell
         } else {
             let task = form!.tasks[indexPath.row-1]
@@ -118,7 +121,7 @@ class FormController : UITableViewController {
                             formTaskCell.stackView.addArrangedSubview(imageView)
                         }
                     }
-                    formTaskCell.selectionStyle = .default
+//                    formTaskCell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
                 }
                 return cell
             } else {
@@ -137,7 +140,8 @@ class FormController : UITableViewController {
                     formTaskCell.body.layer.cornerRadius = 4.0
                     formTaskCell.body.backgroundColor = Globals.shared.bgColor
                     formTaskCell.body.makeDetailStyle()
-                }
+//                    formTaskCell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
+               }
                 return cell
             }
          }
