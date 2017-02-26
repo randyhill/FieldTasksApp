@@ -13,11 +13,16 @@ protocol LocationUpdates {
     func newlocation(location : FTLocation?)
 }
 
+struct SortedLocation {
+    var location : FTLocation?
+    var distance = 0
+}
+
 class Locations : NSObject, CLLocationManagerDelegate {
     static let shared = Locations()
     private var mgr = CLLocationManager()
-    var list = SynchronizedArray<FTLocation>()
-    var curLocation : FTLocation?
+    private var list = SynchronizedArray<FTLocation>()
+    private var curLocation : FTLocation?
     var delegate : LocationUpdates?
     var curAccuracy = CLLocationAccuracy()
 
@@ -32,10 +37,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
         })
     }
 
-    func coordinates() -> CLLocationCoordinate2D? {
-        return curLocation?.coordinates
-    }
-
+    // MARK: CLLocation Methods -------------------------------------------------------------------------------
     internal func locationManager(_ manager: CLLocationManager, didUpdateLocations newLocations: [CLLocation]) {
         if newLocations.count > 0 {
             let firstCLoc = newLocations[0]
@@ -46,18 +48,18 @@ class Locations : NSObject, CLLocationManagerDelegate {
             } else if atLocation == nil || curLocation == nil {
                 curLocation = atLocation
                 delegate?.newlocation(location: curLocation)
-                self.sort()
+//                self.sort()
             } else if let atLoc = atLocation, let curLoc = curLocation {
                 if atLoc.id != curLoc.id {
                     curLocation = atLoc
                     delegate?.newlocation(location: curLocation)
-                    self.sort()
+//                    self.sort()
                 }
             }
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    internal func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         FTErrorMessage(error: error.localizedDescription)
     }
 
@@ -80,28 +82,41 @@ class Locations : NSObject, CLLocationManagerDelegate {
                        }
                     }
                 }
-                self.sort()
                completion(nil)
             }
         }
     }
 
-    // Resort to put current location at top.
-    func sort() {
-        if let currentLoc = curLocation {
-            var newList = [FTLocation]()
-            newList += [currentLoc]
-            for location in list {
-                if location.id != currentLoc.id {
-                    newList += [location]
-                }
-            }
-            self.list.replace(newArray: newList)
-        }
+    func currentCLLocation() -> CLLocation? {
+        return mgr.location
     }
 
-    func removeAll() {
-        list.removeAll()
+    func currentCoordinates() -> CLLocationCoordinate2D? {
+        return curLocation?.coordinates
+    }
+
+    // MARK: FTLocation Methods -------------------------------------------------------------------------------
+
+    // Return locations within meters sorted by closest
+    func within(meters : Int) -> [FTLocation] {
+        var newList = [FTLocation]()
+        if let cLoc = mgr.location {
+            var sorted = [SortedLocation]()
+            for location in list.copy() {
+                let meters = location.distanceFrom(location: cLoc)
+                sorted += [SortedLocation(location: location, distance: Int(meters))]
+            }
+            sorted.sort {
+                return $0.distance < $1.distance
+            }
+            let filtered = sorted.filter({ (s) -> Bool in
+                return s.distance < meters
+            })
+            newList = filtered.map({ (s) -> FTLocation in
+                return s.location!
+            })
+        }
+        return newList
     }
 
     func getBy(id: String) -> FTLocation? {
@@ -142,6 +157,7 @@ class Locations : NSObject, CLLocationManagerDelegate {
         return nil
     }
 
+    // MARK: Address Methods -------------------------------------------------------------------------------
     func currentAddress(completion: @escaping (_ locationDict: [AnyHashable : Any])->()) {
         if let location = mgr.location {
             clLocationToAddress(location: location, completion: completion)
@@ -162,9 +178,5 @@ class Locations : NSObject, CLLocationManagerDelegate {
                 completion(locationDict)
             }
         })
-    }
-
-    func currentCLLocation() -> CLLocation? {
-        return mgr.location
     }
 }

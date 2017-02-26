@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--FormsController-->
+        <!--FormsListController-->
         <scene sceneID="QIO-Ud-gEh">
             <objects>
-                <tableViewController storyboardIdentifier="FormsListController" automaticallyAdjustsScrollViewInsets="NO" id="Z6d-oH-UYb" customClass="FormsListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FormsListController" title="FormsListController" automaticallyAdjustsScrollViewInsets="NO" id="Z6d-oH-UYb" customClass="FormsListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="fd9-f4-QNU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="1776" y="-237"/>
         </scene>
-        <!--Forms-->
+        <!--FormsNavController-->
         <scene sceneID="QHZ-Ac-a4A">
             <objects>
-                <navigationController storyboardIdentifier="MainNavController" id="aNW-LY-f8l" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FormsNavController" title="FormsNavController" id="aNW-LY-f8l" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Forms" image="forms.png" id="CPE-wD-qoB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QGG-bg-J17">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -73,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="272" y="-244"/>
         </scene>
-        <!--Templates-->
+        <!--TemplatesListController-->
         <scene sceneID="hUq-7w-6LU">
             <objects>
-                <tableViewController storyboardIdentifier="TemplatesListController" title="Templates" id="hKQ-bT-TB1" customClass="TemplatesListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TemplatesListController" title="TemplatesListController" id="hKQ-bT-TB1" customClass="TemplatesListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5fX-Zz-W0L">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="438"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,7 +148,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uq7-4V-3LU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2093" y="470"/>
+            <point key="canvasLocation" x="1523" y="470"/>
         </scene>
         <!--FormTasksList-->
         <scene sceneID="Su1-SJ-Eqs">
@@ -263,12 +263,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJK-FH-uKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1023" y="1167"/>
+            <point key="canvasLocation" x="853" y="1169"/>
         </scene>
-        <!--Task-->
+        <!--TaskController-->
         <scene sceneID="CNM-AM-2AT">
             <objects>
-                <viewController storyboardIdentifier="TasksController" title="Task" id="AOG-Wz-dWz" customClass="TasksController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TasksController" title="TaskController" id="AOG-Wz-dWz" customClass="TasksController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VQZ-NZ-65c"/>
                         <viewControllerLayoutGuide type="bottom" id="wgO-eI-Kgd"/>
@@ -352,10 +352,10 @@
             </objects>
             <point key="canvasLocation" x="1736" y="1159"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--TabBarController-->
         <scene sceneID="MC3-ix-lWp">
             <objects>
-                <tabBarController id="pHr-u3-8Qm" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" title="TabBarController" id="pHr-u3-8Qm" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ouN-uW-G9F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -372,10 +372,10 @@
             </objects>
             <point key="canvasLocation" x="-1254" y="13"/>
         </scene>
-        <!--Locations-->
+        <!--LocationsController-->
         <scene sceneID="iwz-zw-Cki">
             <objects>
-                <tableViewController storyboardIdentifier="LocationsController" title="Locations" id="AlL-mB-4CL" customClass="LocationsController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LocationsController" title="LocationsController" id="AlL-mB-4CL" customClass="LocationsController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bWU-2x-6yb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -444,12 +444,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="118-d9-nVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1059" y="2294"/>
+            <point key="canvasLocation" x="772" y="2295"/>
         </scene>
-        <!--New Location Controller-->
+        <!--NewLocationController-->
         <scene sceneID="MmN-rH-a3s">
             <objects>
-                <viewController storyboardIdentifier="NewLocationController" id="w62-F2-UJP" customClass="NewLocationController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewLocationController" title="NewLocationController" id="w62-F2-UJP" customClass="NewLocationController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lwZ-ZC-lsQ"/>
                         <viewControllerLayoutGuide type="bottom" id="E5R-5p-I17"/>
@@ -726,12 +726,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63p-m8-FWB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="2294"/>
+            <point key="canvasLocation" x="1330" y="2295"/>
         </scene>
-        <!--Locations-->
+        <!--LocationsNavController-->
         <scene sceneID="7vK-Jn-Hip">
             <objects>
-                <navigationController storyboardIdentifier="LocationsNavController" id="nQQ-iW-EBF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LocationsNavController" title="LocationsNavController" id="nQQ-iW-EBF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Locations" image="location.png" id="ORS-Es-WFT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rm2-7T-zsE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -745,10 +745,10 @@
             </objects>
             <point key="canvasLocation" x="236" y="2295"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--TemplateNavController-->
         <scene sceneID="hqK-K3-lI2">
             <objects>
-                <navigationController storyboardIdentifier="TemplateNavController" id="EJv-0p-Ljm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TemplateNavController" title="TemplateNavController" id="EJv-0p-Ljm" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KzZ-ke-s30">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -761,10 +761,10 @@
             </objects>
             <point key="canvasLocation" x="272" y="1169"/>
         </scene>
-        <!--Form Controller-->
+        <!--FormController-->
         <scene sceneID="lq3-8a-KJd">
             <objects>
-                <tableViewController storyboardIdentifier="FormController" id="hmr-Jz-0WV" customClass="FormController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FormController" title="FormController" id="hmr-Jz-0WV" customClass="FormController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Hs-AY-mZ3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -897,12 +897,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TcC-Ai-aWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3300" y="-220"/>
+            <point key="canvasLocation" x="2990" y="-221"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--FormNavController-->
         <scene sceneID="NCh-Jj-Dkg">
             <objects>
-                <navigationController storyboardIdentifier="FormNavController" id="Gfi-M9-iyh" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FormNavController" title="FormNavController" id="Gfi-M9-iyh" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="g8t-tL-dLy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -915,10 +915,10 @@
             </objects>
             <point key="canvasLocation" x="2490" y="-221"/>
         </scene>
-        <!--Templates-->
+        <!--TemplatesNavController-->
         <scene sceneID="WXc-li-aM6">
             <objects>
-                <navigationController storyboardIdentifier="TemplatesNavController" id="7x3-Ci-Czd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TemplatesNavController" title="TemplatesNavController" id="7x3-Ci-Czd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Templates" image="text-w.png" id="Gtk-4U-c42"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mKm-CJ-ESf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -981,12 +981,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aS0-VN-ZYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3131" y="1159"/>
+            <point key="canvasLocation" x="2604" y="1169"/>
         </scene>
-        <!--Text Task Controller-->
+        <!--TextTaskController-->
         <scene sceneID="aLS-2j-cGr">
             <objects>
-                <viewController storyboardIdentifier="TextTaskController" id="Th4-k5-qfh" customClass="TextTaskController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TextTaskController" title="TextTaskController" id="Th4-k5-qfh" customClass="TextTaskController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xen-yp-FTm"/>
                         <viewControllerLayoutGuide type="bottom" id="WIc-nY-Q5R"/>
@@ -1017,7 +1017,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcX-D8-3dO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3801" y="1147"/>
+            <point key="canvasLocation" x="3034" y="1169"/>
         </scene>
         <!--ChoiceTaskController-->
         <scene sceneID="B01-ik-F6I">
@@ -1037,10 +1037,10 @@
             </objects>
             <point key="canvasLocation" x="4496" y="1148"/>
         </scene>
-        <!--Photos Task Controller-->
+        <!--PhotosTaskController-->
         <scene sceneID="BD2-0C-m2w">
             <objects>
-                <viewController storyboardIdentifier="PhotosTaskController" id="rtZ-sk-sJw" customClass="PhotosTaskController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotosTaskController" title="PhotosTaskController" id="rtZ-sk-sJw" customClass="PhotosTaskController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ad1-II-oTG"/>
                         <viewControllerLayoutGuide type="bottom" id="749-Ly-958"/>
@@ -1170,7 +1170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FrS-xm-ui8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2411" y="1159"/>
+            <point key="canvasLocation" x="2183" y="1169"/>
         </scene>
         <!--FormsController-->
         <scene sceneID="b0i-sw-XQ5">
@@ -1315,7 +1315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnX-pq-eJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117.5" y="470.07042253521126"/>
+            <point key="canvasLocation" x="897" y="470"/>
         </scene>
     </scenes>
     <resources>
@@ -1325,6 +1325,6 @@
         <image name="text-w.png" width="21" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ckC-pR-nHl"/>
+        <segue reference="Z5p-Yn-CDg"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -99,14 +99,13 @@ class FormTasksController : UITableViewController {
                     location = Locations.shared.getBy(id: locationId)
                 }
                 if location == nil {
-                    location = Locations.shared.curLocation
+                    location = Locations.shared.currentLocation()
                 }
                 var locationTitle = "Unknown"
                 if let location = location {
                     locationTitle = location.name
                 }
                 cell.locationName.text = locationTitle
-//                cell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
             }
             return cell
 
@@ -124,7 +123,6 @@ class FormTasksController : UITableViewController {
                 cell.typeText.text = task.type;
                 cell.typeText.makeDetailStyle()
                 cell.makeCellFlat()
-//                cell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
             }
             return cell
         }

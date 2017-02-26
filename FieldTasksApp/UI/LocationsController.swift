@@ -20,6 +20,7 @@ class LocationsController: UITableViewController, LocationUpdates {
     var form : Form?
     var selectedLocation : FTLocation?
     var list = [FTLocation]()   // use read-only copy of live list so it's thread safe, otherwise live list could be in mid-update when we refresh
+    var searchRadius = 10000     // How far away to look for locations
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class LocationsController: UITableViewController, LocationUpdates {
        }
         makeNavBarFlat()
         locations.delegate = self
-        self.list = locations.list.copy()
+        self.list = locations.within(meters: searchRadius)
     }
 
     // In regular mode when used to display locations.
@@ -48,7 +49,7 @@ class LocationsController: UITableViewController, LocationUpdates {
                 self.showAlert(title: "Error creating location", message: error)
             }
             // Refresh list data before updating visual list
-            self.list = self.locations.list.copy()
+            self.list = self.locations.within(meters: self.searchRadius)
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
@@ -104,7 +105,7 @@ class LocationsController: UITableViewController, LocationUpdates {
         if let cell = cell as? LocationCell {
             let location = list[indexPath.row]
             cell.makeCellFlat()
-            if location === locations.curLocation {
+            if location.id == locations.currentLocation()?.id {
                 cell.locationImage.tintColor = UIColor.silver()
                 cell.locationImage.image = UIImage(named: "location.png")?.withRenderingMode(.alwaysTemplate)
             } else {
@@ -117,7 +118,6 @@ class LocationsController: UITableViewController, LocationUpdates {
             cell.address.makeDetailStyle()
             cell.title!.text = location.name
             cell.address!.text = location.fullAddress
-//            cell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
             return cell
         }
         return cell

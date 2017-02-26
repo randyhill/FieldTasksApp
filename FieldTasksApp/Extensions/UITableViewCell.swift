@@ -13,9 +13,11 @@ extension UITableViewCell {
         configureFlatCell(with: UIColor.greenSea(), selectedColor: UIColor.wetAsphalt(), roundingCorners: .allCorners)
         if let title = self.textLabel {
             title.font = UIFont.boldFlatFont(ofSize: 17)
+            title.textColor = UIColor.clouds()
         }
         if let body = self.detailTextLabel {
             body.font = UIFont.flatFont(ofSize: 14)
+            body.textColor = UIColor.clouds()
         }
     }
 
