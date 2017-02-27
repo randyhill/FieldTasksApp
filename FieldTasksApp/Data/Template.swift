@@ -14,6 +14,11 @@ class Template {
     var description = ""
     var tasks = [FormTask]()
 
+    init() {
+        name = "Template Name"
+    }
+
+    // init from dict
     init(templateDict : [String : AnyObject]) {
         if let name = templateDict["name"] as? String {
             self.name = name
@@ -33,6 +38,7 @@ class Template {
         }
     }
 
+    // init from existing
     init(template: Template) {
         self.id = template.id
         self.name = template.name

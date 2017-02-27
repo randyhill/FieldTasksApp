@@ -90,3 +90,7 @@ class FormTask {
     }
 }
 
+class TextTask : FormTask {
+    
+}
+

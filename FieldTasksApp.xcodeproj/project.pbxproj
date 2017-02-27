@@ -31,7 +31,6 @@
 		D835A3E71E635C31002C3EB1 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3DF1E635C31002C3EB1 /* UITextField.swift */; };
 		D835A3E81E635C31002C3EB1 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3E01E635C31002C3EB1 /* UITextView.swift */; };
 		D835A3E91E635C31002C3EB1 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3E11E635C31002C3EB1 /* UIViewController.swift */; };
-		D835A3EB1E635C45002C3EB1 /* ChoiceTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3EA1E635C45002C3EB1 /* ChoiceTaskController.swift */; };
 		D835A3EC1E635C58002C3EB1 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3DA1E635C31002C3EB1 /* Double.swift */; };
 		D835A3ED1E635C58002C3EB1 /* FUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3DB1E635C31002C3EB1 /* FUIButton.swift */; };
 		D835A3EE1E635C58002C3EB1 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3DC1E635C31002C3EB1 /* UIImage.swift */; };
@@ -40,7 +39,6 @@
 		D835A3F11E635C58002C3EB1 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3DF1E635C31002C3EB1 /* UITextField.swift */; };
 		D835A3F21E635C58002C3EB1 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3E01E635C31002C3EB1 /* UITextView.swift */; };
 		D835A3F31E635C58002C3EB1 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3E11E635C31002C3EB1 /* UIViewController.swift */; };
-		D835A3F41E635C5D002C3EB1 /* ChoiceTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D835A3EA1E635C45002C3EB1 /* ChoiceTaskController.swift */; };
 		D84AAF2D1E4531EA000D584F /* LocationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C8C0D1E45289300B5404F /* LocationsController.swift */; };
 		D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8549B9A1D67871B009DBE7A /* AppDelegate.swift */; };
 		D8549BA01D67871B009DBE7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8549B9E1D67871B009DBE7A /* Main.storyboard */; };
@@ -69,10 +67,6 @@
 		D86BF7301E63982800884277 /* LocationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF72A1E6397EC00884277 /* LocationsManager.swift */; };
 		D86BF7311E63982800884277 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF72B1E6397EC00884277 /* ServerManager.swift */; };
 		D86BF7321E63982800884277 /* TemplatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF72C1E6397EC00884277 /* TemplatesManager.swift */; };
-		D86BF7341E63A90F00884277 /* TemplateEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7331E63A90F00884277 /* TemplateEditorController.swift */; };
-		D86BF7351E63A90F00884277 /* TemplateEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7331E63A90F00884277 /* TemplateEditorController.swift */; };
-		D86BF7371E63A97000884277 /* TemplateEditorListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7361E63A97000884277 /* TemplateEditorListController.swift */; };
-		D86BF7381E63A97000884277 /* TemplateEditorListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7361E63A97000884277 /* TemplateEditorListController.swift */; };
 		D86BF73C1E63B4AE00884277 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7391E63B4AE00884277 /* photo.png */; };
 		D86BF73D1E63B4AE00884277 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7391E63B4AE00884277 /* photo.png */; };
 		D86BF73E1E63B4AE00884277 /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF73A1E63B4AE00884277 /* photo@2x.png */; };
@@ -99,6 +93,28 @@
 		D86BF75D1E63CA9B00884277 /* number@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7581E63CA9B00884277 /* number@2x.png */; };
 		D86BF75E1E63CA9B00884277 /* number@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7591E63CA9B00884277 /* number@3x.png */; };
 		D86BF75F1E63CA9B00884277 /* number@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7591E63CA9B00884277 /* number@3x.png */; };
+		D86BF7621E64A2B100884277 /* TemplateTasksBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7611E64A2B100884277 /* TemplateTasksBar.swift */; };
+		D86BF7631E64A2B100884277 /* TemplateTasksBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7611E64A2B100884277 /* TemplateTasksBar.swift */; };
+		D86BF7681E64A42500884277 /* TemplateEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7641E64A42500884277 /* TemplateEditorController.swift */; };
+		D86BF7691E64A42500884277 /* TemplateEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7641E64A42500884277 /* TemplateEditorController.swift */; };
+		D86BF76A1E64A42500884277 /* TemplateEditorListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7651E64A42500884277 /* TemplateEditorListController.swift */; };
+		D86BF76B1E64A42500884277 /* TemplateEditorListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7651E64A42500884277 /* TemplateEditorListController.swift */; };
+		D86BF76C1E64A42500884277 /* TemplatesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7661E64A42500884277 /* TemplatesController.swift */; };
+		D86BF76D1E64A42500884277 /* TemplatesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7661E64A42500884277 /* TemplatesController.swift */; };
+		D86BF76E1E64A42500884277 /* TemplatesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7671E64A42500884277 /* TemplatesListController.swift */; };
+		D86BF76F1E64A42500884277 /* TemplatesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7671E64A42500884277 /* TemplatesListController.swift */; };
+		D86BF7761E64A43800884277 /* ChoiceTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7701E64A43800884277 /* ChoiceTaskController.swift */; };
+		D86BF7771E64A43800884277 /* ChoiceTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7701E64A43800884277 /* ChoiceTaskController.swift */; };
+		D86BF7781E64A43800884277 /* NumberTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7711E64A43800884277 /* NumberTaskController.swift */; };
+		D86BF7791E64A43800884277 /* NumberTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7711E64A43800884277 /* NumberTaskController.swift */; };
+		D86BF77A1E64A43800884277 /* PhotosTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7721E64A43800884277 /* PhotosTaskController.swift */; };
+		D86BF77B1E64A43800884277 /* PhotosTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7721E64A43800884277 /* PhotosTaskController.swift */; };
+		D86BF77C1E64A43800884277 /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7731E64A43800884277 /* TaskController.swift */; };
+		D86BF77D1E64A43800884277 /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7731E64A43800884277 /* TaskController.swift */; };
+		D86BF77E1E64A43800884277 /* TasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7741E64A43800884277 /* TasksController.swift */; };
+		D86BF77F1E64A43800884277 /* TasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7741E64A43800884277 /* TasksController.swift */; };
+		D86BF7801E64A43800884277 /* TextTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7751E64A43800884277 /* TextTaskController.swift */; };
+		D86BF7811E64A43800884277 /* TextTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7751E64A43800884277 /* TextTaskController.swift */; };
 		D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87390161E3BCC5500142FD6 /* PhotoFileList.swift */; };
 		D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87390161E3BCC5500142FD6 /* PhotoFileList.swift */; };
 		D89770861E5A98C100A9318D /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770831E5A98C100A9318D /* refresh@3x.png */; };
@@ -143,10 +159,6 @@
 		D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */; };
 		D8DB034C1E4A5247001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
 		D8DB034D1E4A5274001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
-		D8E9547A1E5FBA02004D5D4C /* TemplatesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E954791E5FBA02004D5D4C /* TemplatesListController.swift */; };
-		D8E9547B1E5FBA02004D5D4C /* TemplatesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E954791E5FBA02004D5D4C /* TemplatesListController.swift */; };
-		D8F1D6D21E521CFB00A07F70 /* PhotosTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */; };
-		D8F1D6D81E522A8600A07F70 /* PhotosTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */; };
 		D8F1D6EB1E53A8F200A07F70 /* Icon 76.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */; };
 		D8F1D6EC1E53A8F200A07F70 /* Icon 76.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */; };
 		D8F1D6ED1E53A8F200A07F70 /* Icon 120.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DD1E53A8F200A07F70 /* Icon 120.png */; };
@@ -159,18 +171,8 @@
 		D8F1D6F41E53A8F200A07F70 /* Icon 180.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6E01E53A8F200A07F70 /* Icon 180.png */; };
 		D8F1D6F51E53A8F200A07F70 /* Icon 228.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6E11E53A8F200A07F70 /* Icon 228.png */; };
 		D8F1D6F61E53A8F200A07F70 /* Icon 228.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6E11E53A8F200A07F70 /* Icon 228.png */; };
-		D8F1D7021E53A91800A07F70 /* NumberTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6FD1E53A91800A07F70 /* NumberTaskController.swift */; };
-		D8F1D7031E53A91800A07F70 /* NumberTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6FD1E53A91800A07F70 /* NumberTaskController.swift */; };
-		D8F1D7061E53A91800A07F70 /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6FF1E53A91800A07F70 /* TaskController.swift */; };
-		D8F1D7071E53A91800A07F70 /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D6FF1E53A91800A07F70 /* TaskController.swift */; };
-		D8F1D7081E53A91800A07F70 /* TasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7001E53A91800A07F70 /* TasksController.swift */; };
-		D8F1D7091E53A91800A07F70 /* TasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7001E53A91800A07F70 /* TasksController.swift */; };
-		D8F1D70A1E53A91800A07F70 /* TextTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7011E53A91800A07F70 /* TextTaskController.swift */; };
-		D8F1D70B1E53A91800A07F70 /* TextTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7011E53A91800A07F70 /* TextTaskController.swift */; };
 		D8F1D70E1E53A92700A07F70 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D70C1E53A92700A07F70 /* FormController.swift */; };
 		D8F1D70F1E53A92700A07F70 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D70C1E53A92700A07F70 /* FormController.swift */; };
-		D8F1D7101E53A92700A07F70 /* TemplatesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */; };
-		D8F1D7111E53A92700A07F70 /* TemplatesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */; };
 		D8F1D7181E53A96900A07F70 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7121E53A96900A07F70 /* Form.swift */; };
 		D8F1D7191E53A96900A07F70 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7121E53A96900A07F70 /* Form.swift */; };
 		D8F1D71A1E53A96900A07F70 /* FormTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7131E53A96900A07F70 /* FormTask.swift */; };
@@ -204,7 +206,6 @@
 		D835A3DF1E635C31002C3EB1 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = Extensions/UITextField.swift; sourceTree = "<group>"; };
 		D835A3E01E635C31002C3EB1 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextView.swift; path = Extensions/UITextView.swift; sourceTree = "<group>"; };
 		D835A3E11E635C31002C3EB1 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = Extensions/UIViewController.swift; sourceTree = "<group>"; };
-		D835A3EA1E635C45002C3EB1 /* ChoiceTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChoiceTaskController.swift; path = UI/TaskControllers/ChoiceTaskController.swift; sourceTree = "<group>"; };
 		D8549B971D67871B009DBE7A /* FieldTasksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FieldTasksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8549B9A1D67871B009DBE7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8549B9F1D67871B009DBE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -223,8 +224,6 @@
 		D86BF72A1E6397EC00884277 /* LocationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsManager.swift; path = Singletons/LocationsManager.swift; sourceTree = "<group>"; };
 		D86BF72B1E6397EC00884277 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServerManager.swift; path = Singletons/ServerManager.swift; sourceTree = "<group>"; };
 		D86BF72C1E6397EC00884277 /* TemplatesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesManager.swift; path = Singletons/TemplatesManager.swift; sourceTree = "<group>"; };
-		D86BF7331E63A90F00884277 /* TemplateEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateEditorController.swift; path = UI/TemplateEditorController.swift; sourceTree = "<group>"; };
-		D86BF7361E63A97000884277 /* TemplateEditorListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateEditorListController.swift; path = UI/TemplateEditorListController.swift; sourceTree = "<group>"; };
 		D86BF7391E63B4AE00884277 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photo.png; path = Images/photo.png; sourceTree = "<group>"; };
 		D86BF73A1E63B4AE00884277 /* photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photo@2x.png"; path = "Images/photo@2x.png"; sourceTree = "<group>"; };
 		D86BF73B1E63B4AE00884277 /* photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photo@3x.png"; path = "Images/photo@3x.png"; sourceTree = "<group>"; };
@@ -238,6 +237,17 @@
 		D86BF7571E63CA9B00884277 /* number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = number.png; path = Images/number.png; sourceTree = "<group>"; };
 		D86BF7581E63CA9B00884277 /* number@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "number@2x.png"; path = "Images/number@2x.png"; sourceTree = "<group>"; };
 		D86BF7591E63CA9B00884277 /* number@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "number@3x.png"; path = "Images/number@3x.png"; sourceTree = "<group>"; };
+		D86BF7611E64A2B100884277 /* TemplateTasksBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateTasksBar.swift; path = UI/Templates/TemplateTasksBar.swift; sourceTree = "<group>"; };
+		D86BF7641E64A42500884277 /* TemplateEditorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateEditorController.swift; path = UI/Templates/TemplateEditorController.swift; sourceTree = "<group>"; };
+		D86BF7651E64A42500884277 /* TemplateEditorListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateEditorListController.swift; path = UI/Templates/TemplateEditorListController.swift; sourceTree = "<group>"; };
+		D86BF7661E64A42500884277 /* TemplatesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesController.swift; path = UI/Templates/TemplatesController.swift; sourceTree = "<group>"; };
+		D86BF7671E64A42500884277 /* TemplatesListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesListController.swift; path = UI/Templates/TemplatesListController.swift; sourceTree = "<group>"; };
+		D86BF7701E64A43800884277 /* ChoiceTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChoiceTaskController.swift; path = UI/FormTasks/ChoiceTaskController.swift; sourceTree = "<group>"; };
+		D86BF7711E64A43800884277 /* NumberTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberTaskController.swift; path = UI/FormTasks/NumberTaskController.swift; sourceTree = "<group>"; };
+		D86BF7721E64A43800884277 /* PhotosTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosTaskController.swift; path = UI/FormTasks/PhotosTaskController.swift; sourceTree = "<group>"; };
+		D86BF7731E64A43800884277 /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskController.swift; path = UI/FormTasks/TaskController.swift; sourceTree = "<group>"; };
+		D86BF7741E64A43800884277 /* TasksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksController.swift; path = UI/FormTasks/TasksController.swift; sourceTree = "<group>"; };
+		D86BF7751E64A43800884277 /* TextTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextTaskController.swift; path = UI/FormTasks/TextTaskController.swift; sourceTree = "<group>"; };
 		D87390161E3BCC5500142FD6 /* PhotoFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFileList.swift; path = Data/PhotoFileList.swift; sourceTree = "<group>"; };
 		D89770831E5A98C100A9318D /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@3x.png"; path = "Images/refresh@3x.png"; sourceTree = "<group>"; };
 		D89770851E5A98C100A9318D /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Images/refresh@2x.png"; sourceTree = "<group>"; };
@@ -260,20 +270,13 @@
 		D89770D11E5CBBFD00A9318D /* NewLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewLocationController.swift; path = UI/NewLocationController.swift; sourceTree = "<group>"; };
 		D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SynchronizedArray.swift; path = Data/SynchronizedArray.swift; sourceTree = "<group>"; };
 		D8DB034B1E4A5247001BA901 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Template.swift; path = Data/Template.swift; sourceTree = "<group>"; };
-		D8E954791E5FBA02004D5D4C /* TemplatesListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesListController.swift; path = UI/TemplatesListController.swift; sourceTree = "<group>"; };
-		D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosTaskController.swift; path = UI/TaskControllers/PhotosTaskController.swift; sourceTree = "<group>"; };
 		D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 76.png"; path = "Images/Icon 76.png"; sourceTree = "<group>"; };
 		D8F1D6DD1E53A8F200A07F70 /* Icon 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 120.png"; path = "Images/Icon 120.png"; sourceTree = "<group>"; };
 		D8F1D6DE1E53A8F200A07F70 /* Icon 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 152.png"; path = "Images/Icon 152.png"; sourceTree = "<group>"; };
 		D8F1D6DF1E53A8F200A07F70 /* Icon 167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 167.png"; path = "Images/Icon 167.png"; sourceTree = "<group>"; };
 		D8F1D6E01E53A8F200A07F70 /* Icon 180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 180.png"; path = "Images/Icon 180.png"; sourceTree = "<group>"; };
 		D8F1D6E11E53A8F200A07F70 /* Icon 228.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 228.png"; path = "Images/Icon 228.png"; sourceTree = "<group>"; };
-		D8F1D6FD1E53A91800A07F70 /* NumberTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberTaskController.swift; path = UI/TaskControllers/NumberTaskController.swift; sourceTree = "<group>"; };
-		D8F1D6FF1E53A91800A07F70 /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskController.swift; path = UI/TaskControllers/TaskController.swift; sourceTree = "<group>"; };
-		D8F1D7001E53A91800A07F70 /* TasksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksController.swift; path = UI/TaskControllers/TasksController.swift; sourceTree = "<group>"; };
-		D8F1D7011E53A91800A07F70 /* TextTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextTaskController.swift; path = UI/TaskControllers/TextTaskController.swift; sourceTree = "<group>"; };
 		D8F1D70C1E53A92700A07F70 /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormController.swift; path = UI/FormController.swift; sourceTree = "<group>"; };
-		D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesController.swift; path = UI/TemplatesController.swift; sourceTree = "<group>"; };
 		D8F1D7121E53A96900A07F70 /* Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Form.swift; path = Data/Form.swift; sourceTree = "<group>"; };
 		D8F1D7131E53A96900A07F70 /* FormTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormTask.swift; path = Data/FormTask.swift; sourceTree = "<group>"; };
 		D8F1D7141E53A96900A07F70 /* FTLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FTLocation.swift; path = Data/FTLocation.swift; sourceTree = "<group>"; };
@@ -331,14 +334,10 @@
 				D82411A01E301BE6006D06E2 /* FormsController.swift */,
 				D89770BF1E5BC49200A9318D /* FormsListController.swift */,
 				D8F1D70C1E53A92700A07F70 /* FormController.swift */,
-				D8F1D70D1E53A92700A07F70 /* TemplatesController.swift */,
-				D8E954791E5FBA02004D5D4C /* TemplatesListController.swift */,
-				D86BF7331E63A90F00884277 /* TemplateEditorController.swift */,
-				D86BF7361E63A97000884277 /* TemplateEditorListController.swift */,
 				D85C8C0D1E45289300B5404F /* LocationsController.swift */,
 				D89770D11E5CBBFD00A9318D /* NewLocationController.swift */,
-				D82411A41E315517006D06E2 /* FormTasksController.swift */,
-				D826E6C41D6D2B87002B91AE /* TaskControllers */,
+				D86BF7601E64A25800884277 /* Templates */,
+				D826E6C41D6D2B87002B91AE /* FormTasks */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -356,17 +355,18 @@
 			path = ../Pods/FlatUIKit;
 			sourceTree = "<group>";
 		};
-		D826E6C41D6D2B87002B91AE /* TaskControllers */ = {
+		D826E6C41D6D2B87002B91AE /* FormTasks */ = {
 			isa = PBXGroup;
 			children = (
-				D835A3EA1E635C45002C3EB1 /* ChoiceTaskController.swift */,
-				D8F1D7001E53A91800A07F70 /* TasksController.swift */,
-				D8F1D6FF1E53A91800A07F70 /* TaskController.swift */,
-				D8F1D6FD1E53A91800A07F70 /* NumberTaskController.swift */,
-				D8F1D7011E53A91800A07F70 /* TextTaskController.swift */,
-				D8F1D6D11E521CFB00A07F70 /* PhotosTaskController.swift */,
+				D86BF7701E64A43800884277 /* ChoiceTaskController.swift */,
+				D86BF7711E64A43800884277 /* NumberTaskController.swift */,
+				D86BF7721E64A43800884277 /* PhotosTaskController.swift */,
+				D86BF7731E64A43800884277 /* TaskController.swift */,
+				D86BF7741E64A43800884277 /* TasksController.swift */,
+				D86BF7751E64A43800884277 /* TextTaskController.swift */,
+				D82411A41E315517006D06E2 /* FormTasksController.swift */,
 			);
-			name = TaskControllers;
+			name = FormTasks;
 			sourceTree = "<group>";
 		};
 		D8549B8E1D67871B009DBE7A = {
@@ -452,6 +452,18 @@
 				D8F1D7171E53A96900A07F70 /* TaskResults.swift */,
 			);
 			name = Tasks;
+			sourceTree = "<group>";
+		};
+		D86BF7601E64A25800884277 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				D86BF7661E64A42500884277 /* TemplatesController.swift */,
+				D86BF7671E64A42500884277 /* TemplatesListController.swift */,
+				D86BF7641E64A42500884277 /* TemplateEditorController.swift */,
+				D86BF7651E64A42500884277 /* TemplateEditorListController.swift */,
+				D86BF7611E64A2B100884277 /* TemplateTasksBar.swift */,
+			);
+			name = Templates;
 			sourceTree = "<group>";
 		};
 		D8C165CB1E47EBEE00129439 /* Extensions */ = {
@@ -816,45 +828,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8F1D6D21E521CFB00A07F70 /* PhotosTaskController.swift in Sources */,
+				D86BF77A1E64A43800884277 /* PhotosTaskController.swift in Sources */,
 				D8F1D7181E53A96900A07F70 /* Form.swift in Sources */,
-				D8E9547A1E5FBA02004D5D4C /* TemplatesListController.swift in Sources */,
 				D86BF72D1E6397EC00884277 /* LocationsManager.swift in Sources */,
-				D835A3EB1E635C45002C3EB1 /* ChoiceTaskController.swift in Sources */,
+				D86BF7681E64A42500884277 /* TemplateEditorController.swift in Sources */,
 				D8F1D71A1E53A96900A07F70 /* FormTask.swift in Sources */,
+				D86BF7761E64A43800884277 /* ChoiceTaskController.swift in Sources */,
 				D835A3E51E635C31002C3EB1 /* UILabel.swift in Sources */,
+				D86BF76E1E64A42500884277 /* TemplatesListController.swift in Sources */,
 				D8F1D7221E53A96900A07F70 /* TaskResults.swift in Sources */,
 				D835A3E21E635C31002C3EB1 /* Double.swift in Sources */,
-				D8F1D7021E53A91800A07F70 /* NumberTaskController.swift in Sources */,
+				D86BF76C1E64A42500884277 /* TemplatesController.swift in Sources */,
 				D82411A51E315517006D06E2 /* FormTasksController.swift in Sources */,
-				D8F1D70A1E53A91800A07F70 /* TextTaskController.swift in Sources */,
 				D8DB034C1E4A5247001BA901 /* Template.swift in Sources */,
 				D89770D51E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
 				D835A3E91E635C31002C3EB1 /* UIViewController.swift in Sources */,
 				D835A3E71E635C31002C3EB1 /* UITextField.swift in Sources */,
+				D86BF77C1E64A43800884277 /* TaskController.swift in Sources */,
 				D86BF72E1E6397EC00884277 /* ServerManager.swift in Sources */,
 				D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */,
+				D86BF7781E64A43800884277 /* NumberTaskController.swift in Sources */,
 				D82411A11E301BE6006D06E2 /* FormsController.swift in Sources */,
-				D8F1D7081E53A91800A07F70 /* TasksController.swift in Sources */,
 				D835A3E61E635C31002C3EB1 /* UITableViewCell.swift in Sources */,
 				D86BF72F1E6397EC00884277 /* TemplatesManager.swift in Sources */,
-				D86BF7341E63A90F00884277 /* TemplateEditorController.swift in Sources */,
+				D86BF7801E64A43800884277 /* TextTaskController.swift in Sources */,
+				D86BF76A1E64A42500884277 /* TemplateEditorListController.swift in Sources */,
 				D89770C01E5BC49200A9318D /* FormsListController.swift in Sources */,
 				D89770D21E5CBBFD00A9318D /* NewLocationController.swift in Sources */,
 				D835A3E81E635C31002C3EB1 /* UITextView.swift in Sources */,
 				D835A3E31E635C31002C3EB1 /* FUIButton.swift in Sources */,
+				D86BF77E1E64A43800884277 /* TasksController.swift in Sources */,
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
 				D835A3E41E635C31002C3EB1 /* UIImage.swift in Sources */,
 				D8F1D7201E53A96900A07F70 /* TaskDescriptions.swift in Sources */,
 				D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
+				D86BF7621E64A2B100884277 /* TemplateTasksBar.swift in Sources */,
 				D85C8C0E1E45289300B5404F /* LocationsController.swift in Sources */,
 				D8F1D70E1E53A92700A07F70 /* FormController.swift in Sources */,
-				D8F1D7061E53A91800A07F70 /* TaskController.swift in Sources */,
 				D8F1D71C1E53A96900A07F70 /* FTLocation.swift in Sources */,
-				D86BF7371E63A97000884277 /* TemplateEditorListController.swift in Sources */,
 				D86BF7261E638F3D00884277 /* Shared.swift in Sources */,
-				D8F1D7101E53A92700A07F70 /* TemplatesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,45 +875,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D86BF77B1E64A43800884277 /* PhotosTaskController.swift in Sources */,
 				D8F1D7231E53A96900A07F70 /* TaskResults.swift in Sources */,
 				D84AAF2D1E4531EA000D584F /* LocationsController.swift in Sources */,
 				D82411A61E315517006D06E2 /* FormTasksController.swift in Sources */,
 				D86BF7301E63982800884277 /* LocationsManager.swift in Sources */,
+				D86BF7771E64A43800884277 /* ChoiceTaskController.swift in Sources */,
+				D86BF7691E64A42500884277 /* TemplateEditorController.swift in Sources */,
 				D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */,
-				D835A3F41E635C5D002C3EB1 /* ChoiceTaskController.swift in Sources */,
+				D86BF76F1E64A42500884277 /* TemplatesListController.swift in Sources */,
 				D86BF7271E63974500884277 /* Shared.swift in Sources */,
 				D82411A31E301D5A006D06E2 /* FormsController.swift in Sources */,
 				D835A3EC1E635C58002C3EB1 /* Double.swift in Sources */,
+				D86BF76D1E64A42500884277 /* TemplatesController.swift in Sources */,
 				D835A3F31E635C58002C3EB1 /* UIViewController.swift in Sources */,
 				D8F1D7191E53A96900A07F70 /* Form.swift in Sources */,
-				D8F1D7111E53A92700A07F70 /* TemplatesController.swift in Sources */,
 				D835A3EF1E635C58002C3EB1 /* UILabel.swift in Sources */,
+				D86BF77D1E64A43800884277 /* TaskController.swift in Sources */,
 				D835A3ED1E635C58002C3EB1 /* FUIButton.swift in Sources */,
 				D8DB034D1E4A5274001BA901 /* Template.swift in Sources */,
+				D86BF7791E64A43800884277 /* NumberTaskController.swift in Sources */,
 				D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */,
 				D86BF7311E63982800884277 /* ServerManager.swift in Sources */,
 				D8F1D71B1E53A96900A07F70 /* FormTask.swift in Sources */,
+				D86BF7811E64A43800884277 /* TextTaskController.swift in Sources */,
 				D835A3F01E635C58002C3EB1 /* UITableViewCell.swift in Sources */,
-				D8E9547B1E5FBA02004D5D4C /* TemplatesListController.swift in Sources */,
 				D8F1D71D1E53A96900A07F70 /* FTLocation.swift in Sources */,
 				D86BF7321E63982800884277 /* TemplatesManager.swift in Sources */,
-				D86BF7351E63A90F00884277 /* TemplateEditorController.swift in Sources */,
 				D8F1D7211E53A96900A07F70 /* TaskDescriptions.swift in Sources */,
+				D86BF76B1E64A42500884277 /* TemplateEditorListController.swift in Sources */,
+				D86BF77F1E64A43800884277 /* TasksController.swift in Sources */,
 				D835A3F11E635C58002C3EB1 /* UITextField.swift in Sources */,
 				D8F1D70F1E53A92700A07F70 /* FormController.swift in Sources */,
-				D8F1D6D81E522A8600A07F70 /* PhotosTaskController.swift in Sources */,
 				D835A3EE1E635C58002C3EB1 /* UIImage.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
 				D835A3F21E635C58002C3EB1 /* UITextView.swift in Sources */,
 				D85D53E11D711051006D31F2 /* Globals.swift in Sources */,
-				D8F1D70B1E53A91800A07F70 /* TextTaskController.swift in Sources */,
+				D86BF7631E64A2B100884277 /* TemplateTasksBar.swift in Sources */,
 				D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
-				D8F1D7031E53A91800A07F70 /* NumberTaskController.swift in Sources */,
-				D8F1D7071E53A91800A07F70 /* TaskController.swift in Sources */,
-				D86BF7381E63A97000884277 /* TemplateEditorListController.swift in Sources */,
 				D89770D31E5CBBFD00A9318D /* NewLocationController.swift in Sources */,
-				D8F1D7091E53A91800A07F70 /* TasksController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

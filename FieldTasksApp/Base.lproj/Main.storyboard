@@ -938,7 +938,7 @@
             <objects>
                 <tableViewController title="TemplateEditorListController" id="cf4-ke-zw2" customClass="TemplateEditorListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2WV-CA-WUB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="422"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -975,32 +975,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cln-sc-gLt">
-                                <rect key="frame" x="0.0" y="129" width="320" height="439"/>
+                                <rect key="frame" x="0.0" y="146" width="320" height="422"/>
                                 <connections>
                                     <segue destination="cf4-ke-zw2" kind="embed" id="9al-Fo-Fey"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-QV-Mfc" customClass="TasksToolBar" customModule="FieldTasksApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="66"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-QV-Mfc" customClass="TemplateTasksToolBar" customModule="FieldTasksApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="96" width="320" height="49"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="8Hi-zS-aWy"/>
+                                    <constraint firstAttribute="height" constant="49" id="8Hi-zS-aWy"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7s-bJ-K3R">
+                                <rect key="frame" x="16" y="72" width="71" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="71" id="4m2-dC-tU4"/>
+                                    <constraint firstAttribute="height" constant="21" id="WTM-TE-gIz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cln-sc-gLt" firstAttribute="leading" secondItem="Pda-e0-3eP" secondAttribute="leading" id="12d-Vd-JHI"/>
+                            <constraint firstItem="f7s-bJ-K3R" firstAttribute="leading" secondItem="Pda-e0-3eP" secondAttribute="leadingMargin" id="1C7-j3-iJw"/>
                             <constraint firstItem="5tP-nS-wwM" firstAttribute="top" secondItem="cln-sc-gLt" secondAttribute="bottom" id="38z-WY-XlW"/>
                             <constraint firstAttribute="trailing" secondItem="cln-sc-gLt" secondAttribute="trailing" id="Hfq-A0-bCj"/>
-                            <constraint firstItem="UKz-QV-Mfc" firstAttribute="top" secondItem="teO-SU-vWb" secondAttribute="bottom" id="Uxn-Fb-laj"/>
+                            <constraint firstItem="UKz-QV-Mfc" firstAttribute="top" secondItem="teO-SU-vWb" secondAttribute="bottom" constant="32" id="Uxn-Fb-laj"/>
                             <constraint firstAttribute="trailing" secondItem="UKz-QV-Mfc" secondAttribute="trailing" id="Wo4-e1-PGr"/>
                             <constraint firstItem="UKz-QV-Mfc" firstAttribute="leading" secondItem="Pda-e0-3eP" secondAttribute="leading" id="cjv-4Z-th1"/>
-                            <constraint firstItem="cln-sc-gLt" firstAttribute="top" secondItem="teO-SU-vWb" secondAttribute="bottom" constant="65" id="ppG-fu-GB3"/>
+                            <constraint firstItem="f7s-bJ-K3R" firstAttribute="top" secondItem="teO-SU-vWb" secondAttribute="bottom" constant="8" id="dob-0g-k8z"/>
+                            <constraint firstItem="cln-sc-gLt" firstAttribute="top" secondItem="teO-SU-vWb" secondAttribute="bottom" constant="82" id="ppG-fu-GB3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="haa-oN-Yog"/>
                     <connections>
+                        <outlet property="titleLabel" destination="f7s-bJ-K3R" id="wJm-dv-NZs"/>
                         <outlet property="toolbar" destination="UKz-QV-Mfc" id="eQC-qf-8Dd"/>
                     </connections>
                 </viewController>
