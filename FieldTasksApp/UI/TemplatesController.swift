@@ -25,10 +25,8 @@ class TemplatesController : UIViewController {
         makeNavBarFlat()
         tasksLabel.makeDetailStyle()
         templateLabel.makeDetailStyle()
-        newButton.makeFlatImageButton(imageNamed: "plus.png")
+        newButton.makeFlatButton()
         self.view.backgroundColor = UIColor.wetAsphalt()
-
-        //self.refreshList()
     }
 
     func goBack() {

@@ -78,7 +78,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="TemplatesListController" title="TemplatesListController" id="hKQ-bT-TB1" customClass="TemplatesListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5fX-Zz-W0L">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="438"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="397"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -148,7 +148,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uq7-4V-3LU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1523" y="470"/>
+            <point key="canvasLocation" x="1794" y="354"/>
         </scene>
         <!--FormTasksList-->
         <scene sceneID="Su1-SJ-Eqs">
@@ -263,7 +263,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJK-FH-uKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853" y="1169"/>
+            <point key="canvasLocation" x="1013" y="1168"/>
         </scene>
         <!--TaskController-->
         <scene sceneID="CNM-AM-2AT">
@@ -364,8 +364,9 @@
                         <color key="selectedImageTintColor" red="0.92549019607843142" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="aNW-LY-f8l" kind="relationship" relationship="viewControllers" id="0ZN-rN-Ic6"/>
                         <segue destination="nQQ-iW-EBF" kind="relationship" relationship="viewControllers" id="Z5p-Yn-CDg"/>
+                        <segue destination="7x3-Ci-Czd" kind="relationship" relationship="viewControllers" id="Av3-RQ-WRH"/>
+                        <segue destination="aNW-LY-f8l" kind="relationship" relationship="viewControllers" id="0ZN-rN-Ic6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="US1-lz-x9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -444,7 +445,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="118-d9-nVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772" y="2295"/>
+            <point key="canvasLocation" x="1013" y="2294"/>
         </scene>
         <!--NewLocationController-->
         <scene sceneID="MmN-rH-a3s">
@@ -726,7 +727,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63p-m8-FWB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1330" y="2295"/>
+            <point key="canvasLocation" x="1776" y="2301"/>
         </scene>
         <!--LocationsNavController-->
         <scene sceneID="7vK-Jn-Hip">
@@ -897,7 +898,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TcC-Ai-aWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2990" y="-221"/>
+            <point key="canvasLocation" x="3281" y="-222"/>
         </scene>
         <!--FormNavController-->
         <scene sceneID="NCh-Jj-Dkg">
@@ -919,7 +920,7 @@
         <scene sceneID="WXc-li-aM6">
             <objects>
                 <navigationController storyboardIdentifier="TemplatesNavController" title="TemplatesNavController" id="7x3-Ci-Czd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Templates" image="text-w.png" id="Gtk-4U-c42"/>
+                    <tabBarItem key="tabBarItem" title="Templates" image="plus.png" id="Gtk-4U-c42"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mKm-CJ-ESf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -931,6 +932,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXe-hU-kIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="272" y="436"/>
+        </scene>
+        <!--TemplateEditorListController-->
+        <scene sceneID="JJk-6a-EXV">
+            <objects>
+                <tableViewController title="TemplateEditorListController" id="cf4-ke-zw2" customClass="TemplateEditorListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2WV-CA-WUB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xVf-Z1-GHk">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xVf-Z1-GHk" id="5NP-Ni-pWm">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cf4-ke-zw2" id="9JK-pd-qEj"/>
+                            <outlet property="delegate" destination="cf4-ke-zw2" id="wbA-RK-TGk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="q0b-VZ-d5J"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXF-Qd-jtf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4174" y="464"/>
+        </scene>
+        <!--TemplateEditorController-->
+        <scene sceneID="2Ao-gc-o1B">
+            <objects>
+                <viewController storyboardIdentifier="TemplateEditorController" title="TemplateEditorController" id="jWI-jH-RRY" customClass="TemplateEditorController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="teO-SU-vWb"/>
+                        <viewControllerLayoutGuide type="bottom" id="5tP-nS-wwM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pda-e0-3eP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cln-sc-gLt">
+                                <rect key="frame" x="0.0" y="129" width="320" height="439"/>
+                                <connections>
+                                    <segue destination="cf4-ke-zw2" kind="embed" id="9al-Fo-Fey"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-QV-Mfc" customClass="TasksToolBar" customModule="FieldTasksApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="66"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="8Hi-zS-aWy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cln-sc-gLt" firstAttribute="leading" secondItem="Pda-e0-3eP" secondAttribute="leading" id="12d-Vd-JHI"/>
+                            <constraint firstItem="5tP-nS-wwM" firstAttribute="top" secondItem="cln-sc-gLt" secondAttribute="bottom" id="38z-WY-XlW"/>
+                            <constraint firstAttribute="trailing" secondItem="cln-sc-gLt" secondAttribute="trailing" id="Hfq-A0-bCj"/>
+                            <constraint firstItem="UKz-QV-Mfc" firstAttribute="top" secondItem="teO-SU-vWb" secondAttribute="bottom" id="Uxn-Fb-laj"/>
+                            <constraint firstAttribute="trailing" secondItem="UKz-QV-Mfc" secondAttribute="trailing" id="Wo4-e1-PGr"/>
+                            <constraint firstItem="UKz-QV-Mfc" firstAttribute="leading" secondItem="Pda-e0-3eP" secondAttribute="leading" id="cjv-4Z-th1"/>
+                            <constraint firstItem="cln-sc-gLt" firstAttribute="top" secondItem="teO-SU-vWb" secondAttribute="bottom" constant="65" id="ppG-fu-GB3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="haa-oN-Yog"/>
+                    <connections>
+                        <outlet property="toolbar" destination="UKz-QV-Mfc" id="eQC-qf-8Dd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nVD-85-mDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3215.625" y="463.73239436619718"/>
+        </scene>
+        <!--TemplateEditorNavController-->
+        <scene sceneID="ytS-Hi-URu">
+            <objects>
+                <navigationController storyboardIdentifier="TemplateEditorNavController" title="TemplateEditorNavController" id="6sN-fK-T2V" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tKm-x5-SrH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jWI-jH-RRY" kind="relationship" relationship="rootViewController" id="ufH-tx-Kye"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cb9-PH-c0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2514" y="464"/>
         </scene>
         <!--NumberTaskController-->
         <scene sceneID="dAq-3Y-8i8">
@@ -981,7 +1073,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aS0-VN-ZYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2604" y="1169"/>
+            <point key="canvasLocation" x="3699" y="1159"/>
         </scene>
         <!--TextTaskController-->
         <scene sceneID="aLS-2j-cGr">
@@ -1170,7 +1262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FrS-xm-ui8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2183" y="1169"/>
+            <point key="canvasLocation" x="2398" y="1168"/>
         </scene>
         <!--FormsController-->
         <scene sceneID="b0i-sw-XQ5">
@@ -1259,7 +1351,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Template" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-Wc-4lb">
-                                <rect key="frame" x="16" y="110" width="89" height="21"/>
+                                <rect key="frame" x="16" y="102" width="89" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="89" id="R4z-gI-NWo"/>
                                     <constraint firstAttribute="height" constant="21" id="W7N-mY-KSD"/>
@@ -1269,7 +1361,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasks" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLn-fl-8jc">
-                                <rect key="frame" x="261" y="110" width="47" height="21"/>
+                                <rect key="frame" x="261" y="102" width="47" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="JCW-p8-8n7"/>
                                     <constraint firstAttribute="height" constant="21" id="bcu-Rh-aWd"/>
@@ -1278,32 +1370,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aF9-pN-lM7" customClass="FUIButton">
-                                <rect key="frame" x="16" y="74" width="68" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="Pax-xc-CaQ"/>
-                                    <constraint firstAttribute="width" constant="68" id="V17-0A-s9w"/>
-                                </constraints>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILO-ld-JGe">
-                                <rect key="frame" x="0.0" y="130" width="320" height="438"/>
+                                <rect key="frame" x="0.0" y="122" width="320" height="397"/>
                                 <connections>
                                     <segue destination="hKQ-bT-TB1" kind="embed" id="G2x-V7-oZu"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aF9-pN-lM7" customClass="FUIButton">
+                                <rect key="frame" x="105" y="75" width="111" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Pax-xc-CaQ"/>
+                                    <constraint firstAttribute="width" constant="111" id="V17-0A-s9w"/>
+                                </constraints>
+                                <state key="normal" title="Create New"/>
+                                <connections>
+                                    <segue destination="6sN-fK-T2V" kind="presentation" id="idZ-ig-sYb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ILO-ld-JGe" secondAttribute="trailing" id="2fC-z0-SKS"/>
-                            <constraint firstItem="ILO-ld-JGe" firstAttribute="top" secondItem="aF9-pN-lM7" secondAttribute="bottom" constant="25" id="5Qs-1O-Tcn"/>
-                            <constraint firstItem="0zk-Wc-4lb" firstAttribute="top" secondItem="xnW-xa-IBt" secondAttribute="bottom" constant="46" id="L7c-XR-WU1"/>
-                            <constraint firstItem="aF9-pN-lM7" firstAttribute="top" secondItem="xnW-xa-IBt" secondAttribute="bottom" constant="10" id="R5d-Yn-f6v"/>
-                            <constraint firstItem="aF9-pN-lM7" firstAttribute="leading" secondItem="Opq-Gc-Ytd" secondAttribute="leadingMargin" id="fgc-CK-OEB"/>
+                            <constraint firstItem="ILO-ld-JGe" firstAttribute="top" secondItem="aF9-pN-lM7" secondAttribute="bottom" constant="16" id="5Qs-1O-Tcn"/>
+                            <constraint firstItem="aF9-pN-lM7" firstAttribute="centerX" secondItem="Opq-Gc-Ytd" secondAttribute="centerX" id="CKA-QV-yqj"/>
+                            <constraint firstItem="0zk-Wc-4lb" firstAttribute="top" secondItem="xnW-xa-IBt" secondAttribute="bottom" constant="38" id="L7c-XR-WU1"/>
+                            <constraint firstItem="aF9-pN-lM7" firstAttribute="top" secondItem="xnW-xa-IBt" secondAttribute="bottom" constant="11" id="R5d-Yn-f6v"/>
                             <constraint firstItem="ILO-ld-JGe" firstAttribute="leading" secondItem="Opq-Gc-Ytd" secondAttribute="leading" id="gy9-af-CaZ"/>
                             <constraint firstItem="SLn-fl-8jc" firstAttribute="trailing" secondItem="Opq-Gc-Ytd" secondAttribute="trailingMargin" constant="4" id="hBM-B4-UbX"/>
                             <constraint firstItem="0zk-Wc-4lb" firstAttribute="leading" secondItem="Opq-Gc-Ytd" secondAttribute="leadingMargin" id="jDW-GS-MK2"/>
                             <constraint firstItem="u2r-1G-xL0" firstAttribute="top" secondItem="ILO-ld-JGe" secondAttribute="bottom" id="nB5-4M-owv"/>
-                            <constraint firstItem="SLn-fl-8jc" firstAttribute="top" secondItem="xnW-xa-IBt" secondAttribute="bottom" constant="46" id="xsy-3J-Rq8"/>
+                            <constraint firstItem="SLn-fl-8jc" firstAttribute="top" secondItem="xnW-xa-IBt" secondAttribute="bottom" constant="38" id="xsy-3J-Rq8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wgF-yW-u7Q"/>
@@ -1315,14 +1411,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnX-pq-eJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="897" y="470"/>
+            <point key="canvasLocation" x="1012.5" y="434.15492957746477"/>
         </scene>
     </scenes>
     <resources>
         <image name="forms.png" width="21" height="18"/>
         <image name="location.png" width="18" height="23"/>
+        <image name="plus.png" width="15" height="15"/>
         <image name="success.png" width="28" height="28"/>
-        <image name="text-w.png" width="21" height="17"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Z5p-Yn-CDg"/>

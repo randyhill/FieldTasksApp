@@ -87,7 +87,7 @@ class NewLocationController : UIViewController, MKMapViewDelegate, UITextFieldDe
     // MARK: Map Methods -------------------------------------------------------------------------------
     func initMap() {
         map.delegate = self
-        if let clLoc = Locations.shared.currentCLLocation() {
+        if let clLoc = LocationsManager.shared.currentCLLocation() {
             let span = 0.01
             map.centerCoordinate = clLoc.coordinate
             map.region = MKCoordinateRegion(center: clLoc.coordinate, span: MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span))
@@ -95,7 +95,7 @@ class NewLocationController : UIViewController, MKMapViewDelegate, UITextFieldDe
             updateAnnotationLocation(coordinate: clLoc.coordinate)
             updatePerimeterOverlay(coordinate: clLoc.coordinate, radius: CLLocationDistance(perimeterSlider.value))
         }
-        Locations.shared.currentAddress { (locationDict) in
+        LocationsManager.shared.currentAddress { (locationDict) in
             self.location.updateFromPlacemarkDict(locationDict: locationDict)
             self.updateFieldsFromLocation(theLocation: self.location)
             FTAlertDismiss {}
@@ -139,7 +139,7 @@ class NewLocationController : UIViewController, MKMapViewDelegate, UITextFieldDe
         if newState == MKAnnotationViewDragState.ending {
             if let newCoord = view.annotation?.coordinate {
                 location.coordinates = newCoord
-                Locations.shared.coordinatesToAddress(coordinates: newCoord, completion: { (locationDict) in
+                LocationsManager.shared.coordinatesToAddress(coordinates: newCoord, completion: { (locationDict) in
                     self.location.updateFromPlacemarkDict(locationDict: locationDict)
                     self.updateFieldsFromLocation(theLocation: self.location)
                 })

@@ -96,10 +96,10 @@ class FormTasksController : UITableViewController {
                 // Use location from form if set, otherwise use current lcoation
                 var location : FTLocation?
                 if let locationId = form?.locationId {
-                    location = Locations.shared.getBy(id: locationId)
+                    location = LocationsManager.shared.getBy(id: locationId)
                 }
                 if location == nil {
-                    location = Locations.shared.currentLocation()
+                    location = LocationsManager.shared.currentLocation()
                 }
                 var locationTitle = "Unknown"
                 if let location = location {

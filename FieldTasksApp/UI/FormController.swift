@@ -84,7 +84,7 @@ class FormController : UITableViewController {
             if let formTitleCell = cell as? FormTitleCell, let form = form {
                 var locationString = "Location: Unknown"
                 if let locationId = form.locationId {
-                    if let location = Locations.shared.getBy(id: locationId){
+                    if let location = LocationsManager.shared.getBy(id: locationId){
                         locationString = "For: " + location.name
                     }
                 }

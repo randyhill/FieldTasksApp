@@ -22,31 +22,27 @@ class TemplatesListController: UITableViewController {
         super.viewDidLoad()
 
         // Adjustment because we are now in container view
-        //self.tableView.contentInset = UIEdgeInsetsMake(-32, 0, 0, 0)
         tableView.backgroundColor = UIColor.greenSea()
         self.refreshList()
     }
 
     func refreshList() {
-        // Do any additional setup after loading the view, typically from a nib.
-        ServerMgr.shared.loadTemplates(location: parentTemplatesController?.location) { (result, error) in
-            if error != nil {
+        TemplatesManager.shared.refreshList(location: parentTemplatesController?.location) { (templates, err ) in
+            if let error = err {
                 FTErrorMessage(error: "Failed to load forms: \(error)")
             } else {
-                if let formList = result  {
-                    DispatchQueue.main.async(execute: {
-                        self.templatesList.removeAll()
-                        for formObject in formList {
-                            if let formDict = formObject as? [String : AnyObject] {
-                                self.templatesList += [Template(templateDict: formDict)]
-                            }
-                        }
-                        self.tableView.reloadData()
-                    })
+                if let templates = templates {
+                    self.templatesList = templates
+                    self.refreshOnMainThread()
                 }
-
             }
         }
+    }
+
+    func refreshOnMainThread() {
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +62,30 @@ class TemplatesListController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64.0
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (canceled) in
+                if !canceled {
+                    let template = self.templatesList[indexPath.row]
+                    TemplatesManager.shared.deleteTemplate(templateId: template.id, completion: { (error) in
+                        if let error = error {
+                            self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
+                        } else {
+                            self.templatesList = TemplatesManager.shared.templateList()
+                            self.refreshOnMainThread()
+                        }
+                    })
+                }
+            })
+        } else {
+            print("unimplemented editing style")
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

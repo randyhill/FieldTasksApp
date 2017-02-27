@@ -19,21 +19,20 @@ class FormsController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        newButton.makeFlatImageButton(imageNamed: "plus.png")
         formDateLabel.makeDetailStyle()
         formNameLabel.makeDetailStyle()
         self.view.backgroundColor = UIColor.wetAsphalt()
+        self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshList))
 
         if let location = location {
             self.title = location.name
+            newButton.makeFlatImageButton(imageNamed: "plus.png")
+            newButton.isHidden = false
+            self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
         } else {
             self.title = "Forms"
+            newButton.isHidden = true
         }
-        self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshList))
-        if location != nil {
-            self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
-        }
-
         self.makeNavBarFlat()
     }
 

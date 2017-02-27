@@ -16,6 +16,19 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    func askAlert(title : String, body: String, action: String, completion: @escaping (_ canceled: Bool)->()) {
+        let alert = UIAlertController(title: title, message: body, preferredStyle: .alert)
+        alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            completion(true)
+        }))
+        alert.addAction( UIAlertAction(title: action, style: .destructive, handler: { (action) in
+            completion(false)
+        }))
+        self.present(alert, animated: true, completion: {
+
+        })
+    }
+
     func makeNavBarFlat() {
         self.navigationController?.navigationBar.configureFlatNavigationBar(with: UIColor.belizeHole())//Globals.shared.barColor)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.clouds(), NSFontAttributeName : Globals.shared.bigFont]
