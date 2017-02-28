@@ -102,15 +102,15 @@ class FormController : UITableViewController {
             return cell
         } else {
             let task = form!.tasks[indexPath.row-1]
-            if task.type == cFormTaskPhoto {
+            if task.type == TaskType.Photos {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "FormPhotoTaskCell", for: indexPath as IndexPath)
                 cell.makeCellFlat()
-                if let formTaskCell = cell as? FormPhotoTaskCell {
-                    formTaskCell.title!.text = task.name
-                    formTaskCell.title.makeTitleStyle()
+                if let taskCell = cell as? FormPhotoTaskCell {
+                    taskCell.title!.text = task.name
+                    taskCell.title.makeTitleStyle()
 
                     // Clear old views so we don't have old photos hanging around.
-                    for oldView in formTaskCell.stackView.subviews {
+                    for oldView in taskCell.stackView.subviews {
                         oldView.removeFromSuperview()
                     }
                     if let photoResult = task.result as? PhotoResult {
@@ -118,29 +118,27 @@ class FormController : UITableViewController {
                             let imageView = UIImageView(image: image)
                             imageView.contentMode = .scaleAspectFit
                             imageView.translatesAutoresizingMaskIntoConstraints = false
-                            formTaskCell.stackView.addArrangedSubview(imageView)
+                            taskCell.stackView.addArrangedSubview(imageView)
                         }
                     }
-//                    formTaskCell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
                 }
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "FormTaskCell", for: indexPath as IndexPath)
                 cell.makeCellFlat()
-                if let formTaskCell = cell as? FormTaskCell {
+                if let taskCell = cell as? FormTaskCell {
 
-                    formTaskCell.title!.text = task.name
-                    formTaskCell.title.makeTitleStyle()
+                    taskCell.title!.text = task.name
+                    taskCell.title.makeTitleStyle()
                     if let result = task.result {
-                        formTaskCell.body!.text = result.description()
+                        taskCell.body!.text = result.description()
                     } else {
-                        formTaskCell.body!.text = "Not entered"
+                        taskCell.body!.text = "Not entered"
                     }
-                    formTaskCell.selectionStyle = .default
-                    formTaskCell.body.layer.cornerRadius = 4.0
-                    formTaskCell.body.backgroundColor = Globals.shared.bgColor
-                    formTaskCell.body.makeDetailStyle()
-//                    formTaskCell.selectedBackgroundView?.backgroundColor = Globals.shared.selectionColor
+                    taskCell.selectionStyle = .default
+                    taskCell.body.layer.cornerRadius = 4.0
+                    taskCell.body.backgroundColor = Globals.shared.bgColor
+                    taskCell.body.makeDetailStyle()
                }
                 return cell
             }

@@ -85,8 +85,6 @@
 		D86BF7511E63C6FB00884277 /* choices@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF74C1E63C6FB00884277 /* choices@2x.png */; };
 		D86BF7521E63C6FB00884277 /* choices@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF74D1E63C6FB00884277 /* choices@3x.png */; };
 		D86BF7531E63C6FB00884277 /* choices@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF74D1E63C6FB00884277 /* choices@3x.png */; };
-		D86BF7551E63C75D00884277 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7541E63C75D00884277 /* refresh.png */; };
-		D86BF7561E63C75D00884277 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7541E63C75D00884277 /* refresh.png */; };
 		D86BF75A1E63CA9B00884277 /* number.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7571E63CA9B00884277 /* number.png */; };
 		D86BF75B1E63CA9B00884277 /* number.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7571E63CA9B00884277 /* number.png */; };
 		D86BF75C1E63CA9B00884277 /* number@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D86BF7581E63CA9B00884277 /* number@2x.png */; };
@@ -115,8 +113,18 @@
 		D86BF77F1E64A43800884277 /* TasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7741E64A43800884277 /* TasksController.swift */; };
 		D86BF7801E64A43800884277 /* TextTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7751E64A43800884277 /* TextTaskController.swift */; };
 		D86BF7811E64A43800884277 /* TextTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7751E64A43800884277 /* TextTaskController.swift */; };
+		D86BF7831E64D2E400884277 /* TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7821E64D2E400884277 /* TextTask.swift */; };
+		D86BF7841E64D2E400884277 /* TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7821E64D2E400884277 /* TextTask.swift */; };
+		D86BF7861E64D31E00884277 /* NumberTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7851E64D31E00884277 /* NumberTask.swift */; };
+		D86BF7871E64D31E00884277 /* NumberTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7851E64D31E00884277 /* NumberTask.swift */; };
+		D86BF7891E64D35000884277 /* ChoicesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7881E64D35000884277 /* ChoicesTask.swift */; };
+		D86BF78A1E64D35000884277 /* ChoicesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7881E64D35000884277 /* ChoicesTask.swift */; };
+		D86BF78C1E64D37C00884277 /* PhotosTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF78B1E64D37C00884277 /* PhotosTask.swift */; };
+		D86BF78D1E64D37C00884277 /* PhotosTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF78B1E64D37C00884277 /* PhotosTask.swift */; };
 		D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87390161E3BCC5500142FD6 /* PhotoFileList.swift */; };
 		D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87390161E3BCC5500142FD6 /* PhotoFileList.swift */; };
+		D89299CC1E64FABC00CC2070 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89299CB1E64FABC00CC2070 /* refresh.png */; };
+		D89299CD1E64FABC00CC2070 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89299CB1E64FABC00CC2070 /* refresh.png */; };
 		D89770861E5A98C100A9318D /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770831E5A98C100A9318D /* refresh@3x.png */; };
 		D89770881E5A98C100A9318D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770851E5A98C100A9318D /* refresh@2x.png */; };
 		D897708A1E5A99C900A9318D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770851E5A98C100A9318D /* refresh@2x.png */; };
@@ -150,7 +158,6 @@
 		D89770BB1E5BC09F00A9318D /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B71E5BC09F00A9318D /* plus@2x.png */; };
 		D89770BC1E5BC09F00A9318D /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B71E5BC09F00A9318D /* plus@2x.png */; };
 		D89770BD1E5BC09F00A9318D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B81E5BC09F00A9318D /* refresh.png */; };
-		D89770BE1E5BC09F00A9318D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B81E5BC09F00A9318D /* refresh.png */; };
 		D89770C01E5BC49200A9318D /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsListController.swift */; };
 		D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsListController.swift */; };
 		D89770D21E5CBBFD00A9318D /* NewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* NewLocationController.swift */; };
@@ -175,14 +182,10 @@
 		D8F1D70F1E53A92700A07F70 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D70C1E53A92700A07F70 /* FormController.swift */; };
 		D8F1D7181E53A96900A07F70 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7121E53A96900A07F70 /* Form.swift */; };
 		D8F1D7191E53A96900A07F70 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7121E53A96900A07F70 /* Form.swift */; };
-		D8F1D71A1E53A96900A07F70 /* FormTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7131E53A96900A07F70 /* FormTask.swift */; };
-		D8F1D71B1E53A96900A07F70 /* FormTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7131E53A96900A07F70 /* FormTask.swift */; };
+		D8F1D71A1E53A96900A07F70 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7131E53A96900A07F70 /* Task.swift */; };
+		D8F1D71B1E53A96900A07F70 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7131E53A96900A07F70 /* Task.swift */; };
 		D8F1D71C1E53A96900A07F70 /* FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7141E53A96900A07F70 /* FTLocation.swift */; };
 		D8F1D71D1E53A96900A07F70 /* FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7141E53A96900A07F70 /* FTLocation.swift */; };
-		D8F1D7201E53A96900A07F70 /* TaskDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7161E53A96900A07F70 /* TaskDescriptions.swift */; };
-		D8F1D7211E53A96900A07F70 /* TaskDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7161E53A96900A07F70 /* TaskDescriptions.swift */; };
-		D8F1D7221E53A96900A07F70 /* TaskResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7171E53A96900A07F70 /* TaskResults.swift */; };
-		D8F1D7231E53A96900A07F70 /* TaskResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D7171E53A96900A07F70 /* TaskResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -233,7 +236,6 @@
 		D86BF74B1E63C6FB00884277 /* choices.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = choices.png; path = Images/choices.png; sourceTree = "<group>"; };
 		D86BF74C1E63C6FB00884277 /* choices@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "choices@2x.png"; path = "Images/choices@2x.png"; sourceTree = "<group>"; };
 		D86BF74D1E63C6FB00884277 /* choices@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "choices@3x.png"; path = "Images/choices@3x.png"; sourceTree = "<group>"; };
-		D86BF7541E63C75D00884277 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
 		D86BF7571E63CA9B00884277 /* number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = number.png; path = Images/number.png; sourceTree = "<group>"; };
 		D86BF7581E63CA9B00884277 /* number@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "number@2x.png"; path = "Images/number@2x.png"; sourceTree = "<group>"; };
 		D86BF7591E63CA9B00884277 /* number@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "number@3x.png"; path = "Images/number@3x.png"; sourceTree = "<group>"; };
@@ -248,7 +250,13 @@
 		D86BF7731E64A43800884277 /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskController.swift; path = UI/FormTasks/TaskController.swift; sourceTree = "<group>"; };
 		D86BF7741E64A43800884277 /* TasksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksController.swift; path = UI/FormTasks/TasksController.swift; sourceTree = "<group>"; };
 		D86BF7751E64A43800884277 /* TextTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextTaskController.swift; path = UI/FormTasks/TextTaskController.swift; sourceTree = "<group>"; };
+		D86BF7821E64D2E400884277 /* TextTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextTask.swift; path = Data/TextTask.swift; sourceTree = "<group>"; };
+		D86BF7851E64D31E00884277 /* NumberTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberTask.swift; path = Data/NumberTask.swift; sourceTree = "<group>"; };
+		D86BF7881E64D35000884277 /* ChoicesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChoicesTask.swift; path = Data/Tasks/ChoicesTask.swift; sourceTree = "<group>"; };
+		D86BF78B1E64D37C00884277 /* PhotosTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosTask.swift; path = Data/Tasks/PhotosTask.swift; sourceTree = "<group>"; };
 		D87390161E3BCC5500142FD6 /* PhotoFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFileList.swift; path = Data/PhotoFileList.swift; sourceTree = "<group>"; };
+		D89299CB1E64FABC00CC2070 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
+		D89299CE1E64FB9900CC2070 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = FieldTasksApp/Images/refresh.png; sourceTree = "<group>"; };
 		D89770831E5A98C100A9318D /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@3x.png"; path = "Images/refresh@3x.png"; sourceTree = "<group>"; };
 		D89770851E5A98C100A9318D /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Images/refresh@2x.png"; sourceTree = "<group>"; };
 		D897708C1E5B730700A9318D /* leftarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftarrow.png; path = Images/leftarrow.png; sourceTree = "<group>"; };
@@ -278,10 +286,8 @@
 		D8F1D6E11E53A8F200A07F70 /* Icon 228.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 228.png"; path = "Images/Icon 228.png"; sourceTree = "<group>"; };
 		D8F1D70C1E53A92700A07F70 /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormController.swift; path = UI/FormController.swift; sourceTree = "<group>"; };
 		D8F1D7121E53A96900A07F70 /* Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Form.swift; path = Data/Form.swift; sourceTree = "<group>"; };
-		D8F1D7131E53A96900A07F70 /* FormTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormTask.swift; path = Data/FormTask.swift; sourceTree = "<group>"; };
+		D8F1D7131E53A96900A07F70 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Data/Task.swift; sourceTree = "<group>"; };
 		D8F1D7141E53A96900A07F70 /* FTLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FTLocation.swift; path = Data/FTLocation.swift; sourceTree = "<group>"; };
-		D8F1D7161E53A96900A07F70 /* TaskDescriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskDescriptions.swift; path = Data/TaskDescriptions.swift; sourceTree = "<group>"; };
-		D8F1D7171E53A96900A07F70 /* TaskResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskResults.swift; path = Data/TaskResults.swift; sourceTree = "<group>"; };
 		FE8420CBC9B3A1B24799E213 /* Pods_FieldTasksApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FieldTasksApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -358,13 +364,13 @@
 		D826E6C41D6D2B87002B91AE /* FormTasks */ = {
 			isa = PBXGroup;
 			children = (
+				D82411A41E315517006D06E2 /* FormTasksController.swift */,
+				D86BF7731E64A43800884277 /* TaskController.swift */,
+				D86BF7741E64A43800884277 /* TasksController.swift */,
 				D86BF7701E64A43800884277 /* ChoiceTaskController.swift */,
 				D86BF7711E64A43800884277 /* NumberTaskController.swift */,
 				D86BF7721E64A43800884277 /* PhotosTaskController.swift */,
-				D86BF7731E64A43800884277 /* TaskController.swift */,
-				D86BF7741E64A43800884277 /* TasksController.swift */,
 				D86BF7751E64A43800884277 /* TextTaskController.swift */,
-				D82411A41E315517006D06E2 /* FormTasksController.swift */,
 			);
 			name = FormTasks;
 			sourceTree = "<group>";
@@ -372,6 +378,7 @@
 		D8549B8E1D67871B009DBE7A = {
 			isa = PBXGroup;
 			children = (
+				D89299CE1E64FB9900CC2070 /* refresh.png */,
 				D8549B991D67871B009DBE7A /* FieldTasksApp */,
 				D8549BB11D67871B009DBE7A /* FieldTasksAppTests */,
 				D8549BBC1D67871B009DBE7A /* FieldTasksAppUITests */,
@@ -447,9 +454,11 @@
 		D858D94B1E54DDC00059E0EF /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				D8F1D7131E53A96900A07F70 /* FormTask.swift */,
-				D8F1D7161E53A96900A07F70 /* TaskDescriptions.swift */,
-				D8F1D7171E53A96900A07F70 /* TaskResults.swift */,
+				D8F1D7131E53A96900A07F70 /* Task.swift */,
+				D86BF7821E64D2E400884277 /* TextTask.swift */,
+				D86BF7851E64D31E00884277 /* NumberTask.swift */,
+				D86BF7881E64D35000884277 /* ChoicesTask.swift */,
+				D86BF78B1E64D37C00884277 /* PhotosTask.swift */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -513,7 +522,7 @@
 				D86BF73B1E63B4AE00884277 /* photo@3x.png */,
 				D89770B61E5BC09F00A9318D /* plus.png */,
 				D89770B71E5BC09F00A9318D /* plus@2x.png */,
-				D86BF7541E63C75D00884277 /* refresh.png */,
+				D89299CB1E64FABC00CC2070 /* refresh.png */,
 				D89770851E5A98C100A9318D /* refresh@2x.png */,
 				D89770831E5A98C100A9318D /* refresh@3x.png */,
 				D89770951E5B731600A9318D /* rightarrow.png */,
@@ -654,12 +663,12 @@
 				D89770A51E5B797500A9318D /* location@3x.png in Resources */,
 				D8F1D6ED1E53A8F200A07F70 /* Icon 120.png in Resources */,
 				D82411B91E36B405006D06E2 /* Lato-Regular.ttf in Resources */,
+				D89299CC1E64FABC00CC2070 /* refresh.png in Resources */,
 				D8549BA01D67871B009DBE7A /* Main.storyboard in Resources */,
 				D89770A11E5B797500A9318D /* location.png in Resources */,
 				D82411B51E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
 				D89770911E5B730700A9318D /* leftarrow@2x.png in Resources */,
 				D8F1D6EB1E53A8F200A07F70 /* Icon 76.png in Resources */,
-				D86BF7551E63C75D00884277 /* refresh.png in Resources */,
 				D89770981E5B731600A9318D /* rightarrow.png in Resources */,
 				D86BF74E1E63C6FB00884277 /* choices.png in Resources */,
 				D897709C1E5B731600A9318D /* rightarrow@3x.png in Resources */,
@@ -678,7 +687,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D89770BE1E5BC09F00A9318D /* refresh.png in Resources */,
+				D89299CD1E64FABC00CC2070 /* refresh.png in Resources */,
 				D86BF74A1E63C60200884277 /* text@3x.png in Resources */,
 				D89770AF1E5B801100A9318D /* forms.png in Resources */,
 				D858D95D1E576D770059E0EF /* checkmark@2x.png in Resources */,
@@ -713,7 +722,6 @@
 				D89770921E5B730700A9318D /* leftarrow@2x.png in Resources */,
 				D82411B61E36B405006D06E2 /* Lato-Italic.ttf in Resources */,
 				D8F1D6EC1E53A8F200A07F70 /* Icon 76.png in Resources */,
-				D86BF7561E63C75D00884277 /* refresh.png in Resources */,
 				D86BF74F1E63C6FB00884277 /* choices.png in Resources */,
 				D89770991E5B731600A9318D /* rightarrow.png in Resources */,
 				D897709D1E5B731600A9318D /* rightarrow@3x.png in Resources */,
@@ -832,12 +840,12 @@
 				D8F1D7181E53A96900A07F70 /* Form.swift in Sources */,
 				D86BF72D1E6397EC00884277 /* LocationsManager.swift in Sources */,
 				D86BF7681E64A42500884277 /* TemplateEditorController.swift in Sources */,
-				D8F1D71A1E53A96900A07F70 /* FormTask.swift in Sources */,
+				D8F1D71A1E53A96900A07F70 /* Task.swift in Sources */,
 				D86BF7761E64A43800884277 /* ChoiceTaskController.swift in Sources */,
 				D835A3E51E635C31002C3EB1 /* UILabel.swift in Sources */,
 				D86BF76E1E64A42500884277 /* TemplatesListController.swift in Sources */,
-				D8F1D7221E53A96900A07F70 /* TaskResults.swift in Sources */,
 				D835A3E21E635C31002C3EB1 /* Double.swift in Sources */,
+				D86BF78C1E64D37C00884277 /* PhotosTask.swift in Sources */,
 				D86BF76C1E64A42500884277 /* TemplatesController.swift in Sources */,
 				D82411A51E315517006D06E2 /* FormTasksController.swift in Sources */,
 				D8DB034C1E4A5247001BA901 /* Template.swift in Sources */,
@@ -861,13 +869,15 @@
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
 				D835A3E41E635C31002C3EB1 /* UIImage.swift in Sources */,
-				D8F1D7201E53A96900A07F70 /* TaskDescriptions.swift in Sources */,
+				D86BF7831E64D2E400884277 /* TextTask.swift in Sources */,
 				D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D86BF7621E64A2B100884277 /* TemplateTasksBar.swift in Sources */,
 				D85C8C0E1E45289300B5404F /* LocationsController.swift in Sources */,
+				D86BF7861E64D31E00884277 /* NumberTask.swift in Sources */,
 				D8F1D70E1E53A92700A07F70 /* FormController.swift in Sources */,
 				D8F1D71C1E53A96900A07F70 /* FTLocation.swift in Sources */,
 				D86BF7261E638F3D00884277 /* Shared.swift in Sources */,
+				D86BF7891E64D35000884277 /* ChoicesTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,7 +886,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D86BF77B1E64A43800884277 /* PhotosTaskController.swift in Sources */,
-				D8F1D7231E53A96900A07F70 /* TaskResults.swift in Sources */,
 				D84AAF2D1E4531EA000D584F /* LocationsController.swift in Sources */,
 				D82411A61E315517006D06E2 /* FormTasksController.swift in Sources */,
 				D86BF7301E63982800884277 /* LocationsManager.swift in Sources */,
@@ -885,6 +894,7 @@
 				D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */,
 				D86BF76F1E64A42500884277 /* TemplatesListController.swift in Sources */,
 				D86BF7271E63974500884277 /* Shared.swift in Sources */,
+				D86BF78D1E64D37C00884277 /* PhotosTask.swift in Sources */,
 				D82411A31E301D5A006D06E2 /* FormsController.swift in Sources */,
 				D835A3EC1E635C58002C3EB1 /* Double.swift in Sources */,
 				D86BF76D1E64A42500884277 /* TemplatesController.swift in Sources */,
@@ -897,24 +907,26 @@
 				D86BF7791E64A43800884277 /* NumberTaskController.swift in Sources */,
 				D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */,
 				D86BF7311E63982800884277 /* ServerManager.swift in Sources */,
-				D8F1D71B1E53A96900A07F70 /* FormTask.swift in Sources */,
+				D8F1D71B1E53A96900A07F70 /* Task.swift in Sources */,
 				D86BF7811E64A43800884277 /* TextTaskController.swift in Sources */,
 				D835A3F01E635C58002C3EB1 /* UITableViewCell.swift in Sources */,
 				D8F1D71D1E53A96900A07F70 /* FTLocation.swift in Sources */,
 				D86BF7321E63982800884277 /* TemplatesManager.swift in Sources */,
-				D8F1D7211E53A96900A07F70 /* TaskDescriptions.swift in Sources */,
 				D86BF76B1E64A42500884277 /* TemplateEditorListController.swift in Sources */,
 				D86BF77F1E64A43800884277 /* TasksController.swift in Sources */,
 				D835A3F11E635C58002C3EB1 /* UITextField.swift in Sources */,
 				D8F1D70F1E53A92700A07F70 /* FormController.swift in Sources */,
 				D835A3EE1E635C58002C3EB1 /* UIImage.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
+				D86BF7841E64D2E400884277 /* TextTask.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
 				D835A3F21E635C58002C3EB1 /* UITextView.swift in Sources */,
 				D85D53E11D711051006D31F2 /* Globals.swift in Sources */,
+				D86BF7871E64D31E00884277 /* NumberTask.swift in Sources */,
 				D86BF7631E64A2B100884277 /* TemplateTasksBar.swift in Sources */,
 				D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
 				D89770D31E5CBBFD00A9318D /* NewLocationController.swift in Sources */,
+				D86BF78A1E64D35000884277 /* ChoicesTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,15 +10,28 @@ import UIKit
 
 enum TemplateTasksTool : Int {
     case Text = 0, Number, Choices, Photos
+
+    func taskType() -> TaskType {
+        switch self {
+        case .Text:
+            return TaskType.Text
+        case .Number:
+            return TaskType.Number
+        case .Choices:
+            return TaskType.Choices
+        case .Photos:
+            return TaskType.Photos
+        }
+    }
 }
 
 protocol TemplateTasksToolProtocol {
-    func addTool(tool: TemplateTasksTool)
+    func addTask(taskType: TaskType)
 }
 
 class TemplateTasksToolIcon : UIImageView {
     var delegate : TemplateTasksToolProtocol?
-    var tool : TemplateTasksTool?
+    var taskType : TaskType?
 
     init(image: UIImage?, tool : TemplateTasksTool, delegate: TemplateTasksToolProtocol) {
         super.init(image: image)
@@ -26,7 +39,7 @@ class TemplateTasksToolIcon : UIImageView {
         //        let panRecognizer = UIPanGestureRecognizer(target:self, action: #selector(detectPan))
         //        self.gestureRecognizers = [panRecognizer]
         self.isUserInteractionEnabled = true
-        self.tool = tool
+        self.taskType = tool.taskType()
         self.delegate = delegate
     }
 
@@ -49,7 +62,7 @@ class TemplateTasksToolIcon : UIImageView {
         if let touch = touches.first {
             let location = touch.location(in: self)
             if let hitView = self.hitTest(location, with: event), hitView == self {
-                delegate?.addTool(tool: self.tool!)
+                delegate?.addTask(taskType: self.taskType!)
             }
         }
     }
@@ -88,8 +101,8 @@ class TemplateTasksToolBar : UIView, TemplateTasksToolProtocol {
         self.isUserInteractionEnabled = true
     }
 
-    func addTool(tool: TemplateTasksTool) {
-        delegate?.addTool(tool: tool)
+    func addTask(taskType: TaskType) {
+        delegate?.addTask(taskType: taskType)
     }
 
     override func draw(_ rect: CGRect) {

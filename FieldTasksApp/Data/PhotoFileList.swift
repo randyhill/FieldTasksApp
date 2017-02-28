@@ -69,7 +69,7 @@ class PhotoFileList {
         }
     }
 
-    init(tasks: [FormTask], buildWithImages: Bool) {
+    init(tasks: [Task], buildWithImages: Bool) {
         if buildWithImages {
             self.buildWithPhotos(tasks: tasks)
         } else {
@@ -78,7 +78,7 @@ class PhotoFileList {
     }
 
     // Create a list of all the form tasks that have images
-    func buildWithPhotos(tasks : [FormTask]) {
+    func buildWithPhotos(tasks : [Task]) {
         for resultIndex in 0 ..< tasks.count {
             let task = tasks[resultIndex]
             if let photoResult = task.result as? PhotoResult {
@@ -94,7 +94,7 @@ class PhotoFileList {
     }
 
     // Create a list of all the form tasks that have file names set
-    func buildWithFileNames(tasks : [FormTask]) {
+    func buildWithFileNames(tasks : [Task]) {
         for resultIndex in 0 ..< tasks.count {
             let task = tasks[resultIndex]
             if let photoResult = task.result as? PhotoResult {

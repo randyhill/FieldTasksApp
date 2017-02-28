@@ -12,9 +12,9 @@ import FlatUIKit
 class TextTaskController : TaskController {
     @IBOutlet weak var textView: UITextView!
 
-    var textDescription : TextTaskDescription {
+    var textDescription : TextTask {
         get {
-            return task!.taskDescription as! TextTaskDescription
+            return task as! TextTask
         }
     }
     var result : TextResult {
@@ -49,10 +49,10 @@ class TextTaskController : TaskController {
         textView.text = result.text
     }
     override func validate() -> String? {
-        if let taskDescription = task?.taskDescription as? TextTaskDescription {
+        if let textTask = task as? TextTask {
             if textView.text.characters.count > 0 {
-                if !taskDescription.isUnlimited && textView.text.characters.count > taskDescription.max {
-                    return "Too many characters, max allowed is \(taskDescription.max)"
+                if !textTask.isUnlimited && textView.text.characters.count > textTask.max {
+                    return "Too many characters, max allowed is \(textTask.max)"
                 }
                 return nil
             } else {

@@ -120,7 +120,7 @@ class FormTasksController : UITableViewController {
                 cell.titleText.text = titleText
                 cell.titleText.makeTitleStyle()
                 cell.checkmark.image = (task.result!.completed) ? checkmark : nil
-                cell.typeText.text = task.type;
+                cell.typeText.text = task.type.rawValue;
                 cell.typeText.makeDetailStyle()
                 cell.makeCellFlat()
             }
@@ -130,7 +130,7 @@ class FormTasksController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             self.performSegue(withIdentifier: "LocationPicker", sender: self)
         } else {
             if let tasksController = self.storyboard?.instantiateViewController(withIdentifier: "TasksController") as? TasksController {

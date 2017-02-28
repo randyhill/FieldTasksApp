@@ -116,9 +116,9 @@ class Checkbox : Switchbox {
 // MARK: ChoiceTaskController Class -------------------------------------------------------------------------------
 class ChoiceTaskController : TaskController {
     var options = [Choice]()
-    var choiceData : ChoicesTaskDescription {
+    var choiceData : ChoicesTask {
         get {
-            return task!.taskDescription as! ChoicesTaskDescription
+            return task as! ChoicesTask
         }
     }
     var result : ChoicesResult {
@@ -135,7 +135,7 @@ class ChoiceTaskController : TaskController {
 
     func createChoices() {
         var choiceFrame = CGRect(x: 8, y: 8, width: (self.view.frame.width), height: 28)
-        let isRadio = (task?.taskDescription as! ChoicesTaskDescription).isRadio
+        let isRadio = (task as! ChoicesTask).isRadio
         for title in choiceData.titles {
             let choice = makeSwitchbox(container: self.view, title: title, frame: choiceFrame, isRadio: isRadio)
             choiceFrame.origin.y += choice.switchSize.height;

@@ -10,43 +10,40 @@ import UIKit
 
 class TemplateEditorController : UIViewController, TemplateTasksToolProtocol {
     var listController : TemplateEditorListController?
-    var template : Template?
+    var template = Template()
     @IBOutlet weak var toolbar: TemplateTasksToolBar!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var templateTitleLabel: UILabel!
+    @IBOutlet weak var titleField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbar.delegate = self
 
-        if let template = template {
-            self.title = template.name
-        } else {
-            self.title = "New Template"
-            template = Template()
-        }
-        self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
-        self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(doneAction))
+        self.title = template.name.characters.count > 0 ? "Create Template" : "New Template"
+        self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
+        self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(doneAction))
         makeNavBarFlat()
         self.view.backgroundColor = UIColor.wetAsphalt()
 
         // Do any additional setup after loading the view, typically from a nib.
-        titleLabel.makeTitleStyle()
+        titleLabel.makeDetailStyle()
+        templateTitleLabel.makeTitleStyle()
+        titleField.setActiveStyle(isActive: true)
+        titleField.text = template.name
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         listController = segue.destination as? TemplateEditorListController
         listController?.parentTemplateEditorController = self
+        listController?.template = self.template
     }
 
-    func addTool(tool: TemplateTasksTool) {
-//        var newTask : Task?
-//        switch tool {
-//            case .Text
-//                newTask = TextTask()
-//            case .Number
-//            case .Choices
-//            case .Text
-//        }
+    func addTask(taskType: TaskType) {
+        if let task = TaskFromType(type: taskType) {
+            template.tasks += [task]
+            listController?.tableView.reloadData()
+        }
     }
 
     func cancelAction () {

@@ -14,9 +14,9 @@ class NumberTaskController : TaskController, UITextFieldDelegate {
     @IBOutlet weak var rangeLabel: UILabel!
     @IBOutlet weak var rangeHeight: NSLayoutConstraint!
 
-    var taskData : NumberTaskDescription {
+    var taskData : NumberTask {
         get {
-            return task!.taskDescription as! NumberTaskDescription
+            return task as! NumberTask
         }
     }
     var numberResult : NumberResult {

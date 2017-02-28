@@ -21,11 +21,16 @@ class TemplatesController : UIViewController {
 
         self.title = "Templates"
         self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshList))
-        self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
+        if let _ = location {
+            self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
+            newButton.isHidden = true
+        } else {
+            newButton.makeFlatButton()
+            newButton.isHidden = false
+        }
         makeNavBarFlat()
         tasksLabel.makeDetailStyle()
         templateLabel.makeDetailStyle()
-        newButton.makeFlatButton()
         self.view.backgroundColor = UIColor.wetAsphalt()
     }
 

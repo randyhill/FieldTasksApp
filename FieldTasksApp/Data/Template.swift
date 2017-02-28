@@ -12,10 +12,9 @@ class Template {
     var id = ""
     var name = ""
     var description = ""
-    var tasks = [FormTask]()
+    var tasks = [Task]()
 
     init() {
-        name = "Template Name"
     }
 
     // init from dict
@@ -32,7 +31,9 @@ class Template {
         if let tasksArray = templateDict["tasks"] as? [AnyObject] {
             for taskObject in tasksArray {
                 if let taskDict = taskObject as? [String : AnyObject] {
-                    self.tasks += [FormTask(taskDict: taskDict)]
+                    if let newTask = TaskFromDictionary(taskDict: taskDict) {
+                        self.tasks += [newTask]
+                    }
                 }
             }
         }

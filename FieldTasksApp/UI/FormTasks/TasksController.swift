@@ -15,7 +15,7 @@ class TasksController : UIViewController {
     var taskIndex = 0
     var viewLayoutInited = false
     var taskController : TaskController?
-    var curTask : FormTask {
+    var curTask : Task {
         get {
             return form!.tasks[taskIndex]
         }
@@ -93,14 +93,14 @@ class TasksController : UIViewController {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch task.type {
-        case cFormTaskText:
+        case TaskType.Text:
              taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskController") as? TaskController
-        case cFormTaskNumber:
+        case TaskType.Number:
             taskController = storyboard.instantiateViewController(withIdentifier: "NumberTaskController") as? TaskController
-        case cFormTaskChoices:
+        case TaskType.Choices:
             taskController = storyboard.instantiateViewController(withIdentifier: "ChoiceTaskController") as? TaskController
-       case cFormTaskPhoto:
-        taskController = storyboard.instantiateViewController(withIdentifier: "PhotosTaskController") as? TaskController
+        case TaskType.Photos:
+            taskController = storyboard.instantiateViewController(withIdentifier: "PhotosTaskController") as? TaskController
          default:
             taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskController") as? TaskController
         }

@@ -111,9 +111,9 @@ class PhotosTaskController : TaskController, UIImagePickerControllerDelegate, UI
         }
     }
 
-    var photoData : PhotoTaskDescription {
+    var photoData : PhotosTask {
         get {
-            return task!.taskDescription as! PhotoTaskDescription
+            return task as! PhotosTask
         }
     }
     var result : PhotoResult {

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TaskControllerProtocol {
-    var task : FormTask? {get set}
+    var task : Task? {get set}
     var isEditable : Bool {get set}
     var parentController : TasksController? {get set}
 
@@ -18,7 +18,7 @@ protocol TaskControllerProtocol {
     func restore()
 }
 
-func initParentTaskControllerArea(view: UIView, parentController: TasksController, task : FormTask) {
+func initParentTaskControllerArea(view: UIView, parentController: TasksController, task : Task) {
     view.backgroundColor = parentController.view.backgroundColor
 
     // Adjust location of description field based on it's size
@@ -52,7 +52,7 @@ func initParentTaskControllerArea(view: UIView, parentController: TasksControlle
 
 // MARK: Task Handlers -------------------------------------------------------------------------------
 class TaskController : UIViewController, TaskControllerProtocol {
-    var task : FormTask?
+    var task : Task?
     var isEditable = true
     var parentController : TasksController?
 
