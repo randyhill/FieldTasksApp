@@ -66,6 +66,10 @@ class NumberTask : Task {
         dict["max"] = max as AnyObject?
         return dict
     }
+
+    override func taskDescriptionString() -> String {
+        return isUnlimited ? "Unlimited range" : "Minimum:\(min) Maximum: \(max)"
+    }
 }
 
 // MARK: NumberResult Class -------------------------------------------------------------------------------

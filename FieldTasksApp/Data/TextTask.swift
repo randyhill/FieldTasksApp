@@ -43,6 +43,10 @@ class TextTask : Task {
         dict["max"] = max as AnyObject?
         return dict
     }
+
+    override func taskDescriptionString() -> String {
+        return isUnlimited ? "Unlimited length" : "Maximum length: \(max)"
+    }
 }
 
 // MARK: TextResult Class -------------------------------------------------------------------------------

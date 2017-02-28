@@ -132,6 +132,10 @@ class Task {
         return [String : AnyObject]()
     }
 
+    func taskDescriptionString() -> String {
+        return ""
+    }
+
     func isComplete() -> Bool {
         if !required {
             return true

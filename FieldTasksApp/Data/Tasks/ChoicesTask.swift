@@ -37,6 +37,10 @@ class ChoicesTask : Task {
         dict["choices"] = titles as AnyObject?
         return dict
     }
+
+    override func taskDescriptionString() -> String {
+        return isRadio ? "Single Selection" : "Multiple Selections"
+    }
 }
 
 // MARK: ChoicesResult Class -------------------------------------------------------------------------------

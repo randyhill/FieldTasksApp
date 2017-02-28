@@ -125,6 +125,8 @@
 		D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87390161E3BCC5500142FD6 /* PhotoFileList.swift */; };
 		D89299CC1E64FABC00CC2070 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89299CB1E64FABC00CC2070 /* refresh.png */; };
 		D89299CD1E64FABC00CC2070 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89299CB1E64FABC00CC2070 /* refresh.png */; };
+		D89299D01E65E6D300CC2070 /* TemplateTaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89299CF1E65E6D300CC2070 /* TemplateTaskEditor.swift */; };
+		D89299D11E65E6D300CC2070 /* TemplateTaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89299CF1E65E6D300CC2070 /* TemplateTaskEditor.swift */; };
 		D89770861E5A98C100A9318D /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770831E5A98C100A9318D /* refresh@3x.png */; };
 		D89770881E5A98C100A9318D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770851E5A98C100A9318D /* refresh@2x.png */; };
 		D897708A1E5A99C900A9318D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770851E5A98C100A9318D /* refresh@2x.png */; };
@@ -257,6 +259,7 @@
 		D87390161E3BCC5500142FD6 /* PhotoFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFileList.swift; path = Data/PhotoFileList.swift; sourceTree = "<group>"; };
 		D89299CB1E64FABC00CC2070 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
 		D89299CE1E64FB9900CC2070 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = FieldTasksApp/Images/refresh.png; sourceTree = "<group>"; };
+		D89299CF1E65E6D300CC2070 /* TemplateTaskEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateTaskEditor.swift; path = UI/FormTasks/TemplateTaskEditor.swift; sourceTree = "<group>"; };
 		D89770831E5A98C100A9318D /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@3x.png"; path = "Images/refresh@3x.png"; sourceTree = "<group>"; };
 		D89770851E5A98C100A9318D /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Images/refresh@2x.png"; sourceTree = "<group>"; };
 		D897708C1E5B730700A9318D /* leftarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftarrow.png; path = Images/leftarrow.png; sourceTree = "<group>"; };
@@ -471,6 +474,7 @@
 				D86BF7641E64A42500884277 /* TemplateEditorController.swift */,
 				D86BF7651E64A42500884277 /* TemplateEditorListController.swift */,
 				D86BF7611E64A2B100884277 /* TemplateTasksBar.swift */,
+				D89299CF1E65E6D300CC2070 /* TemplateTaskEditor.swift */,
 			);
 			name = Templates;
 			sourceTree = "<group>";
@@ -861,6 +865,7 @@
 				D86BF72F1E6397EC00884277 /* TemplatesManager.swift in Sources */,
 				D86BF7801E64A43800884277 /* TextTaskController.swift in Sources */,
 				D86BF76A1E64A42500884277 /* TemplateEditorListController.swift in Sources */,
+				D89299D01E65E6D300CC2070 /* TemplateTaskEditor.swift in Sources */,
 				D89770C01E5BC49200A9318D /* FormsListController.swift in Sources */,
 				D89770D21E5CBBFD00A9318D /* NewLocationController.swift in Sources */,
 				D835A3E81E635C31002C3EB1 /* UITextView.swift in Sources */,
@@ -910,6 +915,7 @@
 				D8F1D71B1E53A96900A07F70 /* Task.swift in Sources */,
 				D86BF7811E64A43800884277 /* TextTaskController.swift in Sources */,
 				D835A3F01E635C58002C3EB1 /* UITableViewCell.swift in Sources */,
+				D89299D11E65E6D300CC2070 /* TemplateTaskEditor.swift in Sources */,
 				D8F1D71D1E53A96900A07F70 /* FTLocation.swift in Sources */,
 				D86BF7321E63982800884277 /* TemplatesManager.swift in Sources */,
 				D86BF76B1E64A42500884277 /* TemplateEditorListController.swift in Sources */,

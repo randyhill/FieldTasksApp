@@ -36,6 +36,10 @@ class PhotosTask : Task {
         dict["selections"] = (isSingle ? "single" : "multiple") as AnyObject
         return dict
     }
+
+    override func taskDescriptionString() -> String {
+        return isSingle ? "Single Photo" : "Multiple Photos"
+    }
 }
 
 // MARK: PhotoResult Class -------------------------------------------------------------------------------

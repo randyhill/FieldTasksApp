@@ -42,7 +42,8 @@ class TemplateEditorController : UIViewController, TemplateTasksToolProtocol {
     func addTask(taskType: TaskType) {
         if let task = TaskFromType(type: taskType) {
             template.tasks += [task]
-            listController?.tableView.reloadData()
+            //listController?.tableView.reloadData()
+            listController?.openTaskEditor(task: task)
         }
     }
 

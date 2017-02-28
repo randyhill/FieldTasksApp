@@ -14,14 +14,18 @@ class TaskCell : UITableViewCell {
     @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var lengthText: UILabel!
     func initWithTask(task : Task) {
+        // Make flat
         self.makeCellFlat()
         self.titleText.makeTitleStyle()
         self.typeText.makeTitleStyle()
         self.descriptionText.makeDetailStyle()
         self.lengthText.makeDetailStyle()
+
+        // Enter text
         self.typeText.text = task.type.rawValue
-        self.titleText.text = "Title: \(task.name)"
+        self.titleText.text = task.name
         self.descriptionText.text = "Description: \(task.description)"
+        self.lengthText.text = task.taskDescriptionString()
     }
 }
 
@@ -94,42 +98,20 @@ class TemplateEditorListController : UITableViewController {
         return UITableViewCell()
     }
 
-//    func cellForType(tableView: UITableView, task : Task, indexPath : IndexPath) -> UITableViewCell {
-//        switch task.type {
-//        case .Text:
-//            if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
-//                cell.initWithTask(task: task as! TextTask)
-//                return cell
-//            }
-//        case .Number:
-//            if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
-//                cell.initWithTask(task: task as! NumberTask)
-//                return cell
-//            }
-//        case .Choices:
-//            if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
-//                cell.initWithTask(task: task as! ChoicesTask)
-//                return cell
-//            }
-//        case .Photos:
-//            if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
-//                cell.initWithTask(task: task as! PhotosTask)
-//                return cell
-//            }
-//        default:
-//                break
-//        }
-//        return UITableViewCell()
-//    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "FormTasksController") as? FormTasksController {
-//            // Create form so it's editable.
-//            formController.form = Form(template: templatesList[indexPath.row])
-//            let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
-//            self.present(navController, animated: true, completion: {
-//
-//            })
-//        }
+        if let task = template?.tasks[indexPath.row] {
+            openTaskEditor(task: task)
+        }
+    }
+
+    func openTaskEditor(task : Task) {
+        if let taskEditor = self.storyboard?.instantiateViewController(withIdentifier: "TemplateTaskEditor") as? TemplateTaskEditor {
+            // Create form so it's editable.
+            taskEditor.task = task
+            let navController = UINavigationController(rootViewController: taskEditor) // Creating a navigation controller with resultController at the root of the navigation stack.
+            self.present(navController, animated: true, completion: {
+
+            })
+        }
     }
 }
