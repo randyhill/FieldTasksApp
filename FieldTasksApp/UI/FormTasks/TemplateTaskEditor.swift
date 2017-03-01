@@ -15,7 +15,7 @@ class TemplateTaskEditor : UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionField: UITextView!
     @IBOutlet weak var embeddedView: UIView!
-
+    var embeddedVC : UIViewController?
     var task : Task?
 
     override func viewDidLoad() {
@@ -34,6 +34,19 @@ class TemplateTaskEditor : UIViewController {
         self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
         self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(doneAction))
         makeNavBarFlat()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: task!.editorId) as? TaskEditor {
+            vc.setTask(task: task!)
+            vc.willMove(toParentViewController: self)
+            self.embeddedView.addSubview(vc.view)
+            self.addChildViewController(vc)
+            vc.didMove(toParentViewController: self)
+            embeddedVC = vc
+        }
     }
 
     func cancelAction () {

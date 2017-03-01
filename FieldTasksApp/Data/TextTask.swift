@@ -12,6 +12,7 @@ import Foundation
 class TextTask : Task {
     var isUnlimited = true  // defaults to no range limits
     var max = 0
+    override var editorId : String { get { return "TextTaskEditor"} }
 
 //    override init() {
 //        super.init()

@@ -12,6 +12,7 @@ import Foundation
 class ChoicesTask : Task {
     var isRadio = true
     var titles = [String]()
+    override var editorId : String { get { return "ChoicesTaskEditor"} }
 
     override init(taskDict : [String : AnyObject]) {
         super.init(taskDict: taskDict)

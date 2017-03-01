@@ -11,6 +11,7 @@ import UIKit
 // MARK: PhotosTask Class -------------------------------------------------------------------------------
 class PhotosTask : Task {
     var isSingle = false;
+    override var editorId : String { get { return "PhotosTaskEditor"} }
 
     override init(taskDict : [String : AnyObject]) {
         super.init(taskDict: taskDict)

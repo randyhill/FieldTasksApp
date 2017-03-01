@@ -74,6 +74,7 @@ class Task {
     var required = false
     var description = ""
     var result : TaskResult?
+    var editorId : String { get { return ""} }
 
     init() {
     }

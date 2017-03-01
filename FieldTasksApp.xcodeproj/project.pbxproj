@@ -127,6 +127,8 @@
 		D89299CD1E64FABC00CC2070 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89299CB1E64FABC00CC2070 /* refresh.png */; };
 		D89299D01E65E6D300CC2070 /* TemplateTaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89299CF1E65E6D300CC2070 /* TemplateTaskEditor.swift */; };
 		D89299D11E65E6D300CC2070 /* TemplateTaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89299CF1E65E6D300CC2070 /* TemplateTaskEditor.swift */; };
+		D89299D31E65F5C900CC2070 /* TextTaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89299D21E65F5C900CC2070 /* TextTaskEditor.swift */; };
+		D89299D41E65F5C900CC2070 /* TextTaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89299D21E65F5C900CC2070 /* TextTaskEditor.swift */; };
 		D89770861E5A98C100A9318D /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770831E5A98C100A9318D /* refresh@3x.png */; };
 		D89770881E5A98C100A9318D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770851E5A98C100A9318D /* refresh@2x.png */; };
 		D897708A1E5A99C900A9318D /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770851E5A98C100A9318D /* refresh@2x.png */; };
@@ -159,7 +161,6 @@
 		D89770BA1E5BC09F00A9318D /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B61E5BC09F00A9318D /* plus.png */; };
 		D89770BB1E5BC09F00A9318D /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B71E5BC09F00A9318D /* plus@2x.png */; };
 		D89770BC1E5BC09F00A9318D /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B71E5BC09F00A9318D /* plus@2x.png */; };
-		D89770BD1E5BC09F00A9318D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D89770B81E5BC09F00A9318D /* refresh.png */; };
 		D89770C01E5BC49200A9318D /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsListController.swift */; };
 		D89770C11E5BC49200A9318D /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsListController.swift */; };
 		D89770D21E5CBBFD00A9318D /* NewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* NewLocationController.swift */; };
@@ -260,6 +261,7 @@
 		D89299CB1E64FABC00CC2070 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
 		D89299CE1E64FB9900CC2070 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = FieldTasksApp/Images/refresh.png; sourceTree = "<group>"; };
 		D89299CF1E65E6D300CC2070 /* TemplateTaskEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateTaskEditor.swift; path = UI/FormTasks/TemplateTaskEditor.swift; sourceTree = "<group>"; };
+		D89299D21E65F5C900CC2070 /* TextTaskEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextTaskEditor.swift; path = UI/Templates/TextTaskEditor.swift; sourceTree = "<group>"; };
 		D89770831E5A98C100A9318D /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@3x.png"; path = "Images/refresh@3x.png"; sourceTree = "<group>"; };
 		D89770851E5A98C100A9318D /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Images/refresh@2x.png"; sourceTree = "<group>"; };
 		D897708C1E5B730700A9318D /* leftarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftarrow.png; path = Images/leftarrow.png; sourceTree = "<group>"; };
@@ -276,7 +278,6 @@
 		D89770A91E5B801100A9318D /* forms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = forms.png; path = Images/forms.png; sourceTree = "<group>"; };
 		D89770B61E5BC09F00A9318D /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = Images/plus.png; sourceTree = "<group>"; };
 		D89770B71E5BC09F00A9318D /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus@2x.png"; path = "Images/plus@2x.png"; sourceTree = "<group>"; };
-		D89770B81E5BC09F00A9318D /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
 		D89770BF1E5BC49200A9318D /* FormsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsListController.swift; path = UI/FormsListController.swift; sourceTree = "<group>"; };
 		D89770D11E5CBBFD00A9318D /* NewLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewLocationController.swift; path = UI/NewLocationController.swift; sourceTree = "<group>"; };
 		D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SynchronizedArray.swift; path = Data/SynchronizedArray.swift; sourceTree = "<group>"; };
@@ -475,6 +476,7 @@
 				D86BF7651E64A42500884277 /* TemplateEditorListController.swift */,
 				D86BF7611E64A2B100884277 /* TemplateTasksBar.swift */,
 				D89299CF1E65E6D300CC2070 /* TemplateTaskEditor.swift */,
+				D89299D21E65F5C900CC2070 /* TextTaskEditor.swift */,
 			);
 			name = Templates;
 			sourceTree = "<group>";
@@ -637,7 +639,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D89770BD1E5BC09F00A9318D /* refresh.png in Resources */,
 				D86BF7491E63C60200884277 /* text@3x.png in Resources */,
 				D89770AE1E5B801100A9318D /* forms.png in Resources */,
 				D8F1D6F31E53A8F200A07F70 /* Icon 180.png in Resources */,
@@ -882,6 +883,7 @@
 				D8F1D70E1E53A92700A07F70 /* FormController.swift in Sources */,
 				D8F1D71C1E53A96900A07F70 /* FTLocation.swift in Sources */,
 				D86BF7261E638F3D00884277 /* Shared.swift in Sources */,
+				D89299D31E65F5C900CC2070 /* TextTaskEditor.swift in Sources */,
 				D86BF7891E64D35000884277 /* ChoicesTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -932,6 +934,7 @@
 				D86BF7631E64A2B100884277 /* TemplateTasksBar.swift in Sources */,
 				D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
 				D89770D31E5CBBFD00A9318D /* NewLocationController.swift in Sources */,
+				D89299D41E65F5C900CC2070 /* TextTaskEditor.swift in Sources */,
 				D86BF78A1E64D35000884277 /* ChoicesTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,8 @@ class NumberTask : Task {
     var isUnlimited = true  // defaults to no range limits
     var min = 0.0            // We don't know if min/max types should be float or int yet
     var max = 0.0
+    override var editorId : String { get { return "NumberTaskEditor"} }
+
     var minString : String {
         get {
             if isDecimal {
