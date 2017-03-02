@@ -1,34 +1,40 @@
 //
-//  TextTaskEditor.swift
+//  NumberTaskEditor.swift
 //  FieldTasksApp
 //
-//  Created by CRH on 2/28/17.
+//  Created by CRH on 3/1/17.
 //  Copyright © 2017 CRH. All rights reserved.
 //
 
 import UIKit
 import FlatUIKit
 
-class TextTaskEditor : TaskTypeEditor {
+class NumberTaskEditor : TaskTypeEditor {
     @IBOutlet weak var limitedLabel: UILabel!
     @IBOutlet weak var limitedSwitch: FUISwitch!
     @IBOutlet weak var maxLabel: UILabel!
     @IBOutlet weak var maxField: UITextField!
-    private var task : TextTask?
+    @IBOutlet weak var minLabel: UILabel!
+    @IBOutlet weak var minField: UITextField!
+    
+    private var task : NumberTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         limitedLabel.makeDetailStyle()
+        limitedSwitch.makeFlatSwitch()
         maxLabel.makeDetailStyle()
         maxField.setActiveStyle(isActive: true)
-        limitedSwitch.makeFlatSwitch()
+        minLabel.makeDetailStyle()
+        minField.setActiveStyle(isActive: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         if let task = task {
             limitedSwitch.isOn = !task.isUnlimited
-            maxField.text = "\(task.max)"
+            minField.text = task.minString
+            maxField.text = task.maxString
         }
         super.viewWillAppear(animated)
     }
@@ -37,19 +43,22 @@ class TextTaskEditor : TaskTypeEditor {
         super.viewWillDisappear(animated)
 
         task?.isUnlimited = !limitedSwitch.isOn
-        task?.max = Int(maxField.text!) ?? 0
-    }
+        task?.min = Double(minField.text!) ?? 0
+        task?.max = Double(maxField.text!) ?? 0
+   }
 
     override func setTask(task : Task) {
-        self.task = task as? TextTask
+        self.task = task as? NumberTask
     }
 
     @IBAction func limitChanged(_ sender: Any) {
-       showHideFields()
+        showHideFields()
     }
 
     override func showHideFields() {
         maxLabel.isHidden = !limitedSwitch.isOn
         maxField.isHidden = !limitedSwitch.isOn
+        minLabel.isHidden = !limitedSwitch.isOn
+        minField.isHidden = !limitedSwitch.isOn
     }
 }
