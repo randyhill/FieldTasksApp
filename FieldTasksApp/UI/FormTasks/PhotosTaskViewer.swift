@@ -1,5 +1,5 @@
 //
-//  PhotosTaskController
+//  PhotosTaskViewer
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -10,7 +10,7 @@ import UIKit
 import FlatUIKit
 
 class PhotoCell : UICollectionViewCell {
-    var delegate: PhotosTaskController?
+    var delegate: PhotosTaskViewer?
     var image : UIImage?
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
@@ -21,7 +21,7 @@ class PhotoCell : UICollectionViewCell {
 }
 
 class PhotosHeader : UICollectionReusableView {
-    var delegate: PhotosTaskController?
+    var delegate: PhotosTaskViewer?
     @IBOutlet weak var addButton: FUIButton!
     @IBOutlet weak var headerText: UILabel!
     @IBOutlet weak var cameraButton: FUIButton!
@@ -39,7 +39,7 @@ class PhotosHeader : UICollectionReusableView {
 
 }
 
-class PhotosTaskController : TaskController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {

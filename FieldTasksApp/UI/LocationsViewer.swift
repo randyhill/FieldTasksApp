@@ -1,5 +1,5 @@
 //
-//  LocationsController.swift
+//  LocationsViewer.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 2/3/17.
@@ -15,7 +15,7 @@ class LocationCell : UITableViewCell {
     @IBOutlet weak var locationImage: UIImageView!
 }
 
-class LocationsController: UITableViewController, LocationUpdates {
+class LocationsViewer: UITableViewController, LocationUpdates {
     var locations = LocationsManager.shared
     var form : Form?
     var selectedLocation : FTLocation?
@@ -69,7 +69,7 @@ class LocationsController: UITableViewController, LocationUpdates {
     }
 
     func addLocation() {
-        self.performSegue(withIdentifier: "NewLocationController", sender: self)
+        self.performSegue(withIdentifier: "LocationEditor", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -135,7 +135,7 @@ class LocationsController: UITableViewController, LocationUpdates {
 
         } else {
             // Open forms for selected location
-            if let formsController = self.storyboard?.instantiateViewController(withIdentifier: "FormsController") as? FormsController {
+            if let formsController = self.storyboard?.instantiateViewController(withIdentifier: "FormsViewer") as? FormsViewer {
                 formsController.location = location
                 let navController = UINavigationController(rootViewController: formsController) // Creating a navigation controller with resultController at the root of the navigation stack.
                 self.present(navController, animated: true, completion: {

@@ -1,5 +1,5 @@
 //
-//  FormsListController.swift
+//  FormsTable.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 2/20/17.
@@ -9,8 +9,8 @@
 import UIKit
 import FlatUIKit
 
-class FormsListController: UITableViewController {
-    var parentFormsController : FormsController?
+class FormsTable: UITableViewController {
+    var parentFormsViewer : FormsViewer?
     var formsList = [Form]()
 
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ class FormsListController: UITableViewController {
 
     func refreshList() {
         // Do any additional setup after loading the view, typically from a nib.
-        let location = parentFormsController?.location;
+        let location = parentFormsViewer?.location;
         ServerMgr.shared.loadForms(location: location) { (result, error) in
             if error != nil {
                 FTErrorMessage(error: "Failed to load forms: \(error)")
@@ -81,7 +81,7 @@ class FormsListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "FormController") as? FormController {
+        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "FormViewer") as? FormViewer {
             formController.form = formsList[indexPath.row]
             let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {

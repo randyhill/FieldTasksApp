@@ -1,5 +1,5 @@
 //
-//  TextTaskController.swift
+//  TextTaskViewer.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -9,7 +9,7 @@
 import UIKit
 import FlatUIKit
 
-class TextTaskController : TaskController {
+class TextTaskViewer : BaseTaskViewer {
     @IBOutlet weak var textView: UITextView!
 
     var textDescription : TextTask {

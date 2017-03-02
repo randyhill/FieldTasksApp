@@ -1,5 +1,5 @@
 //
-//  FormTasksController.swift
+//  FormTasksViewer.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/19/16.
@@ -20,7 +20,7 @@ class FormTasksLocationCell : UITableViewCell {
     @IBOutlet weak var locationName: UILabel!
 }
 
-class FormTasksController : UITableViewController {
+class FormTasksViewer : UITableViewController {
     var form : Form?
     let checkmark = UIImage(named: "checkmark.png")
 
@@ -64,7 +64,7 @@ class FormTasksController : UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LocationPicker", let navController = segue.destination as? UINavigationController {
-            if let locationsController = navController.viewControllers[0] as? LocationsController {
+            if let locationsController = navController.viewControllers[0] as? LocationsViewer {
                 locationsController.form = self.form
             }
         }
@@ -133,7 +133,7 @@ class FormTasksController : UITableViewController {
         if indexPath.section == 0 {
             self.performSegue(withIdentifier: "LocationPicker", sender: self)
         } else {
-            if let tasksController = self.storyboard?.instantiateViewController(withIdentifier: "TasksController") as? TasksController {
+            if let tasksController = self.storyboard?.instantiateViewController(withIdentifier: "TasksViewer") as? TasksViewer {
                 tasksController.form = form
                 tasksController.taskIndex = indexPath.row
                 let navController = UINavigationController(rootViewController: tasksController) // Creating a navigation controller with resultController at the root of the navigation stack.

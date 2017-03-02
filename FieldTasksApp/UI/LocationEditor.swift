@@ -1,5 +1,5 @@
 //
-//  NewLocationController.swift
+//  LocationEditor.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 2/21/17.
@@ -41,7 +41,7 @@ class MyAnnotation : NSObject, MKAnnotation {
     }
 }
 
-class NewLocationController : UIViewController, MKMapViewDelegate, UITextFieldDelegate {
+class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var titles: [UILabel]!
     @IBOutlet var fields: [UITextField]!

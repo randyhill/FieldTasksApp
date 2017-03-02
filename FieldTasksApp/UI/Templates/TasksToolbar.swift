@@ -68,7 +68,7 @@ class TemplateTasksToolIcon : UIImageView {
     }
 }
 
-class TemplateTasksToolBar : UIView, TemplateTasksToolProtocol {
+class TasksToolbar : UIView, TemplateTasksToolProtocol {
     var toolViews = [TemplateTasksToolIcon]()
     var toolImages = [UIImage]()
     var delegate : TemplateTasksToolProtocol?

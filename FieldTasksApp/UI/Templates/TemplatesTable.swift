@@ -1,5 +1,5 @@
 //
-//  TemplatesListController.swift
+//  TemplatesTable.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 2/23/17.
@@ -14,9 +14,9 @@ class TemplateCell : UITableViewCell {
     @IBOutlet weak var body: UILabel!
 }
 
-class TemplatesListController: UITableViewController {
+class TemplatesTable: UITableViewController {
     var templatesList = [Template]()
-    var parentTemplatesController : TemplatesController?
+    var parentTemplatesViewer : TemplatesViewer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class TemplatesListController: UITableViewController {
     }
 
     func refreshList() {
-        TemplatesManager.shared.refreshList(location: parentTemplatesController?.location) { (templates, err ) in
+        TemplatesManager.shared.refreshList(location: parentTemplatesViewer?.location) { (templates, err ) in
             if let error = err {
                 FTErrorMessage(error: "Failed to load forms: \(error)")
             } else {
@@ -109,12 +109,13 @@ class TemplatesListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "FormTasksController") as? FormTasksController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let formController = storyboard.instantiateViewController(withIdentifier: "FormTasksViewer") as? FormTasksViewer {
             // Create form so it's editable.
             formController.form = Form(template: templatesList[indexPath.row])
             let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {
-                
+
             })
         }
     }

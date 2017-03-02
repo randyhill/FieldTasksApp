@@ -1,5 +1,5 @@
 //
-//  TemplateEditorListController.swift
+//  TemplateEditorTable.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 2/26/17.
@@ -29,8 +29,8 @@ class TaskCell : UITableViewCell {
     }
 }
 
-class TemplateEditorListController : UITableViewController {
-    var parentTemplateEditorController : TemplateEditorController?
+class TemplateEditorTable : UITableViewController {
+    var parentTemplateEditor : TemplateEditor?
     var template : Template?
 
     override func viewDidLoad() {
@@ -105,7 +105,7 @@ class TemplateEditorListController : UITableViewController {
     }
 
     func openTaskEditor(task : Task) {
-        if let taskEditor = self.storyboard?.instantiateViewController(withIdentifier: "TemplateTaskEditor") as? TemplateTaskEditor {
+        if let taskEditor = self.storyboard?.instantiateViewController(withIdentifier: "TaskEditor") as? TaskEditor {
             // Create form so it's editable.
             taskEditor.task = task
             let navController = UINavigationController(rootViewController: taskEditor) // Creating a navigation controller with resultController at the root of the navigation stack.

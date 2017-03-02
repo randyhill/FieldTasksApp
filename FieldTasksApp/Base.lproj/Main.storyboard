@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--FormsListController-->
+        <!--FormsTable-->
         <scene sceneID="QIO-Ud-gEh">
             <objects>
-                <tableViewController storyboardIdentifier="FormsListController" title="FormsListController" automaticallyAdjustsScrollViewInsets="NO" id="Z6d-oH-UYb" customClass="FormsListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FormsTable" title="FormsTable" automaticallyAdjustsScrollViewInsets="NO" id="Z6d-oH-UYb" customClass="FormsTable" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="fd9-f4-QNU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                             <outlet property="delegate" destination="Z6d-oH-UYb" id="okN-qO-UzH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="FormsController" id="Of2-1V-JTy"/>
+                    <navigationItem key="navigationItem" title="FormsViewer" id="Of2-1V-JTy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ar6-3M-8rt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -76,7 +76,7 @@
         <!--FormTasksList-->
         <scene sceneID="Su1-SJ-Eqs">
             <objects>
-                <tableViewController storyboardIdentifier="FormTasksController" title="FormTasksList" id="pHz-AP-0hF" customClass="FormTasksController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FormTasksViewer" title="FormTasksList" id="pHz-AP-0hF" customClass="FormTasksViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lix-mM-Pgu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,7 +179,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="EV1-dH-kra"/>
-                    <navigationItem key="navigationItem" title="FormTasksController" id="Zjt-3p-1xp"/>
+                    <navigationItem key="navigationItem" title="FormTasksViewer" id="Zjt-3p-1xp"/>
                     <connections>
                         <segue destination="nQQ-iW-EBF" kind="presentation" identifier="LocationPicker" id="ckC-pR-nHl"/>
                     </connections>
@@ -191,7 +191,7 @@
         <!--TaskController-->
         <scene sceneID="CNM-AM-2AT">
             <objects>
-                <viewController storyboardIdentifier="TasksController" title="TaskController" id="AOG-Wz-dWz" customClass="TasksController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TasksViewer" title="TaskController" id="AOG-Wz-dWz" customClass="TasksViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VQZ-NZ-65c"/>
                         <viewControllerLayoutGuide type="bottom" id="wgO-eI-Kgd"/>
@@ -296,10 +296,10 @@
             </objects>
             <point key="canvasLocation" x="-1254" y="13"/>
         </scene>
-        <!--LocationsController-->
+        <!--LocationsViewer-->
         <scene sceneID="iwz-zw-Cki">
             <objects>
-                <tableViewController storyboardIdentifier="LocationsController" title="LocationsController" id="AlL-mB-4CL" customClass="LocationsController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LocationsViewer" title="LocationsViewer" id="AlL-mB-4CL" customClass="LocationsViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bWU-2x-6yb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,17 +363,17 @@
                     <navigationItem key="navigationItem" title="Locations Controller" id="Ei6-N4-KTd"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="w62-F2-UJP" kind="presentation" identifier="NewLocationController" id="m3u-CU-xJ3"/>
+                        <segue destination="w62-F2-UJP" kind="presentation" identifier="LocationEditor" id="m3u-CU-xJ3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="118-d9-nVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1013" y="2294"/>
         </scene>
-        <!--NewLocationController-->
+        <!--LocationEditor-->
         <scene sceneID="MmN-rH-a3s">
             <objects>
-                <viewController storyboardIdentifier="NewLocationController" title="NewLocationController" id="w62-F2-UJP" customClass="NewLocationController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationEditor" title="LocationEditor" id="w62-F2-UJP" customClass="LocationEditor" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lwZ-ZC-lsQ"/>
                         <viewControllerLayoutGuide type="bottom" id="E5R-5p-I17"/>
@@ -685,10 +685,10 @@
             </objects>
             <point key="canvasLocation" x="272" y="1169"/>
         </scene>
-        <!--FormController-->
+        <!--FormViewer-->
         <scene sceneID="lq3-8a-KJd">
             <objects>
-                <tableViewController storyboardIdentifier="FormController" title="FormController" id="hmr-Jz-0WV" customClass="FormController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FormViewer" title="FormViewer" id="hmr-Jz-0WV" customClass="FormViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Hs-AY-mZ3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -839,10 +839,10 @@
             </objects>
             <point key="canvasLocation" x="2490" y="-221"/>
         </scene>
-        <!--NumberTaskController-->
+        <!--NumberTaskViewer-->
         <scene sceneID="dAq-3Y-8i8">
             <objects>
-                <viewController storyboardIdentifier="NumberTaskController" title="NumberTaskController" id="FSY-C4-ux7" customClass="NumberTaskController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NumberTaskViewer" title="NumberTaskViewer" id="FSY-C4-ux7" customClass="NumberTaskViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dQj-zo-GFa"/>
                         <viewControllerLayoutGuide type="bottom" id="Bj9-Sy-acr"/>
@@ -890,10 +890,10 @@
             </objects>
             <point key="canvasLocation" x="3699" y="1159"/>
         </scene>
-        <!--TextTaskController-->
+        <!--TextTaskViewer-->
         <scene sceneID="aLS-2j-cGr">
             <objects>
-                <viewController storyboardIdentifier="TextTaskController" title="TextTaskController" id="Th4-k5-qfh" customClass="TextTaskController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TextTaskViewer" title="TextTaskViewer" id="Th4-k5-qfh" customClass="TextTaskViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xen-yp-FTm"/>
                         <viewControllerLayoutGuide type="bottom" id="WIc-nY-Q5R"/>
@@ -926,10 +926,10 @@
             </objects>
             <point key="canvasLocation" x="3034" y="1169"/>
         </scene>
-        <!--ChoiceTaskController-->
+        <!--ChoiceTaskViewer-->
         <scene sceneID="B01-ik-F6I">
             <objects>
-                <viewController storyboardIdentifier="ChoiceTaskController" title="ChoiceTaskController" id="Iy9-31-nDT" customClass="ChoiceTaskController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChoiceTaskViewer" title="ChoiceTaskViewer" id="Iy9-31-nDT" customClass="ChoiceTaskViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4by-Mv-bsG"/>
                         <viewControllerLayoutGuide type="bottom" id="hdz-s6-SDb"/>
@@ -944,10 +944,10 @@
             </objects>
             <point key="canvasLocation" x="4496" y="1148"/>
         </scene>
-        <!--PhotosTaskController-->
+        <!--PhotosTaskViewer-->
         <scene sceneID="BD2-0C-m2w">
             <objects>
-                <viewController storyboardIdentifier="PhotosTaskController" title="PhotosTaskController" id="rtZ-sk-sJw" customClass="PhotosTaskController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotosTaskViewer" title="PhotosTaskViewer" id="rtZ-sk-sJw" customClass="PhotosTaskViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ad1-II-oTG"/>
                         <viewControllerLayoutGuide type="bottom" id="749-Ly-958"/>
@@ -1079,10 +1079,10 @@
             </objects>
             <point key="canvasLocation" x="2398" y="1168"/>
         </scene>
-        <!--FormsController-->
+        <!--FormsViewer-->
         <scene sceneID="b0i-sw-XQ5">
             <objects>
-                <viewController storyboardIdentifier="FormsController" title="FormsController" automaticallyAdjustsScrollViewInsets="NO" id="xhc-Dy-6pl" customClass="FormsController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FormsViewer" title="FormsViewer" automaticallyAdjustsScrollViewInsets="NO" id="xhc-Dy-6pl" customClass="FormsViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jW4-76-yY7"/>
                         <viewControllerLayoutGuide type="bottom" id="bPf-d9-426"/>
@@ -1163,18 +1163,18 @@
             </objects>
             <point key="canvasLocation" x="272" y="436"/>
         </scene>
-        <!--TemplateEditorController-->
+        <!--TemplateEditor-->
         <scene sceneID="MoT-E3-vnd">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="TemplateEditorController" storyboardName="Templates" referencedIdentifier="TemplateEditorController" id="aZa-Do-mjG" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="TemplateEditor" storyboardName="Templates" referencedIdentifier="TemplateEditor" id="aZa-Do-mjG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIi-2h-Q2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3277.5" y="463.73239436619718"/>
         </scene>
-        <!--TemplatesListController-->
+        <!--TemplatesTable-->
         <scene sceneID="Cs4-nj-6em">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="TemplatesListController" storyboardName="Templates" referencedIdentifier="TemplatesListController" id="mFj-YI-Tkr" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="TemplatesTable" storyboardName="Templates" referencedIdentifier="TemplatesTable" id="mFj-YI-Tkr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ELH-cw-lLT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1794" y="354"/>
@@ -1203,10 +1203,10 @@
             </objects>
             <point key="canvasLocation" x="2514" y="464"/>
         </scene>
-        <!--TemplatesController-->
+        <!--TemplatesViewer-->
         <scene sceneID="VMS-lL-BGn">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="TemplatesController" storyboardName="Templates" referencedIdentifier="TemplatesController" id="ZUk-Yb-66E" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="TemplatesViewer" storyboardName="Templates" referencedIdentifier="TemplatesViewer" id="ZUk-Yb-66E" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qEb-Vi-Tni" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1012.5" y="434.15492957746477"/>
@@ -1219,10 +1219,10 @@
             </objects>
             <point key="canvasLocation" x="5797.5" y="577.81690140845069"/>
         </scene>
-        <!--TemplateTaskEditor-->
+        <!--TaskEditor-->
         <scene sceneID="Mjz-6O-BBB">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="TemplateTaskEditor" storyboardName="Templates" referencedIdentifier="TemplateTaskEditor" id="2Ae-NC-UBl" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="TaskEditor" storyboardName="Templates" referencedIdentifier="TaskEditor" id="2Ae-NC-UBl" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EwW-AA-BAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5041.875" y="462.67605633802816"/>
@@ -1233,6 +1233,6 @@
         <image name="location.png" width="18" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Z5p-Yn-CDg"/>
+        <segue reference="ckC-pR-nHl"/>
     </inferredMetricsTieBreakers>
 </document>

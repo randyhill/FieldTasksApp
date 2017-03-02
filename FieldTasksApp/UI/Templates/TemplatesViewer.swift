@@ -1,5 +1,5 @@
 //
-//  TemplatesController
+//  TemplatesViewer
 //  FieldTasksApp
 //
 //  Created by CRH on 8/19/16.
@@ -9,9 +9,9 @@
 import UIKit
 import FlatUIKit
 
-class TemplatesController : UIViewController {
+class TemplatesViewer : UIViewController {
     var location : FTLocation?
-    var listController : TemplatesListController?
+    var listController : TemplatesTable?
     @IBOutlet weak var tasksLabel: UILabel!
     @IBOutlet weak var templateLabel: UILabel!
     @IBOutlet weak var newButton: FUIButton!
@@ -45,8 +45,8 @@ class TemplatesController : UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        listController = segue.destination as? TemplatesListController
-        listController?.parentTemplatesController = self
+        listController = segue.destination as? TemplatesTable
+        listController?.parentTemplatesViewer = self
     }
 }
 

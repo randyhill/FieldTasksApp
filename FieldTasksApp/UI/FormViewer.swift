@@ -1,5 +1,5 @@
 //
-//  FormController.swift
+//  FormViewer.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/19/16.
@@ -24,7 +24,7 @@ class FormTitleCell : UITableViewCell {
     @IBOutlet weak var body: UITextView!
 }
 
-class FormController : UITableViewController {
+class FormViewer : UITableViewController {
     var form : Form?
 
     override func viewDidLoad() {
@@ -150,7 +150,7 @@ class FormController : UITableViewController {
         if indexPath.row == 0 {
             return
         }
-        if let tasksController = self.storyboard?.instantiateViewController(withIdentifier: "TasksController") as? TasksController {
+        if let tasksController = self.storyboard?.instantiateViewController(withIdentifier: "TasksViewer") as? TasksViewer {
             tasksController.form = form
             tasksController.taskIndex = indexPath.row - 1
             tasksController.isEditable = false

@@ -1,5 +1,5 @@
 //
-//  NumberTaskController.swift
+//  NumberTaskViewer.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -9,7 +9,7 @@
 import UIKit
 import FlatUIKit
 
-class NumberTaskController : TaskController, UITextFieldDelegate {
+class NumberTaskViewer : BaseTaskViewer, UITextFieldDelegate {
     @IBOutlet weak var numberField: UITextField!
     @IBOutlet weak var rangeLabel: UILabel!
     @IBOutlet weak var rangeHeight: NSLayoutConstraint!

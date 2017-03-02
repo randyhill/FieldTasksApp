@@ -1,5 +1,5 @@
 //
-//  FormsController.swift
+//  FormsViewer.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 1/18/17.
@@ -9,8 +9,8 @@
 import UIKit
 import FlatUIKit
 
-class FormsController : UIViewController {
-    var listController : FormsListController?
+class FormsViewer : UIViewController {
+    var listController : FormsTable?
     @IBOutlet weak var newButton: FUIButton!
     @IBOutlet weak var formNameLabel: UILabel!
     @IBOutlet weak var formDateLabel: UILabel!
@@ -37,8 +37,8 @@ class FormsController : UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        listController = segue.destination as? FormsListController
-        listController?.parentFormsController = self
+        listController = segue.destination as? FormsTable
+        listController?.parentFormsViewer = self
     }
 
     func goBack() {
@@ -51,7 +51,7 @@ class FormsController : UIViewController {
     }
 
     @IBAction func openPicker(_ sender: Any) {
-        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "TemplatesController") as? TemplatesController {
+        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "TemplatesViewer") as? TemplatesViewer {
             formController.location = location
             let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {

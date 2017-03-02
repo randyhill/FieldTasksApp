@@ -1,5 +1,5 @@
 //
-//  TaskController.swift
+//  TasksViewer
 //  FieldTasksApp
 //
 //  Created by CRH on 8/20/16.
@@ -9,12 +9,12 @@
 import UIKit
 import FlatUIKit
 
-class TasksController : UIViewController {
+class TasksViewer : UIViewController {
     var form : Template?
     var isEditable = true
     var taskIndex = 0
     var viewLayoutInited = false
-    var taskController : TaskController?
+    var taskController : BaseTaskViewer?
     var curTask : Task {
         get {
             return form!.tasks[taskIndex]
@@ -94,15 +94,15 @@ class TasksController : UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch task.type {
         case TaskType.Text:
-             taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskController") as? TaskController
+             taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskViewer") as? BaseTaskViewer
         case TaskType.Number:
-            taskController = storyboard.instantiateViewController(withIdentifier: "NumberTaskController") as? TaskController
+            taskController = storyboard.instantiateViewController(withIdentifier: "NumberTaskViewer") as? BaseTaskViewer
         case TaskType.Choices:
-            taskController = storyboard.instantiateViewController(withIdentifier: "ChoiceTaskController") as? TaskController
+            taskController = storyboard.instantiateViewController(withIdentifier: "ChoiceTaskViewer") as? BaseTaskViewer
         case TaskType.Photos:
-            taskController = storyboard.instantiateViewController(withIdentifier: "PhotosTaskController") as? TaskController
+            taskController = storyboard.instantiateViewController(withIdentifier: "PhotosTaskViewer") as? BaseTaskViewer
          default:
-            taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskController") as? TaskController
+            taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskViewer") as? BaseTaskViewer
         }
         taskController?.task = task
         taskController?.parentController = self

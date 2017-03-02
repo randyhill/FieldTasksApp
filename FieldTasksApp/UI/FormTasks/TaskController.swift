@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol TaskControllerProtocol {
+protocol TaskViewerProtocol {
     var task : Task? {get set}
     var isEditable : Bool {get set}
-    var parentController : TasksController? {get set}
+    var parentController : TasksViewer? {get set}
 
     func validate() -> String?
     func save()
     func restore()
 }
 
-func initParentTaskControllerArea(view: UIView, parentController: TasksController, task : Task) {
+func initParentTaskControllerArea(view: UIView, parentController: TasksViewer, task : Task) {
     view.backgroundColor = parentController.view.backgroundColor
 
     // Adjust location of description field based on it's size
@@ -51,10 +51,10 @@ func initParentTaskControllerArea(view: UIView, parentController: TasksControlle
 }
 
 // MARK: Task Handlers -------------------------------------------------------------------------------
-class TaskController : UIViewController, TaskControllerProtocol {
+class BaseTaskViewer : UIViewController, TaskViewerProtocol {
     var task : Task?
     var isEditable = true
-    var parentController : TasksController?
+    var parentController : TasksViewer?
 
     override func viewDidLoad() {
         super.viewDidLoad()

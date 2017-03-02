@@ -1,5 +1,5 @@
 //
-//  TemplateEditorController.swift
+//  TemplateEditor.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 2/26/17.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class TemplateEditorController : UIViewController, TemplateTasksToolProtocol {
-    var listController : TemplateEditorListController?
+class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
+    var listController : TemplateEditorTable?
     var template = Template()
-    @IBOutlet weak var toolbar: TemplateTasksToolBar!
+    @IBOutlet weak var toolbar: TasksToolbar!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var templateTitleLabel: UILabel!
     @IBOutlet weak var titleField: UITextField!
@@ -34,8 +34,8 @@ class TemplateEditorController : UIViewController, TemplateTasksToolProtocol {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        listController = segue.destination as? TemplateEditorListController
-        listController?.parentTemplateEditorController = self
+        listController = segue.destination as? TemplateEditorTable
+        listController?.parentTemplateEditor = self
         listController?.template = self.template
     }
 

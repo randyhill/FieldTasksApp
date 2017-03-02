@@ -1,5 +1,5 @@
 //
-//  TemplateTaskEditor.swift
+//  TaskEditor.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 2/28/17.
@@ -9,7 +9,7 @@
 import UIKit
 import FlatUIKit
 
-class TemplateTaskEditor : UIViewController {
+class TaskEditor : UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var requiredLabel: UILabel!

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--TemplatesListController-->
+        <!--TemplatesTable-->
         <scene sceneID="hUq-7w-6LU">
             <objects>
-                <tableViewController storyboardIdentifier="TemplatesListController" title="TemplatesListController" id="hKQ-bT-TB1" customClass="TemplatesListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TemplatesTable" title="TemplatesTable" id="hKQ-bT-TB1" customClass="TemplatesTable" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5fX-Zz-W0L">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="272" y="436"/>
         </scene>
-        <!--TemplateEditorListController-->
+        <!--TemplateEditorTable-->
         <scene sceneID="JJk-6a-EXV">
             <objects>
-                <tableViewController title="TemplateEditorListController" id="cf4-ke-zw2" customClass="TemplateEditorListController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="TemplateEditorTable" id="cf4-ke-zw2" customClass="TemplateEditorTable" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="2WV-CA-WUB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,10 +198,10 @@
             </objects>
             <point key="canvasLocation" x="4173.75" y="463.2042253521127"/>
         </scene>
-        <!--Template Task Editor-->
+        <!--Task Editor-->
         <scene sceneID="LgD-LG-YpX">
             <objects>
-                <viewController storyboardIdentifier="TemplateTaskEditor" id="uIR-Ts-wmZ" customClass="TemplateTaskEditor" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskEditor" id="uIR-Ts-wmZ" customClass="TaskEditor" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pQ9-tJ-39d"/>
                         <viewControllerLayoutGuide type="bottom" id="OQe-f9-kjj"/>
@@ -661,10 +661,10 @@
             </objects>
             <point key="canvasLocation" x="6428.8000000000002" y="738.53073463268368"/>
         </scene>
-        <!--TemplateEditorController-->
+        <!--TemplateEditor-->
         <scene sceneID="2Ao-gc-o1B">
             <objects>
-                <viewController storyboardIdentifier="TemplateEditorController" title="TemplateEditorController" id="jWI-jH-RRY" customClass="TemplateEditorController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TemplateEditor" title="TemplateEditor" id="jWI-jH-RRY" customClass="TemplateEditor" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="teO-SU-vWb"/>
                         <viewControllerLayoutGuide type="bottom" id="5tP-nS-wwM"/>
@@ -679,7 +679,7 @@
                                     <segue destination="cf4-ke-zw2" kind="embed" id="9al-Fo-Fey"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-QV-Mfc" customClass="TemplateTasksToolBar" customModule="FieldTasksApp" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UKz-QV-Mfc" customClass="TasksToolbar" customModule="FieldTasksApp" customModuleProvider="target">
                                 <rect key="frame" x="6" y="119" width="306" height="47"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -764,10 +764,10 @@
             </objects>
             <point key="canvasLocation" x="2514" y="464"/>
         </scene>
-        <!--TemplatesController-->
+        <!--TemplatesViewer-->
         <scene sceneID="htl-9C-lay">
             <objects>
-                <viewController storyboardIdentifier="TemplatesController" title="TemplatesController" automaticallyAdjustsScrollViewInsets="NO" id="05I-C2-FH1" customClass="TemplatesController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TemplatesViewer" title="TemplatesViewer" automaticallyAdjustsScrollViewInsets="NO" id="05I-C2-FH1" customClass="TemplatesViewer" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xnW-xa-IBt"/>
                         <viewControllerLayoutGuide type="bottom" id="u2r-1G-xL0"/>
@@ -803,7 +803,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aF9-pN-lM7" customClass="FUIButton">
-                                <rect key="frame" x="104.5" y="75" width="111" height="31"/>
+                                <rect key="frame" x="105" y="75" width="111" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="Pax-xc-CaQ"/>
                                     <constraint firstAttribute="width" constant="111" id="V17-0A-s9w"/>
