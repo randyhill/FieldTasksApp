@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlatUIKit
 
 class TaskCell : UITableViewCell {
     @IBOutlet weak var typeText: UILabel!
@@ -58,6 +59,28 @@ class TemplateEditorTable : UITableViewController {
     }
 
     // MARK: Table Methods -------------------------------------------------------------------------------
+    func toggleEditing(button : FUIButton) {
+        tableView.isEditing = !tableView.isEditing
+        let title = tableView.isEditing ? "Done" : "Edit"
+        button.setTitle(title, for: .normal)
+        button.setTitle(title, for: .highlighted)
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedTask = tasks[sourceIndexPath.row]
+        tasks[sourceIndexPath.row] = tasks[destinationIndexPath.row]
+        tasks[destinationIndexPath.row] = movedTask
+
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return tasks.count
     }
@@ -66,12 +89,10 @@ class TemplateEditorTable : UITableViewController {
         return 90.0
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            tasks.remove(at: indexPath.row)
+            tableView.reloadData()
         } else {
             print("unimplemented editing style")
         }

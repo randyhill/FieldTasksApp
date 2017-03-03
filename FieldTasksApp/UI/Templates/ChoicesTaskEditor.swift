@@ -100,17 +100,17 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
         return true
     }
 
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             choices.remove(at: indexPath.row)
             self.tableView.reloadData()
         } else {
-            print("unimplemented editing style")
+            FTErrorMessage(error: "unimplemented editing style")
         }
-    }
-
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
     }
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -132,9 +132,5 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
 
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
-    }
-
-    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        print("editing")
     }
 }

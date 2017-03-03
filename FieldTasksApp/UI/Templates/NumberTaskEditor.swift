@@ -12,6 +12,8 @@ import FlatUIKit
 class NumberTaskEditor : TaskTypeEditor {
     @IBOutlet weak var limitedLabel: UILabel!
     @IBOutlet weak var limitedSwitch: FUISwitch!
+    @IBOutlet weak var decimalLabel: UILabel!
+    @IBOutlet weak var decimalSwitch: FUISwitch!
     @IBOutlet weak var maxLabel: UILabel!
     @IBOutlet weak var maxField: UITextField!
     @IBOutlet weak var minLabel: UILabel!
@@ -24,6 +26,8 @@ class NumberTaskEditor : TaskTypeEditor {
 
         limitedLabel.makeDetailStyle()
         limitedSwitch.makeFlatSwitch()
+        decimalLabel.makeDetailStyle()
+        decimalSwitch.makeFlatSwitch()
         maxLabel.makeDetailStyle()
         maxField.setActiveStyle(isActive: true)
         maxField.addHideKeyboardButton()
@@ -35,6 +39,7 @@ class NumberTaskEditor : TaskTypeEditor {
     override func viewWillAppear(_ animated: Bool) {
         if let task = task {
             limitedSwitch.isOn = !task.isUnlimited
+            decimalSwitch.isOn = task.isDecimal
             minField.text = task.minString
             maxField.text = task.maxString
         }
@@ -45,6 +50,7 @@ class NumberTaskEditor : TaskTypeEditor {
         super.viewWillDisappear(animated)
 
         task?.isUnlimited = !limitedSwitch.isOn
+        task?.isDecimal = decimalSwitch.isOn
         task?.min = Double(minField.text!) ?? 0
         task?.max = Double(maxField.text!) ?? 0
     }
@@ -55,6 +61,11 @@ class NumberTaskEditor : TaskTypeEditor {
 
     @IBAction func limitChanged(_ sender: Any) {
         showHideFields()
+        if limitedSwitch.isOn {
+            minField.text = ""
+            maxField.text = ""
+            minField.becomeFirstResponder()
+        }
     }
 
     override func showHideFields() {
@@ -62,11 +73,6 @@ class NumberTaskEditor : TaskTypeEditor {
         maxField.isHidden = !limitedSwitch.isOn
         minLabel.isHidden = !limitedSwitch.isOn
         minField.isHidden = !limitedSwitch.isOn
-        if limitedSwitch.isOn {
-            minField.text = ""
-            maxField.text = ""
-            minField.becomeFirstResponder()
-        }
     }
 
     override func validate() -> String? {

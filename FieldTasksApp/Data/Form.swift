@@ -14,26 +14,30 @@ class Form : Template {
     var locationId : String?
     var coordinates : CLLocationCoordinate2D?
 
-    init(formDict : [String : AnyObject]) {
-        super.init(templateDict: formDict)
-        if let createDate = formDict["createDate"] as? String {
+    // init from dict
+    override init(templateDict : [String : Any]) {
+        super.init(templateDict: templateDict)
+    }
+
+    override init(template: Template) {
+        super.init(template: template)
+    }
+
+    override func fromDict(templateDict: [String : Any]) {
+        super.fromDict(templateDict: templateDict)
+        if let createDate = templateDict["createDate"] as? String {
             if let date = Globals.shared.utcFormatter.date(from: createDate) {
                 self.createDate = date
             }
         }
         // Locations list isn't allocated yet so we can't save location here
-        if let locationId = formDict["location"] as? String {
+        if let locationId = templateDict["location"] as? String {
             self.locationId =  locationId
         }
         // Locations list isn't allocated yet so we can't save location here
-        if let locationId = formDict["coordinates"] as? String {
+        if let locationId = templateDict["coordinates"] as? String {
             self.locationId =  locationId
         }
-
-    }
-
-    override init(template: Template) {
-        super.init(template: template)
     }
 
     override func toDict() -> [String : AnyObject] {

@@ -81,6 +81,10 @@ class Task {
     }
 
     init(taskDict : [String : AnyObject]) {
+        self.fromDict(taskDict: taskDict)
+    }
+
+    func fromDict(taskDict : [String : AnyObject]) {
         if let name = taskDict["name"] as? String {
             self.name = name
         }

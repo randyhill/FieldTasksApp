@@ -22,7 +22,8 @@ class NumberTask : Task {
             if isDecimal {
                 return "\(min)"
             } else {
-                return "\(min.toInt())"
+                let intMin = min.toInt()
+                return "\(intMin)"
             }
         }
     }
@@ -71,7 +72,7 @@ class NumberTask : Task {
     }
 
     override func taskDescriptionString() -> String {
-        return isUnlimited ? "Unlimited range" : "Minimum:\(min) Maximum: \(max)"
+        return isUnlimited ? "Unlimited range" : "Minimum: \(minString)   Maximum: \(maxString)"
     }
 }
 

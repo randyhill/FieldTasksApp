@@ -33,8 +33,8 @@ class FormsTable: UITableViewController {
                 if let formList = result  {
                     self.formsList.removeAll()
                     for formObject in formList {
-                        if let formDict = formObject as? [String : AnyObject] {
-                            self.formsList += [Form(formDict: formDict)]
+                        if let formDict = formObject as? [String : Any] {
+                            self.formsList += [Form(templateDict: formDict)]
                         }
                     }
                     DispatchQueue.main.async(execute: {

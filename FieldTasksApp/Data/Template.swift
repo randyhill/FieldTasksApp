@@ -18,7 +18,19 @@ class Template {
     }
 
     // init from dict
-    init(templateDict : [String : AnyObject]) {
+    init(templateDict : [String : Any]) {
+        fromDict(templateDict: templateDict)
+    }
+
+    // init from existing
+    init(template: Template) {
+        self.id = template.id
+        self.name = template.name
+        self.description = template.description
+        self.tasks = template.tasks
+    }
+
+    func fromDict(templateDict : [String : Any]) {
         if let name = templateDict["name"] as? String {
             self.name = name
         }
@@ -37,14 +49,6 @@ class Template {
                 }
             }
         }
-    }
-
-    // init from existing
-    init(template: Template) {
-        self.id = template.id
-        self.name = template.name
-        self.description = template.description
-        self.tasks = template.tasks
     }
 
     func toDict() -> [String : AnyObject]{

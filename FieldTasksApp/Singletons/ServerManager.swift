@@ -61,7 +61,7 @@ class ServerMgr {
         dataTask.resume()
     }
 
-    private func saveTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ result: Any?, _ error: String?)->()) {
+    private func saveTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
         // Start spinner
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let formDict = form.toDict()
@@ -71,7 +71,16 @@ class ServerMgr {
             DispatchQueue.main.async() {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
-            completion(response, response.result.isSuccess ? nil : "Failed to save form")
+            var resultDict : [String : Any]?
+            if response.result.isSuccess, let jsonData = response.data {
+                do {
+                    let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
+                    resultDict = jsonDict as? [String: Any]
+                } catch {
+                    completion(nil, "Couldn't parse JSON: \(error)")
+                }
+            }
+            completion(resultDict, response.result.isSuccess ? nil : "Failed to save form")
         })
     }
 
@@ -95,6 +104,10 @@ class ServerMgr {
         })
     }
 
+    func saveTemplate(template: Template, completion : @escaping (_ result: [String : Any]?, _ error: String?)->()) {
+        saveTemplateForm(form: template, url: cTemplatesURL, successCode: 201, completion: completion)
+    }
+
     // MARK: Forms Methods -------------------------------------------------------------------------------
 
     // Filter by location if set
@@ -107,9 +120,10 @@ class ServerMgr {
         }
     }
 
-    func saveAsForm(form: Template, completion : @escaping (_ result: Any?, _ error: String?)->()) {
+    func saveAsForm(form: Template, completion : @escaping (_ result: [String : Any]?, _ error: String?)->()) {
         saveTemplateForm(form: form, url: cFormsURL, successCode: 201, completion: completion)
     }
+
 
     // MARK: Locations  -------------------------------------------------------------------------------
     func loadLocations(completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlatUIKit
 
 class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
     var listController : TemplateEditorTable?
@@ -15,6 +16,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var templateTitleLabel: UILabel!
     @IBOutlet weak var titleField: UITextField!
+    @IBOutlet weak var editButton: FUIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         titleField.setActiveStyle(isActive: true)
         titleField.text = template!.name
         titleField.addHideKeyboardButton()
+        editButton.makeFlatButton()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,14 +53,26 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         }
     }
 
+    @IBAction func toggleEditing(_ sender: Any) {
+        listController?.toggleEditing(button: editButton)
+    }
+
     func cancelAction () {
         self.dismiss(animated: true) { }
     }
 
     func doneAction () {
-        template?.tasks = (listController?.tasks)!
-        template?.name = titleField.text!
-        self.dismiss(animated: true) { }
+        if let template = template {
+            template.tasks = (listController?.tasks)!
+            template.name = titleField.text!
+            TemplatesManager.shared.updateTemplate(template: template) { (error) in
+                if let error = error {
+                    FTAlertError(message: error)
+                } else {
+                    self.dismiss(animated: true) { }
+                }
+            }
+        }
     }
     
 }

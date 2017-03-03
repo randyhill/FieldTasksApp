@@ -38,6 +38,10 @@ class Globals {
         UITabBar.appearance().tintColor = UIColor.clouds()
         UITabBar.appearance().barTintColor = UIColor.peterRiver()
 
+        // Text
+        UITextField.appearance().tintColor = UIColor.midnightBlue()
+        UITextView.appearance().tintColor = UIColor.midnightBlue()
+
     }
 }
 
