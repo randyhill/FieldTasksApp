@@ -15,6 +15,7 @@ class NumberTask : Task {
     var min = 0.0            // We don't know if min/max types should be float or int yet
     var max = 0.0
     override var editorId : String { get { return "NumberTaskEditor"} }
+    override var viewerId : String { get { return "NumberTaskViewer"} }
 
     var minString : String {
         get {

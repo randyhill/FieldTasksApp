@@ -22,7 +22,7 @@ class TaskCell : UITableViewCell {
         self.lengthText.makeDetailStyle()
 
         // Enter text
-        self.typeText.text = task.type.rawValue
+        self.typeText.text = task.type.rawValue + (task.required ? " (Required)" : "")
         self.titleText.text = task.name
         self.descriptionText.text = "Description: \(task.description)"
         self.lengthText.text = task.taskDescriptionString()
@@ -31,7 +31,7 @@ class TaskCell : UITableViewCell {
 
 class TemplateEditorTable : UITableViewController {
     var parentTemplateEditor : TemplateEditor?
-    var template : Template?
+    var tasks = [Task]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +50,16 @@ class TemplateEditorTable : UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func removeLast() {
+        if tasks.count > 0 {
+            tasks.removeLast()
+            self.tableView.reloadData()
+        }
+    }
+
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let tasks = template?.tasks {
-            return tasks.count
-        }
-        return 0
+      return tasks.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -68,19 +72,6 @@ class TemplateEditorTable : UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (canceled) in
-//                if !canceled {
-//                    let template = self.template.tasks[indexPath.row]
-//                    TemplatesManager.shared.deleteTemplate(templateId: template.id, completion: { (error) in
-//                        if let error = error {
-//                            self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
-//                        } else {
-//                            self.templatesList = TemplatesManager.shared.templateList()
-//                            self.refreshOnMainThread()
-//                        }
-//                    })
-//                }
-            })
         } else {
             print("unimplemented editing style")
         }
@@ -88,26 +79,23 @@ class TemplateEditorTable : UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if let task = template?.tasks[indexPath.row] {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
-                cell.initWithTask(task: task)
-                return cell
-            }
+        let task = tasks[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
+            cell.initWithTask(task: task)
+            return cell
         }
-        FTErrorMessage(error: "Bad cell type")
         return UITableViewCell()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let task = template?.tasks[indexPath.row] {
-            openTaskEditor(task: task)
-        }
+        openTaskEditor(task: tasks[indexPath.row])
     }
 
     func openTaskEditor(task : Task) {
         if let taskEditor = self.storyboard?.instantiateViewController(withIdentifier: "TaskEditor") as? TaskEditor {
             // Create form so it's editable.
             taskEditor.task = task
+            taskEditor.parentController = self
             let navController = UINavigationController(rootViewController: taskEditor) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {
 

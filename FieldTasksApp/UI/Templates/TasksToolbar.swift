@@ -36,8 +36,6 @@ class TemplateTasksToolIcon : UIImageView {
     init(image: UIImage?, tool : TemplateTasksTool, delegate: TemplateTasksToolProtocol) {
         super.init(image: image)
 
-        //        let panRecognizer = UIPanGestureRecognizer(target:self, action: #selector(detectPan))
-        //        self.gestureRecognizers = [panRecognizer]
         self.isUserInteractionEnabled = true
         self.taskType = tool.taskType()
         self.delegate = delegate
@@ -46,12 +44,6 @@ class TemplateTasksToolIcon : UIImageView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    //    func detectPan(recognizer:UIPanGestureRecognizer) {
-    //        let translation  = recognizer.translation(in: self.superview!)
-    //        self.center = CGPoint(x: lastLocation.x + translation.x, y: lastLocation.y + translation.y)
-    //        print("pan")
-    //    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.superview?.bringSubview(toFront: self)

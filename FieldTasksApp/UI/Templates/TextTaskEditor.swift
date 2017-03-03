@@ -22,6 +22,7 @@ class TextTaskEditor : TaskTypeEditor {
         limitedLabel.makeDetailStyle()
         maxLabel.makeDetailStyle()
         maxField.setActiveStyle(isActive: true)
+        maxField.addHideKeyboardButton()
         limitedSwitch.makeFlatSwitch()
     }
 
@@ -51,5 +52,9 @@ class TextTaskEditor : TaskTypeEditor {
     override func showHideFields() {
         maxLabel.isHidden = !limitedSwitch.isOn
         maxField.isHidden = !limitedSwitch.isOn
+        if limitedSwitch.isOn {
+            maxField.text = ""
+            maxField.becomeFirstResponder()
+        }
     }
 }

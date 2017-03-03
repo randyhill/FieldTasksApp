@@ -12,6 +12,7 @@ import UIKit
 class PhotosTask : Task {
     var isSingle = false;
     override var editorId : String { get { return "PhotosTaskEditor"} }
+    override var viewerId : String { get { return "PhotosTaskViewer"} }
 
     override init(taskDict : [String : AnyObject]) {
         super.init(taskDict: taskDict)

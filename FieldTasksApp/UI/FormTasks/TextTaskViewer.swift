@@ -22,6 +22,7 @@ class TextTaskViewer : BaseTaskViewer {
             return task!.result as! TextResult
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +33,7 @@ class TextTaskViewer : BaseTaskViewer {
         textView.setActiveStyle(isActive: isEditable)
         if isEditable {
             textView.addDoneHideKeyboardButtons(title: "Done", target: self, completion: #selector(self.doneButton))
+            textView.tintColor = UIColor.black
             textView.becomeFirstResponder()
         }
     }

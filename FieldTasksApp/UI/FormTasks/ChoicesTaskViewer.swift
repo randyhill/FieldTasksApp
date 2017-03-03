@@ -1,5 +1,5 @@
 //
-//  ChoiceTaskViewer.swift
+//  ChoicesTaskViewer.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 8/23/16.
@@ -28,14 +28,14 @@ class Choice {
         self.on = !self.on
     }
 
-    init(frame : CGRect, width: CGFloat, handler: ChoiceTaskViewer, title: String) {
+    init(frame : CGRect, width: CGFloat, handler: ChoicesTaskViewer, title: String) {
         // Make label for title
         var labelFrame = frame
         labelFrame.origin.x = width + 24.0
         switchSize.width = width
         label.frame = labelFrame
         label.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: handler, action: #selector(ChoiceTaskViewer.labelTap))
+        let tapGesture = UITapGestureRecognizer(target: handler, action: #selector(ChoicesTaskViewer.labelTap))
         label.addGestureRecognizer(tapGesture)
         label.text = title;
         label.makeTitleStyle()
@@ -58,11 +58,11 @@ class Switchbox : Choice {
             _switch.isOn = newOn
         }
     }
-    init(frame : CGRect, handler: ChoiceTaskViewer, title : String, isEnabled: Bool) {
+    init(frame : CGRect, handler: ChoicesTaskViewer, title : String, isEnabled: Bool) {
         super.init(frame : frame, width: 64.0, handler: handler, title: title)
         _switch.frame = frame
         _switch.frame.size.width = switchSize.width;
-        _switch.addTarget(handler, action: #selector(ChoiceTaskViewer.didSwitch), for: .valueChanged)
+        _switch.addTarget(handler, action: #selector(ChoicesTaskViewer.didSwitch), for: .valueChanged)
         _switch.isEnabled = isEnabled
         view = _switch
         _switch.onColor = UIColor.turquoise()
@@ -94,14 +94,14 @@ class Checkbox : Switchbox {
 //        }
 //    }
 
-//    init(frame : CGRect, handler: ChoiceTaskViewer, title : String, isEnabled: Bool) {
+//    init(frame : CGRect, handler: ChoicesTaskViewer, title : String, isEnabled: Bool) {
 //        super.init(frame : frame, width: 34.0, handler: handler, title: title)
 //        button.frame = frame
 //        button.frame.size.width = frame.height
 //        button.layer.borderWidth = 2.0
 //        button.setTitleColor(UIColor.black, for: .normal)
 //        button.titleLabel!.font = UIFont.boldSystemFont(ofSize: 18.0)
-//        button.addTarget(handler, action: #selector(ChoiceTaskViewer.didCheck), for: .touchUpInside)
+//        button.addTarget(handler, action: #selector(ChoicesTaskViewer.didCheck), for: .touchUpInside)
 //        button.isEnabled = isEnabled
 //        button.backgroundColor = UIColor.silver()
 //        view = button
@@ -113,8 +113,8 @@ class Checkbox : Switchbox {
     }
 }
 
-// MARK: ChoiceTaskViewer Class -------------------------------------------------------------------------------
-class ChoiceTaskViewer : BaseTaskViewer {
+// MARK: ChoicesTaskViewer Class -------------------------------------------------------------------------------
+class ChoicesTaskViewer : BaseTaskViewer {
     var options = [Choice]()
     var choiceData : ChoicesTask {
         get {

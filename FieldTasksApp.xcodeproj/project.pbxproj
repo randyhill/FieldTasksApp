@@ -111,8 +111,8 @@
 		D86BF76D1E64A42500884277 /* TemplatesViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7661E64A42500884277 /* TemplatesViewer.swift */; };
 		D86BF76E1E64A42500884277 /* TemplatesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7671E64A42500884277 /* TemplatesTable.swift */; };
 		D86BF76F1E64A42500884277 /* TemplatesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7671E64A42500884277 /* TemplatesTable.swift */; };
-		D86BF7761E64A43800884277 /* ChoiceTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7701E64A43800884277 /* ChoiceTaskViewer.swift */; };
-		D86BF7771E64A43800884277 /* ChoiceTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7701E64A43800884277 /* ChoiceTaskViewer.swift */; };
+		D86BF7761E64A43800884277 /* ChoicesTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7701E64A43800884277 /* ChoicesTaskViewer.swift */; };
+		D86BF7771E64A43800884277 /* ChoicesTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7701E64A43800884277 /* ChoicesTaskViewer.swift */; };
 		D86BF7781E64A43800884277 /* NumberTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7711E64A43800884277 /* NumberTaskViewer.swift */; };
 		D86BF7791E64A43800884277 /* NumberTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7711E64A43800884277 /* NumberTaskViewer.swift */; };
 		D86BF77A1E64A43800884277 /* PhotosTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7721E64A43800884277 /* PhotosTaskViewer.swift */; };
@@ -264,7 +264,7 @@
 		D86BF7651E64A42500884277 /* TemplateEditorTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateEditorTable.swift; path = UI/Templates/TemplateEditorTable.swift; sourceTree = "<group>"; };
 		D86BF7661E64A42500884277 /* TemplatesViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesViewer.swift; path = UI/Templates/TemplatesViewer.swift; sourceTree = "<group>"; };
 		D86BF7671E64A42500884277 /* TemplatesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplatesTable.swift; path = UI/Templates/TemplatesTable.swift; sourceTree = "<group>"; };
-		D86BF7701E64A43800884277 /* ChoiceTaskViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChoiceTaskViewer.swift; path = UI/FormTasks/ChoiceTaskViewer.swift; sourceTree = "<group>"; };
+		D86BF7701E64A43800884277 /* ChoicesTaskViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChoicesTaskViewer.swift; path = UI/FormTasks/ChoicesTaskViewer.swift; sourceTree = "<group>"; };
 		D86BF7711E64A43800884277 /* NumberTaskViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberTaskViewer.swift; path = UI/FormTasks/NumberTaskViewer.swift; sourceTree = "<group>"; };
 		D86BF7721E64A43800884277 /* PhotosTaskViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosTaskViewer.swift; path = UI/FormTasks/PhotosTaskViewer.swift; sourceTree = "<group>"; };
 		D86BF7731E64A43800884277 /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskController.swift; path = UI/FormTasks/TaskController.swift; sourceTree = "<group>"; };
@@ -355,6 +355,7 @@
 		D82411A21E301C01006D06E2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D8F234411E68DB000043D1C7 /* Views */,
 				D86BF7251E638F3D00884277 /* Shared.swift */,
 				D8549B9E1D67871B009DBE7A /* Main.storyboard */,
 				D82411A01E301BE6006D06E2 /* FormsViewer.swift */,
@@ -387,7 +388,7 @@
 				D82411A41E315517006D06E2 /* FormTasksViewer.swift */,
 				D86BF7741E64A43800884277 /* TasksViewer.swift */,
 				D86BF7731E64A43800884277 /* TaskController.swift */,
-				D86BF7701E64A43800884277 /* ChoiceTaskViewer.swift */,
+				D86BF7701E64A43800884277 /* ChoicesTaskViewer.swift */,
 				D86BF7711E64A43800884277 /* NumberTaskViewer.swift */,
 				D86BF7721E64A43800884277 /* PhotosTaskViewer.swift */,
 				D86BF7751E64A43800884277 /* TextTaskViewer.swift */,
@@ -422,9 +423,9 @@
 				D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */,
 				D8549B9A1D67871B009DBE7A /* AppDelegate.swift */,
 				D85D53DD1D710D94006D31F2 /* Globals.swift */,
+				D82411A21E301C01006D06E2 /* UI */,
 				D8E9547C1E622F71004D5D4C /* Singletons */,
 				D8C165CB1E47EBEE00129439 /* Extensions */,
-				D82411A21E301C01006D06E2 /* UI */,
 				D8549BD81D68C9D7009DBE7A /* Data Classes */,
 				D8549BCF1D67B652009DBE7A /* Supporting Files */,
 			);
@@ -491,7 +492,6 @@
 				D86BF7671E64A42500884277 /* TemplatesTable.swift */,
 				D86BF7641E64A42500884277 /* TemplateEditor.swift */,
 				D86BF7651E64A42500884277 /* TemplateEditorTable.swift */,
-				D86BF7611E64A2B100884277 /* TasksToolbar.swift */,
 				D89299CF1E65E6D300CC2070 /* TaskEditor.swift */,
 				D81753961E675BAD003D8033 /* TaskTypeEditor.swift */,
 				D89299D21E65F5C900CC2070 /* TextTaskEditor.swift */,
@@ -571,6 +571,14 @@
 				D86BF72C1E6397EC00884277 /* TemplatesManager.swift */,
 			);
 			name = Singletons;
+			sourceTree = "<group>";
+		};
+		D8F234411E68DB000043D1C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D86BF7611E64A2B100884277 /* TasksToolbar.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -870,7 +878,7 @@
 				D86BF72D1E6397EC00884277 /* LocationsManager.swift in Sources */,
 				D86BF7681E64A42500884277 /* TemplateEditor.swift in Sources */,
 				D8F1D71A1E53A96900A07F70 /* Task.swift in Sources */,
-				D86BF7761E64A43800884277 /* ChoiceTaskViewer.swift in Sources */,
+				D86BF7761E64A43800884277 /* ChoicesTaskViewer.swift in Sources */,
 				D835A3E51E635C31002C3EB1 /* UILabel.swift in Sources */,
 				D86BF76E1E64A42500884277 /* TemplatesTable.swift in Sources */,
 				D835A3E21E635C31002C3EB1 /* Double.swift in Sources */,
@@ -925,7 +933,7 @@
 				D84AAF2D1E4531EA000D584F /* LocationsViewer.swift in Sources */,
 				D82411A61E315517006D06E2 /* FormTasksViewer.swift in Sources */,
 				D86BF7301E63982800884277 /* LocationsManager.swift in Sources */,
-				D86BF7771E64A43800884277 /* ChoiceTaskViewer.swift in Sources */,
+				D86BF7771E64A43800884277 /* ChoicesTaskViewer.swift in Sources */,
 				D86BF7691E64A42500884277 /* TemplateEditor.swift in Sources */,
 				D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */,
 				D86BF76F1E64A42500884277 /* TemplatesTable.swift in Sources */,

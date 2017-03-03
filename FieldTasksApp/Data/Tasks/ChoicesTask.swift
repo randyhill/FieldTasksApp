@@ -13,6 +13,7 @@ class ChoicesTask : Task {
     var isRadio = true
     var titles = [String]()
     override var editorId : String { get { return "ChoicesTaskEditor"} }
+    override var viewerId : String { get { return "ChoicesTaskViewer"} }
 
     override init(taskDict : [String : AnyObject]) {
         super.init(taskDict: taskDict)
@@ -40,7 +41,17 @@ class ChoicesTask : Task {
     }
 
     override func taskDescriptionString() -> String {
-        return isRadio ? "Single Selection" : "Multiple Selections"
+        var descriptionString = isRadio ? "Select one of: " : "Select any of: "
+        var selectionString : String?
+        for selection in titles {
+            if selectionString == nil {
+                selectionString = selection
+            } else {
+                selectionString = ", " + selection
+            }
+            descriptionString += selectionString!
+        }
+        return descriptionString
     }
 }
 

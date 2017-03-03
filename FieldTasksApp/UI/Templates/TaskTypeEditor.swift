@@ -27,4 +27,8 @@ class TaskTypeEditor : UIViewController {
 
     func showHideFields() {
     }
+
+    func validate() -> String? {
+        return nil
+    }
 }

@@ -92,18 +92,7 @@ class TasksViewer : UIViewController {
         let task = form!.tasks[taskIndex]
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        switch task.type {
-        case TaskType.Text:
-             taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskViewer") as? BaseTaskViewer
-        case TaskType.Number:
-            taskController = storyboard.instantiateViewController(withIdentifier: "NumberTaskViewer") as? BaseTaskViewer
-        case TaskType.Choices:
-            taskController = storyboard.instantiateViewController(withIdentifier: "ChoiceTaskViewer") as? BaseTaskViewer
-        case TaskType.Photos:
-            taskController = storyboard.instantiateViewController(withIdentifier: "PhotosTaskViewer") as? BaseTaskViewer
-         default:
-            taskController = storyboard.instantiateViewController(withIdentifier: "TextTaskViewer") as? BaseTaskViewer
-        }
+        taskController = storyboard.instantiateViewController(withIdentifier: task.viewerId) as? BaseTaskViewer
         taskController?.task = task
         taskController?.parentController = self
         taskController?.isEditable = isEditable

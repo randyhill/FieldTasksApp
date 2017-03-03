@@ -12,7 +12,7 @@ enum TaskType : String {
     case Text = "Text",
     Number = "Number",
     Choices = "Choices",
-    Photos = "Photo",
+    Photos = "Photos",
     Unknown = "Unknown"
 }
 
@@ -75,6 +75,7 @@ class Task {
     var description = ""
     var result : TaskResult?
     var editorId : String { get { return ""} }
+    var viewerId : String { get { return ""} }
 
     init() {
     }

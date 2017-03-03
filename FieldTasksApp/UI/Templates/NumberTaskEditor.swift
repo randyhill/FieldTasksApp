@@ -26,8 +26,10 @@ class NumberTaskEditor : TaskTypeEditor {
         limitedSwitch.makeFlatSwitch()
         maxLabel.makeDetailStyle()
         maxField.setActiveStyle(isActive: true)
+        maxField.addHideKeyboardButton()
         minLabel.makeDetailStyle()
         minField.setActiveStyle(isActive: true)
+        minField.addHideKeyboardButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +47,7 @@ class NumberTaskEditor : TaskTypeEditor {
         task?.isUnlimited = !limitedSwitch.isOn
         task?.min = Double(minField.text!) ?? 0
         task?.max = Double(maxField.text!) ?? 0
-   }
+    }
 
     override func setTask(task : Task) {
         self.task = task as? NumberTask
@@ -60,5 +62,21 @@ class NumberTaskEditor : TaskTypeEditor {
         maxField.isHidden = !limitedSwitch.isOn
         minLabel.isHidden = !limitedSwitch.isOn
         minField.isHidden = !limitedSwitch.isOn
+        if limitedSwitch.isOn {
+            minField.text = ""
+            maxField.text = ""
+            minField.becomeFirstResponder()
+        }
+    }
+
+    override func validate() -> String? {
+        if limitedSwitch.isOn {
+            let min = Double(minField.text!) ?? 0
+            let max = Double(maxField.text!) ?? 0
+            if min >= max {
+                return "Minimum value must be less than maximum value"
+            }
+        }
+        return nil
     }
 }
