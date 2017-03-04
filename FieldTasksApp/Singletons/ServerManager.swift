@@ -61,13 +61,14 @@ class ServerMgr {
         dataTask.resume()
     }
 
-    private func saveTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
+    private func newTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
         // Start spinner
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let formDict = form.toDict()
 
         // for some reason POST requests require the path to end with / or the server will redirect to GET
-        Alamofire.request(url + "/", method: .post, parameters: formDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
+        let url = url + "/"
+        Alamofire.request(url, method: .post, parameters: formDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
             DispatchQueue.main.async() {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
@@ -84,6 +85,20 @@ class ServerMgr {
         })
     }
 
+    private func saveTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ error: String?)->()) {
+        // Start spinner
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let formDict = form.toDict()
+
+        let url = url + "/" + form.id
+        Alamofire.request(url, method: .put, parameters: formDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
+            DispatchQueue.main.async() {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            completion(response.result.isSuccess ? nil : "Failed to save form")
+        })
+    }
+
     // MARK: Templates Methods -------------------------------------------------------------------------------
     func loadTemplates(location: FTLocation?, completion : @escaping (_ result: [AnyObject]?, _ error: String?)->()) {
         if var url = URL(string: cAllTemplatesURL) {
@@ -96,7 +111,8 @@ class ServerMgr {
 
     func deleteTemplate(templateId: String, completion : @escaping (_ error : String?)->()) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        Alamofire.request(cTemplatesURL, method: .delete, parameters: ["id":templateId], encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { response in
+        let url = cTemplatesURL + "/" + templateId
+        Alamofire.request(url, method: .delete, parameters: ["id":templateId], encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { response in
             DispatchQueue.main.async() {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
@@ -104,7 +120,11 @@ class ServerMgr {
         })
     }
 
-    func saveTemplate(template: Template, completion : @escaping (_ result: [String : Any]?, _ error: String?)->()) {
+    func newTemplate(template: Template, completion : @escaping (_ result: [String : Any]?, _ error: String?)->()) {
+        newTemplateForm(form: template, url: cTemplatesURL, successCode: 201, completion: completion)
+    }
+
+    func saveTemplate(template: Template, completion : @escaping (_ error: String?)->()) {
         saveTemplateForm(form: template, url: cTemplatesURL, successCode: 201, completion: completion)
     }
 
@@ -121,7 +141,7 @@ class ServerMgr {
     }
 
     func saveAsForm(form: Template, completion : @escaping (_ result: [String : Any]?, _ error: String?)->()) {
-        saveTemplateForm(form: form, url: cFormsURL, successCode: 201, completion: completion)
+        newTemplateForm(form: form, url: cFormsURL, successCode: 201, completion: completion)
     }
 
 

@@ -19,6 +19,8 @@ class FTLocation {
     var phone = ""
     var coordinates : CLLocationCoordinate2D?
     var perimeter = 100
+    var templates = Set<String>()
+
     var fullAddress : String {
         get {
             var addr = street
@@ -34,6 +36,11 @@ class FTLocation {
             return ", " + string
         }
         return ""
+    }
+
+    // MARK: Initialization/Serialization -------------------------------------------------------------------------------
+    init() {
+
     }
 
     init(locationDict : [String : AnyObject]) throws {
@@ -69,10 +76,30 @@ class FTLocation {
         }
     }
 
-    init() {
+    func toDict() -> [String : AnyObject]{
+        var taskDict = [String : AnyObject]()
 
+        // Dont' write id, as this is a different object to database
+        taskDict["name"] = name as AnyObject?
+        taskDict["street"] = street as AnyObject?
+        taskDict["city"] = city as AnyObject?
+        taskDict["state"] = state as AnyObject?
+        taskDict["zip"] = zip as AnyObject?
+        taskDict["perimeter"] = perimeter as AnyObject?
+        if let coordinate = coordinates {
+            let coordinateDict = ["lat" : String(coordinate.latitude), "lng": String(coordinate.longitude)]
+            taskDict["coordinates"] = coordinateDict as AnyObject?
+        }
+        return taskDict
     }
 
+    func addTemplates(newTemplates : [Template]) {
+        for template in newTemplates {
+            templates.insert(template.id)
+        }
+    }
+
+    // MARK: Location Utilities -------------------------------------------------------------------------------
     func updateFromPlacemarkDict(locationDict: [AnyHashable : Any]) {
         self.street = locationDict["Street"] as? String ?? ""
         self.city = locationDict["City"] as? String ?? ""
@@ -124,20 +151,5 @@ class FTLocation {
         return distance <= self.perimeter
     }
 
-    func toDict() -> [String : AnyObject]{
-        var taskDict = [String : AnyObject]()
 
-        // Dont' write id, as this is a different object to database
-        taskDict["name"] = name as AnyObject?
-        taskDict["street"] = street as AnyObject?
-        taskDict["city"] = city as AnyObject?
-        taskDict["state"] = state as AnyObject?
-        taskDict["zip"] = zip as AnyObject?
-        taskDict["perimeter"] = perimeter as AnyObject?
-        if let coordinate = coordinates {
-            let coordinateDict = ["lat" : String(coordinate.latitude), "lng": String(coordinate.longitude)]
-            taskDict["coordinates"] = coordinateDict as AnyObject?
-        }
-        return taskDict
-    }
 }

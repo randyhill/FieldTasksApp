@@ -51,9 +51,10 @@ class FormsViewer : UIViewController {
     }
 
     @IBAction func openPicker(_ sender: Any) {
-        if let formController = self.storyboard?.instantiateViewController(withIdentifier: "TemplatesViewer") as? TemplatesViewer {
-            formController.location = location
-            let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
+        if let templatesViewer = self.storyboard?.instantiateViewController(withIdentifier: "TemplatesViewer") as? TemplatesViewer {
+            templatesViewer.location = location
+            templatesViewer.style = .Location
+            let navController = UINavigationController(rootViewController: templatesViewer) // Creating a navigation controller with resultController at the root of the navigation stack.
             self.present(navController, animated: true, completion: {
 
             })

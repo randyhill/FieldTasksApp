@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlatUIKit
 
 class TemplateCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
@@ -22,8 +23,17 @@ class TemplatesTable: UITableViewController {
         super.viewDidLoad()
 
         // Adjustment because we are now in container view
-        tableView.backgroundColor = UIColor.greenSea()
+        tableView.backgroundColor = Globals.shared.bgColor
         self.refreshList()
+
+        switch parentTemplatesViewer!.style {
+        case .List:
+            break
+        case .Location:
+            break
+        case .Picker:
+            self.tableView.allowsMultipleSelection = true
+        }
     }
 
     func refreshList() {
@@ -37,6 +47,16 @@ class TemplatesTable: UITableViewController {
                 }
             }
         }
+    }
+
+    func selectedTemplates() -> [Template]? {
+        if let selectedRows = tableView.indexPathsForSelectedRows {
+            return selectedRows.map { (indexPath) -> Template in
+                let row = indexPath.row
+                return templatesList[row]
+            }
+        }
+        return nil
     }
 
     func refreshOnMainThread() {
@@ -55,7 +75,22 @@ class TemplatesTable: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navController = segue.destination as? UINavigationController {
+            if let templateEditor = navController.topViewController as? TemplateEditor {
+                templateEditor.template = sender as? Template
+            }
+        }
+    }
+
     // MARK: Table Methods -------------------------------------------------------------------------------
+    func toggleEdit(button : FUIButton) {
+        tableView.isEditing = !tableView.isEditing
+        let title = tableView.isEditing ? "Done" : "Edit"
+        button.setTitle(title, for: .normal)
+        button.setTitle(title, for: .highlighted)
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return templatesList.count
     }
@@ -68,24 +103,37 @@ class TemplatesTable: UITableViewController {
         return true
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (canceled) in
-                if !canceled {
-                    let template = self.templatesList[indexPath.row]
-                    TemplatesManager.shared.deleteTemplate(templateId: template.id, completion: { (error) in
-                        if let error = error {
-                            self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
-                        } else {
-                            self.templatesList = TemplatesManager.shared.templateList()
-                            self.refreshOnMainThread()
-                        }
-                    })
-                }
-            })
-        } else {
-            print("unimplemented editing style")
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            self.isEditing = false
+            let template = self.templatesList[indexPath.row]
+            self.performSegue(withIdentifier: "OpenTemplateEditor", sender: template)
         }
+        edit.backgroundColor = UIColor.peterRiver()
+
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            self.isEditing = false
+            self.deleteTemplate(forRowAt: indexPath)
+        }
+        delete.backgroundColor = UIColor.alizarin()
+
+        return [edit, delete]
+    }
+
+    func deleteTemplate(forRowAt indexPath: IndexPath) {
+        self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (canceled) in
+            if !canceled {
+                let template = self.templatesList[indexPath.row]
+                TemplatesManager.shared.deleteTemplate(templateId: template.id, completion: { (error) in
+                    if let error = error {
+                        self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
+                    } else {
+                        self.templatesList = TemplatesManager.shared.templateList()
+                        self.refreshOnMainThread()
+                    }
+                })
+            }
+        })
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -100,7 +148,7 @@ class TemplatesTable: UITableViewController {
             } else {
                 cell.body!.text = ""
             }
-            cell.makeCellFlat()
+            cell.makeCellFlat(backgroundColor: tableView.backgroundColor!, selectedColor: UIColor.sunflower())
             cell.title.makeTitleStyle()
             cell.tasks.makeTitleStyle()
             cell.body.makeDetailStyle()
@@ -109,14 +157,18 @@ class TemplatesTable: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let formController = storyboard.instantiateViewController(withIdentifier: "FormTasksViewer") as? FormTasksViewer {
-            // Create form so it's editable.
-            formController.form = Form(template: templatesList[indexPath.row])
-            let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
-            self.present(navController, animated: true, completion: {
+        if parentTemplatesViewer?.style == .Picker {
 
-            })
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let formController = storyboard.instantiateViewController(withIdentifier: "FormTasksViewer") as? FormTasksViewer {
+                // Create form so it's editable.
+                formController.form = Form(template: templatesList[indexPath.row])
+                let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
+                self.present(navController, animated: true, completion: {
+
+                })
+            }
         }
     }
 }

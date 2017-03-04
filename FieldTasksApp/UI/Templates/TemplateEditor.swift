@@ -22,7 +22,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         super.viewDidLoad()
         toolbar.delegate = self
 
-        self.title = template!.name.characters.count > 0 ? "Create Template" : "New Template"
+        self.title = template!.name.characters.count > 0 ? "Edit Template" : "New Template"
         self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
         self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(doneAction))
         makeNavBarFlat()
@@ -35,6 +35,9 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         titleField.text = template!.name
         titleField.addHideKeyboardButton()
         editButton.makeFlatButton()
+        if let template = template {
+            titleField.text = template.name
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

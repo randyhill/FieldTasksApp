@@ -64,13 +64,17 @@ class TemplatesManager {
     func updateTemplate(template: Template, completion: @escaping (_ error : String?)->()) {
         if template.id == "" {
             list += [template]
-        }
-        ServerMgr.shared.saveTemplate(template: template) { (resultDict, error ) in
-            if let resultDict = resultDict as? [String: AnyObject]{
-                // Update with id, and any other changes.
-                template.fromDict(templateDict: resultDict)
+            ServerMgr.shared.newTemplate(template: template) { (resultDict, error ) in
+                if let resultDict = resultDict as? [String: AnyObject]{
+                    // Update with id, and any other changes.
+                    template.fromDict(templateDict: resultDict)
+                }
+                completion(error)
             }
-            completion(error)
+        } else {
+            ServerMgr.shared.saveTemplate(template: template) { (error ) in
+                completion(error)
+            }
         }
     }
 }
