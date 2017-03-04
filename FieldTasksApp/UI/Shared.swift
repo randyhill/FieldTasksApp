@@ -37,6 +37,12 @@ func FTAssert(isTrue: Bool, error: String, file: String = #file, line: Int = #li
     }
 }
 
+func FTAssertString(error: String?, file: String = #file, line: Int = #line) {
+    if let error = error {
+        FTErrorMessage(error: error, file: file, line: line)
+    }
+}
+
 func FTErrorMessage(error: String, file: String = #file, line: Int = #line) {
     print("Assert failure - file: \(file) line: \(line) error:\(error)")
 }

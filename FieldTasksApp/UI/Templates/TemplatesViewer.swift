@@ -48,6 +48,8 @@ class TemplatesViewer : UIViewController {
             self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Add", target: self, action: #selector(addAction))
             newButton.isHidden = true
             editButton.isHidden = true
+            newButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10.0).isActive = true
+            editButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10.0).isActive = true
         }
     }
 
@@ -56,6 +58,7 @@ class TemplatesViewer : UIViewController {
             if let navController = segue.destination as? UINavigationController {
                 if let templateEditor = navController.topViewController as? TemplatesViewer {
                     templateEditor.style = style
+                    templateEditor.location = self.location
                 }
             }
         } else {
@@ -85,6 +88,9 @@ class TemplatesViewer : UIViewController {
         if let location = location {
             if let selectedTemplates = listController?.selectedTemplates() {
                 location.addTemplates(newTemplates: selectedTemplates)
+                ServerMgr.updateLocation(location: location, completion: { (error) in
+                    FTAssertString(error: error)
+                })
              }
         }
         self.dismiss(animated: true) {}
@@ -97,10 +103,5 @@ class TemplatesViewer : UIViewController {
     func refreshList() {
         listController?.refreshList()
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        listController = segue.destination as? TemplatesTable
-//        listController?.parentTemplatesViewer = self
-//    }
 }
 

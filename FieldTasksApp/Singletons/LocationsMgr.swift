@@ -18,8 +18,8 @@ struct SortedLocation {
     var distance = 0
 }
 
-class LocationsManager : NSObject, CLLocationManagerDelegate {
-    static let shared = LocationsManager()
+class LocationsMgr : NSObject, CLLocationManagerDelegate {
+    static let shared = LocationsMgr()
     private var mgr = CLLocationManager()
     private var list = SynchronizedArray<FTLocation>()
     private var curLocation : FTLocation?

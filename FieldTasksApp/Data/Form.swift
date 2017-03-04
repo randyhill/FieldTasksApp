@@ -64,7 +64,7 @@ class Form : Template {
     }
 
     func submit(completion : @escaping (_ error: String?)->()) {
-        if let coordinates = LocationsManager.shared.currentCoordinates() {
+        if let coordinates = LocationsMgr.shared.currentCoordinates() {
             self.coordinates = coordinates
         }
         let photosList = PhotoFileList(tasks: tasks, buildWithImages: true)

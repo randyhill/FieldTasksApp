@@ -26,7 +26,7 @@ class FormsViewer : UIViewController {
 
         if let location = location {
             self.title = location.name
-            newButton.makeFlatImageButton(imageNamed: "plus.png")
+            newButton.makeFlatButton() //makeFlatImageButton(imageNamed: "plus.png")
             newButton.isHidden = false
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
         } else {

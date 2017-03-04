@@ -68,7 +68,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         if let template = template {
             template.tasks = (listController?.tasks)!
             template.name = titleField.text!
-            TemplatesManager.shared.updateTemplate(template: template) { (error) in
+            TemplatesMgr.shared.updateTemplate(template: template) { (error) in
                 if let error = error {
                     FTAlertError(message: error)
                 } else {

@@ -19,7 +19,7 @@ class FTLocation {
     var phone = ""
     var coordinates : CLLocationCoordinate2D?
     var perimeter = 100
-    var templates = Set<String>()
+    private var templates = Set<String>()
 
     var fullAddress : String {
         get {
@@ -74,6 +74,11 @@ class FTLocation {
             }
             self.coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lng)
         }
+        if let templatesArray = locationDict["templates"] as? [String] {
+            for template in templatesArray {
+                self.templates.insert(template)
+            }
+        }
     }
 
     func toDict() -> [String : AnyObject]{
@@ -90,13 +95,27 @@ class FTLocation {
             let coordinateDict = ["lat" : String(coordinate.latitude), "lng": String(coordinate.longitude)]
             taskDict["coordinates"] = coordinateDict as AnyObject?
         }
+        taskDict["templates"] = templateIds() as AnyObject?
         return taskDict
     }
 
+    // MARK: Templates -------------------------------------------------------------------------------
     func addTemplates(newTemplates : [Template]) {
         for template in newTemplates {
             templates.insert(template.id)
         }
+    }
+
+    func removeTemplate(templateId : String) {
+        templates.remove(templateId)
+    }
+
+    func templateIds() -> [String] {
+        return Array(templates)
+    }
+
+    func containsTemplate(templateId: String) -> Bool {
+        return templates.contains(templateId)
     }
 
     // MARK: Location Utilities -------------------------------------------------------------------------------

@@ -180,6 +180,22 @@ class ServerMgr {
         })
     }
 
+    class func updateLocation(location: FTLocation, completion : @escaping (_ error: String?)->()) {
+        // Start spinner
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let locationDict = location.toDict()
+
+        // for some reason POST requests require the path to end with / or the server will redirect to GET
+        FTAssert(isTrue: location.id != "", error: "Trying to update location that wasn't saved")
+        let url = cBaseURL + "/locations/" + location.id
+        Alamofire.request(url, method: .put, parameters: locationDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
+            DispatchQueue.main.async() {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            completion(response.error?.localizedDescription)
+        })
+    }
+
     // MARK: Images  -------------------------------------------------------------------------------
     func uploadImage(image: UIImage, progress : @escaping (Float)->(), completion : @escaping (_ fileName: String, _ error: String?)->()) {
         // Start spinner

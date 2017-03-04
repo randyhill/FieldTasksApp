@@ -16,7 +16,7 @@ class LocationCell : UITableViewCell {
 }
 
 class LocationsViewer: UITableViewController, LocationUpdates {
-    var locations = LocationsManager.shared
+    var locations = LocationsMgr.shared
     var form : Form?
     var selectedLocation : FTLocation?
     var list = [FTLocation]()   // use read-only copy of live list so it's thread safe, otherwise live list could be in mid-update when we refresh

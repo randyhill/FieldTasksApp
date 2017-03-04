@@ -1119,11 +1119,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUn-TR-mE2" customClass="FUIButton">
-                                <rect key="frame" x="16" y="74" width="68" height="31"/>
+                                <rect key="frame" x="16" y="74" width="89" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="V7J-Ew-1RQ"/>
-                                    <constraint firstAttribute="width" constant="68" id="eXD-90-vDD"/>
+                                    <constraint firstAttribute="width" constant="89" id="eXD-90-vDD"/>
                                 </constraints>
+                                <state key="normal" title="Templates"/>
                                 <connections>
                                     <action selector="openPicker:" destination="xhc-Dy-6pl" eventType="touchUpInside" id="rle-nL-Ojb"/>
                                 </connections>
@@ -1152,7 +1153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6e-Az-FQr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013" y="-244"/>
+            <point key="canvasLocation" x="1012.5" y="-244.01408450704227"/>
         </scene>
         <!--TemplatesNavController-->
         <scene sceneID="OAr-Ts-Rfn">

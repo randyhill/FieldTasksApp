@@ -24,7 +24,6 @@ class TemplatesTable: UITableViewController {
 
         // Adjustment because we are now in container view
         tableView.backgroundColor = Globals.shared.bgColor
-        self.refreshList()
 
         switch parentTemplatesViewer!.style {
         case .List:
@@ -34,35 +33,6 @@ class TemplatesTable: UITableViewController {
         case .Picker:
             self.tableView.allowsMultipleSelection = true
         }
-    }
-
-    func refreshList() {
-        TemplatesManager.shared.refreshList(location: parentTemplatesViewer?.location) { (templates, err ) in
-            if let error = err {
-                FTErrorMessage(error: "Failed to load forms: \(error)")
-            } else {
-                if let templates = templates {
-                    self.templatesList = templates
-                    self.refreshOnMainThread()
-                }
-            }
-        }
-    }
-
-    func selectedTemplates() -> [Template]? {
-        if let selectedRows = tableView.indexPathsForSelectedRows {
-            return selectedRows.map { (indexPath) -> Template in
-                let row = indexPath.row
-                return templatesList[row]
-            }
-        }
-        return nil
-    }
-
-    func refreshOnMainThread() {
-        DispatchQueue.main.async(execute: {
-            self.tableView.reloadData()
-        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +53,56 @@ class TemplatesTable: UITableViewController {
         }
     }
 
+    // MARK: Refresh Methods -------------------------------------------------------------------------------
+
+    // List/Picker show all templates, Location only it's own templates
+    func refreshList() {
+        switch parentTemplatesViewer!.style {
+        case .List,.Picker:
+            TemplatesMgr.shared.refreshList(location: nil) { (templates, err ) in
+                if let error = err {
+                    FTErrorMessage(error: "Failed to load templates: \(error)")
+                } else {
+                    if let templates = templates {
+                        // Picker is only showing templates that aren't already in location
+                        if self.parentTemplatesViewer?.style == .Picker {
+                            self.templatesList = self.filterTemplates(location: self.parentTemplatesViewer!.location!, templates: templates)
+                        } else {
+                            self.templatesList = templates
+                        }
+                    }
+                }
+            }
+        case .Location:
+            if let location = parentTemplatesViewer?.location {
+                self.templatesList = TemplatesMgr.shared.templatesFromId(idList: location.templateIds())
+            }
+        }
+        self.refreshOnMainThread()
+    }
+
+    func filterTemplates(location: FTLocation, templates: [Template]) -> [Template] {
+        return templates.filter({ (template) -> Bool in
+            return !location.containsTemplate(templateId: template.id)
+        })
+    }
+
+    func selectedTemplates() -> [Template]? {
+        if let selectedRows = tableView.indexPathsForSelectedRows {
+            return selectedRows.map { (indexPath) -> Template in
+                let row = indexPath.row
+                return templatesList[row]
+            }
+        }
+        return nil
+    }
+
+    func refreshOnMainThread() {
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
+    }
+
     // MARK: Table Methods -------------------------------------------------------------------------------
     func toggleEdit(button : FUIButton) {
         tableView.isEditing = !tableView.isEditing
@@ -100,6 +120,9 @@ class TemplatesTable: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if parentTemplatesViewer?.style == .Picker {
+            return false
+        }
         return true
     }
 
@@ -113,22 +136,39 @@ class TemplatesTable: UITableViewController {
 
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             self.isEditing = false
-            self.deleteTemplate(forRowAt: indexPath)
+            if self.parentTemplatesViewer?.style == .List {
+                self.deleteTemplateFromServer(forRowAt: indexPath)
+            } else {
+                self.removeTemplateFromLocation(forRowAt: indexPath)
+            }
         }
         delete.backgroundColor = UIColor.alizarin()
 
         return [edit, delete]
     }
 
-    func deleteTemplate(forRowAt indexPath: IndexPath) {
+    func removeTemplateFromLocation(forRowAt indexPath: IndexPath) {
+        if let location = self.parentTemplatesViewer?.location {
+            let template = self.templatesList[indexPath.row]
+            location.removeTemplate(templateId: template.id)
+            ServerMgr.updateLocation(location: location, completion: { (error) in
+                if let error = error {
+                    FTErrorMessage(error: "Could not update location: \(error)")
+                }
+            })
+            self.refreshList()
+        }
+    }
+
+    func deleteTemplateFromServer(forRowAt indexPath: IndexPath) {
         self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (canceled) in
             if !canceled {
                 let template = self.templatesList[indexPath.row]
-                TemplatesManager.shared.deleteTemplate(templateId: template.id, completion: { (error) in
+                TemplatesMgr.shared.deleteTemplate(templateId: template.id, completion: { (error) in
                     if let error = error {
                         self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
                     } else {
-                        self.templatesList = TemplatesManager.shared.templateList()
+                        self.templatesList = TemplatesMgr.shared.templateList()
                         self.refreshOnMainThread()
                     }
                 })
