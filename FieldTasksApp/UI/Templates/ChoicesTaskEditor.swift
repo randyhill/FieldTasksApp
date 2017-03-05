@@ -55,7 +55,7 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        task?.isRadio = !multipleSwitch.isOn
+        task?.isRadio = multipleSwitch.isOn
         task?.titles = choices
     }
 

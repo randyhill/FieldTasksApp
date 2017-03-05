@@ -12,7 +12,7 @@ import UIKit
 class PhotoMap {
     var imageIndex = 0
     var resultIndex = 0
-    var result : PhotoResult?
+    var result : PhotosResult?
     var image : UIImage? {
         get {
             if imageIndex < result!.photos.count {
@@ -46,7 +46,7 @@ class PhotoMap {
         }
     }
 
-    init(imageIndex: Int, resultIndex : Int, result : PhotoResult) {
+    init(imageIndex: Int, resultIndex : Int, result : PhotosResult) {
         self.result = result
         self.imageIndex = imageIndex
         self.resultIndex = resultIndex
@@ -60,7 +60,7 @@ class PhotoMap {
 // image back to it's task result. When the upload is completed it returns a JSON of the file names generated for the images, each mapped
 // to the index of their PhotoMap entry.
 class PhotoFileList {
-    private var photoResults = [PhotoResult]()
+    private var photoResults = [PhotosResult]()
     private var mapArray = [PhotoMap]()
 
     var count : Int {
@@ -81,7 +81,7 @@ class PhotoFileList {
     func buildWithPhotos(tasks : [Task]) {
         for resultIndex in 0 ..< tasks.count {
             let task = tasks[resultIndex]
-            if let photoResult = task.result as? PhotoResult {
+            if let photoResult = task.result as? PhotosResult {
                 if photoResult.photos.count > 0 {
                     for imageIndex in 0 ..< photoResult.photos.count {
                         let map = PhotoMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)
@@ -97,7 +97,7 @@ class PhotoFileList {
     func buildWithFileNames(tasks : [Task]) {
         for resultIndex in 0 ..< tasks.count {
             let task = tasks[resultIndex]
-            if let photoResult = task.result as? PhotoResult {
+            if let photoResult = task.result as? PhotosResult {
                 if photoResult.fileNames.count > 0 {
                     for imageIndex in 0 ..< photoResult.fileNames.count {
                         let map = PhotoMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)

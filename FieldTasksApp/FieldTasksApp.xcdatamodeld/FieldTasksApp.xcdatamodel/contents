@@ -1,4 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1420" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ChoicesResult" representedClassName="ChoicesResult" syncable="YES" codeGenerationType="class">
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChoicesTask" inverseName="result" inverseEntity="ChoicesTask" syncable="YES"/>
+        <relationship name="values" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChoiceValue" syncable="YES"/>
+    </entity>
+    <entity name="ChoicesTask" representedClassName="ChoicesTask" parentEntity="Task" syncable="YES" codeGenerationType="class">
+        <attribute name="isRadio" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChoicesResult" inverseName="task" inverseEntity="ChoicesResult" syncable="YES"/>
+        <relationship name="titles" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChoiceTitle" syncable="YES"/>
+    </entity>
+    <entity name="ChoiceTitle" representedClassName="ChoiceTitle" syncable="YES" codeGenerationType="class">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ChoiceValue" representedClassName="ChoiceValue" syncable="YES" codeGenerationType="class"/>
+    <entity name="Coordinates" representedClassName="Coordinates" syncable="YES" codeGenerationType="class">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="FileName" representedClassName="FileName" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Form" representedClassName="Form" parentEntity="Template" syncable="YES" codeGenerationType="class">
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="locationId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="templateId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FTLocation" representedClassName="FTLocation" syncable="YES" codeGenerationType="class">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="perimeter" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NumberResult" representedClassName="NumberResult" parentEntity="TaskResult" syncable="YES" codeGenerationType="class">
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NumberTask" inverseName="result" inverseEntity="NumberTask" syncable="YES"/>
+    </entity>
+    <entity name="NumberTask" representedClassName="NumberTask" syncable="YES" codeGenerationType="class">
+        <attribute name="isDecimal" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isUnlimited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="max" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="min" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NumberResult" inverseName="task" inverseEntity="NumberResult" syncable="YES"/>
+    </entity>
+    <entity name="PhotosResult" representedClassName="PhotosResult" syncable="YES" codeGenerationType="class">
+        <relationship name="fileNames" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FileName" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotosTask" inverseName="results" inverseEntity="PhotosTask" syncable="YES"/>
+    </entity>
+    <entity name="PhotosTask" representedClassName="PhotosTask" parentEntity="Task" syncable="YES" codeGenerationType="class">
+        <attribute name="isSingle" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="results" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotosResult" inverseName="task" inverseEntity="PhotosResult" syncable="YES"/>
+    </entity>
+    <entity name="Task" representedClassName="Task" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="required" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TaskResult" representedClassName="TaskResult" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="completed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Template" representedClassName="Template" syncable="YES" codeGenerationType="class">
+        <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Task" syncable="YES"/>
+    </entity>
+    <entity name="TextResult" representedClassName="TextResult" parentEntity="TaskResult" syncable="YES" codeGenerationType="class">
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TextTask" inverseName="result" inverseEntity="TextTask" syncable="YES"/>
+    </entity>
+    <entity name="TextTask" representedClassName="TextTask" parentEntity="Task" syncable="YES" codeGenerationType="class">
+        <attribute name="isUnlimited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="max" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TextResult" inverseName="task" inverseEntity="TextResult" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Task" positionX="-279" positionY="-18" width="128" height="118"/>
+        <element name="TaskResult" positionX="-54" positionY="36" width="128" height="58"/>
+        <element name="TextTask" positionX="-36" positionY="180" width="128" height="88"/>
+        <element name="NumberTask" positionX="-126" positionY="126" width="128" height="120"/>
+        <element name="TextResult" positionX="-117" positionY="135" width="128" height="75"/>
+        <element name="NumberResult" positionX="-108" positionY="153" width="128" height="75"/>
+        <element name="ChoicesTask" positionX="-99" positionY="162" width="128" height="90"/>
+        <element name="ChoiceTitle" positionX="-153" positionY="108" width="128" height="60"/>
+        <element name="ChoicesResult" positionX="-144" positionY="117" width="128" height="75"/>
+        <element name="ChoiceValue" positionX="-135" positionY="126" width="128" height="45"/>
+        <element name="PhotosTask" positionX="-126" positionY="135" width="128" height="75"/>
+        <element name="PhotosResult" positionX="-117" positionY="144" width="128" height="75"/>
+        <element name="FileName" positionX="-108" positionY="153" width="128" height="60"/>
+        <element name="Template" positionX="-99" positionY="162" width="128" height="105"/>
+        <element name="Form" positionX="-153" positionY="108" width="128" height="120"/>
+        <element name="Coordinates" positionX="-144" positionY="117" width="128" height="75"/>
+        <element name="FTLocation" positionX="-135" positionY="126" width="128" height="195"/>
+    </elements>
 </model>

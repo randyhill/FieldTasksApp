@@ -24,7 +24,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
 
         self.title = template!.name.characters.count > 0 ? "Edit Template" : "New Template"
         self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
-        self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(doneAction))
+        self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Save", target: self, action: #selector(doneAction))
         makeNavBarFlat()
         self.view.backgroundColor = UIColor.wetAsphalt()
 

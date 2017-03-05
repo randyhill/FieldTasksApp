@@ -30,7 +30,7 @@ class PhotosTask : Task {
     }
 
     override func initResults(results : [String: AnyObject]) {
-        self.result = PhotoResult(task: self, results: results)
+        self.result = PhotosResult(task: self, results: results)
     }
 
     override func taskDescriptionDict() -> [String : AnyObject]{
@@ -44,8 +44,8 @@ class PhotosTask : Task {
     }
 }
 
-// MARK: PhotoResult Class -------------------------------------------------------------------------------
-class PhotoResult : TaskResult {
+// MARK: PhotosResult Class -------------------------------------------------------------------------------
+class PhotosResult : TaskResult {
     var photos = [UIImage]()
     var fileNames = [String]()
 

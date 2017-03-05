@@ -116,9 +116,9 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
             return task as! PhotosTask
         }
     }
-    var result : PhotoResult {
+    var result : PhotosResult {
         get {
-            return task!.result as! PhotoResult
+            return task!.result as! PhotosResult
         }
     }
 

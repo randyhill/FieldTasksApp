@@ -42,7 +42,7 @@ class FormPhotoTaskCell : UITableViewCell {
         for oldView in self.stackView.subviews {
             oldView.removeFromSuperview()
         }
-        if let photoResult = task.result as? PhotoResult {
+        if let photoResult = task.result as? PhotosResult {
             for image in photoResult.photos {
                 let imageView = UIImageView(image: image)
                 imageView.contentMode = .scaleAspectFit
