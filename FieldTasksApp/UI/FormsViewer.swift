@@ -32,6 +32,7 @@ class FormsViewer : UIViewController {
         } else {
             self.title = "Forms"
             newButton.isHidden = true
+            newButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10.0).isActive = true
         }
         self.makeNavBarFlat()
     }

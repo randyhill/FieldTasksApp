@@ -12,16 +12,69 @@ import FlatUIKit
 class FormTaskCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UITextView!
+
+    func configureWithTask(task: Task) {
+        self.makeCellFlat()
+        self.title!.text = task.name
+        self.title.makeTitleStyle()
+        if let result = task.result {
+            self.body!.text = result.description()
+        } else {
+            self.body!.text = "Not entered"
+        }
+        self.selectionStyle = .default
+        self.body.layer.cornerRadius = 4.0
+        self.body.backgroundColor = Globals.shared.bgColor
+        self.body.makeDetailStyle()
+    }
 }
 
 class FormPhotoTaskCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var stackView: UIStackView!
+
+    func configureWithPhotosTask(task : Task) {
+        self.makeCellFlat()
+        self.title!.text = task.name
+        self.title.makeTitleStyle()
+
+        // Clear old views so we don't have old photos hanging around.
+        for oldView in self.stackView.subviews {
+            oldView.removeFromSuperview()
+        }
+        if let photoResult = task.result as? PhotoResult {
+            for image in photoResult.photos {
+                let imageView = UIImageView(image: image)
+                imageView.contentMode = .scaleAspectFit
+                imageView.translatesAutoresizingMaskIntoConstraints = false
+                self.stackView.addArrangedSubview(imageView)
+            }
+        }
+    }
 }
 
 class FormTitleCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UITextView!
+
+    func configureWithForm(form : Form) {
+        var locationString = "Location: Unknown"
+        if let locationId = form.locationId {
+            if let location = LocationsMgr.shared.getBy(id: locationId){
+                locationString = "For: " + location.name
+            }
+        }
+        self.title.text = locationString
+        self.title.makeTitleStyle()
+
+        let coordinatesString = "lat: \(form.coordinates?.latitude) long: \(form.coordinates?.longitude)"
+        var descriptionString = Globals.shared.dateFormatter.string(from: form.createDate) + " " + coordinatesString
+        descriptionString += "\n" + form.description
+        self.body.text = descriptionString
+        self.body.makeDetailStyle()
+        self.body.backgroundColor = self.contentView.backgroundColor
+        self.selectionStyle = .none
+    }
 }
 
 class FormViewer : UITableViewController {
@@ -82,63 +135,21 @@ class FormViewer : UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FormTitleCell", for: indexPath as IndexPath)
             cell.configureHeaderCell()
             if let formTitleCell = cell as? FormTitleCell, let form = form {
-                var locationString = "Location: Unknown"
-                if let locationId = form.locationId {
-                    if let location = LocationsMgr.shared.getBy(id: locationId){
-                        locationString = "For: " + location.name
-                    }
-                }
-                formTitleCell.title.text = locationString
-                formTitleCell.title.makeTitleStyle()
-
-                let coordinatesString = "lat: \(form.coordinates?.latitude) long: \(form.coordinates?.longitude)"
-                var descriptionString = Globals.shared.dateFormatter.string(from: form.createDate) + " " + coordinatesString
-                descriptionString += "\n" + form.description
-                formTitleCell.body.text = descriptionString
-                formTitleCell.body.makeDetailStyle()
-                formTitleCell.body.backgroundColor = cell.contentView.backgroundColor
-                formTitleCell.selectionStyle = .none
+                formTitleCell.configureWithForm(form: form)
            }
             return cell
         } else {
             let task = form!.tasks[indexPath.row-1]
             if task.type == TaskType.Photos {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "FormPhotoTaskCell", for: indexPath as IndexPath)
-                cell.makeCellFlat()
                 if let taskCell = cell as? FormPhotoTaskCell {
-                    taskCell.title!.text = task.name
-                    taskCell.title.makeTitleStyle()
-
-                    // Clear old views so we don't have old photos hanging around.
-                    for oldView in taskCell.stackView.subviews {
-                        oldView.removeFromSuperview()
-                    }
-                    if let photoResult = task.result as? PhotoResult {
-                        for image in photoResult.photos {
-                            let imageView = UIImageView(image: image)
-                            imageView.contentMode = .scaleAspectFit
-                            imageView.translatesAutoresizingMaskIntoConstraints = false
-                            taskCell.stackView.addArrangedSubview(imageView)
-                        }
-                    }
+                    taskCell.configureWithPhotosTask(task: task)
                 }
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "FormTaskCell", for: indexPath as IndexPath)
-                cell.makeCellFlat()
                 if let taskCell = cell as? FormTaskCell {
-
-                    taskCell.title!.text = task.name
-                    taskCell.title.makeTitleStyle()
-                    if let result = task.result {
-                        taskCell.body!.text = result.description()
-                    } else {
-                        taskCell.body!.text = "Not entered"
-                    }
-                    taskCell.selectionStyle = .default
-                    taskCell.body.layer.cornerRadius = 4.0
-                    taskCell.body.backgroundColor = Globals.shared.bgColor
-                    taskCell.body.makeDetailStyle()
+                    taskCell.configureWithTask(task: task)
                }
                 return cell
             }

@@ -161,8 +161,8 @@ class TemplatesTable: UITableViewController {
     }
 
     func deleteTemplateFromServer(forRowAt indexPath: IndexPath) {
-        self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (canceled) in
-            if !canceled {
+        self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (deleteIt) in
+            if !deleteIt {
                 let template = self.templatesList[indexPath.row]
                 TemplatesMgr.shared.deleteTemplate(templateId: template.id, completion: { (error) in
                     if let error = error {
@@ -197,18 +197,29 @@ class TemplatesTable: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if parentTemplatesViewer?.style == .Picker {
-
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let formController = storyboard.instantiateViewController(withIdentifier: "FormTasksViewer") as? FormTasksViewer {
-                // Create form so it's editable.
-                formController.form = Form(template: templatesList[indexPath.row])
-                let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
-                self.present(navController, animated: true, completion: {
-
+        if parentTemplatesViewer?.style != .Picker {
+            let template = templatesList[indexPath.row]
+            if let form = FormsMgr.shared.formExists(templateId: template.id) {
+                self.askAlert(title: "Continue using previous Form?", body: "You did not submit the previous version of this form, would you like to continue filling it out?", action: "OK", cancel: "No", completion: { (usePreviousForm) in
+                    let form = usePreviousForm ? form : FormsMgr.shared.newForm(template: template)
+                    self.openFormViewer(form: form)
                 })
+            } else {
+                let form = FormsMgr.shared.newForm(template: template)
+                self.openFormViewer(form: form)
             }
+        }
+    }
+
+    func openFormViewer(form: Form) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let formController = storyboard.instantiateViewController(withIdentifier: "FormTasksViewer") as? FormTasksViewer {
+            // Create form so it's editable.
+            formController.form = form
+            let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
+            self.present(navController, animated: true, completion: {
+
+            })
         }
     }
 }

@@ -9,6 +9,11 @@
 import UIKit
 import FlatUIKit
 
+class SubmissionCell : UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+}
+
 class FormsTable: UITableViewController {
     var parentFormsViewer : FormsViewer?
     var formsList = [Form]()
@@ -18,30 +23,18 @@ class FormsTable: UITableViewController {
 
         // Adjustment because we are now in container view
         self.tableView.contentInset = UIEdgeInsetsMake(-32, 0, 0, 0)
-
         tableView.backgroundColor = UIColor.greenSea()
     }
 
-
     func refreshList() {
         // Do any additional setup after loading the view, typically from a nib.
-        let location = parentFormsViewer?.location;
-        ServerMgr.shared.loadForms(location: location) { (result, error) in
-            if error != nil {
-                FTErrorMessage(error: "Failed to load forms: \(error)")
-            } else {
-                if let formList = result  {
-                    self.formsList.removeAll()
-                    for formObject in formList {
-                        if let formDict = formObject as? [String : Any] {
-                            self.formsList += [Form(templateDict: formDict)]
-                        }
-                    }
-                    DispatchQueue.main.async(execute: {
-                        self.tableView.reloadData()
-                    })
-                }
-
+        // let location = parentFormsViewer?.location
+        FormsMgr.shared.refreshList(location: parentFormsViewer?.location) { (forms, error) -> (Void) in
+            if let error = error {
+                FTAlertError(message: "Could not load forms from server: \(error)")
+            } else if let forms = forms {
+                self.formsList = forms
+                self.reloadOnMainQueue()
             }
         }
     }
@@ -52,10 +45,15 @@ class FormsTable: UITableViewController {
         self.refreshList()
     }
 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func reloadOnMainQueue() {
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,10 +71,14 @@ class FormsTable: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubmissionCell", for: indexPath as IndexPath)
-        let form = formsList[indexPath.row]
-        cell.textLabel!.text = form.name
-        cell.detailTextLabel!.text = Globals.shared.dateFormatter.string(from: form.createDate)
-        cell.makeCellFlat()
+        if let cell = cell as? SubmissionCell {
+            let form = formsList[indexPath.row]
+            cell.titleLabel.text = form.name
+            cell.titleLabel.makeTitleStyle()
+            cell.detailLabel!.text = Globals.shared.dateFormatter.string(from: form.createDate)
+            cell.detailLabel.makeDetailStyle()
+            cell.makeCellFlat()
+        }
         return cell
     }
 

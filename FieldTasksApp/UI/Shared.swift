@@ -1,5 +1,5 @@
 //
-//  Alerts.swift
+//  Shared.swift
 //  FieldTasksApp
 //
 //  Created by CRH on 2/26/17.
@@ -10,6 +10,8 @@ import UIKit
 import FlatUIKit
 import SVProgressHUD
 
+let cTitleFontSize = CGFloat(16.0)
+let cDetailFontSize = CGFloat(13.0)
 
 func FlatBarButton(title: String, target: Any?, action: Selector) -> UIBarButtonItem {
     let customButton = FUIButton(type: .custom)

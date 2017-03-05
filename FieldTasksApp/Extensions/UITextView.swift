@@ -88,12 +88,12 @@ extension UITextView {
 
     func makeTitleStyle() {
         self.textColor = UIColor.clouds()
-        self.font = UIFont.boldFlatFont(ofSize: 17)
+        self.font = UIFont.boldFlatFont(ofSize: cTitleFontSize)
     }
 
     func makeDetailStyle() {
         self.textColor = UIColor.clouds()
-        self.font = UIFont.flatFont(ofSize: 14)
+        self.font = UIFont.flatFont(ofSize: cDetailFontSize)
     }
 
     func setActiveStyle(isActive : Bool) {

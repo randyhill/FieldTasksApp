@@ -13,6 +13,7 @@ class Form : Template {
     var createDate = Date()
     var locationId : String?
     var coordinates : CLLocationCoordinate2D?
+    var templateId : String?    // right now we just track parent form id for unsubmitted forms.
 
     // init from dict
     override init(templateDict : [String : Any]) {
@@ -21,6 +22,7 @@ class Form : Template {
 
     override init(template: Template) {
         super.init(template: template)
+        templateId = template.id
     }
 
     override func fromDict(templateDict: [String : Any]) {
@@ -57,8 +59,14 @@ class Form : Template {
             if error != nil {
                 completion(error)
             } else {
-                // shouldn't we update id?
-                completion(nil)
+                // should update id
+                if let formDict = result, let formId = formDict["_id"] as? String {
+                    self.id = formId
+                    FormsMgr.shared.formSubmitted(form: self)
+                    completion(nil)
+                } else {
+                    completion("couldn't update form id")
+                }
             }
         }
     }

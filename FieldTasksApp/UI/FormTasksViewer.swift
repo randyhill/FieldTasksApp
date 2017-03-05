@@ -13,16 +13,49 @@ class FormTasksCell : UITableViewCell {
     @IBOutlet weak var checkmark: UIImageView!
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var typeText: UILabel!
+
+    func configureWithTask(task: Task, checkmark: UIImage) {
+        var titleText = task.name
+        if task.required {
+            titleText += " (required)"
+        }
+        self.titleText.text = titleText
+        self.titleText.makeTitleStyle()
+        self.checkmark.image = (task.result!.completed) ? checkmark : nil
+        self.typeText.text = task.type.rawValue;
+        self.typeText.makeDetailStyle()
+        self.makeCellFlat()
+    }
 }
 
 class FormTasksLocationCell : UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationName: UILabel!
+
+    func configureWithTask(locationId: String?) {
+        self.locationLabel.makeTitleStyle()
+        self.locationName.makeTitleStyle()
+        self.makeCellFlat()
+
+        // Use location from form if set, otherwise use current lcoation
+        var location : FTLocation?
+        if let locationId = locationId {
+            location = LocationsMgr.shared.getBy(id: locationId)
+        }
+        if location == nil {
+        location = LocationsMgr.shared.currentLocation()
+        }
+        var locationTitle = "Unknown"
+        if let location = location {
+            locationTitle = location.name
+        }
+        self.locationName.text = locationTitle
+    }
 }
 
 class FormTasksViewer : UITableViewController {
     var form : Form?
-    let checkmark = UIImage(named: "checkmark.png")
+    let checkmark = UIImage(named: "checkmark.png")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,22 +123,7 @@ class FormTasksViewer : UITableViewController {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FormTasksLocationCell", for: indexPath as IndexPath)
             if let cell = cell as? FormTasksLocationCell {
-                cell.locationLabel.makeTitleStyle()
-                cell.locationName.makeTitleStyle()
-                cell.makeCellFlat()
-                // Use location from form if set, otherwise use current lcoation
-                var location : FTLocation?
-                if let locationId = form?.locationId {
-                    location = LocationsMgr.shared.getBy(id: locationId)
-                }
-                if location == nil {
-                    location = LocationsMgr.shared.currentLocation()
-                }
-                var locationTitle = "Unknown"
-                if let location = location {
-                    locationTitle = location.name
-                }
-                cell.locationName.text = locationTitle
+                cell.configureWithTask(locationId: form?.locationId)
             }
             return cell
 
@@ -113,16 +131,7 @@ class FormTasksViewer : UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FormTasksCell", for: indexPath as IndexPath)
             if let cell = cell as? FormTasksCell {
                 let task = form!.tasks[indexPath.row]
-                var titleText = task.name
-                if task.required {
-                    titleText += " (required)"
-                }
-                cell.titleText.text = titleText
-                cell.titleText.makeTitleStyle()
-                cell.checkmark.image = (task.result!.completed) ? checkmark : nil
-                cell.typeText.text = task.type.rawValue;
-                cell.typeText.makeDetailStyle()
-                cell.makeCellFlat()
+                cell.configureWithTask(task: task, checkmark: checkmark)
             }
             return cell
         }

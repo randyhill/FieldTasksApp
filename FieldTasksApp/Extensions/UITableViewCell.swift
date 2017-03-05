@@ -8,15 +8,18 @@
 
 import UIKit
 
+
+
 extension UITableViewCell {
+
     func makeCellFlat() {
         configureFlatCell(with: UIColor.greenSea(), selectedColor: UIColor.wetAsphalt(), roundingCorners: .allCorners)
         if let title = self.textLabel {
-            title.font = UIFont.boldFlatFont(ofSize: 17)
+            title.font = UIFont.boldFlatFont(ofSize: cTitleFontSize)
             title.textColor = UIColor.clouds()
         }
         if let body = self.detailTextLabel {
-            body.font = UIFont.flatFont(ofSize: 14)
+            body.font = UIFont.flatFont(ofSize: cDetailFontSize)
             body.textColor = UIColor.clouds()
         }
     }
@@ -24,11 +27,11 @@ extension UITableViewCell {
     func makeCellFlat(backgroundColor: UIColor, selectedColor: UIColor) {
         configureFlatCell(with: backgroundColor, selectedColor: selectedColor, roundingCorners: .allCorners)
         if let title = self.textLabel {
-            title.font = UIFont.boldFlatFont(ofSize: 17)
+            title.font = UIFont.boldFlatFont(ofSize: cTitleFontSize)
             title.textColor = UIColor.clouds()
         }
         if let body = self.detailTextLabel {
-            body.font = UIFont.flatFont(ofSize: 14)
+            body.font = UIFont.flatFont(ofSize: cDetailFontSize)
             body.textColor = UIColor.clouds()
         }
     }

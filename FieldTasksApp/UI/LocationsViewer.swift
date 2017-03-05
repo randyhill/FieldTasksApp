@@ -13,6 +13,14 @@ class LocationCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var locationImage: UIImageView!
+
+    func configureWithLocation(location : FTLocation ) {
+        self.makeCellFlat()
+        self.title.makeTitleStyle()
+        self.address.makeDetailStyle()
+        self.title!.text = location.name
+        self.address!.text = location.fullAddress
+    }
 }
 
 class LocationsViewer: UITableViewController, LocationUpdates {
@@ -104,7 +112,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationsCell", for: indexPath as IndexPath)
         if let cell = cell as? LocationCell {
             let location = list[indexPath.row]
-            cell.makeCellFlat()
+            cell.configureWithLocation(location: location)
             if location.id == locations.currentLocation()?.id {
                 cell.locationImage.tintColor = UIColor.silver()
                 cell.locationImage.image = UIImage(named: "location.png")?.withRenderingMode(.alwaysTemplate)
@@ -114,10 +122,6 @@ class LocationsViewer: UITableViewController, LocationUpdates {
             if location === selectedLocation {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.middle)
             }
-            cell.title.makeTitleStyle()
-            cell.address.makeDetailStyle()
-            cell.title!.text = location.name
-            cell.address!.text = location.fullAddress
             return cell
         }
         return cell

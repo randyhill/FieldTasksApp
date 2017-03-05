@@ -177,6 +177,8 @@
 		D89770D31E5CBBFD00A9318D /* LocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* LocationEditor.swift */; };
 		D89770D51E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */; };
 		D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */; };
+		D8B4388F1E6B870A00FDCB0B /* FormsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */; };
+		D8B438901E6B870A00FDCB0B /* FormsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */; };
 		D8B820D91E678F0B005527C9 /* FUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B820D81E678F0B005527C9 /* FUISwitch.swift */; };
 		D8B820DA1E678F0B005527C9 /* FUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B820D81E678F0B005527C9 /* FUISwitch.swift */; };
 		D8DB034C1E4A5247001BA901 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DB034B1E4A5247001BA901 /* Template.swift */; };
@@ -297,6 +299,7 @@
 		D89770BF1E5BC49200A9318D /* FormsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsTable.swift; path = UI/FormsTable.swift; sourceTree = "<group>"; };
 		D89770D11E5CBBFD00A9318D /* LocationEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationEditor.swift; path = UI/LocationEditor.swift; sourceTree = "<group>"; };
 		D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SynchronizedArray.swift; path = Data/SynchronizedArray.swift; sourceTree = "<group>"; };
+		D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsMgr.swift; path = Singletons/FormsMgr.swift; sourceTree = "<group>"; };
 		D8B820D81E678F0B005527C9 /* FUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FUISwitch.swift; path = Extensions/FUISwitch.swift; sourceTree = "<group>"; };
 		D8DB034B1E4A5247001BA901 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Template.swift; path = Data/Template.swift; sourceTree = "<group>"; };
 		D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 76.png"; path = "Images/Icon 76.png"; sourceTree = "<group>"; };
@@ -355,6 +358,7 @@
 		D82411A21E301C01006D06E2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D8C165CB1E47EBEE00129439 /* Extensions */,
 				D8F234411E68DB000043D1C7 /* Views */,
 				D86BF7251E638F3D00884277 /* Shared.swift */,
 				D8549B9E1D67871B009DBE7A /* Main.storyboard */,
@@ -425,7 +429,6 @@
 				D85D53DD1D710D94006D31F2 /* Globals.swift */,
 				D82411A21E301C01006D06E2 /* UI */,
 				D8E9547C1E622F71004D5D4C /* Singletons */,
-				D8C165CB1E47EBEE00129439 /* Extensions */,
 				D8549BD81D68C9D7009DBE7A /* Data Classes */,
 				D8549BCF1D67B652009DBE7A /* Supporting Files */,
 			);
@@ -569,6 +572,7 @@
 				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
 				D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */,
 				D86BF72C1E6397EC00884277 /* TemplatesMgr.swift */,
+				D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -873,6 +877,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B4388F1E6B870A00FDCB0B /* FormsMgr.swift in Sources */,
 				D86BF77A1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
 				D8F1D7181E53A96900A07F70 /* Form.swift in Sources */,
 				D86BF72D1E6397EC00884277 /* LocationsMgr.swift in Sources */,
@@ -929,6 +934,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B438901E6B870A00FDCB0B /* FormsMgr.swift in Sources */,
 				D86BF77B1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
 				D84AAF2D1E4531EA000D584F /* LocationsViewer.swift in Sources */,
 				D82411A61E315517006D06E2 /* FormTasksViewer.swift in Sources */,
