@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Load templates
         let _ = TemplatesMgr.shared
+        Globals.shared.model = self.managedObjectModel
+        Globals.shared.context = self.managedObjectContext
         return true
     }
 

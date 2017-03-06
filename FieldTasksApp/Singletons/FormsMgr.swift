@@ -31,7 +31,7 @@ class FormsMgr {
                     }
                 }
                 self.submissions.sort(by: { (formA, formB) -> Bool in
-                    return formA.createDate.compare(formB.createDate) == .orderedDescending
+                    return formA.createDate?.compare(formB.createDate!) == .orderedDescending
                 })
                 completion(self.submissions, error)
             }
@@ -40,7 +40,7 @@ class FormsMgr {
 
     func newForm(template: Template) -> Form {
         let form = Form(template: template)
-        unsubmitted[template.id] = form
+        unsubmitted[template.id!] = form
         return form
     }
 

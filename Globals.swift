@@ -9,6 +9,7 @@
 import UIKit
 import FlatUIKit
 import SVProgressHUD
+import CoreData
 
 class Globals {
     static let shared = Globals()
@@ -22,6 +23,10 @@ class Globals {
     let barColor = UIColor.asbestos()
     let barButtonColor = UIColor.peterRiver()
     let selectionColor = UIColor.wetAsphalt()
+
+    // NSData
+    var model : NSManagedObjectModel?
+    var context : NSManagedObjectContext?
 
     init() {
         utcFormatter.locale = Locale(identifier: "en_US_POSIX")

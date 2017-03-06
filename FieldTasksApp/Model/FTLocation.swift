@@ -1,24 +1,8 @@
-//
-//  Location.swift
-//  FieldTasksApp
-//
-//  Created by CRH on 2/3/17.
-//  Copyright © 2017 CRH. All rights reserved.
-//
-
-import UIKit
+import Foundation
 import CoreLocation
 
-class FTLocation {
-    var id = ""
-    var name = ""
-    var street = ""
-    var city = ""
-    var state = ""
-    var zip = ""
-    var phone = ""
-    var coordinates : CLLocationCoordinate2D?
-    var perimeter = 100
+@objc(FTLocation)
+open class FTLocation: _FTLocation {
     private var templates = Set<String>()
 
     var fullAddress : String {
@@ -39,47 +23,48 @@ class FTLocation {
     }
 
     // MARK: Initialization/Serialization -------------------------------------------------------------------------------
-    init() {
+//    init() {
+//
+//    }
 
-    }
-
-    init(locationDict : [String : AnyObject]) throws {
-        if let name = locationDict["name"] as? String {
-            self.name = name
-        }
-        if let street = locationDict["street"] as? String {
-            self.street = street
-        }
-        if let city = locationDict["city"] as? String {
-            self.city = city
-        }
-        if let state = locationDict["state"] as? String {
-            self.state = state
-        }
-        if let zip = locationDict["zip"] as? String {
-            self.zip = zip
-        }
-        if let perimeter = locationDict["perimeter"] as? Int {
-            self.perimeter = perimeter
-        }
-        if let id = locationDict["_id"] as? String {
-            self.id = id
-        }
-        if let coordinateDict = locationDict["coordinates"] {
-            guard let latString = coordinateDict["lat"] as? String, let lat = Double(latString) else {
-                throw FTError.RunTimeError("Could not convert latitude to double")
-            }
-            guard let lngString = coordinateDict["lng"] as? String, let lng = Double(lngString) else {
-                throw FTError.RunTimeError("Could not convert longitude to double")
-            }
-            self.coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-        }
-        if let templatesArray = locationDict["templates"] as? [String] {
-            for template in templatesArray {
-                self.templates.insert(template)
-            }
-        }
-    }
+//    init(locationDict : [String : AnyObject]) throws {
+//        if let name = locationDict["name"] as? String {
+//            self.name = name
+//        }
+//        if let street = locationDict["street"] as? String {
+//            self.street = street
+//        }
+//        if let city = locationDict["city"] as? String {
+//            self.city = city
+//        }
+//        if let state = locationDict["state"] as? String {
+//            self.state = state
+//        }
+//        if let zip = locationDict["zip"] as? String {
+//            self.zip = zip
+//        }
+//        if let perimeter = locationDict["perimeter"] as? Int {
+//            self.perimeter = perimeter as NSNumber?
+//        }
+//        if let id = locationDict["_id"] as? String {
+//            self.id = id
+//        }
+//        if let coordinateDict = locationDict["coordinates"] {
+//            guard let latString = coordinateDict["lat"] as? String, let lat = Double(latString) else {
+//                throw FTError.RunTimeError("Could not convert latitude to double")
+//            }
+//            guard let lngString = coordinateDict["lng"] as? String, let lng = Double(lngString) else {
+//                throw FTError.RunTimeError("Could not convert longitude to double")
+//            }
+//            self.latitude = lat as NSNumber?
+//            self.longitude = lng as NSNumber?
+//        }
+//        if let templatesArray = locationDict["templates"] as? [String] {
+//            for templateId in templatesArray {
+//                self.templates.insert(templateId)
+//            }
+//        }
+//    }
 
     func toDict() -> [String : AnyObject]{
         var taskDict = [String : AnyObject]()
@@ -91,10 +76,8 @@ class FTLocation {
         taskDict["state"] = state as AnyObject?
         taskDict["zip"] = zip as AnyObject?
         taskDict["perimeter"] = perimeter as AnyObject?
-        if let coordinate = coordinates {
-            let coordinateDict = ["lat" : String(coordinate.latitude), "lng": String(coordinate.longitude)]
-            taskDict["coordinates"] = coordinateDict as AnyObject?
-        }
+        taskDict["latitude"] = latitude as AnyObject?
+        taskDict["longitude"] = longitude as AnyObject?
         taskDict["templates"] = templateIds() as AnyObject?
         return taskDict
     }
@@ -150,25 +133,24 @@ class FTLocation {
     }
 
     func fromCLLocation(clLoc : CLLocation) {
-        coordinates = clLoc.coordinate
+        latitude = clLoc.coordinate.latitude as NSNumber?
+        longitude = clLoc.coordinate.longitude as NSNumber?
     }
 
     func distanceFrom(location : CLLocation) -> CLLocationDistance {
-        guard let locCoords = coordinates else {
+        guard let latitude = latitude, let longitude = longitude else {
             return Double.greatestFiniteMagnitude
         }
-        let ourLocation = CLLocation(latitude: locCoords.latitude, longitude: locCoords.longitude)
+        let ourLocation = CLLocation(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
         return location.distance(from: ourLocation)
     }
 
     func inLocation(location : CLLocation) -> Bool {
-        guard let locCoords = coordinates else {
+        guard let latitude = latitude, let longitude = longitude else {
             return false
         }
-        let ourLocation = CLLocation(latitude: locCoords.latitude, longitude: locCoords.longitude)
+        let ourLocation = CLLocation(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
         let distance = Int(location.distance(from: ourLocation))
-        return distance <= self.perimeter
+        return distance <= self.perimeter!.intValue
     }
-
-
 }

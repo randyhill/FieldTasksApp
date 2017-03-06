@@ -1,41 +1,30 @@
-//
-//  Template.swift
-//  FieldTasksApp
-//
-//  Created by CRH on 2/7/17.
-//  Copyright © 2017 CRH. All rights reserved.
-//
+import Foundation
+import CoreData
 
-import UIKit
-
-class Template {
-    var id = ""
-    var name = ""
-    var description = ""
+@objc(Template)
+open class Template: _Template {
     var tasks = [Task]()
-
-    init() {
-    }
-
     // init from dict
-    init(templateDict : [String : Any]) {
-        fromDict(templateDict: templateDict)
-    }
+//    convenience init(templateDict : [String : Any]) {
+//        super.init(managedObjectContext: Globals.shared.context!)!
+//        fromDict(templateDict: templateDict)
+//    }
 
     // init from existing
-    init(template: Template) {
-        self.id = template.id
-        self.name = template.name
-        self.description = template.description
-        self.tasks = template.tasks
-    }
+//    init(template: Template) {
+//        super.init(managedObjectContext: Globals.shared.context!)!
+//        self.id = template.id
+//        self.name = template.name
+//        self.descriptionString = template.description
+//        self.tasks = template.tasks
+//    }
 
     func fromDict(templateDict : [String : Any]) {
         if let name = templateDict["name"] as? String {
             self.name = name
         }
         if let description = templateDict["description"] as? String {
-            self.description = description
+            self.descriptionString = description
         }
         if let id = templateDict["_id"] as? String {
             self.id = id
