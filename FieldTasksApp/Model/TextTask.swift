@@ -5,11 +5,6 @@ open class TextTask: _TextTask {
     override var editorId : String { get { return "TextTaskEditor"} }
     override var viewerId : String { get { return "TextTaskViewer"} }
 
-//    override init(taskDict : [String : AnyObject]) {
-//        super.init(taskDict: taskDict)
-//        self.type = TaskType.Text
-//    }
-
     override func initTaskDescription(dataDict : [String: AnyObject]) {
         //  self.taskDescription = TextTaskDescription(dataDict: dataDict)
         if let limitBool = dataDict["range"] as? String {
@@ -21,7 +16,8 @@ open class TextTask: _TextTask {
     }
 
     override func initResults(results : [String: AnyObject]) {
-        self.result = TextResult(task: self)
+        self.result = TextResult()
+        self.result?.task = self
     }
 
     override func taskDescriptionDict() -> [String : AnyObject]{

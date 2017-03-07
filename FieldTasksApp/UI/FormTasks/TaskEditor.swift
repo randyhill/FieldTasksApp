@@ -25,7 +25,7 @@ class TaskEditor : UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = Globals.shared.bgColor
-        self.title = task?.type.rawValue ?? "Task"
+        self.title = task?.type ?? "Task"
 
         nameLabel.makeDetailStyle()
         nameField.setActiveStyle(isActive: true)
@@ -65,7 +65,7 @@ class TaskEditor : UIViewController {
 
         nameField.text = task?.name ?? ""
         descriptionField.text = task?.description ?? ""
-        requiredSwitch.isOn = task?.required ?? false
+        requiredSwitch.isOn = task?.required!.boolValue ?? false
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -102,8 +102,8 @@ class TaskEditor : UIViewController {
             FTAlertError(message: errorMessage)
         } else {
             self.task?.name = self.nameField.text!
-            self.task?.description = self.descriptionField.text
-            self.task?.required = self.requiredSwitch.isOn
+            self.task?.descriptionString = self.descriptionField.text
+            self.task?.required = self.requiredSwitch.isOn as NSNumber?
             self.task?.id = "unsaved" // so we can tell newly created tasks from canceled tasks from saved tasks
 
             self.dismiss(animated: true) {}

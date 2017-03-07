@@ -6,11 +6,6 @@ open class ChoicesTask: _ChoicesTask {
     override var editorId : String { get { return "ChoicesTaskEditor"} }
     override var viewerId : String { get { return "ChoicesTaskViewer"} }
 
-//    override init(taskDict : [String : AnyObject]) {
-//        super.init(taskDict: taskDict)
-//        self.type = TaskType.Choices
-//    }
-
     override func initTaskDescription(dataDict : [String: AnyObject]) {
         if let isRadio = dataDict["selections"] as? String {
             self.isRadio = (isRadio == "single") as NSNumber
@@ -22,7 +17,8 @@ open class ChoicesTask: _ChoicesTask {
 
     override func initResults(results : [String: AnyObject]) {
         //self.result = ChoicesResult(task: self, results: results)
-        self.result = ChoicesResult(task: self)
+        self.result = ChoicesResult()
+        self.result?.task = self
     }
 
     override func taskDescriptionDict() -> [String : AnyObject]{

@@ -59,8 +59,9 @@ class TextTaskViewer : BaseTaskViewer {
     }
     override func validate() -> String? {
         if let textTask = task as? TextTask {
-            if textView.text.characters.count > 0 {
-                if !textTask.isUnlimited && textView.text.characters.count > textTask.max {
+            let count = textView.text.characters.count
+            if count > 0 {
+                if !textTask.isUnlimited!.boolValue && (count > textTask.max!.intValue) {
                     return "Too many characters, max allowed is \(textTask.max)"
                 }
                 return nil

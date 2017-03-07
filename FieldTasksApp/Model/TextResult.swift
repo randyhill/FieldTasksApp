@@ -2,14 +2,6 @@ import Foundation
 
 @objc(TextResult)
 open class TextResult: _TextResult {
-//    override init(task : Task, results: [String : AnyObject]) {
-//        super.init(task: task, results: results)
-//
-//        if let resultText = results["text"] as? String {
-//            text = resultText
-//        }
-//    }
-
     override func save(newText : String) {
        completed_private = false
         text = newText

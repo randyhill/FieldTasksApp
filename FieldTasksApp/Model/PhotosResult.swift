@@ -11,12 +11,12 @@ open class PhotosResult: _PhotosResult {
         }
     }
 
-//    override init(task : Task, results: [String : AnyObject]) {
-//        super.init(task: task, results: results)
-//        if let fileNames = results["fileNames"] as? [String] {
-//            self.fileNames = fileNames
-//        }
-//    }
+    override func fromDict(results: [String : AnyObject]) {
+        super.fromDict(results: results)
+        if let fileNames = results["fileNames"] as? [String] {
+            self.fileNames = fileNames
+        }
+    }
 
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()

@@ -71,7 +71,8 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
                 for location in newList {
                     if let locationDict = location as? [String : AnyObject] {
                         do {
-                            let location = try FTLocation(locationDict: locationDict)
+                            let location = FTLocation()
+                            try location.fromDict(locationDict: locationDict)
                             self.list.append(newElement: location)
                         } catch FTError.RunTimeError(let errorMessage) {
                             completion(errorMessage)
@@ -90,7 +91,7 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
     }
 
     func currentCoordinates() -> CLLocationCoordinate2D? {
-        return curLocation?.coordinates
+        return curLocation?.coordinates()
     }
 
     // MARK: FTLocation Methods -------------------------------------------------------------------------------

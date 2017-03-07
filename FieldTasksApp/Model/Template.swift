@@ -4,20 +4,14 @@ import CoreData
 @objc(Template)
 open class Template: _Template {
     var tasks = [Task]()
-    // init from dict
-//    convenience init(templateDict : [String : Any]) {
-//        super.init(managedObjectContext: Globals.shared.context!)!
-//        fromDict(templateDict: templateDict)
-//    }
 
     // init from existing
-//    init(template: Template) {
-//        super.init(managedObjectContext: Globals.shared.context!)!
-//        self.id = template.id
-//        self.name = template.name
-//        self.descriptionString = template.description
-//        self.tasks = template.tasks
-//    }
+    func initFromTemplate(template: Template) {
+        self.id = template.id
+        self.name = template.name
+        self.descriptionString = template.description
+        self.tasks = template.tasks
+    }
 
     func fromDict(templateDict : [String : Any]) {
         if let name = templateDict["name"] as? String {

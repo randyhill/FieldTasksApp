@@ -137,7 +137,7 @@ class ChoicesTaskViewer : BaseTaskViewer {
         var choiceFrame = CGRect(x: 8, y: 8, width: (self.view.frame.width), height: 28)
         let isRadio = (task as! ChoicesTask).isRadio
         for title in choiceData.titles {
-            let choice = makeSwitchbox(container: self.view, title: title, frame: choiceFrame, isRadio: isRadio)
+            let choice = makeSwitchbox(container: self.view, title: title, frame: choiceFrame, isRadio: isRadio!.boolValue)
             choiceFrame.origin.y += choice.switchSize.height;
         }
     }
@@ -176,7 +176,7 @@ class ChoicesTaskViewer : BaseTaskViewer {
     }
 
     func selectBoxView(selectedOption : UIView) {
-        if choiceData.isRadio {
+        if choiceData.isRadio!.boolValue {
             for option in options {
                 if (option.view != selectedOption) {
                     option.on = false
@@ -192,7 +192,7 @@ class ChoicesTaskViewer : BaseTaskViewer {
                 return nil;
             }
         }
-        if choiceData.isRadio && options.count > 1 {
+        if choiceData.isRadio!.boolValue && options.count > 1 {
             return "You must select one option"
         } else {
             return nil

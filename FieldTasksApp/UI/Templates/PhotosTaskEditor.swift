@@ -25,7 +25,7 @@ class PhotosTaskEditor : TaskTypeEditor {
 
     override func viewWillAppear(_ animated: Bool) {
         if let task = task {
-            multipleSwitch.isOn = !task.isSingle
+            multipleSwitch.isOn = !(task.isSingle!.boolValue)
         }
         super.viewWillAppear(animated)
     }
@@ -33,7 +33,7 @@ class PhotosTaskEditor : TaskTypeEditor {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        task?.isSingle = !multipleSwitch.isOn
+        task?.isSingle = !multipleSwitch.isOn as NSNumber?
     }
 
     override func setTask(task : Task) {

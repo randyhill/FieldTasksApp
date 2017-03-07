@@ -28,7 +28,7 @@ class TextTaskEditor : TaskTypeEditor {
 
     override func viewWillAppear(_ animated: Bool) {
         if let task = task {
-            limitedSwitch.isOn = !task.isUnlimited
+            limitedSwitch.isOn = !(task.isUnlimited!.boolValue)
             maxField.text = "\(task.max)"
         }
         super.viewWillAppear(animated)
@@ -37,8 +37,8 @@ class TextTaskEditor : TaskTypeEditor {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        task?.isUnlimited = !limitedSwitch.isOn
-        task?.max = Int(maxField.text!) ?? 0
+        task?.isUnlimited = !limitedSwitch.isOn as NSNumber?
+        task?.max = (Int(maxField.text!) ?? 0) as NSNumber?
     }
 
     override func setTask(task : Task) {

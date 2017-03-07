@@ -3,14 +3,14 @@ import Foundation
 @objc(ChoicesResult)
 open class ChoicesResult: _ChoicesResult {
     var values = [Bool]()
-//    override init(task : Task, results: [String : AnyObject]) {
-//        super.init(task: task, results: results)
-//        if let resultValues = results["values"] as? [Bool] {
-//            for value in resultValues {
-//                values += [value]
-//            }
-//        }
-//    }
+    override func fromDict(results: [String : AnyObject]) {
+        super.fromDict(results: results)
+        if let resultValues = results["values"] as? [Bool] {
+            for value in resultValues {
+                values += [value]
+            }
+        }
+    }
 
     func save(newValues: [Bool]) {
         values.removeAll()

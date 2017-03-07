@@ -16,13 +16,13 @@ class FormTasksCell : UITableViewCell {
 
     func configureWithTask(task: Task, checkmark: UIImage) {
         var titleText = task.name
-        if task.required {
+        if task.required!.boolValue {
             titleText += " (required)"
         }
         self.titleText.text = titleText
         self.titleText.makeTitleStyle()
         self.checkmark.image = (task.result!.completed) ? checkmark : nil
-        self.typeText.text = task.type.rawValue;
+        self.typeText.text = task.type;
         self.typeText.makeDetailStyle()
         self.makeCellFlat()
     }

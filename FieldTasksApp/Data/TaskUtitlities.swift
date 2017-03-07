@@ -14,16 +14,17 @@ func TaskFromDictionary(taskDict : [String : AnyObject]) -> Task? {
     if let typeString = taskDict[TaskDictFields.type.rawValue] {
         switch typeString as! String {
         case TaskType.Text.rawValue:
-            newTask = TextTask(taskDict: taskDict)
+            newTask = TextTask()
         case TaskType.Number.rawValue:
-            newTask = NumberTask(taskDict: taskDict)
+            newTask = NumberTask()
         case TaskType.Choices.rawValue:
-            newTask = ChoicesTask(taskDict: taskDict)
+            newTask = ChoicesTask()
         case TaskType.Photos.rawValue:
-            newTask = PhotosTask(taskDict: taskDict)
+            newTask = PhotosTask()
         default:
             FTErrorMessage(error: "Unknown class in task generator")
         }
+        newTask?.fromDict(taskDict: taskDict)
     } else {
         FTErrorMessage(error: "Could not get type of task")
     }
@@ -35,17 +36,18 @@ func TaskFromType(type : TaskType) -> Task? {
     let emptyDict = [String: AnyObject]()
     switch type {
     case TaskType.Text:
-        newTask = TextTask(taskDict: emptyDict)
+        newTask = TextTask()
     case TaskType.Number:
-        newTask = NumberTask(taskDict: emptyDict)
+        newTask = NumberTask()
     case TaskType.Choices:
-        newTask = ChoicesTask(taskDict: emptyDict)
+        newTask = ChoicesTask()
     case TaskType.Photos:
-        newTask = PhotosTask(taskDict: emptyDict)
+        newTask = PhotosTask()
     default:
         FTErrorMessage(error: "Unknown class in task generator")
     }
-    return newTask
+    newTask?.fromDict(taskDict: emptyDict)
+   return newTask
 }
 
 

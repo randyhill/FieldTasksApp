@@ -36,9 +36,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
         if let form = self.form {
             self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Use", target: self, action: #selector(selectionDone))
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(selectionCancel))
-            if let locationId = form.locationId {
-                selectedLocation = locations.getBy(id: locationId)
-            }
+            selectedLocation = locations.getBy(id: form.locationId)
             self.title = "Pick Location"
         } else {
             self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshFromServer))

@@ -30,7 +30,8 @@ class TemplatesMgr {
                     self.list.removeAll()
                     for template in templateList {
                         if let templateDict = template as? [String : AnyObject] {
-                            let template = Template(templateDict: templateDict)
+                            let template = Template()
+                            template.fromDict(templateDict: templateDict)
                             self.hash[template.id] = template
                             self.list += [template]
                         }

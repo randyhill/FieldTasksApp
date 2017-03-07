@@ -59,7 +59,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
 
     func setPicture(picture : UIImage) {
         let data = photoData
-        if data.isSingle {
+        if data.isSingle!.boolValue {
             self.result.photos = [picture]
         } else {
             self.result.photos += [picture]
@@ -203,13 +203,13 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
             headerView.delegate = self
             headerView.backgroundColor = Globals.shared.barColor
             headerView.addButton.makeFlatButton()
-            headerView.addButton.setTitle(data.isSingle ? "Set Image" : "Add Image", for: .normal)
+            headerView.addButton.setTitle(data.isSingle!.boolValue ? "Set Image" : "Add Image", for: .normal)
             headerView.addButton.isHidden = !isEditable
             headerView.cameraButton.makeFlatButton()
             headerView.cameraButton.isHidden = !UIImagePickerController.isSourceTypeAvailable(.camera)
             headerView.headerText.makeTitleStyle()
             headerView.headerText.text = "Images: \(result.photos.count)"
-            headerView.headerText.isHidden = data.isSingle
+            headerView.headerText.isHidden = data.isSingle!.boolValue
             return headerView
         default:
             //4

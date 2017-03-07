@@ -2,14 +2,10 @@ import Foundation
 
 @objc(Form)
 open class Form: _Form {
-//    override init(templateDict : [String : Any]) {
-//        super.init(templateDict: templateDict)
-//    }
-//
-//    override init(template: Template) {
-//        super.init(template: template)
-//        templateId = template.id
-//    }
+    override func initFromTemplate(template: Template) {
+        super.initFromTemplate(template: template)
+        templateId = template.id
+    }
 
     override func fromDict(templateDict: [String : Any]) {
         super.fromDict(templateDict: templateDict)

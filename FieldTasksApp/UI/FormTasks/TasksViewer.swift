@@ -65,7 +65,7 @@ class TasksViewer : UIViewController {
         }
 
         self.title = barTitle;
-        self.requiredLabel.isHidden = !curTask.required
+        self.requiredLabel.isHidden = !curTask.required!.boolValue
         taskDescription.text = curTask.description
 
         setBackButton(index: taskIndex)

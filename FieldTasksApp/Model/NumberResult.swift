@@ -2,13 +2,13 @@ import Foundation
 
 @objc(NumberResult)
 open class NumberResult: _NumberResult {
-//    override init(task : Task, results: [String : AnyObject]) {
-//        super.init(task: task, results: results)
-//
-//        if let valueResult = results["number"] as? Double {
-//            value = valueResult
-//        }
-//    }
+    override func fromDict(results: [String : AnyObject]) {
+        super.fromDict(results: results)
+
+        if let valueResult = results["number"] as? Double {
+            value = valueResult as NSNumber?
+        }
+    }
 
     override func save(newText : String) {
        completed_private = false

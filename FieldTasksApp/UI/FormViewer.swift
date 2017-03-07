@@ -18,7 +18,7 @@ class FormTaskCell : UITableViewCell {
         self.title!.text = task.name
         self.title.makeTitleStyle()
         if let result = task.result {
-            self.body!.text = result.description()
+            self.body!.text = result.resultString()
         } else {
             self.body!.text = "Not entered"
         }
@@ -59,15 +59,13 @@ class FormTitleCell : UITableViewCell {
 
     func configureWithForm(form : Form) {
         var locationString = "Location: Unknown"
-        if let locationId = form.locationId {
-            if let location = LocationsMgr.shared.getBy(id: locationId){
-                locationString = "For: " + location.name
-            }
+        if let location = LocationsMgr.shared.getBy(id: form.locationId){
+            locationString = "For: " + location.name
         }
         self.title.text = locationString
         self.title.makeTitleStyle()
 
-        let coordinatesString = "lat: \(form.coordinates?.latitude) long: \(form.coordinates?.longitude)"
+        let coordinatesString = "lat: \(form.latitude) long: \(form.longitude)"
         var descriptionString = Globals.shared.dateFormatter.string(from: form.createDate) + " " + coordinatesString
         descriptionString += "\n" + form.description
         self.body.text = descriptionString
@@ -140,7 +138,7 @@ class FormViewer : UITableViewController {
             return cell
         } else {
             let task = form!.tasks[indexPath.row-1]
-            if task.type == TaskType.Photos {
+            if task.type == TaskType.Photos.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "FormPhotoTaskCell", for: indexPath as IndexPath)
                 if let taskCell = cell as? FormPhotoTaskCell {
                     taskCell.configureWithPhotosTask(task: task)

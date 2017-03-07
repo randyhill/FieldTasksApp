@@ -29,7 +29,7 @@ class NumberTaskViewer : BaseTaskViewer, UITextFieldDelegate {
         super.viewDidLoad()
 
         numberField.delegate = self
-        if !taskData.isUnlimited {
+        if !taskData.isUnlimited!.boolValue {
             rangeLabel.text = "Range: \(taskData.minString) to \(taskData.maxString)"
             rangeLabel.isHidden = false
             rangeHeight.constant = rangeLabel.sizeThatFits(rangeLabel.bounds.size).height
@@ -37,7 +37,7 @@ class NumberTaskViewer : BaseTaskViewer, UITextFieldDelegate {
             rangeLabel.isHidden = true
             rangeHeight.constant = 0
         }
-        if taskData.isDecimal {
+        if taskData.isDecimal!.boolValue {
             numberField.keyboardType = .decimalPad
         } else {
             numberField.keyboardType = .numberPad
@@ -63,13 +63,13 @@ class NumberTaskViewer : BaseTaskViewer, UITextFieldDelegate {
         guard let text = numberField.text, let value = Float(text) else {
             return "No number value entered"
         }
-        if taskData.isUnlimited {
+        if taskData.isUnlimited!.boolValue {
             return nil
         }
-        if value < Float(taskData.min) {
+        if value < Float(taskData.min!) {
             return "Value less than minimum allowed"
         }
-        if value > Float(taskData.max) {
+        if value > Float(taskData.max!) {
             return "Value more than maximum allowed"
         }
         return nil
@@ -82,7 +82,7 @@ class NumberTaskViewer : BaseTaskViewer, UITextFieldDelegate {
     }
 
     private func setNumberValue() {
-        numberField.text = numberResult.description()
+        numberField.text = numberResult.resultString()
     }
 
     override func restore() {

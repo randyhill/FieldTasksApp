@@ -138,7 +138,8 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
                  fromOldState oldState: MKAnnotationViewDragState) {
         if newState == MKAnnotationViewDragState.ending {
             if let newCoord = view.annotation?.coordinate {
-                location.coordinates = newCoord
+                location.latitude = newCoord.latitude as NSNumber?
+                location.longitude = newCoord.longitude as NSNumber?
                 LocationsMgr.shared.coordinatesToAddress(coordinates: newCoord, completion: { (locationDict) in
                     self.location.updateFromPlacemarkDict(locationDict: locationDict)
                     self.updateFieldsFromLocation(theLocation: self.location)
@@ -193,11 +194,10 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
         self.fields[FieldType.zip.rawValue].text = location.zip
         annotation?.title = location.name
         annotation?.subtitle = location.street
-        if let coordinate = theLocation.coordinates {
-            annotation?.coordinate = coordinate
-            self.updatePerimeterOverlay(coordinate: coordinate, radius: CLLocationDistance(perimeterSlider.value))
-        }
-        self.updatePerimeter(meters: location.perimeter)
+        let coordinate = theLocation.coordinates()
+        annotation?.coordinate = coordinate
+        self.updatePerimeterOverlay(coordinate: coordinate, radius: CLLocationDistance(perimeterSlider.value))
+        self.updatePerimeter(meters: Int(location.perimeter!))
     }
 
     func updateLocationFromFields(theLocation : FTLocation) {
@@ -206,8 +206,9 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
         theLocation.city = self.fields[FieldType.city.rawValue].text  ?? ""
         theLocation.state = self.fields[FieldType.state.rawValue].text ?? ""
         theLocation.zip = self.fields[FieldType.zip.rawValue].text ?? ""
-        theLocation.perimeter = Int(self.perimeterSlider.value)
-        theLocation.coordinates = self.annotation?.coordinate
+        theLocation.perimeter = self.perimeterSlider.value as NSNumber?
+        theLocation.latitude = self.annotation?.coordinate.latitude as NSNumber?
+        theLocation.longitude = self.annotation?.coordinate.longitude as NSNumber?
     }
 
     func validateFields() -> String? {

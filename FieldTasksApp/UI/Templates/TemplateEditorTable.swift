@@ -23,7 +23,7 @@ class TaskCell : UITableViewCell {
         self.lengthText.makeDetailStyle()
 
         // Enter text
-        self.typeText.text = task.type.rawValue + (task.required ? " (Required)" : "")
+        self.typeText.text = task.type + (task.required!.boolValue ? " (Required)" : "")
         self.titleText.text = task.name
         self.descriptionText.text = "Description: \(task.description)"
         self.lengthText.text = task.taskDescriptionString()

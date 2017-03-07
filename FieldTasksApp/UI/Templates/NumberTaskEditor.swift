@@ -38,8 +38,8 @@ class NumberTaskEditor : TaskTypeEditor {
 
     override func viewWillAppear(_ animated: Bool) {
         if let task = task {
-            limitedSwitch.isOn = !task.isUnlimited
-            decimalSwitch.isOn = task.isDecimal
+            limitedSwitch.isOn = !(task.isUnlimited!.boolValue)
+            decimalSwitch.isOn = task.isDecimal!.boolValue
             minField.text = task.minString
             maxField.text = task.maxString
         }
@@ -49,10 +49,10 @@ class NumberTaskEditor : TaskTypeEditor {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        task?.isUnlimited = !limitedSwitch.isOn
-        task?.isDecimal = decimalSwitch.isOn
-        task?.min = Double(minField.text!) ?? 0
-        task?.max = Double(maxField.text!) ?? 0
+        task?.isUnlimited = !limitedSwitch.isOn as NSNumber?
+        task?.isDecimal = decimalSwitch.isOn as NSNumber?
+        task?.min = (Double(minField.text!) ?? 0) as NSNumber?
+        task?.max = (Double(maxField.text!) ?? 0) as NSNumber?
     }
 
     override func setTask(task : Task) {

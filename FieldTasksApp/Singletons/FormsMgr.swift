@@ -27,11 +27,13 @@ class FormsMgr {
                 self.submissions.removeAll()
                 for formObject in formList {
                     if let formDict = formObject as? [String : Any] {
-                        self.submissions += [Form(templateDict: formDict)]
+                        let newForm = Form()
+                        newForm.fromDict(templateDict: formDict)
+                        self.submissions += [newForm]
                     }
                 }
                 self.submissions.sort(by: { (formA, formB) -> Bool in
-                    return formA.createDate?.compare(formB.createDate!) == .orderedDescending
+                    return formA.createDate.compare(formB.createDate) == .orderedDescending
                 })
                 completion(self.submissions, error)
             }
@@ -39,9 +41,10 @@ class FormsMgr {
     }
 
     func newForm(template: Template) -> Form {
-        let form = Form(template: template)
-        unsubmitted[template.id!] = form
-        return form
+        let newForm = Form()
+        newForm.initFromTemplate(template: template)
+        unsubmitted[template.id] = newForm
+        return newForm
     }
 
     // Return form if it wasn't submitted
@@ -51,8 +54,6 @@ class FormsMgr {
 
     // Form was successfully submitted, clear it from unsubmitted list
     func formSubmitted(form: Form) {
-        if let templatedId = form.templateId {
-            unsubmitted[templatedId] = nil
-        }
+        unsubmitted[form.templateId] = nil
     }
 }

@@ -25,11 +25,6 @@ open class NumberTask: _NumberTask {
         }
     }
 
-//    override init(taskDict : [String : AnyObject]) {
-//        super.init(taskDict: taskDict)
-//        self.type = TaskType.Number
-//    }
-
     override func initTaskDescription(dataDict : [String: AnyObject]) {
         // self.taskDescription = NumberTaskDescription(dataDict: dataDict)
         if let isDecimal = dataDict["isDecimal"] as? Bool {
@@ -48,7 +43,9 @@ open class NumberTask: _NumberTask {
 
     override func initResults(results : [String: AnyObject]) {
         //self.result = NumberResult(task: self, results: results)
-        self.result = NumberResult(task: self)
+        self.result = NumberResult()
+        self.result?.fromDict(results: results)
+        self.result?.task = self
     }
 
     override func taskDescriptionDict() -> [String : AnyObject]{

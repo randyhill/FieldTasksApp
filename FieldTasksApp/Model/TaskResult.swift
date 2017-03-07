@@ -10,9 +10,13 @@ open class TaskResult: _TaskResult {
         }
     }
 
-    convenience init(task : Task) {
-        self.init(managedObjectContext: Globals.shared.context!)!
-        self.task = task
+//    convenience init(task : Task) {
+//        self.init(managedObjectContext: Globals.shared.context!)!
+//        self.task = task
+//    }
+
+    func fromDict(results: [String : AnyObject]) {
+
     }
 
     func toDict() -> [String : AnyObject]{
