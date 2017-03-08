@@ -9,7 +9,7 @@
 import UIKit
 import FlatUIKit
 import SVProgressHUD
-import CoreData
+import SwiftDate
 
 class Globals {
     static let shared = Globals()
@@ -23,10 +23,6 @@ class Globals {
     let barColor = UIColor.asbestos()
     let barButtonColor = UIColor.peterRiver()
     let selectionColor = UIColor.wetAsphalt()
-
-    // NSData
-    var model : NSManagedObjectModel?
-    var context : NSManagedObjectContext?
 
     init() {
         utcFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -46,8 +42,39 @@ class Globals {
         // Text
         UITextField.appearance().tintColor = UIColor.midnightBlue()
         UITextView.appearance().tintColor = UIColor.midnightBlue()
-
     }
+
+    class func saveSettingsValue(key: String, value: AnyObject) {
+        UserDefaults.standard.set(value, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+
+    class func getSettingsValue(key: String) -> AnyObject? {
+        return UserDefaults.standard.object(forKey: key) as AnyObject?
+    }
+
+    func encodeDate(date: Date) -> String? {
+        let dateString = utcFormatter.string(from: date)
+        return dateString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+    }
+
+    private func _stringToDate(dateString: String, format: String ) -> Date? {
+        let dateStringFormatter = DateFormatter()
+        dateStringFormatter.dateFormat = format
+        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if let d = dateStringFormatter.date(from: dateString) {
+            return Date(timeInterval:0, since:d)
+        }
+        return nil
+    }
+
+    func stringToDate(dateString: String) -> Date? {
+        return _stringToDate(dateString: dateString, format: "yyyy-MM-dd")
+    }
+
+    func serverStringToDate(dateString: String) -> Date? {
+        return _stringToDate(dateString: dateString, format: "E, dd MMM yyyy HH:mm:ss zzz")
+   }
 }
 
 

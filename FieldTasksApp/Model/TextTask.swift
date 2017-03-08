@@ -15,9 +15,8 @@ open class TextTask: _TextTask {
         }
     }
 
-    override func initResults(results : [String: AnyObject]) {
-        self.result = TextResult()
-        self.result?.task = self
+    override func resultTypeString() -> String {
+        return "TextResult"
     }
 
     override func taskDescriptionDict() -> [String : AnyObject]{

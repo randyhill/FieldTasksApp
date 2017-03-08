@@ -15,10 +15,8 @@ open class PhotosTask: _PhotosTask {
         }
     }
 
-    override func initResults(results : [String: AnyObject]) {
-        self.result = PhotosResult()
-        self.result?.fromDict(results: results)
-        self.result?.task = self
+    override func resultTypeString() -> String {
+        return "PhotosResult"
     }
 
     override func taskDescriptionDict() -> [String : AnyObject]{

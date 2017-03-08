@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1420" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ChoicesResult" representedClassName="ChoicesResult" parentEntity="TaskResult" syncable="YES">
-        <attribute name="values_core" attributeType="Transformable" syncable="YES"/>
+        <attribute name="values_core" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <entity name="ChoicesTask" representedClassName="ChoicesTask" parentEntity="Task" syncable="YES">
-        <attribute name="isRadio" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="titles_core" attributeType="Transformable" syncable="YES"/>
+        <attribute name="isRadio" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="titles_core" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <entity name="Form" representedClassName="Form" parentEntity="Template" syncable="YES">
-        <attribute name="createDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="locationId" attributeType="String" syncable="YES"/>
-        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="templateId" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="locationId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="templateId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="FTLocation" representedClassName="FTLocation" syncable="YES">
-        <attribute name="city" attributeType="String" syncable="YES"/>
-        <attribute name="id" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="perimeter" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="phone" attributeType="String" syncable="YES"/>
-        <attribute name="state" attributeType="String" syncable="YES"/>
-        <attribute name="street" attributeType="String" syncable="YES"/>
-        <attribute name="template_ids" attributeType="Transformable" syncable="YES"/>
-        <attribute name="zip" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="perimeter" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="template_ids" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="NumberResult" representedClassName="NumberResult" parentEntity="TaskResult" syncable="YES">
-        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="NumberTask" representedClassName="NumberTask" parentEntity="Task" syncable="YES">
-        <attribute name="isDecimal" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isUnlimited" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="max" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="min" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isDecimal" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isUnlimited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="max" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="min" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="PhotosResult" representedClassName="PhotosResult" parentEntity="TaskResult" syncable="YES">
-        <attribute name="fileNames_core" attributeType="Transformable" syncable="YES"/>
+        <attribute name="fileNames_core" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <entity name="PhotosTask" representedClassName="PhotosTask" parentEntity="Task" syncable="YES">
-        <attribute name="isSingle" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSingle" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName="Task" isAbstract="YES" syncable="YES">
-        <attribute name="descriptionString" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
-        <attribute name="id" attributeType="String" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="required" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="descriptionString" optional="YES" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="required" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskResult" inverseName="task" inverseEntity="TaskResult" syncable="YES"/>
     </entity>
     <entity name="TaskResult" representedClassName="TaskResult" isAbstract="YES" syncable="YES">
-        <attribute name="completed_private" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="completed_private" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="result" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="Template" representedClassName="Template" syncable="YES">
-        <attribute name="descriptionString" attributeType="String" syncable="YES"/>
-        <attribute name="id" attributeType="String" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="task_Ids_core" attributeType="Transformable" syncable="YES"/>
+        <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="task_Ids_core" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <entity name="TextResult" representedClassName="TextResult" parentEntity="TaskResult" syncable="YES">
-        <attribute name="text" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="TextTask" representedClassName="TextTask" parentEntity="Task" syncable="YES">
-        <attribute name="isUnlimited" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="max" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isUnlimited" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="max" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="ChoicesResult" positionX="-144" positionY="117" width="128" height="60"/>

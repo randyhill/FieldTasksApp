@@ -15,11 +15,11 @@ class FormTasksCell : UITableViewCell {
     @IBOutlet weak var typeText: UILabel!
 
     func configureWithTask(task: Task, checkmark: UIImage) {
-        var titleText = task.name
+        var titleTextString = task.name!
         if task.required!.boolValue {
-            titleText += " (required)"
+            titleTextString += " (required)"
         }
-        self.titleText.text = titleText
+        self.titleText.text = titleTextString
         self.titleText.makeTitleStyle()
         self.checkmark.image = (task.result!.completed) ? checkmark : nil
         self.typeText.text = task.type;
@@ -47,7 +47,7 @@ class FormTasksLocationCell : UITableViewCell {
         }
         var locationTitle = "Unknown"
         if let location = location {
-            locationTitle = location.name
+            locationTitle = location.name!
         }
         self.locationName.text = locationTitle
     }

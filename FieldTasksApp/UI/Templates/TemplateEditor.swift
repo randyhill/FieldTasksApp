@@ -22,7 +22,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         super.viewDidLoad()
         toolbar.delegate = self
 
-        self.title = template!.name.characters.count > 0 ? "Edit Template" : "New Template"
+        self.title = template!.name!.characters.count > 0 ? "Edit Template" : "New Template"
         self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
         self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Save", target: self, action: #selector(doneAction))
         makeNavBarFlat()
@@ -44,7 +44,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         listController = segue.destination as? TemplateEditorTable
         listController?.parentTemplateEditor = self
         if template == nil {
-            template = Template()
+            template = CoreDataMgr.shared.createTemplate()
         }
         listController?.tasks = self.template!.tasks
     }

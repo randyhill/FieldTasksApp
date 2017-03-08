@@ -1,5 +1,4 @@
 import Foundation
-import CoreData
 
 @objc(Template)
 open class Template: _Template {
@@ -57,7 +56,7 @@ open class Template: _Template {
                 } else {
                     incompleteTasks! += ", "
                 }
-                incompleteTasks! += task.name
+                incompleteTasks! += task.name!
             }
         }
         return incompleteTasks

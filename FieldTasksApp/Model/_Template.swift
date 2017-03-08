@@ -37,16 +37,16 @@ open class _Template: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var descriptionString: String
+    var descriptionString: String?
 
     @NSManaged open
-    var id: String
+    var id: String?
 
     @NSManaged open
-    var name: String
+    var name: String?
 
     @NSManaged open
-    var task_Ids_core: AnyObject
+    var task_Ids_core: AnyObject?
 
     // MARK: - Relationships
 

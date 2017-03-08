@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class TemplatesMgr {
     static let shared = TemplatesMgr()
     private var list = [Template]()
@@ -22,7 +23,7 @@ class TemplatesMgr {
 
     func refreshList(location: FTLocation?, completion: @escaping (_ list: [Template]?, _ error: String?)->()) {
         // Do any additional setup after loading the view, typically from a nib.
-        ServerMgr.shared.loadTemplates(location: location) { (result, error) in
+        ServerMgr.shared.loadTemplates(location: location) { (result, timeStamp, error) in
             if let error = error {
                 completion(nil, error)
             } else {
@@ -30,9 +31,9 @@ class TemplatesMgr {
                     self.list.removeAll()
                     for template in templateList {
                         if let templateDict = template as? [String : AnyObject] {
-                            let template = Template()
+                            let template = CoreDataMgr.shared.createTemplate()
                             template.fromDict(templateDict: templateDict)
-                            self.hash[template.id] = template
+                            self.hash[template.id!] = template
                             self.list += [template]
                         }
                     }
@@ -92,7 +93,7 @@ class TemplatesMgr {
                 if let resultDict = resultDict as? [String: AnyObject]{
                     // Update with id, and any other changes.
                     template.fromDict(templateDict: resultDict)
-                    self.hash[template.id] = template
+                    self.hash[template.id!] = template
                 }
                 completion(error)
             }

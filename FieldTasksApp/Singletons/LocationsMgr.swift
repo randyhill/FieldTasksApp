@@ -21,10 +21,12 @@ struct SortedLocation {
 class LocationsMgr : NSObject, CLLocationManagerDelegate {
     static let shared = LocationsMgr()
     private var mgr = CLLocationManager()
-    private var list = SynchronizedArray<FTLocation>()
+    //private var list = SynchronizedArray<FTLocation>()
     private var curLocation : FTLocation?
     var delegate : LocationUpdates?
     var curAccuracy = CLLocationAccuracy()
+    var lastSync : Date?
+    let cSyncValue = "LocationsSync"
 
     override init() {
         super.init()
@@ -32,10 +34,16 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
         // Request access and initial location
         self.mgr.delegate = self;
         self.mgr.requestWhenInUseAuthorization()
-        self.refresh(completion: { (error) in
-            FTErrorMessage(error: "unable to load locations at initialize: \(error)")
-        })
+        self.lastSync = Globals.getSettingsValue(key: cSyncValue) as? Date ?? Globals.shared.stringToDate(dateString: "2017-01-01")
     }
+
+//    func loadLocations() {
+//        if let locations = CoreDataMgr.shared.fetchLocations() {
+//            for location in locations {
+//                list.append(newElement: location)
+//            }
+//        }
+//    }
 
     // MARK: CLLocation Methods -------------------------------------------------------------------------------
     internal func locationManager(_ manager: CLLocationManager, didUpdateLocations newLocations: [CLLocation]) {
@@ -61,29 +69,50 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
         FTErrorMessage(error: error.localizedDescription)
     }
 
+    // Sync refresh, get all location changes since last location sync.
+    // - Update any existing locations that have changed
+    // - Add new locations
+    // - Delete any locations that have their delete flag set
     func refresh(completion: @escaping (_ error: String?)->()) {
         self.mgr.requestLocation()
-        ServerMgr.shared.loadLocations { (result, error) in
+        ServerMgr.shared.syncLocations(sinceDate: self.lastSync!, completion: { (result, timeStamp, error) in
             if error != nil {
                 completion(error)
             } else if let newList = result  {
-                self.list.removeAll()
                 for location in newList {
                     if let locationDict = location as? [String : AnyObject] {
                         do {
-                            let location = FTLocation()
-                            try location.fromDict(locationDict: locationDict)
-                            self.list.append(newElement: location)
+                            if let locationId = locationDict["_id"] as? String, let auditTrail = locationDict["auditTrail"] as? [String:Any] {
+                                // Merge location data if already exists
+                                var location = CoreDataMgr.shared.fetchById(entityName: FTLocation.entityName(), objectId: locationId) as? FTLocation
+                                if let _ = auditTrail["deleted"] {
+                                    // Deleting ignores previously deleted locations, such as deleted before we first logged in.
+                                    if let _ = location {
+                                        CoreDataMgr.shared.removeObjectById(entityName: FTLocation.entityName(), objectId: locationId)
+                                    }
+                                } else {
+                                    // Create new/update existing location
+                                    if location == nil {
+                                         location = CoreDataMgr.shared.createLocation()
+                                    }
+                                    try location!.fromDict(locationDict: locationDict)
+                                }
+                            } else {
+                                FTErrorMessage(error: "Server sent location without id")
+                            }
                         } catch FTError.RunTimeError(let errorMessage) {
                             completion(errorMessage)
-                         } catch {
-                             completion(error.localizedDescription)
-                       }
+                        } catch {
+                            completion(error.localizedDescription)
+                        }
                     }
                 }
-               completion(nil)
+                self.lastSync = timeStamp
+                Globals.saveSettingsValue(key: self.cSyncValue, value: self.lastSync as AnyObject)
+                CoreDataMgr.shared.save()
+                completion(nil)
             }
-        }
+        })
     }
 
     func currentCLLocation() -> CLLocation? {
@@ -96,12 +125,24 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
 
     // MARK: FTLocation Methods -------------------------------------------------------------------------------
 
+    func all() -> [FTLocation] {
+        if let list = CoreDataMgr.shared.fetchLocations() {
+            return list
+        }
+        return [FTLocation]()
+        //return list.copy()
+    }
+
+//    func add(location: FTLocation) {
+//        list.append(newElement: location)
+//    }
+
     // Return locations within meters sorted by closest
     func within(meters : Int) -> [FTLocation] {
         var newList = [FTLocation]()
         if let cLoc = mgr.location {
             var sorted = [SortedLocation]()
-            for location in list.copy() {
+            for location in self.all() {
                 let meters = location.distanceFrom(location: cLoc)
                 sorted += [SortedLocation(location: location, distance: Int(meters))]
             }
@@ -119,7 +160,7 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
     }
 
     func getBy(id: String) -> FTLocation? {
-        for location in list {
+        for location in self.all() {
             if location.id == id {
                 return location
             }
@@ -130,7 +171,7 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
     func closestLocation(to: CLLocation) -> FTLocation? {
         var closest : FTLocation?
         var closestDistance = Double.greatestFiniteMagnitude
-        for loc in list {
+        for loc in self.all() {
             let distance = loc.distanceFrom(location: to)
             if distance < closestDistance {
                 closestDistance = distance
@@ -141,7 +182,7 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
     }
 
     func inLocation(to: CLLocation) -> FTLocation? {
-        for loc in list {
+        for loc in self.all() {
             if loc.inLocation(location: to) {
                 return loc
             }

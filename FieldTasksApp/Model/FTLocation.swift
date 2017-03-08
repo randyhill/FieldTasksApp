@@ -7,10 +7,10 @@ open class FTLocation: _FTLocation {
 
     var fullAddress : String {
         get {
-            var addr = street
-            addr += addAddressString(string: city)
-            addr += addAddressString(string: state)
-            addr += addAddressString(string: zip)
+            var addr = street!
+            addr += addAddressString(string: city!)
+            addr += addAddressString(string: state!)
+            addr += addAddressString(string: zip!)
             return addr
         }
     }
@@ -25,37 +25,16 @@ open class FTLocation: _FTLocation {
     // MARK: Initialization/Serialization -------------------------------------------------------------------------------
 
     func fromDict(locationDict : [String : AnyObject]) throws {
-        if let name = locationDict["name"] as? String {
-            self.name = name
-        }
-        if let street = locationDict["street"] as? String {
-            self.street = street
-        }
-        if let city = locationDict["city"] as? String {
-            self.city = city
-        }
-        if let state = locationDict["state"] as? String {
-            self.state = state
-        }
-        if let zip = locationDict["zip"] as? String {
-            self.zip = zip
-        }
-        if let perimeter = locationDict["perimeter"] as? Int {
-            self.perimeter = perimeter as NSNumber?
-        }
-        if let id = locationDict["_id"] as? String {
-            self.id = id
-        }
-        if let coordinateDict = locationDict["coordinates"] {
-            guard let latString = coordinateDict["lat"] as? String, let lat = Double(latString) else {
-                throw FTError.RunTimeError("Could not convert latitude to double")
-            }
-            guard let lngString = coordinateDict["lng"] as? String, let lng = Double(lngString) else {
-                throw FTError.RunTimeError("Could not convert longitude to double")
-            }
-            self.latitude = lat as NSNumber?
-            self.longitude = lng as NSNumber?
-        }
+        self.id = locationDict["_id"] as? String ?? ""
+        self.name = locationDict["name"] as? String ?? ""
+        self.street = locationDict["street"] as? String ?? ""
+        self.city = locationDict["city"] as? String ?? ""
+        self.state = locationDict["state"] as? String ?? ""
+        self.zip = locationDict["zip"] as? String ?? ""
+        self.latitude = locationDict["latitude"] as? NSNumber ?? 0
+        self.longitude = locationDict["longitude"] as? NSNumber ?? 100
+        self.perimeter = locationDict["perimeter"] as? NSNumber ?? 0
+
         if let templatesArray = locationDict["templates"] as? [String] {
             for templateId in templatesArray {
                 self.templates.insert(templateId)
@@ -82,7 +61,7 @@ open class FTLocation: _FTLocation {
     // MARK: Templates -------------------------------------------------------------------------------
     func addTemplates(newTemplates : [Template]) {
         for template in newTemplates {
-            templates.insert(template.id)
+            templates.insert(template.id!)
         }
     }
 

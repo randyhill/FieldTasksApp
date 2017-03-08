@@ -38,7 +38,7 @@ open class _ChoicesTask: Task {
     var isRadio: NSNumber?
 
     @NSManaged open
-    var titles_core: AnyObject
+    var titles_core: AnyObject?
 
     // MARK: - Relationships
 

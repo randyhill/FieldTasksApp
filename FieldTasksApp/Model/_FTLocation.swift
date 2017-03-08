@@ -44,10 +44,10 @@ open class _FTLocation: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var city: String
+    var city: String?
 
     @NSManaged open
-    var id: String
+    var id: String?
 
     @NSManaged open
     var latitude: NSNumber?
@@ -56,25 +56,25 @@ open class _FTLocation: NSManagedObject {
     var longitude: NSNumber?
 
     @NSManaged open
-    var name: String
+    var name: String?
 
     @NSManaged open
     var perimeter: NSNumber?
 
     @NSManaged open
-    var phone: String
+    var phone: String?
 
     @NSManaged open
-    var state: String
+    var state: String?
 
     @NSManaged open
-    var street: String
+    var street: String?
 
     @NSManaged open
-    var template_ids: AnyObject
+    var template_ids: AnyObject?
 
     @NSManaged open
-    var zip: String
+    var zip: String?
 
     // MARK: - Relationships
 

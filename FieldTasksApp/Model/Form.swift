@@ -33,7 +33,7 @@ open class Form: _Form {
 
     override func toDict() -> [String : AnyObject] {
         var formDict = super.toDict()
-        formDict["createDate"] = Globals.shared.utcFormatter.string(from: createDate) as AnyObject?
+        formDict["createDate"] = Globals.shared.utcFormatter.string(from: createDate!) as AnyObject?
         formDict["location"] = locationId as AnyObject
         formDict["latitude"] = self.latitude
         formDict["longitude"] = self.longitude

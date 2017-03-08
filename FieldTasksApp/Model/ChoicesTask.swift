@@ -15,10 +15,8 @@ open class ChoicesTask: _ChoicesTask {
         }
     }
 
-    override func initResults(results : [String: AnyObject]) {
-        //self.result = ChoicesResult(task: self, results: results)
-        self.result = ChoicesResult()
-        self.result?.task = self
+    override func resultTypeString() -> String {
+        return "ChoicesResult"
     }
 
     override func taskDescriptionDict() -> [String : AnyObject]{

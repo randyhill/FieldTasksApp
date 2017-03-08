@@ -42,19 +42,19 @@ open class _Task: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var descriptionString: String
+    var descriptionString: String?
 
     @NSManaged open
-    var id: String
+    var id: String?
 
     @NSManaged open
-    var name: String
+    var name: String?
 
     @NSManaged open
     var required: NSNumber?
 
     @NSManaged open
-    var type: String
+    var type: String?
 
     // MARK: - Relationships
 

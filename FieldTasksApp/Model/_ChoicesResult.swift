@@ -34,7 +34,7 @@ open class _ChoicesResult: TaskResult {
     // MARK: - Properties
 
     @NSManaged open
-    var values_core: AnyObject
+    var values_core: AnyObject?
 
     // MARK: - Relationships
 

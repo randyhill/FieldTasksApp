@@ -38,19 +38,19 @@ open class _Form: Template {
     // MARK: - Properties
 
     @NSManaged open
-    var createDate: Date
+    var createDate: Date?
 
     @NSManaged open
     var latitude: NSNumber?
 
     @NSManaged open
-    var locationId: String
+    var locationId: String?
 
     @NSManaged open
     var longitude: NSNumber?
 
     @NSManaged open
-    var templateId: String
+    var templateId: String?
 
     // MARK: - Relationships
 

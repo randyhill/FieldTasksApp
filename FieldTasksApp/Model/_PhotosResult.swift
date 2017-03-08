@@ -34,7 +34,7 @@ open class _PhotosResult: TaskResult {
     // MARK: - Properties
 
     @NSManaged open
-    var fileNames_core: AnyObject
+    var fileNames_core: AnyObject?
 
     // MARK: - Relationships
 

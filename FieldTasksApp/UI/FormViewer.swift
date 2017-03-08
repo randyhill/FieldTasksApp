@@ -59,14 +59,14 @@ class FormTitleCell : UITableViewCell {
 
     func configureWithForm(form : Form) {
         var locationString = "Location: Unknown"
-        if let location = LocationsMgr.shared.getBy(id: form.locationId){
-            locationString = "For: " + location.name
+        if let location = LocationsMgr.shared.getBy(id: form.locationId!){
+            locationString = "For: " + location.name!
         }
         self.title.text = locationString
         self.title.makeTitleStyle()
 
         let coordinatesString = "lat: \(form.latitude) long: \(form.longitude)"
-        var descriptionString = Globals.shared.dateFormatter.string(from: form.createDate) + " " + coordinatesString
+        var descriptionString = Globals.shared.dateFormatter.string(from: form.createDate!) + " " + coordinatesString
         descriptionString += "\n" + form.description
         self.body.text = descriptionString
         self.body.makeDetailStyle()

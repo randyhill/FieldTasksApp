@@ -83,7 +83,7 @@ class TemplatesTable: UITableViewController {
 
     func filterTemplates(location: FTLocation, templates: [Template]) -> [Template] {
         return templates.filter({ (template) -> Bool in
-            return !location.containsTemplate(templateId: template.id)
+            return !location.containsTemplate(templateId: template.id!)
         })
     }
 
@@ -150,7 +150,7 @@ class TemplatesTable: UITableViewController {
     func removeTemplateFromLocation(forRowAt indexPath: IndexPath) {
         if let location = self.parentTemplatesViewer?.location {
             let template = self.templatesList[indexPath.row]
-            location.removeTemplate(templateId: template.id)
+            location.removeTemplate(templateId: template.id!)
             ServerMgr.updateLocation(location: location, completion: { (error) in
                 if let error = error {
                     FTErrorMessage(error: "Could not update location: \(error)")
@@ -164,7 +164,7 @@ class TemplatesTable: UITableViewController {
         self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (deleteIt) in
             if deleteIt {
                 let template = self.templatesList[indexPath.row]
-                TemplatesMgr.shared.deleteTemplate(templateId: template.id, completion: { (error) in
+                TemplatesMgr.shared.deleteTemplate(templateId: template.id!, completion: { (error) in
                     if let error = error {
                         self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
                     } else {
@@ -199,7 +199,7 @@ class TemplatesTable: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if parentTemplatesViewer?.style != .Picker {
             let template = templatesList[indexPath.row]
-            if let form = FormsMgr.shared.formExists(templateId: template.id) {
+            if let form = FormsMgr.shared.formExists(templateId: template.id!) {
                 self.askAlert(title: "Continue using previous Form?", body: "You did not submit the previous version of this form, would you like to continue filling it out?", action: "OK", cancel: "No", completion: { (usePreviousForm) in
                     let form = usePreviousForm ? form : FormsMgr.shared.newForm(template: template)
                     self.openFormViewer(form: form)

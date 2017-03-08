@@ -49,7 +49,7 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
     @IBOutlet weak var cancelButton: FUIButton!
     @IBOutlet weak var createButton: FUIButton!
     @IBOutlet weak var perimeterSlider: UISlider!
-    var location = FTLocation()
+    var location = CoreDataMgr.shared.createLocation()
     var annotation : MyAnnotation?
     var perimeter : MKCircle?
 
@@ -90,6 +90,8 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
         if let clLoc = LocationsMgr.shared.currentCLLocation() {
             let span = 0.01
             map.centerCoordinate = clLoc.coordinate
+            self.location.latitude = clLoc.coordinate.latitude as NSNumber?
+            self.location.longitude = clLoc.coordinate.longitude as NSNumber?
             map.region = MKCoordinateRegion(center: clLoc.coordinate, span: MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span))
             annotation = MyAnnotation(title: "title", subtitle: "sub title", coordinate: clLoc.coordinate)
             updateAnnotationLocation(coordinate: clLoc.coordinate)
@@ -239,11 +241,14 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
             FTAlertMessage(message: "Can't create location: \(errorMessage)")
         } else {
             self.updateLocationFromFields(theLocation: self.location)
+            //LocationsMgr.shared.add(location: self.location)
+            CoreDataMgr.shared.save()
             ServerMgr.createLocation(location: location) { (locationDict, error) in
                 if let error = error {
                     FTAlertMessage(message: "Creation failed: \(error)")
                 } else if let locationId = locationDict?["_id"] as? String {
                     self.location.id = locationId
+                    CoreDataMgr.shared.save()
                     FTAlertMessage(message: "Location created")
                     self.dismiss(animated: true, completion: { 
                         FTAlertDismiss {

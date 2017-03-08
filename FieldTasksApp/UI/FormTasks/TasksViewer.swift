@@ -58,8 +58,8 @@ class TasksViewer : UIViewController {
 
     func updateViewValues() {
         var barTitle = ""
-         if curTask.name.characters.count > 0 {
-            barTitle = curTask.name
+         if curTask.name!.characters.count > 0 {
+            barTitle = curTask.name!
         } else {
             barTitle = "Task"
         }

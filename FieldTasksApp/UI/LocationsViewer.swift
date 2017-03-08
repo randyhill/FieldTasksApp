@@ -27,8 +27,8 @@ class LocationsViewer: UITableViewController, LocationUpdates {
     var locations = LocationsMgr.shared
     var form : Form?
     var selectedLocation : FTLocation?
-    var list = [FTLocation]()   // use read-only copy of live list so it's thread safe, otherwise live list could be in mid-update when we refresh
-    var searchRadius = 10000     // How far away to look for locations
+    var locationList = [FTLocation]()   // use read-only copy of live list so it's thread safe, otherwise live list could be in mid-update when we refresh
+    var searchRadius = 10000000     // How far away to look for locations
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
         if let form = self.form {
             self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Use", target: self, action: #selector(selectionDone))
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(selectionCancel))
-            selectedLocation = locations.getBy(id: form.locationId)
+            selectedLocation = locations.getBy(id: form.locationId!)
             self.title = "Pick Location"
         } else {
             self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshFromServer))
@@ -45,7 +45,25 @@ class LocationsViewer: UITableViewController, LocationUpdates {
        }
         makeNavBarFlat()
         locations.delegate = self
-        self.list = locations.within(meters: searchRadius)
+        refreshList()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        refreshList()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func refreshList() {
+        self.locationList = self.locations.all() //self.locations.within(meters: self.searchRadius)
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
     }
 
     // In regular mode when used to display locations.
@@ -55,10 +73,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
                 self.showAlert(title: "Error creating location", message: error)
             }
             // Refresh list data before updating visual list
-            self.list = self.locations.within(meters: self.searchRadius)
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
+            self.refreshList()
         }
     }
 
@@ -78,22 +93,14 @@ class LocationsViewer: UITableViewController, LocationUpdates {
         self.performSegue(withIdentifier: "LocationEditor", sender: self)
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-    }
-
     func newlocation(location: FTLocation?) {
         self.tableView.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = list.count
+        let count = locationList.count
         return count
     }
 
@@ -109,7 +116,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationsCell", for: indexPath as IndexPath)
         if let cell = cell as? LocationCell {
-            let location = list[indexPath.row]
+            let location = locationList[indexPath.row]
             cell.configureWithLocation(location: location)
             if location.id == locations.currentLocation()?.id {
                 cell.locationImage.tintColor = UIColor.silver()
@@ -126,12 +133,12 @@ class LocationsViewer: UITableViewController, LocationUpdates {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let location = list[indexPath.row]
+        let location = locationList[indexPath.row]
 
         if let _ = form {
             // select location
             if let cell = tableView.cellForRow(at: indexPath) {
-                selectedLocation = list[indexPath.row]
+                selectedLocation = locationList[indexPath.row]
                 cell.isSelected = true
             }
 

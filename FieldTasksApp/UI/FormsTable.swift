@@ -75,7 +75,7 @@ class FormsTable: UITableViewController {
             let form = formsList[indexPath.row]
             cell.titleLabel.text = form.name
             cell.titleLabel.makeTitleStyle()
-            cell.detailLabel!.text = Globals.shared.dateFormatter.string(from: form.createDate)
+            cell.detailLabel!.text = Globals.shared.dateFormatter.string(from: form.createDate!)
             cell.detailLabel.makeDetailStyle()
             cell.makeCellFlat()
         }

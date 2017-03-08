@@ -11,6 +11,7 @@ target 'FieldTasksApp' do
   pod 'Just'
   pod 'SVProgressHUD'
   pod 'IQKeyboardManagerSwift'
+  pod 'SwiftDate', '~> 4.0'
 end
 
 target 'FieldTasksApp Local' do
@@ -22,5 +23,6 @@ target 'FieldTasksApp Local' do
   pod 'FlatUIKit'
   pod 'Just'
   pod 'SVProgressHUD'
-  pod 'IQKeyboardManagerSwift'  
+  pod 'IQKeyboardManagerSwift'
+  pod 'SwiftDate', '~> 4.0'
 end

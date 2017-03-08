@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
 
-        // Load templates
+        // init core data manager so we can load templates/locations
+        CoreDataMgr.shared.setModelContext(model: self.managedObjectModel, context: self.managedObjectContext)
         let _ = TemplatesMgr.shared
-        Globals.shared.model = self.managedObjectModel
-        Globals.shared.context = self.managedObjectContext
+        //LocationsMgr.shared.loadLocations()
         return true
     }
 

@@ -1,5 +1,4 @@
 import Foundation
-import CoreData
 
 @objc(TaskResult)
 open class TaskResult: _TaskResult {
@@ -9,11 +8,6 @@ open class TaskResult: _TaskResult {
             return completed_private == true
         }
     }
-
-//    convenience init(task : Task) {
-//        self.init(managedObjectContext: Globals.shared.context!)!
-//        self.task = task
-//    }
 
     func fromDict(results: [String : AnyObject]) {
 

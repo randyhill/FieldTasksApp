@@ -41,11 +41,8 @@ open class NumberTask: _NumberTask {
         }
     }
 
-    override func initResults(results : [String: AnyObject]) {
-        //self.result = NumberResult(task: self, results: results)
-        self.result = NumberResult()
-        self.result?.fromDict(results: results)
-        self.result?.task = self
+    override func resultTypeString() -> String {
+        return "NumberResult"
     }
 
     override func taskDescriptionDict() -> [String : AnyObject]{

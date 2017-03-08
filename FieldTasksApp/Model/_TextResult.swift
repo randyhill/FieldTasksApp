@@ -34,7 +34,7 @@ open class _TextResult: TaskResult {
     // MARK: - Properties
 
     @NSManaged open
-    var text: String
+    var text: String?
 
     // MARK: - Relationships
 

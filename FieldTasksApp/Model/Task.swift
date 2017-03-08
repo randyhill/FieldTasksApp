@@ -1,22 +1,6 @@
 import Foundation
 
-enum TaskType : String {
-    case Text = "Text",
-    Number = "Number",
-    Choices = "Choices",
-    Photos = "Photos",
-    Unknown = "Unknown"
-}
 
-enum TaskDictFields : String {
-    case type = "type",
-    id = "_id",
-    name = "name",
-    required = "required",
-    description = "description",
-    results = "results",
-    data = "data"
-}
 
 @objc(Task)
 open class Task: _Task {
@@ -53,9 +37,14 @@ open class Task: _Task {
         FTErrorMessage(error: "This function must be overridden")
     }
 
+    func resultTypeString() -> String {
+        FTErrorMessage(error: "This function must be overridden")
+        return ""
+    }
 
     func initResults(results : [String: AnyObject]) {
-        FTErrorMessage(error: "This function must be overridden")
+        self.result = CoreDataMgr.shared.createTaskResult(entityName: self.resultTypeString(), task: self)
+        self.result?.fromDict(results: results)
     }
 
 

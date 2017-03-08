@@ -21,7 +21,7 @@ class FormsMgr {
     }
 
     func refreshList(location: FTLocation?, completion: @escaping (_ forms: [Form]?, _ error: String?)->(Void)) {
-        ServerMgr.shared.loadForms(location: location) { (result, error) in
+        ServerMgr.shared.loadForms(location: location) { (result, timeStamp, error) in
             FTAssertString(error: error)
             if let formList = result  {
                 self.submissions.removeAll()
@@ -33,7 +33,7 @@ class FormsMgr {
                     }
                 }
                 self.submissions.sort(by: { (formA, formB) -> Bool in
-                    return formA.createDate.compare(formB.createDate) == .orderedDescending
+                    return formA.createDate!.compare(formB.createDate!) == .orderedDescending
                 })
                 completion(self.submissions, error)
             }
@@ -43,7 +43,7 @@ class FormsMgr {
     func newForm(template: Template) -> Form {
         let newForm = Form()
         newForm.initFromTemplate(template: template)
-        unsubmitted[template.id] = newForm
+        unsubmitted[template.id!] = newForm
         return newForm
     }
 
@@ -54,6 +54,6 @@ class FormsMgr {
 
     // Form was successfully submitted, clear it from unsubmitted list
     func formSubmitted(form: Form) {
-        unsubmitted[form.templateId] = nil
+        unsubmitted[form.templateId!] = nil
     }
 }

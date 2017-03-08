@@ -137,19 +137,6 @@
 		D86BF77F1E64A43800884277 /* TasksViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7741E64A43800884277 /* TasksViewer.swift */; };
 		D86BF7801E64A43800884277 /* TextTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7751E64A43800884277 /* TextTaskViewer.swift */; };
 		D86BF7811E64A43800884277 /* TextTaskViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86BF7751E64A43800884277 /* TextTaskViewer.swift */; };
-		D86C79E31E6DDDBF00A8A801 /* _ChoicesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C11E6DDDBF00A8A801 /* _ChoicesResult.swift */; };
-		D86C79E41E6DDDBF00A8A801 /* _ChoicesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C21E6DDDBF00A8A801 /* _ChoicesTask.swift */; };
-		D86C79E81E6DDDBF00A8A801 /* _FileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C61E6DDDBF00A8A801 /* _FileName.swift */; };
-		D86C79E91E6DDDBF00A8A801 /* _Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C71E6DDDBF00A8A801 /* _Form.swift */; };
-		D86C79EB1E6DDDBF00A8A801 /* _NumberResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C91E6DDDBF00A8A801 /* _NumberResult.swift */; };
-		D86C79EC1E6DDDBF00A8A801 /* _NumberTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CA1E6DDDBF00A8A801 /* _NumberTask.swift */; };
-		D86C79ED1E6DDDBF00A8A801 /* _PhotosResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CB1E6DDDBF00A8A801 /* _PhotosResult.swift */; };
-		D86C79EE1E6DDDBF00A8A801 /* _PhotosTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CC1E6DDDBF00A8A801 /* _PhotosTask.swift */; };
-		D86C79EF1E6DDDBF00A8A801 /* _Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CD1E6DDDBF00A8A801 /* _Task.swift */; };
-		D86C79F01E6DDDBF00A8A801 /* _TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CE1E6DDDBF00A8A801 /* _TaskResult.swift */; };
-		D86C79F11E6DDDBF00A8A801 /* _Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CF1E6DDDBF00A8A801 /* _Template.swift */; };
-		D86C79F21E6DDDBF00A8A801 /* _TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D01E6DDDBF00A8A801 /* _TextResult.swift */; };
-		D86C79F31E6DDDBF00A8A801 /* _TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D11E6DDDBF00A8A801 /* _TextTask.swift */; };
 		D86C79F41E6DDDBF00A8A801 /* ChoicesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D21E6DDDBF00A8A801 /* ChoicesResult.swift */; };
 		D86C79F51E6DDDBF00A8A801 /* ChoicesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D31E6DDDBF00A8A801 /* ChoicesTask.swift */; };
 		D86C79FA1E6DDDBF00A8A801 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D81E6DDDBF00A8A801 /* Form.swift */; };
@@ -162,22 +149,7 @@
 		D86C7A021E6DDDBF00A8A801 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79E01E6DDDBF00A8A801 /* Template.swift */; };
 		D86C7A031E6DDDBF00A8A801 /* TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79E11E6DDDBF00A8A801 /* TextResult.swift */; };
 		D86C7A041E6DDDBF00A8A801 /* TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79E21E6DDDBF00A8A801 /* TextTask.swift */; };
-		D86C7A071E6DDE6800A8A801 /* _FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C7A051E6DDE6800A8A801 /* _FTLocation.swift */; };
 		D86C7A081E6DDE6800A8A801 /* FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C7A061E6DDE6800A8A801 /* FTLocation.swift */; };
-		D86C7A0A1E6DEBF600A8A801 /* _FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C7A051E6DDE6800A8A801 /* _FTLocation.swift */; };
-		D86C7A0B1E6DEBF600A8A801 /* _ChoicesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C11E6DDDBF00A8A801 /* _ChoicesResult.swift */; };
-		D86C7A0C1E6DEBF600A8A801 /* _ChoicesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C21E6DDDBF00A8A801 /* _ChoicesTask.swift */; };
-		D86C7A0D1E6DEBF600A8A801 /* _FileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C61E6DDDBF00A8A801 /* _FileName.swift */; };
-		D86C7A0E1E6DEBF600A8A801 /* _Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C71E6DDDBF00A8A801 /* _Form.swift */; };
-		D86C7A0F1E6DEBF600A8A801 /* _NumberResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79C91E6DDDBF00A8A801 /* _NumberResult.swift */; };
-		D86C7A101E6DEBF600A8A801 /* _NumberTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CA1E6DDDBF00A8A801 /* _NumberTask.swift */; };
-		D86C7A111E6DEBF600A8A801 /* _PhotosResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CB1E6DDDBF00A8A801 /* _PhotosResult.swift */; };
-		D86C7A121E6DEBF600A8A801 /* _PhotosTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CC1E6DDDBF00A8A801 /* _PhotosTask.swift */; };
-		D86C7A131E6DEBF600A8A801 /* _Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CD1E6DDDBF00A8A801 /* _Task.swift */; };
-		D86C7A141E6DEBF600A8A801 /* _TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CE1E6DDDBF00A8A801 /* _TaskResult.swift */; };
-		D86C7A151E6DEBF600A8A801 /* _Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79CF1E6DDDBF00A8A801 /* _Template.swift */; };
-		D86C7A161E6DEBF600A8A801 /* _TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D01E6DDDBF00A8A801 /* _TextResult.swift */; };
-		D86C7A171E6DEBF600A8A801 /* _TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D11E6DDDBF00A8A801 /* _TextTask.swift */; };
 		D86C7A181E6DEBFD00A8A801 /* ChoicesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D21E6DDDBF00A8A801 /* ChoicesResult.swift */; };
 		D86C7A191E6DEBFD00A8A801 /* ChoicesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D31E6DDDBF00A8A801 /* ChoicesTask.swift */; };
 		D86C7A1C1E6DEBFD00A8A801 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86C79D81E6DDDBF00A8A801 /* Form.swift */; };
@@ -241,6 +213,34 @@
 		D8B438901E6B870A00FDCB0B /* FormsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */; };
 		D8B820D91E678F0B005527C9 /* FUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B820D81E678F0B005527C9 /* FUISwitch.swift */; };
 		D8B820DA1E678F0B005527C9 /* FUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B820D81E678F0B005527C9 /* FUISwitch.swift */; };
+		D8E4B7601E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */; };
+		D8E4B7611E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */; };
+		D8E4B7961E6F34C200BDE823 /* _ChoicesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */; };
+		D8E4B7971E6F34C200BDE823 /* _ChoicesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */; };
+		D8E4B7981E6F34C200BDE823 /* _ChoicesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78A1E6F34C200BDE823 /* _ChoicesTask.swift */; };
+		D8E4B7991E6F34C200BDE823 /* _ChoicesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78A1E6F34C200BDE823 /* _ChoicesTask.swift */; };
+		D8E4B79A1E6F34C200BDE823 /* _Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78B1E6F34C200BDE823 /* _Form.swift */; };
+		D8E4B79B1E6F34C200BDE823 /* _Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78B1E6F34C200BDE823 /* _Form.swift */; };
+		D8E4B79C1E6F34C200BDE823 /* _FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78C1E6F34C200BDE823 /* _FTLocation.swift */; };
+		D8E4B79D1E6F34C200BDE823 /* _FTLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78C1E6F34C200BDE823 /* _FTLocation.swift */; };
+		D8E4B79E1E6F34C200BDE823 /* _NumberResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78D1E6F34C200BDE823 /* _NumberResult.swift */; };
+		D8E4B79F1E6F34C200BDE823 /* _NumberResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78D1E6F34C200BDE823 /* _NumberResult.swift */; };
+		D8E4B7A01E6F34C200BDE823 /* _NumberTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78E1E6F34C200BDE823 /* _NumberTask.swift */; };
+		D8E4B7A11E6F34C200BDE823 /* _NumberTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78E1E6F34C200BDE823 /* _NumberTask.swift */; };
+		D8E4B7A21E6F34C200BDE823 /* _PhotosResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78F1E6F34C200BDE823 /* _PhotosResult.swift */; };
+		D8E4B7A31E6F34C200BDE823 /* _PhotosResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B78F1E6F34C200BDE823 /* _PhotosResult.swift */; };
+		D8E4B7A41E6F34C200BDE823 /* _PhotosTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7901E6F34C200BDE823 /* _PhotosTask.swift */; };
+		D8E4B7A51E6F34C200BDE823 /* _PhotosTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7901E6F34C200BDE823 /* _PhotosTask.swift */; };
+		D8E4B7A61E6F34C200BDE823 /* _Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7911E6F34C200BDE823 /* _Task.swift */; };
+		D8E4B7A71E6F34C200BDE823 /* _Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7911E6F34C200BDE823 /* _Task.swift */; };
+		D8E4B7A81E6F34C200BDE823 /* _TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7921E6F34C200BDE823 /* _TaskResult.swift */; };
+		D8E4B7A91E6F34C200BDE823 /* _TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7921E6F34C200BDE823 /* _TaskResult.swift */; };
+		D8E4B7AA1E6F34C200BDE823 /* _Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7931E6F34C200BDE823 /* _Template.swift */; };
+		D8E4B7AB1E6F34C200BDE823 /* _Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7931E6F34C200BDE823 /* _Template.swift */; };
+		D8E4B7AC1E6F34C200BDE823 /* _TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7941E6F34C200BDE823 /* _TextResult.swift */; };
+		D8E4B7AD1E6F34C200BDE823 /* _TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7941E6F34C200BDE823 /* _TextResult.swift */; };
+		D8E4B7AE1E6F34C200BDE823 /* _TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7951E6F34C200BDE823 /* _TextTask.swift */; };
+		D8E4B7AF1E6F34C200BDE823 /* _TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7951E6F34C200BDE823 /* _TextTask.swift */; };
 		D8F1D6EB1E53A8F200A07F70 /* Icon 76.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */; };
 		D8F1D6EC1E53A8F200A07F70 /* Icon 76.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */; };
 		D8F1D6ED1E53A8F200A07F70 /* Icon 120.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DD1E53A8F200A07F70 /* Icon 120.png */; };
@@ -326,19 +326,6 @@
 		D86BF7731E64A43800884277 /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskController.swift; path = UI/FormTasks/TaskController.swift; sourceTree = "<group>"; };
 		D86BF7741E64A43800884277 /* TasksViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksViewer.swift; path = UI/FormTasks/TasksViewer.swift; sourceTree = "<group>"; };
 		D86BF7751E64A43800884277 /* TextTaskViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextTaskViewer.swift; path = UI/FormTasks/TextTaskViewer.swift; sourceTree = "<group>"; };
-		D86C79C11E6DDDBF00A8A801 /* _ChoicesResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _ChoicesResult.swift; path = Model/_ChoicesResult.swift; sourceTree = "<group>"; };
-		D86C79C21E6DDDBF00A8A801 /* _ChoicesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _ChoicesTask.swift; path = Model/_ChoicesTask.swift; sourceTree = "<group>"; };
-		D86C79C61E6DDDBF00A8A801 /* _FileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _FileName.swift; path = Model/_FileName.swift; sourceTree = "<group>"; };
-		D86C79C71E6DDDBF00A8A801 /* _Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Form.swift; path = Model/_Form.swift; sourceTree = "<group>"; };
-		D86C79C91E6DDDBF00A8A801 /* _NumberResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _NumberResult.swift; path = Model/_NumberResult.swift; sourceTree = "<group>"; };
-		D86C79CA1E6DDDBF00A8A801 /* _NumberTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _NumberTask.swift; path = Model/_NumberTask.swift; sourceTree = "<group>"; };
-		D86C79CB1E6DDDBF00A8A801 /* _PhotosResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _PhotosResult.swift; path = Model/_PhotosResult.swift; sourceTree = "<group>"; };
-		D86C79CC1E6DDDBF00A8A801 /* _PhotosTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _PhotosTask.swift; path = Model/_PhotosTask.swift; sourceTree = "<group>"; };
-		D86C79CD1E6DDDBF00A8A801 /* _Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Task.swift; path = Model/_Task.swift; sourceTree = "<group>"; };
-		D86C79CE1E6DDDBF00A8A801 /* _TaskResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TaskResult.swift; path = Model/_TaskResult.swift; sourceTree = "<group>"; };
-		D86C79CF1E6DDDBF00A8A801 /* _Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Template.swift; path = Model/_Template.swift; sourceTree = "<group>"; };
-		D86C79D01E6DDDBF00A8A801 /* _TextResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TextResult.swift; path = Model/_TextResult.swift; sourceTree = "<group>"; };
-		D86C79D11E6DDDBF00A8A801 /* _TextTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TextTask.swift; path = Model/_TextTask.swift; sourceTree = "<group>"; };
 		D86C79D21E6DDDBF00A8A801 /* ChoicesResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChoicesResult.swift; path = Model/ChoicesResult.swift; sourceTree = "<group>"; };
 		D86C79D31E6DDDBF00A8A801 /* ChoicesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChoicesTask.swift; path = Model/ChoicesTask.swift; sourceTree = "<group>"; };
 		D86C79D81E6DDDBF00A8A801 /* Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Form.swift; path = Model/Form.swift; sourceTree = "<group>"; };
@@ -351,7 +338,6 @@
 		D86C79E01E6DDDBF00A8A801 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Template.swift; path = Model/Template.swift; sourceTree = "<group>"; };
 		D86C79E11E6DDDBF00A8A801 /* TextResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextResult.swift; path = Model/TextResult.swift; sourceTree = "<group>"; };
 		D86C79E21E6DDDBF00A8A801 /* TextTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextTask.swift; path = Model/TextTask.swift; sourceTree = "<group>"; };
-		D86C7A051E6DDE6800A8A801 /* _FTLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _FTLocation.swift; path = Model/_FTLocation.swift; sourceTree = "<group>"; };
 		D86C7A061E6DDE6800A8A801 /* FTLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FTLocation.swift; path = Model/FTLocation.swift; sourceTree = "<group>"; };
 		D87390161E3BCC5500142FD6 /* PhotoFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFileList.swift; path = Data/PhotoFileList.swift; sourceTree = "<group>"; };
 		D89299CB1E64FABC00CC2070 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Images/refresh.png; sourceTree = "<group>"; };
@@ -378,6 +364,20 @@
 		D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SynchronizedArray.swift; path = Data/SynchronizedArray.swift; sourceTree = "<group>"; };
 		D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsMgr.swift; path = Singletons/FormsMgr.swift; sourceTree = "<group>"; };
 		D8B820D81E678F0B005527C9 /* FUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FUISwitch.swift; path = Extensions/FUISwitch.swift; sourceTree = "<group>"; };
+		D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataMgr.swift; path = Model/CoreDataMgr.swift; sourceTree = "<group>"; };
+		D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _ChoicesResult.swift; path = Model/_ChoicesResult.swift; sourceTree = "<group>"; };
+		D8E4B78A1E6F34C200BDE823 /* _ChoicesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _ChoicesTask.swift; path = Model/_ChoicesTask.swift; sourceTree = "<group>"; };
+		D8E4B78B1E6F34C200BDE823 /* _Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Form.swift; path = Model/_Form.swift; sourceTree = "<group>"; };
+		D8E4B78C1E6F34C200BDE823 /* _FTLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _FTLocation.swift; path = Model/_FTLocation.swift; sourceTree = "<group>"; };
+		D8E4B78D1E6F34C200BDE823 /* _NumberResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _NumberResult.swift; path = Model/_NumberResult.swift; sourceTree = "<group>"; };
+		D8E4B78E1E6F34C200BDE823 /* _NumberTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _NumberTask.swift; path = Model/_NumberTask.swift; sourceTree = "<group>"; };
+		D8E4B78F1E6F34C200BDE823 /* _PhotosResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _PhotosResult.swift; path = Model/_PhotosResult.swift; sourceTree = "<group>"; };
+		D8E4B7901E6F34C200BDE823 /* _PhotosTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _PhotosTask.swift; path = Model/_PhotosTask.swift; sourceTree = "<group>"; };
+		D8E4B7911E6F34C200BDE823 /* _Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Task.swift; path = Model/_Task.swift; sourceTree = "<group>"; };
+		D8E4B7921E6F34C200BDE823 /* _TaskResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TaskResult.swift; path = Model/_TaskResult.swift; sourceTree = "<group>"; };
+		D8E4B7931E6F34C200BDE823 /* _Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Template.swift; path = Model/_Template.swift; sourceTree = "<group>"; };
+		D8E4B7941E6F34C200BDE823 /* _TextResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TextResult.swift; path = Model/_TextResult.swift; sourceTree = "<group>"; };
+		D8E4B7951E6F34C200BDE823 /* _TextTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TextTask.swift; path = Model/_TextTask.swift; sourceTree = "<group>"; };
 		D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 76.png"; path = "Images/Icon 76.png"; sourceTree = "<group>"; };
 		D8F1D6DD1E53A8F200A07F70 /* Icon 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 120.png"; path = "Images/Icon 120.png"; sourceTree = "<group>"; };
 		D8F1D6DE1E53A8F200A07F70 /* Icon 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 152.png"; path = "Images/Icon 152.png"; sourceTree = "<group>"; };
@@ -539,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				D8F1D7131E53A96900A07F70 /* TaskUtitlities.swift */,
+				D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */,
 				D86C79C01E6DDD9600A8A801 /* Model */,
 			);
 			name = "Data Classes";
@@ -565,7 +566,19 @@
 		D86C79C01E6DDD9600A8A801 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D86C7A091E6DE03600A8A801 /* concrete classes */,
+				D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */,
+				D8E4B78A1E6F34C200BDE823 /* _ChoicesTask.swift */,
+				D8E4B78B1E6F34C200BDE823 /* _Form.swift */,
+				D8E4B78C1E6F34C200BDE823 /* _FTLocation.swift */,
+				D8E4B78D1E6F34C200BDE823 /* _NumberResult.swift */,
+				D8E4B78E1E6F34C200BDE823 /* _NumberTask.swift */,
+				D8E4B78F1E6F34C200BDE823 /* _PhotosResult.swift */,
+				D8E4B7901E6F34C200BDE823 /* _PhotosTask.swift */,
+				D8E4B7911E6F34C200BDE823 /* _Task.swift */,
+				D8E4B7921E6F34C200BDE823 /* _TaskResult.swift */,
+				D8E4B7931E6F34C200BDE823 /* _Template.swift */,
+				D8E4B7941E6F34C200BDE823 /* _TextResult.swift */,
+				D8E4B7951E6F34C200BDE823 /* _TextTask.swift */,
 				D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */,
 				D86C79D21E6DDDBF00A8A801 /* ChoicesResult.swift */,
 				D86C79D31E6DDDBF00A8A801 /* ChoicesTask.swift */,
@@ -582,27 +595,6 @@
 				D86C79E21E6DDDBF00A8A801 /* TextTask.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		D86C7A091E6DE03600A8A801 /* concrete classes */ = {
-			isa = PBXGroup;
-			children = (
-				D86C7A051E6DDE6800A8A801 /* _FTLocation.swift */,
-				D86C79C11E6DDDBF00A8A801 /* _ChoicesResult.swift */,
-				D86C79C21E6DDDBF00A8A801 /* _ChoicesTask.swift */,
-				D86C79C61E6DDDBF00A8A801 /* _FileName.swift */,
-				D86C79C71E6DDDBF00A8A801 /* _Form.swift */,
-				D86C79C91E6DDDBF00A8A801 /* _NumberResult.swift */,
-				D86C79CA1E6DDDBF00A8A801 /* _NumberTask.swift */,
-				D86C79CB1E6DDDBF00A8A801 /* _PhotosResult.swift */,
-				D86C79CC1E6DDDBF00A8A801 /* _PhotosTask.swift */,
-				D86C79CD1E6DDDBF00A8A801 /* _Task.swift */,
-				D86C79CE1E6DDDBF00A8A801 /* _TaskResult.swift */,
-				D86C79CF1E6DDDBF00A8A801 /* _Template.swift */,
-				D86C79D01E6DDDBF00A8A801 /* _TextResult.swift */,
-				D86C79D11E6DDDBF00A8A801 /* _TextTask.swift */,
-			);
-			name = "concrete classes";
 			sourceTree = "<group>";
 		};
 		D8C165CB1E47EBEE00129439 /* Extensions */ = {
@@ -1000,38 +992,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8B4388F1E6B870A00FDCB0B /* FormsMgr.swift in Sources */,
+				D8E4B7AA1E6F34C200BDE823 /* _Template.swift in Sources */,
 				D86BF77A1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
 				D86C79F51E6DDDBF00A8A801 /* ChoicesTask.swift in Sources */,
-				D86C79EF1E6DDDBF00A8A801 /* _Task.swift in Sources */,
 				D86BF72D1E6397EC00884277 /* LocationsMgr.swift in Sources */,
+				D8E4B7601E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */,
 				D86BF7681E64A42500884277 /* TemplateEditor.swift in Sources */,
+				D8E4B7A61E6F34C200BDE823 /* _Task.swift in Sources */,
+				D8E4B7A81E6F34C200BDE823 /* _TaskResult.swift in Sources */,
 				D8F1D71A1E53A96900A07F70 /* TaskUtitlities.swift in Sources */,
 				D86C7A041E6DDDBF00A8A801 /* TextTask.swift in Sources */,
 				D86BF7761E64A43800884277 /* ChoicesTaskViewer.swift in Sources */,
-				D86C79EC1E6DDDBF00A8A801 /* _NumberTask.swift in Sources */,
+				D8E4B7A21E6F34C200BDE823 /* _PhotosResult.swift in Sources */,
 				D835A3E51E635C31002C3EB1 /* UILabel.swift in Sources */,
 				D86BF76E1E64A42500884277 /* TemplatesTable.swift in Sources */,
 				D835A3E21E635C31002C3EB1 /* Double.swift in Sources */,
 				D86C79FA1E6DDDBF00A8A801 /* Form.swift in Sources */,
+				D8E4B79A1E6F34C200BDE823 /* _Form.swift in Sources */,
 				D86BF76C1E64A42500884277 /* TemplatesViewer.swift in Sources */,
 				D82411A51E315517006D06E2 /* FormTasksViewer.swift in Sources */,
-				D86C79ED1E6DDDBF00A8A801 /* _PhotosResult.swift in Sources */,
 				D89770D51E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
+				D8E4B79C1E6F34C200BDE823 /* _FTLocation.swift in Sources */,
 				D835A3E91E635C31002C3EB1 /* UIViewController.swift in Sources */,
 				D86C7A031E6DDDBF00A8A801 /* TextResult.swift in Sources */,
 				D86C79F41E6DDDBF00A8A801 /* ChoicesResult.swift in Sources */,
 				D835A3E71E635C31002C3EB1 /* UITextField.swift in Sources */,
 				D86BF77C1E64A43800884277 /* TaskController.swift in Sources */,
+				D8E4B7AC1E6F34C200BDE823 /* _TextResult.swift in Sources */,
+				D8E4B7981E6F34C200BDE823 /* _ChoicesTask.swift in Sources */,
+				D8E4B7AE1E6F34C200BDE823 /* _TextTask.swift in Sources */,
 				D86BF72E1E6397EC00884277 /* ServerMgr.swift in Sources */,
 				D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */,
-				D86C79F11E6DDDBF00A8A801 /* _Template.swift in Sources */,
 				D86BF7781E64A43800884277 /* NumberTaskViewer.swift in Sources */,
 				D86C7A021E6DDDBF00A8A801 /* Template.swift in Sources */,
 				D82411A11E301BE6006D06E2 /* FormsViewer.swift in Sources */,
-				D86C7A071E6DDE6800A8A801 /* _FTLocation.swift in Sources */,
+				D8E4B79E1E6F34C200BDE823 /* _NumberResult.swift in Sources */,
 				D835A3E61E635C31002C3EB1 /* UITableViewCell.swift in Sources */,
 				D86BF72F1E6397EC00884277 /* TemplatesMgr.swift in Sources */,
-				D86C79F01E6DDDBF00A8A801 /* _TaskResult.swift in Sources */,
 				D817539D1E675BED003D8033 /* PhotosTaskEditor.swift in Sources */,
 				D86C79FF1E6DDDBF00A8A801 /* PhotosTask.swift in Sources */,
 				D86BF7801E64A43800884277 /* TextTaskViewer.swift in Sources */,
@@ -1040,32 +1037,27 @@
 				D86C7A081E6DDE6800A8A801 /* FTLocation.swift in Sources */,
 				D89299D01E65E6D300CC2070 /* TaskEditor.swift in Sources */,
 				D89770C01E5BC49200A9318D /* FormsTable.swift in Sources */,
+				D8E4B7A01E6F34C200BDE823 /* _NumberTask.swift in Sources */,
 				D89770D21E5CBBFD00A9318D /* LocationEditor.swift in Sources */,
-				D86C79F21E6DDDBF00A8A801 /* _TextResult.swift in Sources */,
 				D835A3E81E635C31002C3EB1 /* UITextView.swift in Sources */,
-				D86C79E81E6DDDBF00A8A801 /* _FileName.swift in Sources */,
-				D86C79EB1E6DDDBF00A8A801 /* _NumberResult.swift in Sources */,
 				D835A3E31E635C31002C3EB1 /* FUIButton.swift in Sources */,
 				D86C79FD1E6DDDBF00A8A801 /* NumberTask.swift in Sources */,
-				D86C79E41E6DDDBF00A8A801 /* _ChoicesTask.swift in Sources */,
 				D86BF77E1E64A43800884277 /* TasksViewer.swift in Sources */,
-				D86C79E31E6DDDBF00A8A801 /* _ChoicesResult.swift in Sources */,
 				D86C79FE1E6DDDBF00A8A801 /* PhotosResult.swift in Sources */,
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D86C79FC1E6DDDBF00A8A801 /* NumberResult.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
 				D835A3E41E635C31002C3EB1 /* UIImage.swift in Sources */,
 				D86C7A011E6DDDBF00A8A801 /* TaskResult.swift in Sources */,
+				D8E4B7961E6F34C200BDE823 /* _ChoicesResult.swift in Sources */,
 				D87390171E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
-				D86C79EE1E6DDDBF00A8A801 /* _PhotosTask.swift in Sources */,
+				D8E4B7A41E6F34C200BDE823 /* _PhotosTask.swift in Sources */,
 				D86BF7621E64A2B100884277 /* TasksToolbar.swift in Sources */,
 				D85C8C0E1E45289300B5404F /* LocationsViewer.swift in Sources */,
 				D81753941E675B95003D8033 /* NumberTaskEditor.swift in Sources */,
 				D8F1D70E1E53A92700A07F70 /* FormViewer.swift in Sources */,
 				D86C7A001E6DDDBF00A8A801 /* Task.swift in Sources */,
-				D86C79F31E6DDDBF00A8A801 /* _TextTask.swift in Sources */,
 				D86BF7261E638F3D00884277 /* Shared.swift in Sources */,
-				D86C79E91E6DDDBF00A8A801 /* _Form.swift in Sources */,
 				D81753971E675BAD003D8033 /* TaskTypeEditor.swift in Sources */,
 				D8B820D91E678F0B005527C9 /* FUISwitch.swift in Sources */,
 				D89299D31E65F5C900CC2070 /* TextTaskEditor.swift in Sources */,
@@ -1077,74 +1069,74 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8B438901E6B870A00FDCB0B /* FormsMgr.swift in Sources */,
+				D8E4B7AB1E6F34C200BDE823 /* _Template.swift in Sources */,
 				D86C7A191E6DEBFD00A8A801 /* ChoicesTask.swift in Sources */,
 				D86C7A1F1E6DEBFD00A8A801 /* NumberTask.swift in Sources */,
 				D86BF77B1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
 				D84AAF2D1E4531EA000D584F /* LocationsViewer.swift in Sources */,
+				D8E4B7611E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */,
+				D8E4B7A71E6F34C200BDE823 /* _Task.swift in Sources */,
+				D8E4B7A91E6F34C200BDE823 /* _TaskResult.swift in Sources */,
 				D86C7A241E6DEBFD00A8A801 /* Template.swift in Sources */,
 				D86C7A1D1E6DEBFD00A8A801 /* FTLocation.swift in Sources */,
-				D86C7A121E6DEBF600A8A801 /* _PhotosTask.swift in Sources */,
 				D82411A61E315517006D06E2 /* FormTasksViewer.swift in Sources */,
+				D8E4B7A31E6F34C200BDE823 /* _PhotosResult.swift in Sources */,
 				D86C7A261E6DEBFD00A8A801 /* TextTask.swift in Sources */,
 				D86BF7301E63982800884277 /* LocationsMgr.swift in Sources */,
 				D86BF7771E64A43800884277 /* ChoicesTaskViewer.swift in Sources */,
 				D86C7A231E6DEBFD00A8A801 /* TaskResult.swift in Sources */,
+				D8E4B79B1E6F34C200BDE823 /* _Form.swift in Sources */,
 				D86BF7691E64A42500884277 /* TemplateEditor.swift in Sources */,
 				D85D53CA1D710750006D31F2 /* FieldTasksApp.xcdatamodeld in Sources */,
 				D86BF76F1E64A42500884277 /* TemplatesTable.swift in Sources */,
+				D8E4B79D1E6F34C200BDE823 /* _FTLocation.swift in Sources */,
 				D86BF7271E63974500884277 /* Shared.swift in Sources */,
-				D86C7A0A1E6DEBF600A8A801 /* _FTLocation.swift in Sources */,
 				D82411A31E301D5A006D06E2 /* FormsViewer.swift in Sources */,
 				D835A3EC1E635C58002C3EB1 /* Double.swift in Sources */,
 				D86BF76D1E64A42500884277 /* TemplatesViewer.swift in Sources */,
-				D86C7A161E6DEBF600A8A801 /* _TextResult.swift in Sources */,
 				D86C7A1C1E6DEBFD00A8A801 /* Form.swift in Sources */,
+				D8E4B7AD1E6F34C200BDE823 /* _TextResult.swift in Sources */,
+				D8E4B7991E6F34C200BDE823 /* _ChoicesTask.swift in Sources */,
+				D8E4B7AF1E6F34C200BDE823 /* _TextTask.swift in Sources */,
 				D835A3F31E635C58002C3EB1 /* UIViewController.swift in Sources */,
 				D835A3EF1E635C58002C3EB1 /* UILabel.swift in Sources */,
 				D86C7A1E1E6DEBFD00A8A801 /* NumberResult.swift in Sources */,
 				D86C7A211E6DEBFD00A8A801 /* PhotosTask.swift in Sources */,
 				D86BF77D1E64A43800884277 /* TaskController.swift in Sources */,
-				D86C7A0F1E6DEBF600A8A801 /* _NumberResult.swift in Sources */,
+				D8E4B79F1E6F34C200BDE823 /* _NumberResult.swift in Sources */,
 				D835A3ED1E635C58002C3EB1 /* FUIButton.swift in Sources */,
 				D86BF7791E64A43800884277 /* NumberTaskViewer.swift in Sources */,
 				D86C7A201E6DEBFD00A8A801 /* PhotosResult.swift in Sources */,
-				D86C7A0B1E6DEBF600A8A801 /* _ChoicesResult.swift in Sources */,
 				D89770C11E5BC49200A9318D /* FormsTable.swift in Sources */,
 				D86BF7311E63982800884277 /* ServerMgr.swift in Sources */,
 				D86C7A221E6DEBFD00A8A801 /* Task.swift in Sources */,
 				D8F1D71B1E53A96900A07F70 /* TaskUtitlities.swift in Sources */,
 				D817539E1E675BED003D8033 /* PhotosTaskEditor.swift in Sources */,
 				D86BF7811E64A43800884277 /* TextTaskViewer.swift in Sources */,
-				D86C7A141E6DEBF600A8A801 /* _TaskResult.swift in Sources */,
-				D86C7A0E1E6DEBF600A8A801 /* _Form.swift in Sources */,
 				D835A3F01E635C58002C3EB1 /* UITableViewCell.swift in Sources */,
+				D8E4B7A11E6F34C200BDE823 /* _NumberTask.swift in Sources */,
 				D81753A11E675C34003D8033 /* ChoicesTaskEditor.swift in Sources */,
 				D89299D11E65E6D300CC2070 /* TaskEditor.swift in Sources */,
 				D86C7A251E6DEBFD00A8A801 /* TextResult.swift in Sources */,
 				D86BF7321E63982800884277 /* TemplatesMgr.swift in Sources */,
 				D86BF76B1E64A42500884277 /* TemplateEditorTable.swift in Sources */,
 				D86BF77F1E64A43800884277 /* TasksViewer.swift in Sources */,
-				D86C7A0C1E6DEBF600A8A801 /* _ChoicesTask.swift in Sources */,
-				D86C7A111E6DEBF600A8A801 /* _PhotosResult.swift in Sources */,
 				D835A3F11E635C58002C3EB1 /* UITextField.swift in Sources */,
 				D8F1D70F1E53A92700A07F70 /* FormViewer.swift in Sources */,
 				D835A3EE1E635C58002C3EB1 /* UIImage.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
+				D8E4B7971E6F34C200BDE823 /* _ChoicesResult.swift in Sources */,
 				D835A3F21E635C58002C3EB1 /* UITextView.swift in Sources */,
+				D8E4B7A51E6F34C200BDE823 /* _PhotosTask.swift in Sources */,
 				D85D53E11D711051006D31F2 /* Globals.swift in Sources */,
-				D86C7A131E6DEBF600A8A801 /* _Task.swift in Sources */,
 				D81753951E675B95003D8033 /* NumberTaskEditor.swift in Sources */,
 				D86C7A181E6DEBFD00A8A801 /* ChoicesResult.swift in Sources */,
 				D86BF7631E64A2B100884277 /* TasksToolbar.swift in Sources */,
 				D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
-				D86C7A151E6DEBF600A8A801 /* _Template.swift in Sources */,
-				D86C7A0D1E6DEBF600A8A801 /* _FileName.swift in Sources */,
 				D89770D31E5CBBFD00A9318D /* LocationEditor.swift in Sources */,
 				D81753981E675BAD003D8033 /* TaskTypeEditor.swift in Sources */,
-				D86C7A101E6DEBF600A8A801 /* _NumberTask.swift in Sources */,
 				D8B820DA1E678F0B005527C9 /* FUISwitch.swift in Sources */,
-				D86C7A171E6DEBF600A8A801 /* _TextTask.swift in Sources */,
 				D89299D41E65F5C900CC2070 /* TextTaskEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
