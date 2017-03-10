@@ -64,7 +64,7 @@ class TaskEditor : UIViewController {
         }
 
         nameField.text = task?.name ?? ""
-        descriptionField.text = task?.description ?? ""
+        descriptionField.text = task?.descriptionString ?? ""
         requiredSwitch.isOn = task?.required!.boolValue ?? false
     }
 

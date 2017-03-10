@@ -35,6 +35,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         titleField.text = template!.name
         titleField.addHideKeyboardButton()
         editButton.makeFlatButton()
+        editButton.isHidden = true
         if let template = template {
             titleField.text = template.name
         }
@@ -53,6 +54,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         if let task = TaskFromType(type: taskType) {
             listController?.tasks += [task]
             listController?.openTaskEditor(task: task)
+            editButton.isHidden = false
         }
     }
 
@@ -72,6 +74,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
                 if let error = error {
                     FTAlertError(message: error)
                 } else {
+                    CoreDataMgr.shared.save()
                     self.dismiss(animated: true) { }
                 }
             }

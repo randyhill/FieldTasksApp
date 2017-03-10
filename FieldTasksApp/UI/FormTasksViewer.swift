@@ -88,7 +88,7 @@ class FormTasksViewer : UITableViewController {
 
     func validate() -> String? {
         if form!.locationId == "" {
-            return "You must pick your location to submit a form"
+            return "You must pick a location to save the form to"
         }
         if let incompleteTasks = form!.tasksStillIncomplete() {
             return "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form"

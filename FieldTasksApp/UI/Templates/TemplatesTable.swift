@@ -37,7 +37,7 @@ class TemplatesTable: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.refreshList()
+        self.updateList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,19 +56,42 @@ class TemplatesTable: UITableViewController {
     // MARK: Refresh Methods -------------------------------------------------------------------------------
 
     // List/Picker show all templates, Location only it's own templates
-    func refreshList() {
+//    func refreshList() {
+//        switch parentTemplatesViewer!.style {
+//        case .List,.Picker:
+//            TemplatesMgr.shared.syncList(completion: { (error ) in
+//                FTAssertString(error: error)
+//                // Picker is only showing templates that aren't already in location
+//                let templates = TemplatesMgr.shared.all()
+//                if self.parentTemplatesViewer?.style == .Picker {
+//                    self.templatesList = self.filterTemplates(location: self.parentTemplatesViewer!.location!, templates: templates)
+//                } else {
+//                    self.templatesList = templates
+//                    self.refreshOnMainThread()
+//                }
+//            })
+//        case .Location:
+//            if let location = parentTemplatesViewer?.location {
+//                self.templatesList = TemplatesMgr.shared.templatesFromId(idList: location.templateIds())
+//            }
+//            self.refreshOnMainThread()
+//       }
+//    }
+
+    func serverRefresh() {
+        TemplatesMgr.shared.syncList(completion: { (error ) in
+            FTAssertString(error: error)
+            self.updateList()
+        })
+    }
+
+    func updateList() {
+        let templates = TemplatesMgr.shared.all()
         switch parentTemplatesViewer!.style {
-        case .List,.Picker:
-            TemplatesMgr.shared.syncList(completion: { (error ) in
-                FTErrorMessage(error: "Failed to load templates: \(error)")
-                // Picker is only showing templates that aren't already in location
-                let templates = TemplatesMgr.shared.all()
-                if self.parentTemplatesViewer?.style == .Picker {
-                    self.templatesList = self.filterTemplates(location: self.parentTemplatesViewer!.location!, templates: templates)
-                } else {
-                    self.templatesList = templates
-                }
-            })
+        case .List:
+            self.templatesList = templates
+        case .Picker:
+            self.templatesList = self.filterTemplates(location: self.parentTemplatesViewer!.location!, templates: templates)
         case .Location:
             if let location = parentTemplatesViewer?.location {
                 self.templatesList = TemplatesMgr.shared.templatesFromId(idList: location.templateIds())
@@ -152,7 +175,7 @@ class TemplatesTable: UITableViewController {
                     FTErrorMessage(error: "Could not update location: \(error)")
                 }
             })
-            self.refreshList()
+            self.updateList()
         }
     }
 

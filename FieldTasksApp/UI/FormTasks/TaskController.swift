@@ -25,7 +25,7 @@ func initParentTaskControllerArea(view: UIView, parentController: TasksViewer, t
     if let descriptionView = parentController.taskDescription, let label = parentController.descriptionLabel,
         let descriptionHeight = parentController.descriptionHeight, let descriptionTitle = parentController.descriptionTitleConstraint,
         let requiredConstraint = parentController.requiredConstraint, let requiredLabel = parentController.requiredLabel {
-        if task.description.characters.count == 0 {
+        if task.descriptionString!.characters.count == 0 {
             // No Description, hide title/field
             label.isHidden = true
             descriptionView.isHidden = true

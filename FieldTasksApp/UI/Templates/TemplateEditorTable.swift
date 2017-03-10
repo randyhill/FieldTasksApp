@@ -24,8 +24,8 @@ class TaskCell : UITableViewCell {
 
         // Enter text
         self.typeText.text = task.type! + (task.required!.boolValue ? " (Required)" : "")
-        self.titleText.text = task.name
-        self.descriptionText.text = "Description: \(task.description)"
+        self.titleText.text = task.name!
+        self.descriptionText.text = "Description: \(task.descriptionString!)"
         self.lengthText.text = task.taskDescriptionString()
     }
 }
@@ -55,7 +55,8 @@ class TemplateEditorTable : UITableViewController {
         if tasks.count > 0 {
             tasks.removeLast()
             self.tableView.reloadData()
-        }
+            parentTemplateEditor?.editButton.isHidden = (tasks.count == 0)
+       }
     }
 
     // MARK: Table Methods -------------------------------------------------------------------------------
@@ -64,6 +65,7 @@ class TemplateEditorTable : UITableViewController {
         let title = tableView.isEditing ? "Done" : "Edit"
         button.setTitle(title, for: .normal)
         button.setTitle(title, for: .highlighted)
+        parentTemplateEditor?.editButton.isHidden = (tasks.count == 0)
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

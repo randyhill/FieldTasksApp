@@ -26,7 +26,7 @@ let cLocationTemplatesURL = cBaseURL + "/locations/templates"
 let cUploadPhotoURL = cBaseURL + "/upload"
 let cDownloadPhotoURL = cBaseURL + "/download/"
 
-typealias loadListCallback = (_ result: [AnyObject]?, _ timeStamp: Date?,  _ error: String?)->()
+typealias loadListCallback = (_ result: [AnyObject]?, _ timeStamp: Date,  _ error: String?)->()
 
 class ServerMgr {
     static let shared = ServerMgr()
@@ -46,10 +46,10 @@ class ServerMgr {
             DispatchQueue.main.async() {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
+            // If we can't parse server timestamp just use now
             if let error = error {
-                completion(nil, nil, error.localizedDescription)
+                completion(nil, Date(), error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
-                // If we can't parse server timestamp just use now
                 var timeStamp = Date()
                 if let timeStampString = httpResponse.allHeaderFields["Date"] as? String, let serverDate =  Globals.shared.serverStringToDate(dateString: timeStampString) {
                     timeStamp =  serverDate

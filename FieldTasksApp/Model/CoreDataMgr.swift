@@ -72,7 +72,9 @@ class CoreDataMgr {
     }
 
     func fetchObjects(entityName: String) -> [Any]? {
+        // Add predicate so we don't return subclasses of the class
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "entity=%@", entityName)
         do {
             let objects = try context!.fetch(fetchRequest)
             return objects
@@ -103,7 +105,11 @@ class CoreDataMgr {
 
     func createTemplate() -> Template {
         let entity = NSEntityDescription.entity(forEntityName: "Template", in: context!)
-        return Template(entity: entity!, insertInto: context)
+        let template = Template(entity: entity!, insertInto: context)
+        template.descriptionString = ""
+        template.id = ""
+        template.name = ""
+        return template
     }
 
     func createForm() -> Form {
@@ -142,26 +148,30 @@ class CoreDataMgr {
         case "TextTask":
             task = TextTask(entity: entity!, insertInto: context)
             if let task = task as? TextTask {
-                task.isUnlimited = false
+                task.isUnlimited = true
                 task.max = 0
+                task.type = TaskType.Text.rawValue
             }
         case "NumberTask":
             task = NumberTask(entity: entity!, insertInto: context)
             if let task = task as? NumberTask {
                 task.isDecimal = false
-                task.isUnlimited = false
+                task.isUnlimited = true
                 task.min = 0
                 task.max = 0
+                task.type = TaskType.Number.rawValue
             }
         case "ChoicesTask":
             task = ChoicesTask(entity: entity!, insertInto: context)
             if let task = task as? ChoicesTask {
                 task.isRadio =  false
+                task.type = TaskType.Choices.rawValue
             }
         case "PhotosTask":
             task = PhotosTask(entity: entity!, insertInto: context)
             if let task = task as? PhotosTask {
-                task.isSingle = false
+                task.isSingle = true
+                task.type = TaskType.Photos.rawValue
             }
         default:
             FTErrorMessage(error: "Unknown entity name, could not create Task")
@@ -171,7 +181,6 @@ class CoreDataMgr {
         task?.id = ""
         task?.name = ""
         task?.required = false
-        task?.type = ""
         return task!
     }
 

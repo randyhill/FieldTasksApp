@@ -8,7 +8,7 @@ open class NumberTask: _NumberTask {
     var minString : String {
         get {
             if isDecimal!.boolValue {
-                return "\(min)"
+                return "\(min!)"
             } else {
                 let intMin = min!
                 return "\(intMin)"

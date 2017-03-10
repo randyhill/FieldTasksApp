@@ -50,7 +50,7 @@ open class Task: _Task {
         taskDict["required"] = required as AnyObject?
         taskDict["description"] = descriptionString as AnyObject?
         taskDict["data"] = taskDescriptionDict() as AnyObject?
-        taskDict["results"] = result!.toDict() as AnyObject?
+        taskDict["results"] = result?.toDict() as AnyObject?
         taskDict["name"] = name as AnyObject?
         return taskDict
     }

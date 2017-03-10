@@ -41,6 +41,7 @@ class TemplatesMgr {
             if let error = error {
                 completion(error)
             } else {
+                self.lastSync = timeStamp
                 if let templateList = result  {
                     let error = SyncTemplates.syncList(newList: templateList)
                     completion(error)
@@ -90,7 +91,6 @@ class TemplatesMgr {
                     // Update with id, and any other changes.
                     template.fromDict(templateDict: resultDict)
                     CoreDataMgr.shared.save()
-//                    self.hash[template.id!] = template
                 }
                 completion(error)
             }

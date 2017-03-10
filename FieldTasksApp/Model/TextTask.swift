@@ -23,6 +23,6 @@ open class TextTask: _TextTask {
     }
     
     override func taskDescriptionString() -> String {
-        return (isUnlimited! == 1) ? "Unlimited length" : "Maximum length: \(max)"
+        return (isUnlimited! == 1) ? "Unlimited length" : "Maximum length: \(max!)"
     }
 }

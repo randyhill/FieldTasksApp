@@ -567,6 +567,7 @@
 		D86C79C01E6DDD9600A8A801 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */,
 				D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */,
 				D8E4B78A1E6F34C200BDE823 /* _ChoicesTask.swift */,
 				D8E4B78B1E6F34C200BDE823 /* _Form.swift */,
@@ -580,7 +581,6 @@
 				D8E4B7931E6F34C200BDE823 /* _Template.swift */,
 				D8E4B7941E6F34C200BDE823 /* _TextResult.swift */,
 				D8E4B7951E6F34C200BDE823 /* _TextTask.swift */,
-				D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */,
 				D86C79D21E6DDDBF00A8A801 /* ChoicesResult.swift */,
 				D86C79D31E6DDDBF00A8A801 /* ChoicesTask.swift */,
 				D86C79D81E6DDDBF00A8A801 /* Form.swift */,

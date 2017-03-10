@@ -101,7 +101,7 @@ class TemplatesViewer : UIViewController {
     }
 
     func refreshList() {
-        listController?.refreshList()
+        listController?.serverRefresh()
     }
 }
 
