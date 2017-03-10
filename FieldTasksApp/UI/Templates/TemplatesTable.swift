@@ -59,20 +59,16 @@ class TemplatesTable: UITableViewController {
     func refreshList() {
         switch parentTemplatesViewer!.style {
         case .List,.Picker:
-            TemplatesMgr.shared.refreshList(location: nil) { (templates, err ) in
-                if let error = err {
-                    FTErrorMessage(error: "Failed to load templates: \(error)")
+            TemplatesMgr.shared.syncList(completion: { (error ) in
+                FTErrorMessage(error: "Failed to load templates: \(error)")
+                // Picker is only showing templates that aren't already in location
+                let templates = TemplatesMgr.shared.all()
+                if self.parentTemplatesViewer?.style == .Picker {
+                    self.templatesList = self.filterTemplates(location: self.parentTemplatesViewer!.location!, templates: templates)
                 } else {
-                    if let templates = templates {
-                        // Picker is only showing templates that aren't already in location
-                        if self.parentTemplatesViewer?.style == .Picker {
-                            self.templatesList = self.filterTemplates(location: self.parentTemplatesViewer!.location!, templates: templates)
-                        } else {
-                            self.templatesList = templates
-                        }
-                    }
+                    self.templatesList = templates
                 }
-            }
+            })
         case .Location:
             if let location = parentTemplatesViewer?.location {
                 self.templatesList = TemplatesMgr.shared.templatesFromId(idList: location.templateIds())
@@ -168,7 +164,7 @@ class TemplatesTable: UITableViewController {
                     if let error = error {
                         self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
                     } else {
-                        self.templatesList = TemplatesMgr.shared.templateList()
+                        self.templatesList = TemplatesMgr.shared.all()
                         self.refreshOnMainThread()
                     }
                 })
@@ -180,11 +176,11 @@ class TemplatesTable: UITableViewController {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TemplateCell", for: indexPath as IndexPath)
         if let cell = cell as? TemplateCell {
-            let form = templatesList[indexPath.row]
-            cell.title!.text = form.name
-            cell.tasks!.text = "\(form.tasks.count)"
-            if form.description.characters.count > 0 {
-                cell.body!.text = "Description: \(form.description)"
+            let template = templatesList[indexPath.row]
+            cell.title!.text = template.name
+            cell.tasks!.text = "\(template.tasks.count)"
+            if template.descriptionString!.characters.count > 0 {
+                cell.body!.text = "Description: \(template.descriptionString!)"
             } else {
                 cell.body!.text = ""
             }

@@ -32,18 +32,19 @@ class FormTasksLocationCell : UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationName: UILabel!
 
-    func configureWithTask(locationId: String?) {
+    func configureWithTask(form: Form) {
         self.locationLabel.makeTitleStyle()
         self.locationName.makeTitleStyle()
         self.makeCellFlat()
 
         // Use location from form if set, otherwise use current lcoation
         var location : FTLocation?
-        if let locationId = locationId {
+        if let locationId = form.locationId {
             location = LocationsMgr.shared.getBy(id: locationId)
         }
         if location == nil {
-        location = LocationsMgr.shared.currentLocation()
+            location = LocationsMgr.shared.closestLocation()
+            form.locationId = location?.id ?? ""
         }
         var locationTitle = "Unknown"
         if let location = location {
@@ -60,7 +61,7 @@ class FormTasksViewer : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "New: \(form!.name)"
+        self.title = form!.name!
         self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Back", target: self, action: #selector(goBack))
         self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Submit", target: self, action: #selector(submitForm))
         makeNavBarFlat()
@@ -71,8 +72,8 @@ class FormTasksViewer : UITableViewController {
     }
 
     func submitForm() {
-        if let incompleteTasks = form!.tasksStillIncomplete() {
-            FTAlertMessage(message: "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form")
+        if let errorMessage = self.validate() {
+            FTAlertMessage(message: errorMessage)
         } else {
             form?.submit(completion: { (error) in
                 if error != nil {
@@ -83,6 +84,16 @@ class FormTasksViewer : UITableViewController {
                 }
             })
         }
+    }
+
+    func validate() -> String? {
+        if form!.locationId == "" {
+            return "You must pick your location to submit a form"
+        }
+        if let incompleteTasks = form!.tasksStillIncomplete() {
+            return "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form"
+        }
+        return nil
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -123,7 +134,7 @@ class FormTasksViewer : UITableViewController {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FormTasksLocationCell", for: indexPath as IndexPath)
             if let cell = cell as? FormTasksLocationCell {
-                cell.configureWithTask(locationId: form?.locationId)
+                cell.configureWithTask(form: form!)
             }
             return cell
 

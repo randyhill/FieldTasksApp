@@ -8,18 +8,11 @@ open class Task: _Task {
     var viewerId : String { get { return ""} }
 
     func fromDict(taskDict : [String : AnyObject]) {
-        if let name = taskDict["name"] as? String {
-            self.name = name
-        }
-        if let id = taskDict["_id"] as? String {
-            self.id = id
-        }
-        if let required = taskDict["required"] as? String {
-            self.required = (required == "true") ? true : false
-        }
-        if let description = taskDict["description"] as? String {
-            self.descriptionString = description
-        }
+        self.name = taskDict["name"] as? String ?? ""
+        self.id = taskDict["_id"] as? String ?? ""
+        self.required = taskDict["required"] as? NSNumber ?? 0
+        self.descriptionString = taskDict["description"] as? String ?? ""
+
         var dataDict = taskDict["data"] as? [String : AnyObject]
         if (dataDict == nil) {
             dataDict = [String : AnyObject]()
@@ -55,7 +48,7 @@ open class Task: _Task {
         taskDict["name"] = name as AnyObject?
         taskDict["type"] = type as AnyObject?
         taskDict["required"] = required as AnyObject?
-        taskDict["description"] = description as AnyObject?
+        taskDict["description"] = descriptionString as AnyObject?
         taskDict["data"] = taskDescriptionDict() as AnyObject?
         taskDict["results"] = result!.toDict() as AnyObject?
         taskDict["name"] = name as AnyObject?

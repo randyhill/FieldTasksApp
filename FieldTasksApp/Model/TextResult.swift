@@ -11,7 +11,7 @@ open class TextResult: _TextResult {
     }
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
-        dict["text"] = text as AnyObject?
+        dict["text"] = (text ?? "") as AnyObject?
         return dict
     }
 

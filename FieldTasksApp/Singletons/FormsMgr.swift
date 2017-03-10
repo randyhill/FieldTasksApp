@@ -10,8 +10,6 @@ import Foundation
 
 class FormsMgr {
     static let shared = FormsMgr()
-    private var submissions = [Form]()
-    private var unsubmitted = [String: Form]()
 
     init() {
         // Request access and initial location
@@ -24,36 +22,20 @@ class FormsMgr {
         ServerMgr.shared.loadForms(location: location) { (result, timeStamp, error) in
             FTAssertString(error: error)
             if let formList = result  {
-                self.submissions.removeAll()
-                for formObject in formList {
-                    if let formDict = formObject as? [String : Any] {
-                        let newForm = Form()
-                        newForm.fromDict(templateDict: formDict)
-                        self.submissions += [newForm]
-                    }
-                }
-                self.submissions.sort(by: { (formA, formB) -> Bool in
-                    return formA.createDate!.compare(formB.createDate!) == .orderedDescending
-                })
-                completion(self.submissions, error)
+                let error = SyncForms.syncList(newList: formList)
+                completion(nil, error)
             }
         }
     }
 
     func newForm(template: Template) -> Form {
-        let newForm = Form()
+        let newForm = CoreDataMgr.shared.createForm()
         newForm.initFromTemplate(template: template)
-        unsubmitted[template.id!] = newForm
         return newForm
     }
 
-    // Return form if it wasn't submitted
+    // Return form for  template if last form wasn't submitted
     func formExists(templateId: String) -> Form? {
-        return unsubmitted[templateId]
-    }
-
-    // Form was successfully submitted, clear it from unsubmitted list
-    func formSubmitted(form: Form) {
-        unsubmitted[form.templateId!] = nil
+        return CoreDataMgr.shared.fetchUnfinishedFormByTemplateId(templateId: templateId)
     }
 }

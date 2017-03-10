@@ -11,68 +11,65 @@ import Foundation
 
 class TemplatesMgr {
     static let shared = TemplatesMgr()
-    private var list = [Template]()
-    private var hash = [String: Template]()
+    var lastSync : Date?
+    let cSyncValue = "TemplatsSync"
 
     init() {
-        // Request access and initial location
-        self.refreshList(location: nil) { (templates, error) in
+        self.lastSync = Globals.getSettingsValue(key: cSyncValue) as? Date ?? Globals.shared.stringToDate(dateString: "2017-01-01")
+        self.syncList(completion: { (error) in
             FTAssertString(error: error)
-        }
+        })
     }
 
-    func refreshList(location: FTLocation?, completion: @escaping (_ list: [Template]?, _ error: String?)->()) {
+//    func refreshList(location: FTLocation?, completion: @escaping (_ list: [Template]?, _ error: String?)->()) {
+//        // Do any additional setup after loading the view, typically from a nib.
+//        ServerMgr.shared.loadTemplates( location: location) { (result, timeStamp, error) in
+//            if let error = error {
+//                completion(nil, error)
+//            } else {
+//                if let templateList = result  {
+//                    let error = SyncTemplates.syncList(newList: templateList)
+//                    completion(self.all(), error)
+//                }
+//            }
+//        }
+//    }
+
+    func syncList(completion: @escaping ( _ error: String?)->()) {
         // Do any additional setup after loading the view, typically from a nib.
-        ServerMgr.shared.loadTemplates(location: location) { (result, timeStamp, error) in
+        ServerMgr.shared.syncTemplates(sinceDate: self.lastSync!) { (result, timeStamp, error) in
             if let error = error {
-                completion(nil, error)
+                completion(error)
             } else {
                 if let templateList = result  {
-                    self.list.removeAll()
-                    for template in templateList {
-                        if let templateDict = template as? [String : AnyObject] {
-                            let template = CoreDataMgr.shared.createTemplate()
-                            template.fromDict(templateDict: templateDict)
-                            self.hash[template.id!] = template
-                            self.list += [template]
-                        }
-                    }
-                    completion(self.list, nil)
+                    let error = SyncTemplates.syncList(newList: templateList)
+                    completion(error)
                 }
             }
         }
     }
 
-    func templateList() -> [Template] {
-        return list
+    func all() -> [Template] {
+        if let list = CoreDataMgr.shared.fetchObjects(entityName: Template.entityName()) {
+            return list as! [Template]
+        }
+        return [Template]()
     }
 
     func templatesFromId(idList : [String]) -> [Template]{
-        var templates = [Template]()
-        for templateId in idList {
-            if let template = hash[templateId] {
-                templates += [template]
-            } else {
-                FTErrorMessage(error: "template with id: \(templateId) missing")
-            }
+        if let list = CoreDataMgr.shared.fetchObjectsWithIds(entityName: Template.entityName(), ids: idList) {
+            return list as! [Template]
         }
-        return templates
+        return [Template]()
     }
 
     private func removeTemplate(templateId : String) {
-        for i in 0 ..< list.count {
-            let template = list[i]
-            if template.id == templateId {
-                list.remove(at: i)
-                hash[templateId] = nil
-                break
-            }
-        }
+        CoreDataMgr.shared.removeObjectById(entityName: Template.entityName(), objectId: templateId)
     }
 
     func deleteTemplate(templateId : String, completion: @escaping (_ error : String?)->()) {
         var index = 0
-        for template in list {
+        for template in self.all() {
             if template.id == templateId {
                 ServerMgr.shared.deleteTemplate(templateId: templateId, completion: { (error) in
                     if error == nil {
@@ -88,17 +85,18 @@ class TemplatesMgr {
 
     func updateTemplate(template: Template, completion: @escaping (_ error : String?)->()) {
         if template.id == "" {
-            list += [template]
             ServerMgr.shared.newTemplate(template: template) { (resultDict, error ) in
                 if let resultDict = resultDict as? [String: AnyObject]{
                     // Update with id, and any other changes.
                     template.fromDict(templateDict: resultDict)
-                    self.hash[template.id!] = template
+                    CoreDataMgr.shared.save()
+//                    self.hash[template.id!] = template
                 }
                 completion(error)
             }
         } else {
             ServerMgr.shared.saveTemplate(template: template) { (error ) in
+                CoreDataMgr.shared.save()
                 completion(error)
             }
         }

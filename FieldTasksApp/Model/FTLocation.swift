@@ -24,7 +24,7 @@ open class FTLocation: _FTLocation {
 
     // MARK: Initialization/Serialization -------------------------------------------------------------------------------
 
-    func fromDict(locationDict : [String : AnyObject]) throws {
+    func fromDict(locationDict : [String : AnyObject]) {
         self.id = locationDict["_id"] as? String ?? ""
         self.name = locationDict["name"] as? String ?? ""
         self.street = locationDict["street"] as? String ?? ""

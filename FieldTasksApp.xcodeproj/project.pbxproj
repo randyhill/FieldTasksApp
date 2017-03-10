@@ -207,8 +207,6 @@
 		D89770C11E5BC49200A9318D /* FormsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsTable.swift */; };
 		D89770D21E5CBBFD00A9318D /* LocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* LocationEditor.swift */; };
 		D89770D31E5CBBFD00A9318D /* LocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* LocationEditor.swift */; };
-		D89770D51E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */; };
-		D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */; };
 		D8B4388F1E6B870A00FDCB0B /* FormsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */; };
 		D8B438901E6B870A00FDCB0B /* FormsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */; };
 		D8B820D91E678F0B005527C9 /* FUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B820D81E678F0B005527C9 /* FUISwitch.swift */; };
@@ -241,6 +239,8 @@
 		D8E4B7AD1E6F34C200BDE823 /* _TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7941E6F34C200BDE823 /* _TextResult.swift */; };
 		D8E4B7AE1E6F34C200BDE823 /* _TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7951E6F34C200BDE823 /* _TextTask.swift */; };
 		D8E4B7AF1E6F34C200BDE823 /* _TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7951E6F34C200BDE823 /* _TextTask.swift */; };
+		D8E4B7B41E70C2DB00BDE823 /* SyncObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7B31E70C2DB00BDE823 /* SyncObjects.swift */; };
+		D8E4B7B51E70C2DB00BDE823 /* SyncObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7B31E70C2DB00BDE823 /* SyncObjects.swift */; };
 		D8F1D6EB1E53A8F200A07F70 /* Icon 76.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */; };
 		D8F1D6EC1E53A8F200A07F70 /* Icon 76.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */; };
 		D8F1D6ED1E53A8F200A07F70 /* Icon 120.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DD1E53A8F200A07F70 /* Icon 120.png */; };
@@ -361,7 +361,6 @@
 		D89770B71E5BC09F00A9318D /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus@2x.png"; path = "Images/plus@2x.png"; sourceTree = "<group>"; };
 		D89770BF1E5BC49200A9318D /* FormsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsTable.swift; path = UI/FormsTable.swift; sourceTree = "<group>"; };
 		D89770D11E5CBBFD00A9318D /* LocationEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationEditor.swift; path = UI/LocationEditor.swift; sourceTree = "<group>"; };
-		D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SynchronizedArray.swift; path = Data/SynchronizedArray.swift; sourceTree = "<group>"; };
 		D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsMgr.swift; path = Singletons/FormsMgr.swift; sourceTree = "<group>"; };
 		D8B820D81E678F0B005527C9 /* FUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FUISwitch.swift; path = Extensions/FUISwitch.swift; sourceTree = "<group>"; };
 		D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataMgr.swift; path = Model/CoreDataMgr.swift; sourceTree = "<group>"; };
@@ -378,6 +377,7 @@
 		D8E4B7931E6F34C200BDE823 /* _Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Template.swift; path = Model/_Template.swift; sourceTree = "<group>"; };
 		D8E4B7941E6F34C200BDE823 /* _TextResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TextResult.swift; path = Model/_TextResult.swift; sourceTree = "<group>"; };
 		D8E4B7951E6F34C200BDE823 /* _TextTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TextTask.swift; path = Model/_TextTask.swift; sourceTree = "<group>"; };
+		D8E4B7B31E70C2DB00BDE823 /* SyncObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncObjects.swift; path = Model/SyncObjects.swift; sourceTree = "<group>"; };
 		D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 76.png"; path = "Images/Icon 76.png"; sourceTree = "<group>"; };
 		D8F1D6DD1E53A8F200A07F70 /* Icon 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 120.png"; path = "Images/Icon 120.png"; sourceTree = "<group>"; };
 		D8F1D6DE1E53A8F200A07F70 /* Icon 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 152.png"; path = "Images/Icon 152.png"; sourceTree = "<group>"; };
@@ -538,6 +538,7 @@
 		D8549BD81D68C9D7009DBE7A /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D8E4B7B31E70C2DB00BDE823 /* SyncObjects.swift */,
 				D8F1D7131E53A96900A07F70 /* TaskUtitlities.swift */,
 				D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */,
 				D86C79C01E6DDD9600A8A801 /* Model */,
@@ -664,7 +665,6 @@
 				D86BF72A1E6397EC00884277 /* LocationsMgr.swift */,
 				D86BF72B1E6397EC00884277 /* ServerMgr.swift */,
 				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
-				D89770D41E5E1B8C00A9318D /* SynchronizedArray.swift */,
 				D86BF72C1E6397EC00884277 /* TemplatesMgr.swift */,
 				D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */,
 			);
@@ -1011,7 +1011,6 @@
 				D8E4B79A1E6F34C200BDE823 /* _Form.swift in Sources */,
 				D86BF76C1E64A42500884277 /* TemplatesViewer.swift in Sources */,
 				D82411A51E315517006D06E2 /* FormTasksViewer.swift in Sources */,
-				D89770D51E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
 				D8E4B79C1E6F34C200BDE823 /* _FTLocation.swift in Sources */,
 				D835A3E91E635C31002C3EB1 /* UIViewController.swift in Sources */,
 				D86C7A031E6DDDBF00A8A801 /* TextResult.swift in Sources */,
@@ -1047,6 +1046,7 @@
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D86C79FC1E6DDDBF00A8A801 /* NumberResult.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
+				D8E4B7B41E70C2DB00BDE823 /* SyncObjects.swift in Sources */,
 				D835A3E41E635C31002C3EB1 /* UIImage.swift in Sources */,
 				D86C7A011E6DDDBF00A8A801 /* TaskResult.swift in Sources */,
 				D8E4B7961E6F34C200BDE823 /* _ChoicesResult.swift in Sources */,
@@ -1124,6 +1124,7 @@
 				D835A3F11E635C58002C3EB1 /* UITextField.swift in Sources */,
 				D8F1D70F1E53A92700A07F70 /* FormViewer.swift in Sources */,
 				D835A3EE1E635C58002C3EB1 /* UIImage.swift in Sources */,
+				D8E4B7B51E70C2DB00BDE823 /* SyncObjects.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
 				D8E4B7971E6F34C200BDE823 /* _ChoicesResult.swift in Sources */,
@@ -1133,7 +1134,6 @@
 				D81753951E675B95003D8033 /* NumberTaskEditor.swift in Sources */,
 				D86C7A181E6DEBFD00A8A801 /* ChoicesResult.swift in Sources */,
 				D86BF7631E64A2B100884277 /* TasksToolbar.swift in Sources */,
-				D89770D61E5E1B8C00A9318D /* SynchronizedArray.swift in Sources */,
 				D89770D31E5CBBFD00A9318D /* LocationEditor.swift in Sources */,
 				D81753981E675BAD003D8033 /* TaskTypeEditor.swift in Sources */,
 				D8B820DA1E678F0B005527C9 /* FUISwitch.swift in Sources */,

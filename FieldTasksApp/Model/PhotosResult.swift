@@ -13,9 +13,7 @@ open class PhotosResult: _PhotosResult {
 
     override func fromDict(results: [String : AnyObject]) {
         super.fromDict(results: results)
-        if let fileNames = results["fileNames"] as? [String] {
-            self.fileNames = fileNames
-        }
+        fileNames = results["fileNames"] as? [String] ?? [String]()
     }
 
     override func toDict() -> [String : AnyObject]{

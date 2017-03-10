@@ -18,7 +18,7 @@ extension UIViewController {
 
     func askAlert(title : String, body: String, action: String, cancel: String = "Cancel", completion: @escaping (_ canceled: Bool)->()) {
         let alert = UIAlertController(title: title, message: body, preferredStyle: .alert)
-        alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+        alert.addAction( UIAlertAction(title: cancel, style: .cancel, handler: { (action) in
             completion(false)
         }))
         alert.addAction( UIAlertAction(title: action, style: .destructive, handler: { (action) in

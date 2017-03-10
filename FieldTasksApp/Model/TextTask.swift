@@ -7,12 +7,8 @@ open class TextTask: _TextTask {
 
     override func initTaskDescription(dataDict : [String: AnyObject]) {
         //  self.taskDescription = TextTaskDescription(dataDict: dataDict)
-        if let limitBool = dataDict["range"] as? String {
-            self.isUnlimited = (limitBool == "unlimited") ? true : false
-        }
-        if let maxVal = dataDict["max"] as? Int {
-            self.max = maxVal as NSNumber?
-        }
+        self.isUnlimited = dataDict["range"] as? NSNumber  ?? false
+        self.max = dataDict["max"] as? NSNumber  ?? 0
     }
 
     override func resultTypeString() -> String {

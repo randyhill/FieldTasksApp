@@ -123,6 +123,15 @@ class ServerMgr {
         }
     }
 
+    func syncTemplates(sinceDate: Date, completion : @escaping loadListCallback) {
+        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
+            let urlString = cTemplatesURL + "/sync/" + encodedDateString
+            loadList(url: URL(string: urlString), completion: completion)
+        } else {
+            FTErrorMessage(error: "Bad string for date")
+        }
+    }
+
     func deleteTemplate(templateId: String, completion : @escaping (_ error : String?)->()) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let url = cTemplatesURL + "/" + templateId

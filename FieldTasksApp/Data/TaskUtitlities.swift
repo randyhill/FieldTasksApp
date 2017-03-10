@@ -50,22 +50,6 @@ func TaskFromDictionary(taskDict : [String : AnyObject]) -> Task? {
 }
 
 func TaskFromType(type : TaskType) -> Task? {
-//    var newTask : Task?
-//    let emptyDict = [String: AnyObject]()
-//    switch type {
-//    case TaskType.Text:
-//        newTask = TextTask()
-//    case TaskType.Number:
-//        newTask = NumberTask()
-//    case TaskType.Choices:
-//        newTask = ChoicesTask()
-//    case TaskType.Photos:
-//        newTask = PhotosTask()
-//    default:
-//        FTErrorMessage(error: "Unknown class in task generator")
-//    }
-//    newTask?.fromDict(taskDict: emptyDict)
-//   return newTask
     let entityName = type.rawValue + "Task"
    return CoreDataMgr.shared.createTask(entityName: entityName)
 }

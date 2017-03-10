@@ -4,39 +4,34 @@ import Foundation
 open class Form: _Form {
     override func initFromTemplate(template: Template) {
         super.initFromTemplate(template: template)
-        templateId = template.id
+        self.templateId = template.id
     }
 
-    override func fromDict(templateDict: [String : Any]) {
-        super.fromDict(templateDict: templateDict)
-        if let createDate = templateDict["createDate"] as? String {
+    func fromDict(formDict: [String : Any]) {
+        super.fromDict(templateDict: formDict)
+
+        if let createDate = formDict["created"] as? String {
             if let date = Globals.shared.utcFormatter.date(from: createDate) {
                 self.createDate = date
             }
         }
         // Locations list isn't allocated yet so we can't save location here
-        if let locationId = templateDict["location"] as? String {
-            self.locationId =  locationId
-        }
+        self.locationId = formDict["location"] as? String ?? ""
+        self.latitude = formDict["latitude"] as? NSNumber ?? 0
+        self.longitude = formDict["longitude"] as? NSNumber ?? 0
+
+
         // Locations list isn't allocated yet so we can't save location here
-        if let latitude = templateDict["latitude"] as? Double {
-            self.latitude =  latitude as NSNumber?
-        }
-        if let longitude = templateDict["longitude"] as? Double {
-            self.longitude =  longitude as NSNumber?
-        }
-        FTAssert(exists: latitude, error: "Latitude doesn't exist")
-        FTAssert(exists: longitude, error: "longitude doesn't exist")
         FTAssert(exists: createDate, error: "createDate doesn't exist")
-        FTAssert(exists: locationId, error: "locationId doesn't exist")
     }
 
     override func toDict() -> [String : AnyObject] {
         var formDict = super.toDict()
-        formDict["createDate"] = Globals.shared.utcFormatter.string(from: createDate!) as AnyObject?
+        formDict["created"] = Globals.shared.utcFormatter.string(from: createDate!) as AnyObject?
         formDict["location"] = locationId as AnyObject
         formDict["latitude"] = self.latitude
         formDict["longitude"] = self.longitude
+        formDict["templateId"] = self.templateId as AnyObject?
         return formDict
     }
 
@@ -48,7 +43,8 @@ open class Form: _Form {
                 // should update id
                 if let formDict = result, let formId = formDict["_id"] as? String {
                     self.id = formId
-                    FormsMgr.shared.formSubmitted(form: self)
+                    CoreDataMgr.shared.save()
+//                    FormsMgr.shared.formSubmitted(form: self)
                     completion(nil)
                 } else {
                     completion("couldn't update form id")
