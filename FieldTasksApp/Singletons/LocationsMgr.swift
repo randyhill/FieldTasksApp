@@ -68,14 +68,19 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
     func refresh(completion: @escaping (_ error: String?)->()) {
         self.mgr.requestLocation()
         ServerMgr.shared.syncLocations(sinceDate: self.lastSync!, completion: { (result, timeStamp, error) in
+            FTAssert(exists: timeStamp, error: "No time stamp for templates sync")
+            FTAssert(exists: result, error: "No result for templates sync")
+            FTAssertString(error: error)
             if error != nil {
                 completion(error)
             } else if let newList = result  {
-                let error = SyncLocations.syncList(newList: newList)
-                self.lastSync = timeStamp
-                Globals.saveSettingsValue(key: self.cSyncValue, value: self.lastSync as AnyObject)
-                CoreDataMgr.shared.save()
-                completion(error)
+                if let error = SyncLocations.syncList(newList: newList) {
+                    completion(error)
+                } else {
+                    self.lastSync = timeStamp
+                    Globals.saveSettingsValue(key: self.cSyncValue, value: self.lastSync as AnyObject)
+                    completion(nil)
+                }
             }
         })
     }

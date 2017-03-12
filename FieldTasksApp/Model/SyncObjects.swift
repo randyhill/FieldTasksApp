@@ -47,6 +47,7 @@ class SyncLocations {
                 }
             }
         }
+        CoreDataMgr.shared.save()
         return nil
     }
 }

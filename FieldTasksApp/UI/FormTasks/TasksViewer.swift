@@ -112,7 +112,7 @@ class TasksViewer : UIViewController {
 //            return true
 //        }
 //        if let errorMessage = taskController?.validate() {
-//            SVProgressHUD.showError(withStatus: "Invalid: \(errorMessage)")
+//            SVProgressHUD.showError(withStatus: "Invalid: \(errorMessage)")NOTE
 //            return false
 //        }
 //        return true

@@ -12,46 +12,34 @@ import Foundation
 class TemplatesMgr {
     static let shared = TemplatesMgr()
     var lastSync : Date?
-    let cSyncValue = "TemplatsSync"
+    let cSyncValue = "TemplatesSync"
 
     init() {
         self.lastSync = Globals.getSettingsValue(key: cSyncValue) as? Date ?? Globals.shared.stringToDate(dateString: "2017-01-01")
-        self.syncList(completion: { (error) in
-            FTAssertString(error: error)
-        })
     }
-
-//    func refreshList(location: FTLocation?, completion: @escaping (_ list: [Template]?, _ error: String?)->()) {
-//        // Do any additional setup after loading the view, typically from a nib.
-//        ServerMgr.shared.loadTemplates( location: location) { (result, timeStamp, error) in
-//            if let error = error {
-//                completion(nil, error)
-//            } else {
-//                if let templateList = result  {
-//                    let error = SyncTemplates.syncList(newList: templateList)
-//                    completion(self.all(), error)
-//                }
-//            }
-//        }
-//    }
 
     func syncList(completion: @escaping ( _ error: String?)->()) {
         // Do any additional setup after loading the view, typically from a nib.
         ServerMgr.shared.syncTemplates(sinceDate: self.lastSync!) { (result, timeStamp, error) in
+            FTAssert(exists: timeStamp, error: "No time stamp for templates sync")
+            FTAssert(exists: result, error: "No result for templates sync")
             if let error = error {
                 completion(error)
             } else {
-                self.lastSync = timeStamp
-                if let templateList = result  {
-                    let error = SyncTemplates.syncList(newList: templateList)
-                    completion(error)
+                 if let templateList = result  {
+                    if let error = SyncTemplates.syncList(newList: templateList) {
+                        completion(error)
+                    }
+                    self.lastSync = timeStamp
+                    Globals.saveSettingsValue(key: self.cSyncValue, value: timeStamp as AnyObject)
+                    completion(nil)
                 }
             }
         }
     }
 
     func all() -> [Template] {
-        if let list = CoreDataMgr.shared.fetchObjects(entityName: Template.entityName()) {
+        if let list = CoreDataMgr.shared.fetchObjects(entity: Template.entity(managedObjectContext: CoreDataMgr.shared.context!)!) {
             return list as! [Template]
         }
         return [Template]()

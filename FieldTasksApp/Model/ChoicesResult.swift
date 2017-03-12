@@ -1,8 +1,24 @@
 import Foundation
+import CoreData
 
 @objc(ChoicesResult)
 open class ChoicesResult: _ChoicesResult {
-    var values = [Bool]()
+    var values : [Bool] {
+        get {
+            return values_core as! [Bool]
+        }
+        set(newValues) {
+            values_core = newValues as AnyObject
+        }
+    }
+
+    // MARK: Initialization Methods -------------------------------------------------------------------------------
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+
+        values_core = [Bool]() as AnyObject
+    }
+    
     override func fromDict(results: [String : AnyObject]) {
         super.fromDict(results: results)
         if let resultValues = results["values"] as? [Bool] {
@@ -11,6 +27,7 @@ open class ChoicesResult: _ChoicesResult {
             }
         }
     }
+
 
     func save(newValues: [Bool]) {
         values.removeAll()
@@ -23,6 +40,7 @@ open class ChoicesResult: _ChoicesResult {
         }
     }
 
+    // MARK: Description  Methods -------------------------------------------------------------------------------
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
 

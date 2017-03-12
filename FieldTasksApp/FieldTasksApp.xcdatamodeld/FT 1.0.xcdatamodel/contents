@@ -72,7 +72,7 @@
         <element name="ChoicesResult" positionX="-144" positionY="117" width="128" height="60"/>
         <element name="ChoicesTask" positionX="-99" positionY="162" width="128" height="75"/>
         <element name="Form" positionX="-153" positionY="108" width="128" height="120"/>
-        <element name="FTLocation" positionX="-261" positionY="357" width="128" height="210"/>
+        <element name="FTLocation" positionX="-135" positionY="126" width="128" height="210"/>
         <element name="NumberResult" positionX="-108" positionY="153" width="128" height="60"/>
         <element name="NumberTask" positionX="-126" positionY="126" width="128" height="105"/>
         <element name="PhotosResult" positionX="-117" positionY="144" width="128" height="60"/>

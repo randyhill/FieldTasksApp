@@ -29,11 +29,11 @@ class FormsTable: UITableViewController {
     func refreshList() {
         // Do any additional setup after loading the view, typically from a nib.
         // let location = parentFormsViewer?.location
-        FormsMgr.shared.refreshList(location: parentFormsViewer?.location) { (forms, error) -> (Void) in
+        FormsMgr.shared.syncList() { (error) -> (Void) in
             if let error = error {
                 FTAlertError(message: "Could not load forms from server: \(error)")
-            } else if let forms = forms {
-                self.formsList = forms
+            } else  {
+                self.formsList = FormsMgr.shared.all()
                 self.reloadOnMainQueue()
             }
         }

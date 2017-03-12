@@ -14,6 +14,7 @@ public enum TaskAttributes: String {
 
 public enum TaskRelationships: String {
     case result = "result"
+    case templates = "templates"
 }
 
 open class _Task: NSManagedObject {
@@ -60,6 +61,41 @@ open class _Task: NSManagedObject {
 
     @NSManaged open
     var result: TaskResult?
+
+    @NSManaged open
+    var templates: NSSet
+
+    open func templatesSet() -> NSMutableSet {
+        return self.templates.mutableCopy() as! NSMutableSet
+    }
+
+}
+
+extension _Task {
+
+    open func addTemplates(_ objects: NSSet) {
+        let mutable = self.templates.mutableCopy() as! NSMutableSet
+        mutable.union(objects as Set<NSObject>)
+        self.templates = mutable.copy() as! NSSet
+    }
+
+    open func removeTemplates(_ objects: NSSet) {
+        let mutable = self.templates.mutableCopy() as! NSMutableSet
+        mutable.minus(objects as Set<NSObject>)
+        self.templates = mutable.copy() as! NSSet
+    }
+
+    open func addTemplatesObject(_ value: Template) {
+        let mutable = self.templates.mutableCopy() as! NSMutableSet
+        mutable.add(value)
+        self.templates = mutable.copy() as! NSSet
+    }
+
+    open func removeTemplatesObject(_ value: Template) {
+        let mutable = self.templates.mutableCopy() as! NSMutableSet
+        mutable.remove(value)
+        self.templates = mutable.copy() as! NSSet
+    }
 
 }
 

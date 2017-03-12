@@ -13,7 +13,7 @@ import CoreData
 class CoreDataMgr {
     static let shared = CoreDataMgr()
     private var model : NSManagedObjectModel?
-    private var context : NSManagedObjectContext?
+    public var context : NSManagedObjectContext?
 
     func setModelContext(model : NSManagedObjectModel, context: NSManagedObjectContext) {
         self.model = model
@@ -28,6 +28,7 @@ class CoreDataMgr {
         }
     }
 
+    // MARK: Object Fetch/Remove Methods -------------------------------------------------------------------------------
     func fetchById(entityName: String, objectId: String) -> AnyObject? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id=%@", objectId)
@@ -57,6 +58,11 @@ class CoreDataMgr {
     }
 
     // This will delete any objects of this entity type with given id, so if we accidently create duplicates it will clear them
+    func deleteObject(object: AnyObject) {
+        self.context?.delete(object as! NSManagedObject)
+    }
+
+    // This will delete any objects of this entity type with given id, so if we accidently create duplicates it will clear them
     func removeObjectById(entityName: String, objectId: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id=%@", objectId)
@@ -71,15 +77,15 @@ class CoreDataMgr {
         }
     }
 
-    func fetchObjects(entityName: String) -> [Any]? {
+    func fetchObjects(entity: NSEntityDescription) -> [Any]? {
         // Add predicate so we don't return subclasses of the class
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "entity=%@", entityName)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
+        fetchRequest.predicate = NSPredicate(format: "entity=%@", entity)
         do {
             let objects = try context!.fetch(fetchRequest)
             return objects
         } catch let error as NSError {
-            FTErrorMessage(error: "Could not fetch list for: \(entityName) \(error), \(error.userInfo)")
+            FTErrorMessage(error: "Could not fetch list for: \(entity.name!) \(error), \(error.userInfo)")
         }
         return nil
     }
@@ -96,8 +102,7 @@ class CoreDataMgr {
         return nil
     }
 
-
-    // MARK: Object specific Creation Methods -------------------------------------------------------------------------------
+    // MARK: Type specific Creation Methods -------------------------------------------------------------------------------
     func createLocation() -> FTLocation {
         let entity = NSEntityDescription.entity(forEntityName: FTLocation.entityName(), in: context!)
         return FTLocation(entity: entity!, insertInto: context)

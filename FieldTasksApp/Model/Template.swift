@@ -2,7 +2,16 @@ import Foundation
 
 @objc(Template)
 open class Template: _Template {
-    var tasks = [Task]()
+    var tasks : [Task] {
+        get {
+            let setCopy = self.taskSet.mutableCopy() as! NSMutableOrderedSet
+            return setCopy.array as! [Task]
+        }
+        set(newTasks) {
+            let set = NSOrderedSet(array: newTasks)
+            self.addTaskSet(set)
+        }
+    }
 
     // init from existing
     func initFromTemplate(template: Template) {
@@ -18,14 +27,15 @@ open class Template: _Template {
         self.id = templateDict["_id"] as? String ?? ""
 
         if let tasksArray = templateDict["tasks"] as? [AnyObject] {
-            tasks.removeAll()
+            var newTasks = [Task]()
             for taskObject in tasksArray {
                 if let taskDict = taskObject as? [String : AnyObject] {
                     if let newTask = TaskFromDictionary(taskDict: taskDict) {
-                        self.tasks += [newTask]
+                        newTasks += [newTask]
                     }
                 }
             }
+            self.tasks = newTasks
         }
     }
 

@@ -21,7 +21,9 @@ class FormTasksCell : UITableViewCell {
         }
         self.titleText.text = titleTextString
         self.titleText.makeTitleStyle()
-        self.checkmark.image = (task.result!.completed) ? checkmark : nil
+        if let result = task.result {
+            self.checkmark.image = result.completed ? checkmark : nil
+        }
         self.typeText.text = task.type;
         self.typeText.makeDetailStyle()
         self.makeCellFlat()
@@ -76,10 +78,11 @@ class FormTasksViewer : UITableViewController {
             FTAlertMessage(message: errorMessage)
         } else {
             form?.submit(completion: { (error) in
-                if error != nil {
-                    FTAlertError(message: "Form Submission Failed: \(error!)")
+                if let error = error {
+                    FTAlertError(message: "Form Submission Failed: \(error)")
                 } else {
                     FTAlertSuccess(message: "Form submitted successfuly")
+                    CoreDataMgr.shared.save()
                     self.dismiss(animated: true, completion: nil)
                 }
             })

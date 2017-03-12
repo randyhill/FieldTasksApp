@@ -163,6 +163,15 @@ class ServerMgr {
         }
     }
 
+    func syncForms(sinceDate: Date, completion : @escaping loadListCallback) {
+        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
+            let urlString = cFormsURL + "/sync/" + encodedDateString
+            loadList(url: URL(string: urlString), completion: completion)
+        } else {
+            FTErrorMessage(error: "Bad string for date")
+        }
+    }
+
     func saveAsForm(form: Template, completion : @escaping (_ result: [String : Any]?, _ error: String?)->()) {
         newTemplateForm(form: form, url: cFormsURL, successCode: 201, completion: completion)
     }

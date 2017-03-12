@@ -16,6 +16,6 @@ open class TextResult: _TextResult {
     }
 
     override func resultString() -> String {
-        return text!
+        return text ?? ""
     }
 }

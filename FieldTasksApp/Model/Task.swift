@@ -1,12 +1,20 @@
+//
+//  Task.swift
+//  FieldTasksApp
+//  Defines Task class that can be instantiaed fromm Server or CoreData (_Task)
+//
+//  Created by CRH on 3/8/17.
+//  Copyright © 2017 CRH. All rights reserved.
+//
+
 import Foundation
 
-
-
 @objc(Task)
-open class Task: _Task {
+open class Task: _Task  {
     var editorId : String { get { return ""} }
     var viewerId : String { get { return ""} }
 
+    // MARK: Initialization Methods -------------------------------------------------------------------------------
     func fromDict(taskDict : [String : AnyObject]) {
         self.name = taskDict["name"] as? String ?? ""
         self.id = taskDict["_id"] as? String ?? ""
@@ -30,17 +38,13 @@ open class Task: _Task {
         FTErrorMessage(error: "This function must be overridden")
     }
 
-    func resultTypeString() -> String {
-        FTErrorMessage(error: "This function must be overridden")
-        return ""
-    }
 
     func initResults(results : [String: AnyObject]) {
         self.result = CoreDataMgr.shared.createTaskResult(entityName: self.resultTypeString(), task: self)
         self.result?.fromDict(results: results)
     }
 
-
+    // MARK: Description Methods -------------------------------------------------------------------------------
     func toDict() -> [String : AnyObject]{
         var taskDict = [String : AnyObject]()
 
@@ -54,6 +58,12 @@ open class Task: _Task {
         taskDict["name"] = name as AnyObject?
         return taskDict
     }
+
+    func resultTypeString() -> String {
+        FTErrorMessage(error: "This function must be overridden")
+        return ""
+    }
+
 
     func taskDescriptionDict() -> [String : AnyObject] {
         return [String : AnyObject]()

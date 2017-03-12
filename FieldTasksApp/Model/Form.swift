@@ -4,6 +4,7 @@ import Foundation
 open class Form: _Form {
     override func initFromTemplate(template: Template) {
         super.initFromTemplate(template: template)
+        self.id = ""
         self.templateId = template.id
     }
 
@@ -40,11 +41,10 @@ open class Form: _Form {
             if error != nil {
                 completion(error)
             } else {
-                // should update id
+                //  update id
                 if let formDict = result, let formId = formDict["_id"] as? String {
                     self.id = formId
                     CoreDataMgr.shared.save()
-//                    FormsMgr.shared.formSubmitted(form: self)
                     completion(nil)
                 } else {
                     completion("couldn't update form id")

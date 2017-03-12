@@ -1,10 +1,25 @@
 import Foundation
+import CoreData
 
 @objc(ChoicesTask)
 open class ChoicesTask: _ChoicesTask {
-    var titles = [String]()
+    var titles : [String] {
+        get {
+            return titles_core as! [String]
+        }
+        set(newTitles) {
+            titles_core = newTitles as AnyObject
+        }
+    }
     override var editorId : String { get { return "ChoicesTaskEditor"} }
     override var viewerId : String { get { return "ChoicesTaskViewer"} }
+
+    // MARK: Initialization Methods -------------------------------------------------------------------------------
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+
+        titles_core = [String]() as AnyObject
+    }
 
     override func initTaskDescription(dataDict : [String: AnyObject]) {
         if let isRadio = dataDict["selections"] as? String {
@@ -15,6 +30,7 @@ open class ChoicesTask: _ChoicesTask {
         }
     }
 
+    // MARK: Description Methods -------------------------------------------------------------------------------
     override func resultTypeString() -> String {
         return "ChoicesResult"
     }

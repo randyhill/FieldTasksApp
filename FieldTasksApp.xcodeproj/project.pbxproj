@@ -285,6 +285,7 @@
 		D835A3DF1E635C31002C3EB1 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = Extensions/UITextField.swift; sourceTree = "<group>"; };
 		D835A3E01E635C31002C3EB1 /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextView.swift; path = Extensions/UITextView.swift; sourceTree = "<group>"; };
 		D835A3E11E635C31002C3EB1 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = Extensions/UIViewController.swift; sourceTree = "<group>"; };
+		D83AC25A1E74CBBF008B4398 /* FT 1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "FT 1.0.xcdatamodel"; sourceTree = "<group>"; };
 		D8549B971D67871B009DBE7A /* FieldTasksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FieldTasksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8549B9A1D67871B009DBE7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8549B9F1D67871B009DBE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1399,6 +1400,7 @@
 		D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D83AC25A1E74CBBF008B4398 /* FT 1.0.xcdatamodel */,
 				D8549BA21D67871B009DBE7A /* FieldTasksApp.xcdatamodel */,
 			);
 			currentVersion = D8549BA21D67871B009DBE7A /* FieldTasksApp.xcdatamodel */;

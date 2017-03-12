@@ -8,7 +8,10 @@ public enum TemplateAttributes: String {
     case descriptionString = "descriptionString"
     case id = "id"
     case name = "name"
-    case task_Ids_core = "task_Ids_core"
+}
+
+public enum TemplateRelationships: String {
+    case taskSet = "taskSet"
 }
 
 open class _Template: NSManagedObject {
@@ -45,10 +48,42 @@ open class _Template: NSManagedObject {
     @NSManaged open
     var name: String?
 
-    @NSManaged open
-    var task_Ids_core: AnyObject?
-
     // MARK: - Relationships
+
+    @NSManaged open
+    var taskSet: NSOrderedSet
+
+    open func taskSetSet() -> NSMutableOrderedSet {
+        return self.taskSet.mutableCopy() as! NSMutableOrderedSet
+    }
+
+}
+
+extension _Template {
+
+    open func addTaskSet(_ objects: NSOrderedSet) {
+        let mutable = self.taskSet.mutableCopy() as! NSMutableOrderedSet
+        mutable.union(objects)
+        self.taskSet = mutable.copy() as! NSOrderedSet
+    }
+
+    open func removeTaskSet(_ objects: NSOrderedSet) {
+        let mutable = self.taskSet.mutableCopy() as! NSMutableOrderedSet
+        mutable.minus(objects)
+        self.taskSet = mutable.copy() as! NSOrderedSet
+    }
+
+    open func addTaskSetObject(_ value: Task) {
+        let mutable = self.taskSet.mutableCopy() as! NSMutableOrderedSet
+        mutable.add(value)
+        self.taskSet = mutable.copy() as! NSOrderedSet
+    }
+
+    open func removeTaskSetObject(_ value: Task) {
+        let mutable = self.taskSet.mutableCopy() as! NSMutableOrderedSet
+        mutable.remove(value)
+        self.taskSet = mutable.copy() as! NSOrderedSet
+    }
 
 }
 

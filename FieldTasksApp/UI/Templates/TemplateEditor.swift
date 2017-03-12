@@ -63,19 +63,38 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
     }
 
     func cancelAction () {
+        if isEmptyTemplate(template: template!) {
+            // Don't save newly created/empty objects
+            CoreDataMgr.shared.deleteObject(object: template!)
+        }
         self.dismiss(animated: true) { }
+    }
+
+    func isEmptyTemplate(template: Template) -> Bool {
+        if template.id!.characters.count > 0 { return false }
+        if template.name!.characters.count > 0 { return false }
+        if template.tasks.count > 0 {
+            template.name = "Untitled"
+            return false
+        }
+        return true
     }
 
     func doneAction () {
         if let template = template {
             template.tasks = (listController?.tasks)!
             template.name = titleField.text!
-            TemplatesMgr.shared.updateTemplate(template: template) { (error) in
-                if let error = error {
-                    FTAlertError(message: error)
-                } else {
-                    CoreDataMgr.shared.save()
-                    self.dismiss(animated: true) { }
+            if isEmptyTemplate(template: template) {
+                // Don't save empties
+                CoreDataMgr.shared.deleteObject(object: template)
+            } else {
+                TemplatesMgr.shared.updateTemplate(template: template) { (error) in
+                    if let error = error {
+                        FTAlertError(message: error)
+                    } else {
+                        CoreDataMgr.shared.save()
+                        self.dismiss(animated: true) { }
+                    }
                 }
             }
         }
