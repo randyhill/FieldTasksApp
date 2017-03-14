@@ -5,6 +5,10 @@ import CoreData
 open class ChoicesResult: _ChoicesResult {
     var values : [Bool] {
         get {
+//            if let values = values_core {
+//                return values as! [Bool]
+//            }
+//            values_core = [Bool]() as AnyObject
             return values_core as! [Bool]
         }
         set(newValues) {
@@ -13,12 +17,12 @@ open class ChoicesResult: _ChoicesResult {
     }
 
     // MARK: Initialization Methods -------------------------------------------------------------------------------
-    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertInto: context)
+//    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+//        super.init(entity: entity, insertInto: context)
+//
+//        values = [Bool]()
+//    }
 
-        values_core = [Bool]() as AnyObject
-    }
-    
     override func fromDict(results: [String : AnyObject]) {
         super.fromDict(results: results)
         if let resultValues = results["values"] as? [Bool] {
@@ -44,8 +48,10 @@ open class ChoicesResult: _ChoicesResult {
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
 
-        dict["values"] = values as AnyObject?
-        return dict
+        if values.count > 0 {
+            dict["values"] = values as AnyObject?
+        }
+         return dict
     }
 
     override func resultString() -> String {

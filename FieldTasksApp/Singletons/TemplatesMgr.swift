@@ -39,8 +39,8 @@ class TemplatesMgr {
     }
 
     func all() -> [Template] {
-        if let list = CoreDataMgr.shared.fetchObjects(entity: Template.entity(managedObjectContext: CoreDataMgr.shared.context!)!) {
-            return list as! [Template]
+        if let list = CoreDataMgr.shared.fetchTemplates() {
+            return list
         }
         return [Template]()
     }

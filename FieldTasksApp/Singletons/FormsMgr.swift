@@ -16,9 +16,6 @@ class FormsMgr {
     init() {
         // Request access and initial location
         self.lastSync = Globals.getSettingsValue(key: cSyncValue) as? Date ?? Globals.shared.stringToDate(dateString: "2017-01-01")
-//        self.refreshList(location: nil) { (forms, error) in
-//            FTAssertString(error: error)
-//        }
     }
 
     func syncList(completion: @escaping ( _ error: String?)->(Void)) {
@@ -39,8 +36,8 @@ class FormsMgr {
     }
 
     func all() -> [Form] {
-        if let list = CoreDataMgr.shared.fetchObjects(entity: Form.entity(managedObjectContext: CoreDataMgr.shared.context!)!) {
-            return list as! [Form]
+        if let list = CoreDataMgr.shared.fetchForms() {
+            return list
         }
         return [Form]()
     }

@@ -9,16 +9,9 @@ open class Template: _Template {
         }
         set(newTasks) {
             let set = NSOrderedSet(array: newTasks)
-            self.addTaskSet(set)
+            self.taskSet = set
+            //self.addTaskSet(set)
         }
-    }
-
-    // init from existing
-    func initFromTemplate(template: Template) {
-        self.id = template.id
-        self.name = template.name
-        self.descriptionString = template.descriptionString
-        self.tasks = template.tasks
     }
 
     func fromDict(templateDict : [String : Any]) {

@@ -13,7 +13,7 @@ import CoreData
 class CoreDataMgr {
     static let shared = CoreDataMgr()
     private var model : NSManagedObjectModel?
-    public var context : NSManagedObjectContext?
+    private var context : NSManagedObjectContext?
 
     func setModelContext(model : NSManagedObjectModel, context: NSManagedObjectContext) {
         self.model = model
@@ -21,10 +21,13 @@ class CoreDataMgr {
     }
 
     func save() {
-        do {
-            try context?.save()
-        }   catch let error as NSError {
-            FTErrorMessage(error: "Could not save data context: \(error), \(error.userInfo)")
+        // Core data functions need to be on same thread as context.
+        DispatchQueue.main.async {
+            do {
+                try self.context?.save()
+            }   catch let error as NSError {
+                FTErrorMessage(error: "Could not save data context: \(error), \(error.userInfo)")
+            }
         }
     }
 
@@ -77,18 +80,36 @@ class CoreDataMgr {
         }
     }
 
-    func fetchObjects(entity: NSEntityDescription) -> [Any]? {
-        // Add predicate so we don't return subclasses of the class
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
-        fetchRequest.predicate = NSPredicate(format: "entity=%@", entity)
-        do {
-            let objects = try context!.fetch(fetchRequest)
-            return objects
-        } catch let error as NSError {
-            FTErrorMessage(error: "Could not fetch list for: \(entity.name!) \(error), \(error.userInfo)")
+    func fetchForms() -> [Form]? {
+        if let entity = Form.entity(managedObjectContext: context!) {
+            // Add predicate so we don't return subclasses of the class
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Form.entityName())
+            fetchRequest.predicate = NSPredicate(format: "entity=%@", entity)
+            do {
+                let objects = try context!.fetch(fetchRequest)
+                return objects as? [Form]
+            } catch let error as NSError {
+                FTErrorMessage(error: "Could not fetch list for: \(Form.entityName()) \(error), \(error.userInfo)")
+            }
         }
         return nil
     }
+
+    func fetchTemplates() -> [Template]? {
+        if let entity = Template.entity(managedObjectContext: context!) {
+            // Add predicate so we don't return subclasses of the class
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Template.entityName())
+            fetchRequest.predicate = NSPredicate(format: "entity=%@", entity)
+            do {
+                let objects = try context!.fetch(fetchRequest)
+                return objects as? [Template]
+            } catch let error as NSError {
+                FTErrorMessage(error: "Could not fetch list for: \(Template.entityName()) \(error), \(error.userInfo)")
+            }
+        }
+        return nil
+    }
+
 
     func fetchObjectsWithIds(entityName: String, ids: [String]) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
@@ -136,6 +157,9 @@ class CoreDataMgr {
             taskResult = NumberResult(entity: entity!, insertInto: context)
         case "ChoicesResult":
             taskResult = ChoicesResult(entity: entity!, insertInto: context)
+            if let result = taskResult as? ChoicesResult {
+                result.values = [Bool]()
+            }
         case "PhotosResult":
             taskResult = PhotosResult(entity: entity!, insertInto: context)
         default:

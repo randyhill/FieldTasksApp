@@ -9,6 +9,12 @@ open class TextResult: _TextResult {
            completed_private = true
         }
     }
+
+    override func fromDict(results: [String : AnyObject]) {
+        super.fromDict(results: results)
+        text = results["text"] as? String ?? ""
+    }
+
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
         dict["text"] = (text ?? "") as AnyObject?

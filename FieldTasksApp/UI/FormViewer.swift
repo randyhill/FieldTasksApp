@@ -67,7 +67,7 @@ class FormTitleCell : UITableViewCell {
 
         let coordinatesString = "lat: \(form.latitude) long: \(form.longitude)"
         var descriptionString = Globals.shared.dateFormatter.string(from: form.createDate!) + " " + coordinatesString
-        descriptionString += "\n" + form.description
+        descriptionString += "\n" + (form.descriptionString ?? "")
         self.body.text = descriptionString
         self.body.makeDetailStyle()
         self.body.backgroundColor = self.contentView.backgroundColor

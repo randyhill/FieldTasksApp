@@ -45,6 +45,7 @@ open class Task: _Task  {
     }
 
     // MARK: Description Methods -------------------------------------------------------------------------------
+
     func toDict() -> [String : AnyObject]{
         var taskDict = [String : AnyObject]()
 

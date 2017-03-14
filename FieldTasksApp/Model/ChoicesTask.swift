@@ -5,21 +5,21 @@ import CoreData
 open class ChoicesTask: _ChoicesTask {
     var titles : [String] {
         get {
-            return titles_core as! [String]
+            return titles_core!
         }
         set(newTitles) {
-            titles_core = newTitles as AnyObject
+            titles_core = newTitles
         }
     }
     override var editorId : String { get { return "ChoicesTaskEditor"} }
     override var viewerId : String { get { return "ChoicesTaskViewer"} }
 
     // MARK: Initialization Methods -------------------------------------------------------------------------------
-    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertInto: context)
-
-        titles_core = [String]() as AnyObject
-    }
+//    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+//        super.init(entity: entity, insertInto: context)
+//
+//        titles_core = [String]()
+//    }
 
     override func initTaskDescription(dataDict : [String: AnyObject]) {
         if let isRadio = dataDict["selections"] as? String {
