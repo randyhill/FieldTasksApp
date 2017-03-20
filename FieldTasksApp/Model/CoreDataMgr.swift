@@ -113,7 +113,7 @@ class CoreDataMgr {
 
     func fetchObjectsWithIds(entityName: String, ids: [String]) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "id=%@", ids)
+        fetchRequest.predicate = NSPredicate(format: "id IN %@", ids)
         do {
             let objects = try context!.fetch(fetchRequest)
             return objects
@@ -195,6 +195,7 @@ class CoreDataMgr {
             if let task = task as? ChoicesTask {
                 task.isRadio =  false
                 task.type = TaskType.Choices.rawValue
+                task.titles = [String]()
             }
         case "PhotosTask":
             task = PhotosTask(entity: entity!, insertInto: context)

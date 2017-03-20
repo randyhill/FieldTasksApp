@@ -14,7 +14,7 @@ public enum FTLocationAttributes: String {
     case phone = "phone"
     case state = "state"
     case street = "street"
-    case template_ids = "template_ids"
+    case templates = "templates"
     case zip = "zip"
 }
 
@@ -71,7 +71,7 @@ open class _FTLocation: NSManagedObject {
     var street: String?
 
     @NSManaged open
-    var template_ids: AnyObject?
+    var templates: Set<String>?
 
     @NSManaged open
     var zip: String?

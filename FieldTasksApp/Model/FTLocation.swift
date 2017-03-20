@@ -3,7 +3,6 @@ import CoreLocation
 
 @objc(FTLocation)
 open class FTLocation: _FTLocation {
-    private var templates = Set<String>()
 
     var fullAddress : String {
         get {
@@ -34,10 +33,11 @@ open class FTLocation: _FTLocation {
         self.latitude = locationDict["latitude"] as? NSNumber ?? 0
         self.longitude = locationDict["longitude"] as? NSNumber ?? 100
         self.perimeter = locationDict["perimeter"] as? NSNumber ?? 0
+        self.templates = Set<String>()
 
         if let templatesArray = locationDict["templates"] as? [String] {
             for templateId in templatesArray {
-                self.templates.insert(templateId)
+                self.templates!.insert(templateId)
             }
         }
     }
@@ -61,20 +61,20 @@ open class FTLocation: _FTLocation {
     // MARK: Templates -------------------------------------------------------------------------------
     func addTemplates(newTemplates : [Template]) {
         for template in newTemplates {
-            templates.insert(template.id!)
+            templates!.insert(template.id!)
         }
     }
 
     func removeTemplate(templateId : String) {
-        templates.remove(templateId)
+        templates!.remove(templateId)
     }
 
     func templateIds() -> [String] {
-        return Array(templates)
+        return Array(templates!)
     }
 
     func containsTemplate(templateId: String) -> Bool {
-        return templates.contains(templateId)
+        return templates!.contains(templateId)
     }
 
     // MARK: Location Utilities -------------------------------------------------------------------------------

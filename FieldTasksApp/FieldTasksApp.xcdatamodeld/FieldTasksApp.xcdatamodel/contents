@@ -28,7 +28,11 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="template_ids" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="templates" optional="YES" attributeType="Transformable" customClassName="Set&lt;String&gt;" syncable="YES">
+            <userInfo>
+                <entry key="attributeValueClassName" value="Set&lt;String&gt;"/>
+            </userInfo>
+        </attribute>
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="NumberResult" representedClassName="NumberResult" parentEntity="TaskResult" syncable="YES">

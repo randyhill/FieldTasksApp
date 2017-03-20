@@ -141,12 +141,20 @@ class LocationsViewer: UITableViewController, LocationUpdates {
                 selectedLocation = locationList[indexPath.row]
                 cell.isSelected = true
             }
-
         } else {
+//            // Open forms for selected location
+//            if let formsController = self.storyboard?.instantiateViewController(withIdentifier: "FormsViewer") as? FormsViewer {
+//                formsController.location = location
+//                let navController = UINavigationController(rootViewController: formsController) // Creating a navigation controller with resultController at the root of the navigation stack.
+//                self.present(navController, animated: true, completion: {
+//
+//                })
+//            }
             // Open forms for selected location
-            if let formsController = self.storyboard?.instantiateViewController(withIdentifier: "FormsViewer") as? FormsViewer {
-                formsController.location = location
-                let navController = UINavigationController(rootViewController: formsController) // Creating a navigation controller with resultController at the root of the navigation stack.
+            if let templateController = self.storyboard?.instantiateViewController(withIdentifier: "TemplatesViewer") as? TemplatesViewer {
+                templateController.location = location
+                templateController.style = .Location
+                let navController = UINavigationController(rootViewController: templateController) // Creating a navigation controller with resultController at the root of the navigation stack.
                 self.present(navController, animated: true, completion: {
 
                 })
