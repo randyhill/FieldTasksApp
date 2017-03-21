@@ -3,41 +3,22 @@ import CoreData
 
 @objc(ChoicesResult)
 open class ChoicesResult: _ChoicesResult {
-    var values : [Bool] {
-        get {
-//            if let values = values_core {
-//                return values as! [Bool]
-//            }
-//            values_core = [Bool]() as AnyObject
-            return values_core as! [Bool]
-        }
-        set(newValues) {
-            values_core = newValues as AnyObject
-        }
-    }
-
-    // MARK: Initialization Methods -------------------------------------------------------------------------------
-//    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-//        super.init(entity: entity, insertInto: context)
-//
-//        values = [Bool]()
-//    }
 
     override func fromDict(results: [String : AnyObject]) {
         super.fromDict(results: results)
         if let resultValues = results["values"] as? [Bool] {
             for value in resultValues {
-                values += [value]
+                values! += [value]
             }
         }
     }
 
 
     func save(newValues: [Bool]) {
-        values.removeAll()
+        values!.removeAll()
         completed_private = false
         for newValue in newValues {
-            values += [newValue]
+            values! += [newValue]
             if newValue {
                completed_private = true;
             }
@@ -48,7 +29,7 @@ open class ChoicesResult: _ChoicesResult {
     override func toDict() -> [String : AnyObject]{
         var dict = super.toDict()
 
-        if values.count > 0 {
+        if values!.count > 0 {
             dict["values"] = values as AnyObject?
         }
          return dict
@@ -58,7 +39,7 @@ open class ChoicesResult: _ChoicesResult {
         var text = "Done: "
         if let choicesTask = task as? ChoicesTask {
             var checked = 0
-            for (value, choice) in zip(values, choicesTask.titles) {
+            for (value, choice) in zip(values!, choicesTask.titles!) {
                 if value {
                     // separate with checkmarks.
                     if checked > 0 {

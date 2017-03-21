@@ -38,8 +38,9 @@ class TemplatesViewer : UIViewController {
             self.title = "Templates"
             self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshList))
         case .Location:
-            self.title = "Templates"
+            self.title = location?.name ?? "Location Templates"
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(cancelAction))
+            self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Forms", target: self, action: #selector(showForms))
             newButton.setTitle("Add", for: .normal)
             newButton.setTitle("Add", for: .highlighted)
         case .Picker:
@@ -102,6 +103,18 @@ class TemplatesViewer : UIViewController {
 
     func refreshList() {
         listController?.serverRefresh()
+    }
+
+    func showForms() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let formController = storyboard.instantiateViewController(withIdentifier: "FormsViewer") as? FormsViewer {
+            // Create form so it's editable.
+            formController.location = location
+            let navController = UINavigationController(rootViewController: formController) // Creating a navigation controller with resultController at the root of the navigation stack.
+            self.present(navController, animated: true, completion: {
+
+            })
+        }
     }
 }
 

@@ -94,7 +94,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
         if result.photos.count > 0 {
             self.collectionView.reloadData()
         } else {
-            for fileName in result.fileNames {
+            for fileName in result.fileNames! {
                 ServerMgr.shared.downloadFile(imageFileName: fileName, completion: { (imageData, errorString) in
                     // Lets do UI stuff on main thread.
                     DispatchQueue.main.async {

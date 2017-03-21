@@ -5,7 +5,7 @@ import Foundation
 import CoreData
 
 public enum ChoicesResultAttributes: String {
-    case values_core = "values_core"
+    case values = "values"
 }
 
 open class _ChoicesResult: TaskResult {
@@ -34,7 +34,7 @@ open class _ChoicesResult: TaskResult {
     // MARK: - Properties
 
     @NSManaged open
-    var values_core: AnyObject?
+    var values: [Bool]?
 
     // MARK: - Relationships
 

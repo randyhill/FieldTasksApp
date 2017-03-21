@@ -136,7 +136,7 @@ class ChoicesTaskViewer : BaseTaskViewer {
     func createChoices() {
         var choiceFrame = CGRect(x: 8, y: 8, width: (self.view.frame.width), height: 28)
         let isRadio = (task as! ChoicesTask).isRadio
-        for title in choiceData.titles {
+        for title in choiceData.titles! {
             let choice = makeSwitchbox(container: self.view, title: title, frame: choiceFrame, isRadio: isRadio!.boolValue)
             choiceFrame.origin.y += choice.switchSize.height;
         }
@@ -205,8 +205,8 @@ class ChoicesTaskViewer : BaseTaskViewer {
         result.save(newValues: boolValues)
     }
     override func restore() {
-        for i in 0 ..< result.values.count {
-            options[i].on = result.values[i]
+        for i in 0 ..< result.values!.count {
+            options[i].on = result.values![i]
         }
     }
 }

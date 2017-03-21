@@ -6,7 +6,7 @@ import CoreData
 
 public enum ChoicesTaskAttributes: String {
     case isRadio = "isRadio"
-    case titles_core = "titles_core"
+    case titles = "titles"
 }
 
 open class _ChoicesTask: Task {
@@ -38,7 +38,7 @@ open class _ChoicesTask: Task {
     var isRadio: NSNumber?
 
     @NSManaged open
-    var titles_core: [String]?
+    var titles: [String]?
 
     // MARK: - Relationships
 

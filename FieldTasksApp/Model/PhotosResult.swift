@@ -2,7 +2,6 @@ import UIKit
 
 @objc(PhotosResult)
 open class PhotosResult: _PhotosResult {
-    var fileNames = [String]()
     var photos = [UIImage]()
 
     override var completed: Bool {

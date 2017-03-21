@@ -27,7 +27,7 @@ class FormsViewer : UIViewController {
         if let location = location {
             self.title = location.name
             newButton.makeFlatButton() 
-            newButton.isHidden = false
+            newButton.isHidden = true
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
         } else {
             self.title = "Forms"

@@ -3,23 +3,10 @@ import CoreData
 
 @objc(ChoicesTask)
 open class ChoicesTask: _ChoicesTask {
-    var titles : [String] {
-        get {
-            return titles_core!
-        }
-        set(newTitles) {
-            titles_core = newTitles
-        }
-    }
     override var editorId : String { get { return "ChoicesTaskEditor"} }
     override var viewerId : String { get { return "ChoicesTaskViewer"} }
 
     // MARK: Initialization Methods -------------------------------------------------------------------------------
-//    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-//        super.init(entity: entity, insertInto: context)
-//
-//        titles_core = [String]()
-//    }
 
     override func initTaskDescription(dataDict : [String: AnyObject]) {
         if let isRadio = dataDict["selections"] as? String {
@@ -45,7 +32,7 @@ open class ChoicesTask: _ChoicesTask {
     override func taskDescriptionString() -> String {
         var descriptionString = isRadio!.boolValue ? "Select one of: " : "Select any of: "
         var selectionString : String?
-        for selection in titles {
+        for selection in titles! {
             if selectionString == nil {
                 selectionString = selection
             } else {

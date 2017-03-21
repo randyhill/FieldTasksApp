@@ -47,7 +47,7 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
     override func viewWillAppear(_ animated: Bool) {
         if let task = task {
             multipleSwitch.isOn = !task.isRadio!.boolValue
-            choices = task.titles
+            choices = task.titles!
         }
         super.viewWillAppear(animated)
     }

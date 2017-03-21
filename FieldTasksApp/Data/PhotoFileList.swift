@@ -31,17 +31,17 @@ class PhotoMap {
     }
     var fileName : String? {
         get {
-            if imageIndex < result!.fileNames.count {
-                return result?.fileNames[imageIndex]
+            if imageIndex < result!.fileNames!.count {
+                return result?.fileNames?[imageIndex]
             }
             return nil
         }
         set (newFileName) {
             FTAssert(isTrue: newFileName != nil, error: "Attempted to set nil file name to photo result")
-            if imageIndex < result!.fileNames.count {
-                result!.fileNames[imageIndex] = newFileName!
+            if imageIndex < result!.fileNames!.count {
+                result!.fileNames![imageIndex] = newFileName!
             } else {
-                result!.fileNames += [newFileName!]
+                result!.fileNames! += [newFileName!]
             }
         }
     }
@@ -98,8 +98,8 @@ class PhotoFileList {
         for resultIndex in 0 ..< tasks.count {
             let task = tasks[resultIndex]
             if let photoResult = task.result as? PhotosResult {
-                if photoResult.fileNames.count > 0 {
-                    for imageIndex in 0 ..< photoResult.fileNames.count {
+                if photoResult.fileNames!.count > 0 {
+                    for imageIndex in 0 ..< photoResult.fileNames!.count {
                         let map = PhotoMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)
                         mapArray += [map]
                     }
@@ -127,7 +127,7 @@ class PhotoFileList {
                 if let fileIndex = elementDict["fileIndex"], let fileName = elementDict["fileName"] {
                     if let arrayIndex = Int(fileIndex) {
                         let map = mapArray[arrayIndex]
-                        map.result!.fileNames += [fileName]
+                        map.result!.fileNames! += [fileName]
                     }
                 }
             }
