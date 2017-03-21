@@ -49,13 +49,20 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
     @IBOutlet weak var cancelButton: FUIButton!
     @IBOutlet weak var createButton: FUIButton!
     @IBOutlet weak var perimeterSlider: UISlider!
-    var location = CoreDataMgr.shared.createLocation()
+    var location : FTLocation?
     var annotation : MyAnnotation?
     var perimeter : MKCircle?
 
      // MARK: View Methods -------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if location == nil {
+            location = CoreDataMgr.shared.createLocation()
+        } else {
+            createButton.setTitle("Save", for: .normal)
+            createButton.setTitle("Save", for: .highlighted)
+        }
 
         self.view.backgroundColor = Globals.shared.bgColor
         titleLabel.makeTitleStyle()
@@ -84,22 +91,78 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
         FTAlertMessage(message: "Getting current location")
     }
 
+    // MARK: Actions Methods -------------------------------------------------------------------------------
+    @IBAction func cancelAction(_ sender: Any) {
+        if self.location!.id == nil {
+            // Remove new location before it's saved to database
+            CoreDataMgr.shared.deleteObject(object: self.location!)
+        }
+        self.dismiss(animated: true) {
+
+        }
+    }
+
+    @IBAction func createAction(_ sender: Any) {
+        let createNew = (self.location!.id == nil)
+        if let errorMessage = validateFields() {
+            let title = createNew ? "Can't create location: " : "Can't save location: "
+            FTAlertMessage(message: title + errorMessage)
+        } else {
+            self.updateLocationFromFields(theLocation: self.location!)
+            CoreDataMgr.shared.save()
+            if createNew {
+                ServerMgr.createLocation(location: location!) { (locationDict, error) in
+                    if let error = error {
+                        FTAlertMessage(message: "Creation failed: \(error)")
+                    } else if let locationId = locationDict?["_id"] as? String {
+                        self.location!.id = locationId
+                        self.dismissWith(message: "Location created")
+                    }
+                }
+            } else {
+                ServerMgr.updateLocation(location: location!) { (error) in
+                    if let error = error {
+                        FTAlertMessage(message: "Save failed: \(error)")
+                    } else {
+                        self.dismissWith(message: "Location saved")
+                    }
+                }
+            }
+        }
+    }
+
+    func dismissWith(message : String) {
+        CoreDataMgr.shared.save()
+        FTAlertMessage(message: message)
+        self.dismiss(animated: true, completion: {
+            FTAlertDismiss {
+
+            }
+        })
+    }
+
+    @IBAction func perimeterChanged(_ slider: UISlider) {
+        // Constrain to specfic increments
+        let meters = Int(slider.value/Float(cMinPerimeter))*Int(cMinPerimeter)
+        updatePerimeter(meters: meters)
+    }
+
     // MARK: Map Methods -------------------------------------------------------------------------------
     func initMap() {
         map.delegate = self
         if let clLoc = LocationsMgr.shared.currentCLLocation() {
             let span = 0.01
             map.centerCoordinate = clLoc.coordinate
-            self.location.latitude = clLoc.coordinate.latitude as NSNumber?
-            self.location.longitude = clLoc.coordinate.longitude as NSNumber?
+            self.location!.latitude = clLoc.coordinate.latitude as NSNumber?
+            self.location!.longitude = clLoc.coordinate.longitude as NSNumber?
             map.region = MKCoordinateRegion(center: clLoc.coordinate, span: MKCoordinateSpan(latitudeDelta: span, longitudeDelta: span))
             annotation = MyAnnotation(title: "title", subtitle: "sub title", coordinate: clLoc.coordinate)
             updateAnnotationLocation(coordinate: clLoc.coordinate)
             updatePerimeterOverlay(coordinate: clLoc.coordinate, radius: CLLocationDistance(perimeterSlider.value))
         }
         LocationsMgr.shared.currentAddress { (locationDict) in
-            self.location.updateFromPlacemarkDict(locationDict: locationDict)
-            self.updateFieldsFromLocation(theLocation: self.location)
+            self.location!.updateFromPlacemarkDict(locationDict: locationDict)
+            self.updateFieldsFromLocation(theLocation: self.location!)
             FTAlertDismiss {}
         }
     }
@@ -140,21 +203,21 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
                  fromOldState oldState: MKAnnotationViewDragState) {
         if newState == MKAnnotationViewDragState.ending {
             if let newCoord = view.annotation?.coordinate {
-                location.latitude = newCoord.latitude as NSNumber?
-                location.longitude = newCoord.longitude as NSNumber?
+                location!.latitude = newCoord.latitude as NSNumber?
+                location!.longitude = newCoord.longitude as NSNumber?
                 LocationsMgr.shared.coordinatesToAddress(coordinates: newCoord, completion: { (locationDict) in
-                    self.location.updateFromPlacemarkDict(locationDict: locationDict)
-                    self.updateFieldsFromLocation(theLocation: self.location)
+                    self.location!.updateFromPlacemarkDict(locationDict: locationDict)
+                    self.updateFieldsFromLocation(theLocation: self.location!)
                 })
             }
         }
     }
 
     func updateMapFromFields() {
-        updateLocationFromFields(theLocation: location)
+        updateLocationFromFields(theLocation: location!)
 //        updateOverlaysFromLocation(theLocation: location)
-        location.toCLLocation(completion: { (newLocation) in
-            self.location.fromCLLocation(clLoc: newLocation)
+        location!.toCLLocation(completion: { (newLocation) in
+            self.location!.fromCLLocation(clLoc: newLocation)
             self.updateAnnotationLocation(coordinate: newLocation.coordinate)
             self.updatePerimeterOverlay(coordinate: newLocation.coordinate, radius: CLLocationDistance(self.perimeterSlider.value))
         })
@@ -189,17 +252,19 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
     }
 
     func updateFieldsFromLocation(theLocation : FTLocation) {
-        self.fields[FieldType.name.rawValue].text = location.name
-        self.fields[FieldType.street.rawValue].text = location.street
-        self.fields[FieldType.city.rawValue].text = location.city
-        self.fields[FieldType.state.rawValue].text = location.state
-        self.fields[FieldType.zip.rawValue].text = location.zip
-        annotation?.title = location.name
-        annotation?.subtitle = location.street
-        let coordinate = theLocation.coordinates()
-        annotation?.coordinate = coordinate
-        self.updatePerimeterOverlay(coordinate: coordinate, radius: CLLocationDistance(perimeterSlider.value))
-        self.updatePerimeter(meters: Int(location.perimeter!))
+        if let location = self.location {
+            self.fields[FieldType.name.rawValue].text = location.name
+            self.fields[FieldType.street.rawValue].text = location.street
+            self.fields[FieldType.city.rawValue].text = location.city
+            self.fields[FieldType.state.rawValue].text = location.state
+            self.fields[FieldType.zip.rawValue].text = location.zip
+            annotation?.title = location.name
+            annotation?.subtitle = location.street
+            let coordinate = theLocation.coordinates()
+            annotation?.coordinate = coordinate
+            self.updatePerimeterOverlay(coordinate: coordinate, radius: CLLocationDistance(perimeterSlider.value))
+            self.updatePerimeter(meters: Int(location.perimeter!))
+        }
     }
 
     func updateLocationFromFields(theLocation : FTLocation) {
@@ -227,44 +292,6 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
             return "Locations must have state"
         }
         return nil
-    }
-
-    // MARK: Actions Methods -------------------------------------------------------------------------------
-    @IBAction func cancelAction(_ sender: Any) {
-        self.dismiss(animated: true) {
-
-        }
-    }
-
-    @IBAction func createAction(_ sender: Any) {
-        if let errorMessage = validateFields() {
-            FTAlertMessage(message: "Can't create location: \(errorMessage)")
-        } else {
-            self.updateLocationFromFields(theLocation: self.location)
-            //LocationsMgr.shared.add(location: self.location)
-            CoreDataMgr.shared.save()
-            ServerMgr.createLocation(location: location) { (locationDict, error) in
-                if let error = error {
-                    FTAlertMessage(message: "Creation failed: \(error)")
-                } else if let locationId = locationDict?["_id"] as? String {
-                    self.location.id = locationId
-                    CoreDataMgr.shared.save()
-                    FTAlertMessage(message: "Location created")
-                    self.dismiss(animated: true, completion: { 
-                        FTAlertDismiss {
-                            
-                        }
-                    })
-                }
-            }
-        }
-
-    }
-
-    @IBAction func perimeterChanged(_ slider: UISlider) {
-        // Constrain to specfic increments
-        let meters = Int(slider.value/Float(cMinPerimeter))*Int(cMinPerimeter)
-        updatePerimeter(meters: meters)
     }
 
     // MARK: Overlays Methods -------------------------------------------------------------------------------

@@ -12,6 +12,7 @@ import FlatUIKit
 class SubmissionCell : UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
 }
 
 class FormsTable: UITableViewController {
@@ -60,10 +61,6 @@ class FormsTable: UITableViewController {
         return formsList.count
     }
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64.0
     }
@@ -73,7 +70,15 @@ class FormsTable: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubmissionCell", for: indexPath as IndexPath)
         if let cell = cell as? SubmissionCell {
             let form = formsList[indexPath.row]
-            cell.titleLabel.text = form.name
+            var locationText = ""
+            if let locationId = form.locationId {
+                if let location = CoreDataMgr.shared.fetchById(entityName: FTLocation.entityName(), objectId: locationId) as? FTLocation, let name = location.name {
+                   locationText  = name
+                }
+            }
+            cell.locationLabel.text = locationText
+            cell.locationLabel.makeDetailStyle()
+            cell.titleLabel.text = form.name!
             cell.titleLabel.makeTitleStyle()
             cell.detailLabel!.text = Globals.shared.dateFormatter.string(from: form.createDate!)
             cell.detailLabel.makeDetailStyle()

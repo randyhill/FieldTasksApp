@@ -30,6 +30,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
     var locationList = [FTLocation]()   // use read-only copy of live list so it's thread safe, otherwise live list could be in mid-update when we refresh
     var searchRadius = 10000000     // How far away to look for locations
 
+    // MARK: View Methods -------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +41,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
             self.title = "Pick Location"
         } else {
             self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshFromServer))
-            self.navigationItem.leftBarButtonItem = FlatBarButton(withImageNamed: "plus.png", target: self, action: #selector(addLocation))
+            self.navigationItem.leftBarButtonItem = FlatBarButton(withImageNamed: "plus.png", target: self, action: #selector(createNewLocation))
             self.title = "Locations"
        }
         makeNavBarFlat()
@@ -89,14 +90,21 @@ class LocationsViewer: UITableViewController, LocationUpdates {
         self.dismiss(animated: true) {}
     }
 
-    func addLocation() {
-        self.performSegue(withIdentifier: "LocationEditor", sender: self)
+    func createNewLocation() {
+        self.performSegue(withIdentifier: "LocationEditor", sender: nil)
     }
 
     func newlocation(location: FTLocation?) {
         self.tableView.reloadData()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let location = sender as? FTLocation {
+            if let locationEditor = segue.destination as? LocationEditor {
+                locationEditor.location = location
+            }
+        }
+    }
 
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -142,14 +150,6 @@ class LocationsViewer: UITableViewController, LocationUpdates {
                 cell.isSelected = true
             }
         } else {
-//            // Open forms for selected location
-//            if let formsController = self.storyboard?.instantiateViewController(withIdentifier: "FormsViewer") as? FormsViewer {
-//                formsController.location = location
-//                let navController = UINavigationController(rootViewController: formsController) // Creating a navigation controller with resultController at the root of the navigation stack.
-//                self.present(navController, animated: true, completion: {
-//
-//                })
-//            }
             // Open forms for selected location
             if let templateController = self.storyboard?.instantiateViewController(withIdentifier: "TemplatesViewer") as? TemplatesViewer {
                 templateController.location = location
@@ -160,5 +160,43 @@ class LocationsViewer: UITableViewController, LocationUpdates {
                 })
             }
         }
+    }
+
+    // MARK: Table Editing  -------------------------------------------------------------------------------
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // If form, we are picker
+        return self.form == nil
+    }
+
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            self.isEditing = false
+            let location = self.locationList[indexPath.row]
+            self.performSegue(withIdentifier: "LocationEditor", sender: location)
+        }
+        edit.backgroundColor = UIColor.peterRiver()
+
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            self.isEditing = false
+        }
+        delete.backgroundColor = UIColor.alizarin()
+
+        return [edit, delete]
+    }
+
+    func deleteLocationFromServer(forRowAt indexPath: IndexPath) {
+        self.askAlert(title: "Are you sure you want to delete this location?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (deleteIt) in
+            if deleteIt {
+//                let template = self.templatesList[indexPath.row]
+//                TemplatesMgr.shared.deleteTemplate(templateId: template.id!, completion: { (error) in
+//                    if let error = error {
+//                        self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
+//                    } else {
+//                        self.templatesList = TemplatesMgr.shared.all()
+//                        self.refreshOnMainThread()
+//                    }
+//                })
+            }
+        })
     }
 }
