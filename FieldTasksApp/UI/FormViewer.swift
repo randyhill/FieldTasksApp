@@ -95,18 +95,27 @@ class FormViewer : UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
-        let photosList = PhotoFileList(tasks: form!.tasks, buildWithImages: false)
-        ServerMgr.shared.downloadFiles(photoFileList: photosList, imageUpdate: { (index) in
-            DispatchQueue.main.async {
-                self.tableView.beginUpdates()
-                self.tableView.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .automatic)
-                self.tableView.endUpdates()
+
+        for task in form!.tasks {
+            if let task = task as? PhotosTask {
+                if let result = task.result as? PhotosResult {
+                    result.loadAll()
+                }
             }
-        }, completion: { (error) in
-            if let error = error {
-                FTErrorMessage(error: "Could not download all photos: \(error)")
-            }
-        })
+        }
+        self.tableView.reloadData()
+//        let photosList = PhotoFileList(tasks: form!.tasks, buildWithImages: false)
+//        ServerMgr.shared.downloadFiles(photoFileList: photosList, imageUpdate: { (index) in
+//            DispatchQueue.main.async {
+//                self.tableView.beginUpdates()
+//                self.tableView.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .automatic)
+//                self.tableView.endUpdates()
+//            }
+//        }, completion: { (error) in
+//            if let error = error {
+//                FTErrorMessage(error: "Could not download all photos: \(error)")
+//            }
+//        })
     }
 
     override func didReceiveMemoryWarning() {

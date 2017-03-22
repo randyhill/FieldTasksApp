@@ -60,9 +60,10 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
     func setPicture(picture : UIImage) {
         let data = photoData
         if data.isSingle!.boolValue {
-            self.result.photos = [picture]
+            self.result.removeAll()
+            self.result.add(photo: picture)
         } else {
-            self.result.photos += [picture]
+            self.result.add(photo: picture)
             self.scrollToBottomAnimated(animated: true)
         }
         self.collectionView.reloadData()
@@ -75,7 +76,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
                 newImages += [image]
             }
         }
-        result.photos = newImages
+        result.replace(photos: newImages)
         collectionView.reloadData()
     }
 
@@ -94,20 +95,24 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
         if result.photos.count > 0 {
             self.collectionView.reloadData()
         } else {
-            for fileName in result.fileNames! {
-                ServerMgr.shared.downloadFile(imageFileName: fileName, completion: { (imageData, errorString) in
-                    // Lets do UI stuff on main thread.
-                    DispatchQueue.main.async {
-                        if let imData = imageData {
-                            if let image = UIImage(data: imData) {
-                                self.setPicture(picture: image)
-                            }
-                        } else {
-                            FTAlertError(message: errorString ?? "Unknown error")
-                        }
-                    }
-                })
+            result.loadAll()
+            for photo in result.photos {
+                self.setPicture(picture: photo)
             }
+//            for fileName in result.fileNames! {
+//                ServerMgr.shared.downloadFile(imageFileName: fileName, completion: { (imageData, errorString) in
+//                    // Lets do UI stuff on main thread.
+//                    DispatchQueue.main.async {
+//                        if let imData = imageData {
+//                            if let image = UIImage(data: imData) {
+//                                self.setPicture(picture: image)
+//                            }
+//                        } else {
+//                            FTAlertError(message: errorString ?? "Unknown error")
+//                        }
+//                    }
+//                })
+//            }
         }
     }
 

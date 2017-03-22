@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: PhotMap  -------------------------------------------------------------------------------
 // Map individual image to it's photoresult record and array index
 class PhotoMap {
     var imageIndex = 0
@@ -23,9 +24,9 @@ class PhotoMap {
         set (newImage) {
             FTAssert(isTrue: newImage != nil, error: "Attempted to set nil image to photo result")
             if imageIndex < result!.photos.count {
-                result!.photos[imageIndex] = newImage!
+                result!.set(photo: newImage!,  forIndex: imageIndex)
             } else {
-                result!.photos += [newImage!]
+                result!.add(photo: newImage!)
             }
         }
     }
@@ -39,10 +40,10 @@ class PhotoMap {
         set (newFileName) {
             FTAssert(isTrue: newFileName != nil, error: "Attempted to set nil file name to photo result")
             if imageIndex < result!.fileNames!.count {
-                result!.fileNames![imageIndex] = newFileName!
+                result!.set(fileName: newFileName!, forIndex: imageIndex)
             } else {
-                result!.fileNames! += [newFileName!]
-            }
+                result!.add(fileName: newFileName! )
+           }
         }
     }
 
@@ -53,6 +54,7 @@ class PhotoMap {
     }
 }
 
+// MARK: PhotoFileList Methods -------------------------------------------------------------------------------
 // Class used to pass multiple photos to server, and match results coming back to their tasks
 
 // We want one big list of images from the form so they can all be uploaded at once and success confirmed before sending form data
@@ -127,7 +129,7 @@ class PhotoFileList {
                 if let fileIndex = elementDict["fileIndex"], let fileName = elementDict["fileName"] {
                     if let arrayIndex = Int(fileIndex) {
                         let map = mapArray[arrayIndex]
-                        map.result!.fileNames! += [fileName]
+                        map.result!.add(fileName: fileName)
                     }
                 }
             }

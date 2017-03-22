@@ -70,8 +70,11 @@ open class FTLocation: _FTLocation {
     }
 
     func templateIds() -> [String] {
-        return Array(templates!)
-    }
+        if let templateSet = templates {
+            return Array(templateSet)
+        }
+        return [String]()
+     }
 
     func containsTemplate(templateId: String) -> Bool {
         return templates!.contains(templateId)

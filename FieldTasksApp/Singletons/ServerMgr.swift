@@ -236,6 +236,17 @@ class ServerMgr {
         })
     }
 
+    func deleteLocation(locationId: String, completion : @escaping (_ error : String?)->()) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let url = cLocationsURL + "/" + locationId
+        Alamofire.request(url, method: .delete, parameters: ["id":locationId], encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { response in
+            DispatchQueue.main.async() {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            completion(response.error?.localizedDescription)
+        })
+    }
+
     // MARK: Images  -------------------------------------------------------------------------------
     func uploadImage(image: UIImage, progress : @escaping (Float)->(), completion : @escaping (_ fileName: String, _ error: String?)->()) {
         // Start spinner

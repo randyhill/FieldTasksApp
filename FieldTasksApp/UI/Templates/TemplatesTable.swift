@@ -74,6 +74,9 @@ class TemplatesTable: UITableViewController {
                 self.templatesList = TemplatesMgr.shared.templatesFromId(idList: location.templateIds())
             }
         }
+        self.templatesList = self.templatesList.sorted(by: { (a , b ) -> Bool in
+            return a.name! < b.name!
+        })
         self.refreshOnMainThread()
     }
 

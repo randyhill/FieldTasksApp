@@ -6,12 +6,6 @@ open class Form: _Form {
         let templateDict = template.toDict()
         self.fromDict(formDict: templateDict)
         self.id = ""
-//        self.name = template.name
-//        self.descriptionString = template.descriptionString
-//        var taskCopies = [Task]()
-//        for task in tasks {
-//            self.tasks = template.copyTasks()
-//        }
         self.templateId = template.id
     }
 

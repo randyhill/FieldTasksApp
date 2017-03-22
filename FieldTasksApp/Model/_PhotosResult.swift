@@ -5,7 +5,7 @@ import Foundation
 import CoreData
 
 public enum PhotosResultAttributes: String {
-    case fileNames = "fileNames"
+    case file_names = "file_names"
 }
 
 open class _PhotosResult: TaskResult {
@@ -34,7 +34,7 @@ open class _PhotosResult: TaskResult {
     // MARK: - Properties
 
     @NSManaged open
-    var fileNames: [String]?
+    var file_names: [String]?
 
     // MARK: - Relationships
 

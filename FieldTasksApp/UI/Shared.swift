@@ -13,6 +13,20 @@ import SVProgressHUD
 let cTitleFontSize = CGFloat(16.0)
 let cDetailFontSize = CGFloat(13.0)
 
+func getDocumentsDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    let documentsDirectory = paths[0]
+    return documentsDirectory
+}
+
+// Use caches directly for images. this means that we need to make sure images are uploaded to server before placed here so they aren't lost.
+func getImageDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+    let documentsDirectory = paths[0]
+    return documentsDirectory.appendingPathComponent("images")
+}
+
+
 func FlatBarButton(title: String, target: Any?, action: Selector) -> UIBarButtonItem {
     let customButton = FUIButton(type: .custom)
     customButton.setTitle(title, for: .normal)

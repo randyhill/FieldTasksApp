@@ -10,14 +10,6 @@ import UIKit
 import FlatUIKit
 
 class ChoicesTaskCell : UITableViewCell {
-//    func addTouch() {
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
-//        self.addGestureRecognizer(tapGesture)
-//    }
-//
-//    func tapped(gesture : UITapGestureRecognizer) {
-//        print("tapped: \(gesture.location(in: self))")
-//    }
 }
 
 class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
@@ -50,6 +42,7 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
             choices = task.titles!
         }
         super.viewWillAppear(animated)
+        editTable.isHidden = (choices.count == 0)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,14 +64,15 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
         if let text = choiceField.text, text.characters.count > 0 {
             choices += [text]
             choiceField.text = ""
+            editTable.isHidden = (choices.count == 0)
             self.tableView.reloadData()
         }
     }
 
     @IBAction func toggleEditing(_ sender: Any) {
         tableView.isEditing = !tableView.isEditing
-        editTable.setTitle(tableView.isEditing ? "Done" : "Edit List", for: .normal)
-        editTable.setTitle(tableView.isEditing ? "Done" : "Edit List", for: .highlighted)
+        editTable.setTitle(tableView.isEditing ? "Done" : "Edit", for: .normal)
+        editTable.setTitle(tableView.isEditing ? "Done" : "Edit", for: .highlighted)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -107,6 +101,10 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             choices.remove(at: indexPath.row)
+            editTable.isHidden = (choices.count == 0)
+            if choices.count == 0 {
+                self.toggleEditing(editTable)
+            }
             self.tableView.reloadData()
         } else {
             FTErrorMessage(error: "unimplemented editing style")

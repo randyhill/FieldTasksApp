@@ -46,13 +46,13 @@ class LocationsViewer: UITableViewController, LocationUpdates {
        }
         makeNavBarFlat()
         locations.delegate = self
-        refreshList()
+        refreshOnMainThread()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        refreshList()
+        refreshOnMainThread()
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,8 +60,13 @@ class LocationsViewer: UITableViewController, LocationUpdates {
         // Dispose of any resources that can be recreated.
     }
 
-    func refreshList() {
+    func refreshOnMainThread() {
         self.locationList = self.locations.all() //self.locations.within(meters: self.searchRadius)
+        if let cLoc = LocationsMgr.shared.currentCLLocation() {
+            self.locationList = self.locationList.sorted { (a , b ) -> Bool in
+                return a.distanceFrom(location: cLoc) < b.distanceFrom(location: cLoc)
+            }
+        }
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })
@@ -74,7 +79,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
                 self.showAlert(title: "Error creating location", message: error)
             }
             // Refresh list data before updating visual list
-            self.refreshList()
+            self.refreshOnMainThread()
         }
     }
 
@@ -178,6 +183,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
 
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             self.isEditing = false
+            self.deleteLocationFromServer(forRowAt: indexPath)
         }
         delete.backgroundColor = UIColor.alizarin()
 
@@ -187,15 +193,15 @@ class LocationsViewer: UITableViewController, LocationUpdates {
     func deleteLocationFromServer(forRowAt indexPath: IndexPath) {
         self.askAlert(title: "Are you sure you want to delete this location?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (deleteIt) in
             if deleteIt {
-//                let template = self.templatesList[indexPath.row]
-//                TemplatesMgr.shared.deleteTemplate(templateId: template.id!, completion: { (error) in
-//                    if let error = error {
-//                        self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
-//                    } else {
-//                        self.templatesList = TemplatesMgr.shared.all()
-//                        self.refreshOnMainThread()
-//                    }
-//                })
+                let location = self.locationList[indexPath.row]
+                ServerMgr.shared.deleteLocation(locationId: location.id!, completion: { (error) in
+                    if let error = error {
+                        self.showAlert(title: "Delete failed", message: "Unable to delete location: \(error)")
+                    } else {
+                        CoreDataMgr.shared.deleteObject(object: location)
+                        self.refreshOnMainThread()
+                    }
+                })
             }
         })
     }
