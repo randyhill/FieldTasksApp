@@ -23,7 +23,8 @@ func getDocumentsDirectory() -> URL {
 func getImageDirectory() -> URL {
     let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
     let documentsDirectory = paths[0]
-    return documentsDirectory.appendingPathComponent("images")
+    return documentsDirectory
+   // return documentsDirectory.appendingPathComponent("images")
 }
 
 

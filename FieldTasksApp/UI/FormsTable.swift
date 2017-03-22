@@ -35,6 +35,10 @@ class FormsTable: UITableViewController {
                 FTAlertError(message: "Could not load forms from server: \(error)")
             } else  {
                 self.formsList = FormsMgr.shared.all()
+                // Sort by newest
+                self.formsList = self.formsList.sorted(by: { (a , b ) -> Bool in
+                    return a.createDate! > b.createDate!
+                })
                 self.reloadOnMainQueue()
             }
         }

@@ -57,6 +57,12 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
         self.collectionView.reloadData()
     }
 
+    func reloadOnMain() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+
     func setPicture(picture : UIImage) {
         let data = photoData
         if data.isSingle!.boolValue {
@@ -66,23 +72,17 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
             self.result.add(photo: picture)
             self.scrollToBottomAnimated(animated: true)
         }
-        self.collectionView.reloadData()
+        self.reloadOnMain()
     }
 
     func removePicture(deleteImage : UIImage) {
-        var newImages = [UIImage] ()
-        for image in result.photos {
-            if image !== deleteImage {
-                newImages += [image]
-            }
-        }
-        result.replace(photos: newImages)
-        collectionView.reloadData()
+        result.remove(photo: deleteImage)
+        self.reloadOnMain()
     }
 
     // Return nil if data user entered is valid or error message if not
     override func validate() -> String? {
-        if (result.photos.count == 0) {
+        if (result.count() == 0) {
             return "No photo selected/taken"
         }
         return nil
@@ -92,27 +92,12 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
     }
 
     override func restore() {
-        if result.photos.count > 0 {
+        if result.count() > 0 {
             self.collectionView.reloadData()
         } else {
-            result.loadAll()
-            for photo in result.photos {
-                self.setPicture(picture: photo)
-            }
-//            for fileName in result.fileNames! {
-//                ServerMgr.shared.downloadFile(imageFileName: fileName, completion: { (imageData, errorString) in
-//                    // Lets do UI stuff on main thread.
-//                    DispatchQueue.main.async {
-//                        if let imData = imageData {
-//                            if let image = UIImage(data: imData) {
-//                                self.setPicture(picture: image)
-//                            }
-//                        } else {
-//                            FTAlertError(message: errorString ?? "Unknown error")
-//                        }
-//                    }
-//                })
-//            }
+            result.loadAll(imageLoaded: { (image) in
+                self.setPicture(picture: image)
+            })
         }
     }
 
@@ -192,7 +177,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
 
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return result.photos.count
+        return result.count()
     }
 
     // Header
@@ -213,7 +198,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
             headerView.cameraButton.makeFlatButton()
             headerView.cameraButton.isHidden = !UIImagePickerController.isSourceTypeAvailable(.camera)
             headerView.headerText.makeTitleStyle()
-            headerView.headerText.text = "Images: \(result.photos.count)"
+            headerView.headerText.text = "Images: \(result.count())"
             headerView.headerText.isHidden = data.isSingle!.boolValue
             return headerView
         default:
@@ -229,7 +214,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
                                                       for: indexPath)
         if let cell = cell as? PhotoCell {
             // Configure the cell
-            let image = result.photos[indexPath.row]
+            let image = result.at(index: indexPath.row)
             cell.imageView.image = image
             cell.delegate = self
             cell.image = image

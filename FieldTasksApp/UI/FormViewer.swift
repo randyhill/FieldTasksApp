@@ -43,11 +43,13 @@ class FormPhotoTaskCell : UITableViewCell {
             oldView.removeFromSuperview()
         }
         if let photoResult = task.result as? PhotosResult {
-            for image in photoResult.photos {
-                let imageView = UIImageView(image: image)
-                imageView.contentMode = .scaleAspectFit
-                imageView.translatesAutoresizingMaskIntoConstraints = false
-                self.stackView.addArrangedSubview(imageView)
+            for i in 0..<photoResult.count() {
+                if let image = photoResult.at(index: i) {
+                    let imageView = UIImageView(image: image)
+                    imageView.contentMode = .scaleAspectFit
+                    imageView.translatesAutoresizingMaskIntoConstraints = false
+                    self.stackView.addArrangedSubview(imageView)
+                }
             }
         }
     }
@@ -96,26 +98,22 @@ class FormViewer : UITableViewController {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
 
+        var rowIndex = 0
         for task in form!.tasks {
             if let task = task as? PhotosTask {
                 if let result = task.result as? PhotosResult {
-                    result.loadAll()
+                    result.loadAll(imageLoaded: { (image) in
+                        DispatchQueue.main.async {
+                            self.tableView.beginUpdates()
+                            self.tableView.reloadRows(at: [IndexPath(row: rowIndex, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
+                        }
+                    })
                 }
             }
+            rowIndex += 1
         }
         self.tableView.reloadData()
-//        let photosList = PhotoFileList(tasks: form!.tasks, buildWithImages: false)
-//        ServerMgr.shared.downloadFiles(photoFileList: photosList, imageUpdate: { (index) in
-//            DispatchQueue.main.async {
-//                self.tableView.beginUpdates()
-//                self.tableView.reloadRows(at: [IndexPath(row: index + 1, section: 0)], with: .automatic)
-//                self.tableView.endUpdates()
-//            }
-//        }, completion: { (error) in
-//            if let error = error {
-//                FTErrorMessage(error: "Could not download all photos: \(error)")
-//            }
-//        })
     }
 
     override func didReceiveMemoryWarning() {

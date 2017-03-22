@@ -8,22 +8,22 @@
 
 import UIKit
 
-// MARK: PhotMap  -------------------------------------------------------------------------------
+// MARK: PhotoFileListMap  -------------------------------------------------------------------------------
 // Map individual image to it's photoresult record and array index
-class PhotoMap {
+class PhotoFileListMap {
     var imageIndex = 0
     var resultIndex = 0
     var result : PhotosResult?
     var image : UIImage? {
         get {
-            if imageIndex < result!.photos.count {
-                return result?.photos[imageIndex]
+            if imageIndex < result!.count() {
+                return result?.at(index: imageIndex)
             }
             return nil
         }
         set (newImage) {
             FTAssert(isTrue: newImage != nil, error: "Attempted to set nil image to photo result")
-            if imageIndex < result!.photos.count {
+            if imageIndex < result!.count() {
                 result!.set(photo: newImage!,  forIndex: imageIndex)
             } else {
                 result!.add(photo: newImage!)
@@ -63,7 +63,7 @@ class PhotoMap {
 // to the index of their PhotoMap entry.
 class PhotoFileList {
     private var photoResults = [PhotosResult]()
-    private var mapArray = [PhotoMap]()
+    private var mapArray = [PhotoFileListMap]()
 
     var count : Int {
         get {
@@ -84,9 +84,9 @@ class PhotoFileList {
         for resultIndex in 0 ..< tasks.count {
             let task = tasks[resultIndex]
             if let photoResult = task.result as? PhotosResult {
-                if photoResult.photos.count > 0 {
-                    for imageIndex in 0 ..< photoResult.photos.count {
-                        let map = PhotoMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)
+                if photoResult.count() > 0 {
+                    for imageIndex in 0 ..< photoResult.count() {
+                        let map = PhotoFileListMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)
                         mapArray += [map]
                     }
                     photoResults += [photoResult]
@@ -102,7 +102,7 @@ class PhotoFileList {
             if let photoResult = task.result as? PhotosResult {
                 if photoResult.fileNames!.count > 0 {
                     for imageIndex in 0 ..< photoResult.fileNames!.count {
-                        let map = PhotoMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)
+                        let map = PhotoFileListMap(imageIndex: imageIndex, resultIndex: resultIndex, result: photoResult)
                         mapArray += [map]
                     }
                     photoResults += [photoResult]
@@ -111,11 +111,11 @@ class PhotoFileList {
         }
     }
 
-    func mapOfAllImages() -> [PhotoMap] {
+    func mapOfAllImages() -> [PhotoFileListMap] {
         return mapArray
     }
 
-    func mapOfUnloaded() -> [PhotoMap] {
+    func mapOfUnloaded() -> [PhotoFileListMap] {
         return mapArray.filter { (map) -> Bool in
             return (map.image == nil)
         }

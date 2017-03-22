@@ -141,7 +141,7 @@ class CoreDataMgr {
     func createForm() -> Form {
         let entity = NSEntityDescription.entity(forEntityName: "Form", in: context!)
         let form = Form(entity: entity!, insertInto: context)
-        form.createDate = Date()
+        //form.createDate = Date()
         form.locationId = ""
         form.templateId = ""
         return form

@@ -12,9 +12,9 @@ open class Form: _Form {
     func fromDict(formDict: [String : Any]) {
         super.fromDict(templateDict: formDict)
 
-        if let createDate = formDict["created"] as? String {
-            if let date = Globals.shared.utcFormatter.date(from: createDate) {
-                self.createDate = date
+        if let auditTrail = formDict["auditTrail"] as? [String: Any] {
+            if let createDate = auditTrail["created"] as? String {
+                self.createDate = Globals.shared.utcFormatter.date(from: createDate)
             }
         }
         // Locations list isn't allocated yet so we can't save location here
