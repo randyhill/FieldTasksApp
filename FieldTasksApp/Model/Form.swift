@@ -21,7 +21,9 @@ open class Form: _Form {
         self.locationId = formDict["location"] as? String ?? ""
         self.latitude = formDict["latitude"] as? NSNumber ?? 0
         self.longitude = formDict["longitude"] as? NSNumber ?? 0
-
+        if let submissionString = formDict["submitted"] as? String {
+            self.submitted = Globals.shared.utcFormatter.date(from: submissionString)  // Server sets submission date so we know was successful
+        }
 
         // Locations list isn't allocated yet so we can't save location here
         FTAssert(exists: createDate, error: "createDate doesn't exist")
@@ -45,6 +47,9 @@ open class Form: _Form {
                 //  update id
                 if let formDict = result, let formId = formDict["_id"] as? String {
                     self.id = formId
+                    if let submissionString = formDict["submitted"] as? String {
+                        self.submitted = Globals.shared.utcFormatter.date(from: submissionString)  // Server sets submission date so we know was successful
+                    }
                     CoreDataMgr.shared.save()
                     completion(nil)
                 } else {

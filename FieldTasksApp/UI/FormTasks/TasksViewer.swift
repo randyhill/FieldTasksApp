@@ -81,7 +81,10 @@ class TasksViewer : UIViewController {
     }
 
     func setNextButton(index: Int) {
-        if index == (form!.tasks.count - 1) {
+        if form!.tasks.count == 1 {
+            navigationItem.rightBarButtonItem = nil
+        }
+        else if index == (form!.tasks.count - 1) {
             navigationItem.rightBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(nextTask))
         } else {
             navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "rightarrow", target: self, action: #selector(nextTask))

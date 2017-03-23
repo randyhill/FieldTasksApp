@@ -62,15 +62,27 @@ class FormTitleCell : UITableViewCell {
     func configureWithForm(form : Form) {
         var locationString = "Location: Unknown"
         if let location = LocationsMgr.shared.getBy(id: form.locationId!){
-            locationString = "For: " + location.name!
+            locationString = "Location: " + location.name!
         }
         self.title.text = locationString
         self.title.makeTitleStyle()
 
-        let coordinatesString = "lat: \(form.latitude) long: \(form.longitude)"
-        var descriptionString = Globals.shared.dateFormatter.string(from: form.createDate!) + " " + coordinatesString
-        descriptionString += "\n" + (form.descriptionString ?? "")
-        self.body.text = descriptionString
+        let createdString = "Created: " + Globals.shared.dateFormatter.string(from: form.createDate!)
+        let submittedString = form.submitted != nil ? "Submitted: " + Globals.shared.dateFormatter.string(from: form.submitted!) : ""
+        let coordinatesString = "\(form.latitude!),\(form.longitude!)"
+        let descriptionString = "\n" + (form.descriptionString ?? "")
+        let linkAttributes = [
+            NSLinkAttributeName: NSURL(string: "https://www.google.com/maps/place/\(coordinatesString)")!,
+            NSForegroundColorAttributeName: UIColor.blue
+            ] as [String : Any]
+
+        let linkString = NSMutableAttributedString(string: "    (Map It)")
+        linkString.setAttributes(linkAttributes, range: NSMakeRange(0, 12))
+
+        let attributed = NSMutableAttributedString(string:createdString + "\n" + submittedString)
+        attributed.append(linkString)
+        attributed.append(NSMutableAttributedString(string: descriptionString))
+        self.body.attributedText = attributed
         self.body.makeDetailStyle()
         self.body.backgroundColor = self.contentView.backgroundColor
         self.selectionStyle = .none

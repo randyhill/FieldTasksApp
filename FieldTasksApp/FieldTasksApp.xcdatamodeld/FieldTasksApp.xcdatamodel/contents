@@ -20,6 +20,7 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locationId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="submitted" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="templateId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="FTLocation" representedClassName="FTLocation" syncable="YES">
@@ -87,7 +88,7 @@
     <elements>
         <element name="ChoicesResult" positionX="-144" positionY="117" width="128" height="60"/>
         <element name="ChoicesTask" positionX="-99" positionY="162" width="128" height="75"/>
-        <element name="Form" positionX="-153" positionY="108" width="128" height="120"/>
+        <element name="Form" positionX="-153" positionY="108" width="128" height="135"/>
         <element name="FTLocation" positionX="-261" positionY="357" width="128" height="210"/>
         <element name="NumberResult" positionX="-108" positionY="153" width="128" height="60"/>
         <element name="NumberTask" positionX="-126" positionY="126" width="128" height="105"/>

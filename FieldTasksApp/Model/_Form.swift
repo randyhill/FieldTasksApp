@@ -9,6 +9,7 @@ public enum FormAttributes: String {
     case latitude = "latitude"
     case locationId = "locationId"
     case longitude = "longitude"
+    case submitted = "submitted"
     case templateId = "templateId"
 }
 
@@ -48,6 +49,9 @@ open class _Form: Template {
 
     @NSManaged open
     var longitude: NSNumber?
+
+    @NSManaged open
+    var submitted: Date?
 
     @NSManaged open
     var templateId: String?
