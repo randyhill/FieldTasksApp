@@ -241,8 +241,8 @@
 		D8E4B7AD1E6F34C200BDE823 /* _TextResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7941E6F34C200BDE823 /* _TextResult.swift */; };
 		D8E4B7AE1E6F34C200BDE823 /* _TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7951E6F34C200BDE823 /* _TextTask.swift */; };
 		D8E4B7AF1E6F34C200BDE823 /* _TextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7951E6F34C200BDE823 /* _TextTask.swift */; };
-		D8E4B7B41E70C2DB00BDE823 /* SyncObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7B31E70C2DB00BDE823 /* SyncObjects.swift */; };
-		D8E4B7B51E70C2DB00BDE823 /* SyncObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7B31E70C2DB00BDE823 /* SyncObjects.swift */; };
+		D8E4B7B41E70C2DB00BDE823 /* SyncMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7B31E70C2DB00BDE823 /* SyncMgr.swift */; };
+		D8E4B7B51E70C2DB00BDE823 /* SyncMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7B31E70C2DB00BDE823 /* SyncMgr.swift */; };
 		D8F1D6EB1E53A8F200A07F70 /* Icon 76.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */; };
 		D8F1D6EC1E53A8F200A07F70 /* Icon 76.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */; };
 		D8F1D6ED1E53A8F200A07F70 /* Icon 120.png in Resources */ = {isa = PBXBuildFile; fileRef = D8F1D6DD1E53A8F200A07F70 /* Icon 120.png */; };
@@ -381,7 +381,7 @@
 		D8E4B7931E6F34C200BDE823 /* _Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Template.swift; path = Model/_Template.swift; sourceTree = "<group>"; };
 		D8E4B7941E6F34C200BDE823 /* _TextResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TextResult.swift; path = Model/_TextResult.swift; sourceTree = "<group>"; };
 		D8E4B7951E6F34C200BDE823 /* _TextTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _TextTask.swift; path = Model/_TextTask.swift; sourceTree = "<group>"; };
-		D8E4B7B31E70C2DB00BDE823 /* SyncObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncObjects.swift; path = Model/SyncObjects.swift; sourceTree = "<group>"; };
+		D8E4B7B31E70C2DB00BDE823 /* SyncMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncMgr.swift; path = Model/SyncMgr.swift; sourceTree = "<group>"; };
 		D8F1D6DC1E53A8F200A07F70 /* Icon 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 76.png"; path = "Images/Icon 76.png"; sourceTree = "<group>"; };
 		D8F1D6DD1E53A8F200A07F70 /* Icon 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 120.png"; path = "Images/Icon 120.png"; sourceTree = "<group>"; };
 		D8F1D6DE1E53A8F200A07F70 /* Icon 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 152.png"; path = "Images/Icon 152.png"; sourceTree = "<group>"; };
@@ -542,7 +542,6 @@
 		D8549BD81D68C9D7009DBE7A /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D8E4B7B31E70C2DB00BDE823 /* SyncObjects.swift */,
 				D89B775F1E777C2D004B755A /* StringArray.swift */,
 				D8F1D7131E53A96900A07F70 /* TaskUtitlities.swift */,
 				D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */,
@@ -667,6 +666,7 @@
 		D8E9547C1E622F71004D5D4C /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
+				D8E4B7B31E70C2DB00BDE823 /* SyncMgr.swift */,
 				D86BF72A1E6397EC00884277 /* LocationsMgr.swift */,
 				D86BF72B1E6397EC00884277 /* ServerMgr.swift */,
 				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
@@ -1051,7 +1051,7 @@
 				D8549B9B1D67871B009DBE7A /* AppDelegate.swift in Sources */,
 				D86C79FC1E6DDDBF00A8A801 /* NumberResult.swift in Sources */,
 				D85D53DE1D710D94006D31F2 /* Globals.swift in Sources */,
-				D8E4B7B41E70C2DB00BDE823 /* SyncObjects.swift in Sources */,
+				D8E4B7B41E70C2DB00BDE823 /* SyncMgr.swift in Sources */,
 				D89B77601E777C2D004B755A /* StringArray.swift in Sources */,
 				D835A3E41E635C31002C3EB1 /* UIImage.swift in Sources */,
 				D86C7A011E6DDDBF00A8A801 /* TaskResult.swift in Sources */,
@@ -1131,7 +1131,7 @@
 				D8F1D70F1E53A92700A07F70 /* FormViewer.swift in Sources */,
 				D835A3EE1E635C58002C3EB1 /* UIImage.swift in Sources */,
 				D89B77611E777C2D004B755A /* StringArray.swift in Sources */,
-				D8E4B7B51E70C2DB00BDE823 /* SyncObjects.swift in Sources */,
+				D8E4B7B51E70C2DB00BDE823 /* SyncMgr.swift in Sources */,
 				D87390181E3BCC5500142FD6 /* PhotoFileList.swift in Sources */,
 				D85D53CF1D710750006D31F2 /* AppDelegate.swift in Sources */,
 				D8E4B7971E6F34C200BDE823 /* _ChoicesResult.swift in Sources */,

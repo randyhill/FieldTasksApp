@@ -10,30 +10,6 @@ import Foundation
 
 class FormsMgr {
     static let shared = FormsMgr()
-    var lastSync : Date?
-    let cSyncValue = "FormsSync"
-
-    init() {
-        // Request access and initial location
-        self.lastSync = Globals.getSettingsValue(key: cSyncValue) as? Date ?? Globals.shared.stringToDate(dateString: "2017-01-01")
-    }
-
-    func syncList(completion: @escaping ( _ error: String?)->(Void)) {
-        ServerMgr.shared.syncForms(sinceDate: lastSync!) { (result, timeStamp, error) in
-            FTAssert(exists: timeStamp, error: "No time stamp for templates sync")
-            FTAssert(exists: result, error: "No result for templates sync")
-            FTAssertString(error: error)
-            if let formList = result  {
-                if let error = SyncForms.syncList(newList: formList) {
-                    completion(error)
-                } else {
-                    self.lastSync = timeStamp
-                    Globals.saveSettingsValue(key: self.cSyncValue, value: self.lastSync as AnyObject)
-                    completion(nil)
-                }
-            }
-        }
-    }
 
     func all() -> [Form] {
         if let list = CoreDataMgr.shared.fetchForms() {

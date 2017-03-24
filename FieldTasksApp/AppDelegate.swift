@@ -22,9 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
 
         // init core data manager so we can load templates/locations
-        CoreDataMgr.shared.setModelContext(model: self.managedObjectModel, context: self.managedObjectContext)
-        let _ = TemplatesMgr.shared
-        //LocationsMgr.shared.loadLocations()
+        CoreDataMgr.shared.initModelContext(model: self.managedObjectModel, context: self.managedObjectContext)
         return true
     }
 
@@ -44,6 +42,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+        // Query server for any data changes, in backgorund so UI isn't interrupted, which means using BG context for Coredata
+        DispatchQueue.global(qos: .background).async {
+            let backgroundContext = CoreDataMgr.shared.setBackgroundContext()
+            backgroundContext.perform({ 
+                SyncMgr.shared.sync { (syncResult ) in
+                    FTAssertString(error: syncResult.error)
+
+                    // Switch back to main thread CoreData and save to make sure changes are saved.
+                    CoreDataMgr.shared.restoreMainContext()
+                    DispatchQueue.main.async {
+                        CoreDataMgr.shared.save()
+                        if syncResult.templates > 0 {
+                            NotificationCenter.default.post(name: cTemplatesUpdateNotification, object: syncResult.templates)
+                        }
+                        if syncResult.locations > 0 {
+                            NotificationCenter.default.post(name: cLocationsUpdateNotification, object: syncResult.locations)
+                        }
+                        if syncResult.forms > 0 {
+                            NotificationCenter.default.post(name: cFormsUpdateNotification, object: syncResult.forms)
+                        }
+                    }
+                }
+            })
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

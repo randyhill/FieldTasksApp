@@ -46,7 +46,8 @@ class LocationsViewer: UITableViewController, LocationUpdates {
        }
         makeNavBarFlat()
         locations.delegate = self
-        refreshOnMainThread()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshOnMainThread), name: cLocationsUpdateNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -74,13 +75,15 @@ class LocationsViewer: UITableViewController, LocationUpdates {
 
     // In regular mode when used to display locations.
     func refreshFromServer() {
-        self.locations.refresh { (error) in
-            if let error = error {
-                self.showAlert(title: "Error creating location", message: error)
+        SyncMgr.shared.sync(completion: { (syncResult) in
+            if let error = syncResult.error {
+                self.showAlert(title: "Error syncing with server", message: error)
             }
             // Refresh list data before updating visual list
-            self.refreshOnMainThread()
-        }
+            if syncResult.locations > 0 {
+                self.refreshOnMainThread()
+            }
+        })
     }
 
     // In modal mode when used as location picker
@@ -113,8 +116,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
 
     // MARK: Table Methods -------------------------------------------------------------------------------
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = locationList.count
-        return count
+        return locationList.count
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

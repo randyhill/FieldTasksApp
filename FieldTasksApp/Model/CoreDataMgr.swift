@@ -13,22 +13,35 @@ import CoreData
 class CoreDataMgr {
     static let shared = CoreDataMgr()
     private var model : NSManagedObjectModel?
-    private var context : NSManagedObjectContext?
+    private var mainContext : NSManagedObjectContext?
+    private var curContext : NSManagedObjectContext?
 
-    func setModelContext(model : NSManagedObjectModel, context: NSManagedObjectContext) {
+    func initModelContext(model : NSManagedObjectModel, context: NSManagedObjectContext) {
         self.model = model
-        self.context = context
+        self.mainContext = context
+        self.curContext = context
+    }
+
+    func setBackgroundContext() -> NSManagedObjectContext {
+        let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        backgroundContext.persistentStoreCoordinator = self.mainContext?.persistentStoreCoordinator
+        self.curContext = backgroundContext
+        return backgroundContext
+    }
+
+    func restoreMainContext() {
+        self.curContext = self.mainContext
     }
 
     func save() {
         // Core data functions need to be on same thread as context.
-        DispatchQueue.main.async {
+        //DispatchQueue.main.async {
             do {
-                try self.context?.save()
+                try self.curContext?.save()
             }   catch let error as NSError {
                 FTErrorMessage(error: "Could not save data context: \(error), \(error.userInfo)")
             }
-        }
+        //}
     }
 
     // MARK: Object Fetch/Remove Methods -------------------------------------------------------------------------------
@@ -36,7 +49,7 @@ class CoreDataMgr {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id=%@", objectId)
         do {
-            let objects = try context!.fetch(fetchRequest)
+            let objects = try curContext!.fetch(fetchRequest)
             if objects.count > 0 {
                 FTAssert(isTrue: objects.count <= 1, error: "Multiple objects with id: \(objectId)")
                 return objects[0] as AnyObject?
@@ -51,7 +64,7 @@ class CoreDataMgr {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Form.entityName())
         fetchRequest.predicate = NSPredicate(format: "id='' AND templateId=%@", templateId)
         do {
-            let objects = try context!.fetch(fetchRequest)
+            let objects = try curContext!.fetch(fetchRequest)
             FTAssert(isTrue: objects.count <= 1, error: "Multiple unsubmitted forms for template: \(templateId)")
             return objects.last as? Form
         } catch let error as NSError {
@@ -62,7 +75,7 @@ class CoreDataMgr {
 
     // This will delete any objects of this entity type with given id, so if we accidently create duplicates it will clear them
     func deleteObject(object: AnyObject) {
-        self.context?.delete(object as! NSManagedObject)
+        self.curContext?.delete(object as! NSManagedObject)
     }
 
     // This will delete any objects of this entity type with given id, so if we accidently create duplicates it will clear them
@@ -70,10 +83,10 @@ class CoreDataMgr {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id=%@", objectId)
         do {
-            let objects = try context!.fetch(fetchRequest)
+            let objects = try curContext!.fetch(fetchRequest)
             FTAssert(isTrue: (objects.count != 0), error: "Could not find \(entityName) with id: \(objectId) to delete")
             for object in objects {
-                self.context?.delete(object as! NSManagedObject)
+                self.curContext?.delete(object as! NSManagedObject)
             }
         } catch let error as NSError {
             FTErrorMessage(error: "Could not delete \(entityName) with id: \(objectId) - \(error), \(error.userInfo)")
@@ -81,12 +94,12 @@ class CoreDataMgr {
     }
 
     func fetchForms() -> [Form]? {
-        if let entity = Form.entity(managedObjectContext: context!) {
+        if let entity = Form.entity(managedObjectContext: curContext!) {
             // Add predicate so we don't return subclasses of the class
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Form.entityName())
             fetchRequest.predicate = NSPredicate(format: "entity=%@", entity)
             do {
-                let objects = try context!.fetch(fetchRequest)
+                let objects = try curContext!.fetch(fetchRequest)
                 return objects as? [Form]
             } catch let error as NSError {
                 FTErrorMessage(error: "Could not fetch list for: \(Form.entityName()) \(error), \(error.userInfo)")
@@ -96,12 +109,12 @@ class CoreDataMgr {
     }
 
     func fetchTemplates() -> [Template]? {
-        if let entity = Template.entity(managedObjectContext: context!) {
+        if let entity = Template.entity(managedObjectContext: curContext!) {
             // Add predicate so we don't return subclasses of the class
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Template.entityName())
             fetchRequest.predicate = NSPredicate(format: "entity=%@", entity)
             do {
-                let objects = try context!.fetch(fetchRequest)
+                let objects = try curContext!.fetch(fetchRequest)
                 return objects as? [Template]
             } catch let error as NSError {
                 FTErrorMessage(error: "Could not fetch list for: \(Template.entityName()) \(error), \(error.userInfo)")
@@ -115,7 +128,7 @@ class CoreDataMgr {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id IN %@", ids)
         do {
-            let objects = try context!.fetch(fetchRequest)
+            let objects = try curContext!.fetch(fetchRequest)
             return objects
         } catch let error as NSError {
             FTErrorMessage(error: "Could not fetch list for: \(entityName) \(error), \(error.userInfo)")
@@ -125,13 +138,13 @@ class CoreDataMgr {
 
     // MARK: Type specific Creation Methods -------------------------------------------------------------------------------
     func createLocation() -> FTLocation {
-        let entity = NSEntityDescription.entity(forEntityName: FTLocation.entityName(), in: context!)
-        return FTLocation(entity: entity!, insertInto: context)
+        let entity = NSEntityDescription.entity(forEntityName: FTLocation.entityName(), in: curContext!)
+        return FTLocation(entity: entity!, insertInto: curContext)
     }
 
     func createTemplate() -> Template {
-        let entity = NSEntityDescription.entity(forEntityName: "Template", in: context!)
-        let template = Template(entity: entity!, insertInto: context)
+        let entity = NSEntityDescription.entity(forEntityName: "Template", in: curContext!)
+        let template = Template(entity: entity!, insertInto: curContext)
         template.descriptionString = ""
         template.id = ""
         template.name = ""
@@ -139,8 +152,8 @@ class CoreDataMgr {
     }
 
     func createForm() -> Form {
-        let entity = NSEntityDescription.entity(forEntityName: "Form", in: context!)
-        let form = Form(entity: entity!, insertInto: context)
+        let entity = NSEntityDescription.entity(forEntityName: "Form", in: curContext!)
+        let form = Form(entity: entity!, insertInto: curContext)
         form.createDate = Date()
         form.locationId = ""
         form.templateId = ""
@@ -148,20 +161,20 @@ class CoreDataMgr {
     }
 
     func createTaskResult(entityName: String, task: Task) -> TaskResult {
-        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context!)
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: curContext!)
         var taskResult : TaskResult?
         switch entityName {
         case "TextResult":
-            taskResult = TextResult(entity: entity!, insertInto: context)
+            taskResult = TextResult(entity: entity!, insertInto: curContext)
         case "NumberResult":
-            taskResult = NumberResult(entity: entity!, insertInto: context)
+            taskResult = NumberResult(entity: entity!, insertInto: curContext)
         case "ChoicesResult":
-            taskResult = ChoicesResult(entity: entity!, insertInto: context)
+            taskResult = ChoicesResult(entity: entity!, insertInto: curContext)
             if let result = taskResult as? ChoicesResult {
                 result.values = [Bool]()
             }
         case "PhotosResult":
-            taskResult = PhotosResult(entity: entity!, insertInto: context)
+            taskResult = PhotosResult(entity: entity!, insertInto: curContext)
         default:
             FTErrorMessage(error: "Unknown entity name, could not create TaskResult")
             break
@@ -171,18 +184,18 @@ class CoreDataMgr {
     }
 
     func createTask(entityName: String) -> Task {
-        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context!)
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: curContext!)
         var task : Task?
         switch entityName {
         case "TextTask":
-            task = TextTask(entity: entity!, insertInto: context)
+            task = TextTask(entity: entity!, insertInto: curContext)
             if let task = task as? TextTask {
                 task.isUnlimited = true
                 task.max = 0
                 task.type = TaskType.Text.rawValue
             }
         case "NumberTask":
-            task = NumberTask(entity: entity!, insertInto: context)
+            task = NumberTask(entity: entity!, insertInto: curContext)
             if let task = task as? NumberTask {
                 task.isDecimal = false
                 task.isUnlimited = true
@@ -191,14 +204,14 @@ class CoreDataMgr {
                 task.type = TaskType.Number.rawValue
             }
         case "ChoicesTask":
-            task = ChoicesTask(entity: entity!, insertInto: context)
+            task = ChoicesTask(entity: entity!, insertInto: curContext)
             if let task = task as? ChoicesTask {
                 task.isRadio =  false
                 task.type = TaskType.Choices.rawValue
                 task.titles = [String]()
             }
         case "PhotosTask":
-            task = PhotosTask(entity: entity!, insertInto: context)
+            task = PhotosTask(entity: entity!, insertInto: curContext)
             if let task = task as? PhotosTask {
                 task.isSingle = true
                 task.type = TaskType.Photos.rawValue
@@ -218,7 +231,7 @@ class CoreDataMgr {
     func fetchLocations() -> [FTLocation]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: FTLocation.entityName())
         do {
-            let locations = try context!.fetch(fetchRequest)
+            let locations = try curContext!.fetch(fetchRequest)
             return locations as? [FTLocation]
         } catch let error as NSError {
             FTErrorMessage(error: "Could not fetch locations: \(error), \(error.userInfo)")

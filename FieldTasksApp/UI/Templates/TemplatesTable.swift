@@ -56,9 +56,14 @@ class TemplatesTable: UITableViewController {
     // MARK: Refresh Methods -------------------------------------------------------------------------------
 
     func serverRefresh() {
-        TemplatesMgr.shared.syncList(completion: { (error ) in
-            FTAssertString(error: error)
-            self.updateList()
+        SyncMgr.shared.sync(completion: { (syncResult) in
+            if let error = syncResult.error {
+                self.showAlert(title: "Error syncing with server", message: error)
+            }
+            // Refresh list data before updating visual list
+            if syncResult.locations > 0 {
+                self.updateList()
+            }
         })
     }
 

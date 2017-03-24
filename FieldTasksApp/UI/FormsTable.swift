@@ -25,34 +25,32 @@ class FormsTable: UITableViewController {
         // Adjustment because we are now in container view
         self.tableView.contentInset = UIEdgeInsetsMake(-32, 0, 0, 0)
         tableView.backgroundColor = UIColor.greenSea()
+
+        self.loadList()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: cFormsUpdateNotification, object: nil)
     }
 
     func refreshList() {
-        // Do any additional setup after loading the view, typically from a nib.
-        // let location = parentFormsViewer?.location
-        FormsMgr.shared.syncList() { (error) -> (Void) in
-            if let error = error {
+        SyncMgr.shared.sync(completion: { (syncResult) in
+            if let error = syncResult.error {
                 FTAlertError(message: "Could not load forms from server: \(error)")
             } else  {
-                self.formsList = FormsMgr.shared.all()
-                // Sort by newest
-                self.formsList = self.formsList.sorted(by: { (a , b ) -> Bool in
-                    return a.createDate! > b.createDate!
-                })
-                self.reloadOnMainQueue()
+                if syncResult.forms > 0 {
+                    self.loadList()
+                    self.reloadOnMainQueue()
+                }
             }
-        }
+        })
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func loadList() {
+        self.formsList = FormsMgr.shared.all()
 
-        self.refreshList()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Sort by newest
+        self.formsList = self.formsList.sorted(by: { (a , b ) -> Bool in
+            return a.createDate! > b.createDate!
+        })
     }
 
     func reloadOnMainQueue() {

@@ -36,6 +36,54 @@ class ServerMgr {
 
     }
 
+    // MARK: Sync All -------------------------------------------------------------------------------
+    // Get all synced objects at once, returns new/modified/deleted Templates/Forms/Locations in JSON dictionary
+    func syncAll(sinceDate: Date, completion : @escaping (_ result: [String: Any]?, _ timeStamp: Date,  _ error: String?)->()) {
+        guard let encodedDateString = Globals.shared.encodeDate(date: sinceDate) else {
+            FTErrorMessage(error: "Date string could not be encoded")
+            return
+        }
+        guard let url = URL(string: cBaseURL + "/sync/" + encodedDateString) else {
+            FTErrorMessage(error: "URL couldn't be created, server sync could not be invoked")
+            return
+        }
+
+        // Turn on network indicator and get sync data from server
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let dataTask = defaultSession.dataTask(with: url as URL, completionHandler: { (data, response, error) in
+            DispatchQueue.main.async() {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            if let error = error {
+                completion(nil, Date(), error.localizedDescription)
+            } else if let httpResponse = response as? HTTPURLResponse {
+                // If we can't parse server timestamp just use now
+               var timeStamp = Date()
+                if let timeStampString = httpResponse.allHeaderFields["Date"] as? String, let serverDate =  Globals.shared.serverStringToDate(dateString: timeStampString) {
+                    timeStamp =  serverDate
+                }
+
+                if httpResponse.statusCode == 200 {
+                    if let jsonData = data {
+                        do {
+                            let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
+                            if let jsonDict = jsonDict as? [String: Any] {
+                                completion(jsonDict, timeStamp, nil)
+                            }
+
+                        } catch {
+                            completion(nil, timeStamp, "Couldn't parse JSON: \(error)")
+                        }
+                    }
+                } else {
+                    completion(nil, timeStamp, "Failed with: \(httpResponse.statusCode) status code")
+                }
+            }
+        })
+        dataTask.resume()
+    }
+
+    // MARK: Object Lists Methods -------------------------------------------------------------------------------
     private func loadList(url: URL?, completion : @escaping loadListCallback) {
         guard let url = url else {
             FTErrorMessage(error: "URL couldn't be created, server loadList could not be invoked")

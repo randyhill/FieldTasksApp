@@ -24,8 +24,6 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
     private var curLocation : FTLocation?
     var delegate : LocationUpdates?
     var curAccuracy = CLLocationAccuracy()
-    var lastSync : Date?
-    let cSyncValue = "LocationsSync"
 
     override init() {
         super.init()
@@ -33,7 +31,6 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
         // Request access and initial location
         self.mgr.delegate = self;
         self.mgr.requestWhenInUseAuthorization()
-        self.lastSync = Globals.getSettingsValue(key: cSyncValue) as? Date ?? Globals.shared.stringToDate(dateString: "2017-01-01")
         self.mgr.requestLocation()
     }
 
@@ -61,38 +58,12 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
         FTErrorMessage(error: error.localizedDescription)
     }
 
-    // Sync refresh, get all location changes since last location sync.
-    // - Update any existing locations that have changed
-    // - Add new locations
-    // - Delete any locations that have their delete flag set
-    func refresh(completion: @escaping (_ error: String?)->()) {
-        self.mgr.requestLocation()
-        ServerMgr.shared.syncLocations(sinceDate: self.lastSync!, completion: { (result, timeStamp, error) in
-            FTAssert(exists: timeStamp, error: "No time stamp for templates sync")
-            FTAssert(exists: result, error: "No result for templates sync")
-            FTAssertString(error: error)
-            if error != nil {
-                completion(error)
-            } else if let newList = result  {
-                if let error = SyncLocations.syncList(newList: newList) {
-                    completion(error)
-                } else {
-                    self.lastSync = timeStamp
-                    Globals.saveSettingsValue(key: self.cSyncValue, value: self.lastSync as AnyObject)
-                    completion(nil)
-                }
-            }
-        })
-    }
-
-
     func currentCLLocation() -> CLLocation? {
         return mgr.location
     }
 
     func currentCoordinates() -> CLLocationCoordinate2D? {
         return mgr.location?.coordinate
-        //return curLocation?.coordinates()
     }
 
     // MARK: FTLocation Methods -------------------------------------------------------------------------------
