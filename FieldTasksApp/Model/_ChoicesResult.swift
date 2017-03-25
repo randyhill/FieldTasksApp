@@ -34,7 +34,7 @@ open class _ChoicesResult: TaskResult {
     // MARK: - Properties
 
     @NSManaged open
-    var values: [Bool]?
+    var values: [String]?
 
     // MARK: - Relationships
 

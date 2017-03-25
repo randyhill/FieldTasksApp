@@ -1,16 +1,17 @@
 import Foundation
+import CoreData
 
 @objc(Form)
 open class Form: _Form {
-    func initFromTemplate(template: Template) {
+    func initFromTemplate(context: NSManagedObjectContext, template: Template) {
         let templateDict = template.toDict()
-        self.fromDict(formDict: templateDict)
+        self.fromDict(context: context, formDict: templateDict)
         self.id = ""
         self.templateId = template.id
     }
 
-    func fromDict(formDict: [String : Any]) {
-        super.fromDict(templateDict: formDict)
+    func fromDict(context: NSManagedObjectContext,formDict: [String : Any]) {
+        super.fromDict(context: context, templateDict: formDict)
 
         if let auditTrail = formDict["auditTrail"] as? [String: Any] {
             if let createDate = auditTrail["created"] as? String {
@@ -50,7 +51,7 @@ open class Form: _Form {
                     if let submissionString = formDict["submitted"] as? String {
                         self.submitted = Globals.shared.utcFormatter.date(from: submissionString)  // Server sets submission date so we know was successful
                     }
-                    CoreDataMgr.shared.save()
+                    CoreDataMgr.shared.saveOnMainThread()
                     completion(nil)
                 } else {
                     completion("couldn't update form id")

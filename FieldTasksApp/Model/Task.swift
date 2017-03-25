@@ -8,6 +8,7 @@
 //
 
 import Foundation
+import CoreData
 
 @objc(Task)
 open class Task: _Task  {
@@ -15,7 +16,7 @@ open class Task: _Task  {
     var viewerId : String { get { return ""} }
 
     // MARK: Initialization Methods -------------------------------------------------------------------------------
-    func fromDict(taskDict : [String : AnyObject]) {
+    func fromDict(context : NSManagedObjectContext, taskDict : [String : AnyObject]) {
         self.name = taskDict["name"] as? String ?? ""
         self.id = taskDict["_id"] as? String ?? ""
         self.required = taskDict["required"] as? NSNumber ?? 0
@@ -31,7 +32,7 @@ open class Task: _Task  {
         if (results == nil) {
             results = [String : AnyObject]()
         }
-        initResults(results: results!)
+        initResults(context: context, results: results!)
     }
 
     func initTaskDescription(dataDict : [String: AnyObject]) {
@@ -39,8 +40,8 @@ open class Task: _Task  {
     }
 
 
-    func initResults(results : [String: AnyObject]) {
-        self.result = CoreDataMgr.shared.createTaskResult(entityName: self.resultTypeString(), task: self)
+    func initResults(context : NSManagedObjectContext, results : [String: AnyObject]) {
+        self.result = CoreDataMgr.shared.createTaskResult(context: context, entityName: self.resultTypeString(), task: self)
         self.result?.fromDict(results: results)
     }
 

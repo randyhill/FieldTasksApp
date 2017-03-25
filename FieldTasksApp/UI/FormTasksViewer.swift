@@ -82,7 +82,7 @@ class FormTasksViewer : UITableViewController {
                     FTAlertError(message: "Form Submission Failed: \(error)")
                 } else {
                     FTAlertSuccess(message: "Form submitted successfuly")
-                    CoreDataMgr.shared.save()
+                    CoreDataMgr.shared.saveOnMainThread()
                     self.dismiss(animated: true, completion: nil)
                 }
             })

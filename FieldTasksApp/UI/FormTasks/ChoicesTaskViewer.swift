@@ -12,8 +12,10 @@ import FlatUIKit
 // MARK: Choice Class -------------------------------------------------------------------------------
 class Choice {
     var view : UIView?      // Active control, switch or checkbox
+    var delegate : ChoicesAction?
     var label = UILabel()   // Title for control
     var listIndex = 0
+
     var on : Bool {
         get {
             return false
@@ -28,14 +30,21 @@ class Choice {
         self.on = !self.on
     }
 
-    init(frame : CGRect, width: CGFloat, handler: ChoicesTaskViewer, title: String) {
+    @objc func labelTap(tap : UIGestureRecognizer) {
+        self.toggle()
+        delegate?.choiceToggled(choice: self)
+    }
+
+    init(frame : CGRect, width: CGFloat, title: String, delegate: ChoicesAction) {
         // Make label for title
+        self.delegate = delegate
         var labelFrame = frame
         labelFrame.origin.x = width + 24.0
         switchSize.width = width
         label.frame = labelFrame
+        label.frame.size.width = title.widthOfString(usingFont: label.font) + 20
         label.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: handler, action: #selector(ChoicesTaskViewer.labelTap))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelTap))
         label.addGestureRecognizer(tapGesture)
         label.text = title;
         label.makeTitleStyle()
@@ -58,11 +67,11 @@ class Switchbox : Choice {
             _switch.isOn = newOn
         }
     }
-    init(frame : CGRect, handler: ChoicesTaskViewer, title : String, isEnabled: Bool) {
-        super.init(frame : frame, width: 64.0, handler: handler, title: title)
+    init(frame : CGRect, title : String, isEnabled: Bool, delegate: ChoicesAction) {
+        super.init(frame : frame, width: 64.0, title: title, delegate: delegate)
         _switch.frame = frame
         _switch.frame.size.width = switchSize.width;
-        _switch.addTarget(handler, action: #selector(ChoicesTaskViewer.didSwitch), for: .valueChanged)
+        _switch.addTarget(self, action: #selector(didSwitch), for: .valueChanged)
         _switch.isEnabled = isEnabled
         view = _switch
         _switch.onColor = UIColor.turquoise()
@@ -72,6 +81,10 @@ class Switchbox : Choice {
         _switch.offLabel.font = UIFont.boldFlatFont(ofSize: 14)
         _switch.onLabel.font = UIFont.boldFlatFont(ofSize: 14)
         _switch.isOn = false
+    }
+
+    @objc func didSwitch(sender: UISwitch) {
+        delegate?.choiceToggled(choice: self)
     }
 }
 
@@ -113,9 +126,14 @@ class Checkbox : Switchbox {
     }
 }
 
+protocol ChoicesAction {
+    func choiceToggled(choice : Choice)
+}
+
 // MARK: ChoicesTaskViewer Class -------------------------------------------------------------------------------
-class ChoicesTaskViewer : BaseTaskViewer {
+class ChoicesTaskViewer : BaseTaskViewer, ChoicesAction {
     var options = [Choice]()
+    var otherField = UITextField()
     var choiceData : ChoicesTask {
         get {
             return task as! ChoicesTask
@@ -134,11 +152,34 @@ class ChoicesTaskViewer : BaseTaskViewer {
     }
 
     func createChoices() {
-        var choiceFrame = CGRect(x: 8, y: 8, width: (self.view.frame.width), height: 28)
-        let isRadio = (task as! ChoicesTask).isRadio
-        for title in choiceData.titles! {
-            let choice = makeSwitchbox(container: self.view, title: title, frame: choiceFrame, isRadio: isRadio!.boolValue)
-            choiceFrame.origin.y += choice.switchSize.height;
+        if let task = task as? ChoicesTask {
+            var choiceFrame = CGRect(x: 8, y: 8, width: (self.view.frame.width), height: 28)
+            let isRadio = task.isRadio
+            for title in choiceData.titles! {
+                let choice = makeSwitchbox(container: self.view, title: title, frame: choiceFrame, isRadio: isRadio!.boolValue)
+                choiceFrame.origin.y += choice.switchSize.height;
+            }
+            // Add Other: text field
+            let choice = makeSwitchbox(container: self.view, title: "Other: ", frame: choiceFrame, isRadio: isRadio!.boolValue)
+            let labelOffset = choice.label.frame.origin.x + choice.label.frame.width + 4
+            choiceFrame.origin.x = labelOffset
+            choiceFrame.size.width = self.view.frame.width - labelOffset - 20
+            otherField.frame = choiceFrame
+            otherField.isHidden = true
+            otherField.setActiveStyle(isActive: self.isEditable)
+            otherField.addHideKeyboardButton()
+            self.view.addSubview(otherField)
+        }
+    }
+
+    func toggleOther(otherSwitch : FUISwitch) {
+        otherField.isHidden = !otherSwitch.isOn
+    }
+
+    func choiceToggled(choice: Choice) {
+        selectBoxView(selectedOption: choice.view!)
+        if choice.label.tag == options.count - 1 {
+            otherField.isHidden = !choice.on
         }
     }
 
@@ -146,27 +187,15 @@ class ChoicesTaskViewer : BaseTaskViewer {
         // Make switch control
         var choice : Choice?
         if isRadio {
-            choice = Switchbox(frame: frame, handler: self, title: title, isEnabled: isEditable)
+            choice = Switchbox(frame: frame, title: title, isEnabled: isEditable, delegate: self)
         } else {
-            choice = Checkbox(frame: frame, handler: self, title: title, isEnabled: isEditable)
+            choice = Checkbox(frame: frame, title: title, isEnabled: isEditable, delegate: self)
         }
         options += [choice!]
         self.view.addSubview(choice!.view!)
         self.view.addSubview(choice!.label)
         choice!.setIndex(listIndex: options.count - 1)
         return choice!
-    }
-
-    func labelTap(tap : UIGestureRecognizer) {
-        if let label = tap.view as? UILabel {
-            let option = options[label.tag]
-            option.on = !option.on
-            selectBoxView(selectedOption: option.view!)
-        }
-    }
-
-    func didSwitch(sender: UISwitch) {
-        selectBoxView(selectedOption: sender)
     }
 
     func didCheck(button: UIButton) {
@@ -192,21 +221,51 @@ class ChoicesTaskViewer : BaseTaskViewer {
                 return nil;
             }
         }
-        if choiceData.isRadio!.boolValue && options.count > 1 {
+         if choiceData.isRadio!.boolValue && options.count > 1 {
             return "You must select one option"
         } else {
             return nil
         }
     }
+
     override func save() {
-        let boolValues = options.map{(control)->Bool in
-            return control.on
+        if let task = task as? ChoicesTask {
+            var selections = [String]()
+            for i in 0..<options.count {
+                if options[i].on {
+                    if i == options.count - 1 {
+                        selections += [otherField.text!]
+                    } else {
+                        selections += [task.titles![i]]
+                    }
+                }
+            }
+            result.save(newValues: selections)
         }
-        result.save(newValues: boolValues)
     }
+
     override func restore() {
-        for i in 0 ..< result.values!.count {
-            options[i].on = result.values![i]
+        if let task = task as? ChoicesTask {
+            // Use array of selected values to traverse titles, checking matches and removing value to mark it found.
+            var values = result.values.map{ $0 }!
+            for i in 0..<task.titles!.count {
+                let title = task.titles![i]
+                for j in 0..<values.count {
+                    let value = values[j]
+                     if value == title {
+                        options[i].on = true
+                        values.remove(at: j)
+                        break
+                    }
+                }
+            }
+            // If any value is left it must be the Other option.
+            if values.count > 0 {
+                options[options.count - 1].on = true
+                otherField.isHidden = false
+                otherField.text = values.last!
+            }
         }
+
     }
 }

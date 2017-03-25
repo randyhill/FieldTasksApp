@@ -5,6 +5,7 @@ import Foundation
 import CoreData
 
 public enum ChoicesTaskAttributes: String {
+    case hasOther = "hasOther"
     case isRadio = "isRadio"
     case titles = "titles"
 }
@@ -33,6 +34,9 @@ open class _ChoicesTask: Task {
     }
 
     // MARK: - Properties
+
+    @NSManaged open
+    var hasOther: NSNumber?
 
     @NSManaged open
     var isRadio: NSNumber?

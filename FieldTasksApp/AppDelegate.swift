@@ -45,15 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Query server for any data changes, in backgorund so UI isn't interrupted, which means using BG context for Coredata
         DispatchQueue.global(qos: .background).async {
-            let backgroundContext = CoreDataMgr.shared.setBackgroundContext()
+            let backgroundContext = CoreDataMgr.shared.getNewContext()
             backgroundContext.perform({ 
-                SyncMgr.shared.sync { (syncResult ) in
+                SyncMgr.shared.sync ( context: backgroundContext) { (syncResult ) in
                     FTAssertString(error: syncResult.error)
 
                     // Switch back to main thread CoreData and save to make sure changes are saved.
-                    CoreDataMgr.shared.restoreMainContext()
                     DispatchQueue.main.async {
-                        CoreDataMgr.shared.save()
+                        CoreDataMgr.shared.saveInContext(context: backgroundContext)
                         if syncResult.templates > 0 {
                             NotificationCenter.default.post(name: cTemplatesUpdateNotification, object: syncResult.templates)
                         }

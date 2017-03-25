@@ -58,7 +58,7 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
         super.viewDidLoad()
 
         if location == nil {
-            location = CoreDataMgr.shared.createLocation()
+            location = CoreDataMgr.shared.createLocation(context: CoreDataMgr.shared.mainThreadContext!)
         } else {
             createButton.setTitle("Save", for: .normal)
             createButton.setTitle("Save", for: .highlighted)
@@ -95,7 +95,7 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
     @IBAction func cancelAction(_ sender: Any) {
         if self.location!.id == nil {
             // Remove new location before it's saved to database
-            CoreDataMgr.shared.deleteObject(object: self.location!)
+            CoreDataMgr.shared.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: self.location!)
         }
         self.dismiss(animated: true) {
 
@@ -109,7 +109,7 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
             FTAlertMessage(message: title + errorMessage)
         } else {
             self.updateLocationFromFields(theLocation: self.location!)
-            CoreDataMgr.shared.save()
+            CoreDataMgr.shared.saveOnMainThread()
             if createNew {
                 ServerMgr.createLocation(location: location!) { (locationDict, error) in
                     if let error = error {
@@ -132,7 +132,7 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
     }
 
     func dismissWith(message : String) {
-        CoreDataMgr.shared.save()
+        CoreDataMgr.shared.saveOnMainThread()
         FTAlertMessage(message: message)
         self.dismiss(animated: true, completion: {
             FTAlertDismiss {

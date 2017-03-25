@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1420" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -576,7 +576,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Limit to single selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSN-7G-DDW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow multiple selections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSN-7G-DDW">
                                 <rect key="frame" x="82" y="7" width="162" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="162" id="9OD-5u-Xqb"/>
@@ -616,10 +616,30 @@
                                     <action selector="addChoice:" destination="RYY-yB-Yod" eventType="touchUpInside" id="4Av-hQ-Qhp"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxb-kh-hde" customClass="FUISwitch">
+                                <rect key="frame" x="252" y="3" width="60" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="JfR-9s-t8a"/>
+                                    <constraint firstAttribute="height" constant="30" id="LQC-f6-Cae"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2N6-c7-3Vz">
+                                <rect key="frame" x="320" y="7" width="52" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="jRZ-Vk-rxq"/>
+                                    <constraint firstAttribute="height" constant="21" id="zgo-zb-zTD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2N6-c7-3Vz" secondAttribute="trailing" constant="3" id="7JU-aj-pnQ"/>
                             <constraint firstItem="Pmg-mk-UW1" firstAttribute="leading" secondItem="E0J-bU-UCR" secondAttribute="trailing" constant="14" id="7QM-51-z8x"/>
+                            <constraint firstItem="2N6-c7-3Vz" firstAttribute="leading" secondItem="cxb-kh-hde" secondAttribute="trailing" constant="8" id="86p-TR-oPo"/>
                             <constraint firstItem="qOk-Mf-l1M" firstAttribute="leading" secondItem="Pmg-mk-UW1" secondAttribute="trailing" constant="8" id="8YU-BX-V0f"/>
                             <constraint firstItem="E0J-bU-UCR" firstAttribute="leading" secondItem="EQk-jW-TVu" secondAttribute="leadingMargin" id="CTG-Fm-CS6"/>
                             <constraint firstItem="rSN-7G-DDW" firstAttribute="leading" secondItem="EQk-jW-TVu" secondAttribute="leadingMargin" constant="66" id="CgQ-5z-Pb4"/>
@@ -628,12 +648,14 @@
                             <constraint firstAttribute="trailing" secondItem="nTd-ct-MSk" secondAttribute="trailing" id="OPl-HP-v2S"/>
                             <constraint firstItem="WoG-pX-vS1" firstAttribute="leading" secondItem="EQk-jW-TVu" secondAttribute="leadingMargin" id="OdE-sJ-zov"/>
                             <constraint firstItem="qOk-Mf-l1M" firstAttribute="top" secondItem="EQk-jW-TVu" secondAttribute="topMargin" constant="51" id="Tgl-UQ-08W"/>
+                            <constraint firstItem="2N6-c7-3Vz" firstAttribute="top" secondItem="EQk-jW-TVu" secondAttribute="top" constant="7" id="Yyj-9j-fDj"/>
                             <constraint firstItem="Pmg-mk-UW1" firstAttribute="top" secondItem="WoG-pX-vS1" secondAttribute="bottom" constant="18" id="e90-9C-w3y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qOk-Mf-l1M" secondAttribute="trailing" id="rLn-eB-DhK"/>
                             <constraint firstItem="WoG-pX-vS1" firstAttribute="top" secondItem="EQk-jW-TVu" secondAttribute="topMargin" constant="3" id="s7n-ut-2FF"/>
                             <constraint firstItem="nTd-ct-MSk" firstAttribute="leading" secondItem="EQk-jW-TVu" secondAttribute="leading" id="sHg-5Z-gYx"/>
                             <constraint firstItem="rSN-7G-DDW" firstAttribute="top" secondItem="EQk-jW-TVu" secondAttribute="topMargin" constant="7" id="ty6-a0-jBA"/>
                             <constraint firstItem="nTd-ct-MSk" firstAttribute="top" secondItem="Pmg-mk-UW1" secondAttribute="bottom" constant="10" id="v54-Fk-fiz"/>
+                            <constraint firstItem="cxb-kh-hde" firstAttribute="top" secondItem="EQk-jW-TVu" secondAttribute="topMargin" constant="3" id="voj-Fn-lVk"/>
                         </constraints>
                     </view>
                     <connections>
@@ -642,6 +664,8 @@
                         <outlet property="editTable" destination="qOk-Mf-l1M" id="SLU-Eb-zPs"/>
                         <outlet property="multipleLabel" destination="rSN-7G-DDW" id="elj-Yc-FDe"/>
                         <outlet property="multipleSwitch" destination="WoG-pX-vS1" id="uR1-Sr-SIO"/>
+                        <outlet property="otherSwitch" destination="cxb-kh-hde" id="n94-9a-F34"/>
+                        <outlet property="otherTitle" destination="2N6-c7-3Vz" id="HNW-w4-Z0M"/>
                         <outlet property="tableView" destination="nTd-ct-MSk" id="NJS-X3-Lls"/>
                     </connections>
                 </viewController>

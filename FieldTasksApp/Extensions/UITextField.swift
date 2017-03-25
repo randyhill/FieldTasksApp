@@ -29,5 +29,6 @@ extension UITextField {
         }
         self.textColor = UIColor.wetAsphalt()
         self.font = UIFont.boldFlatFont(ofSize: 15)
+        self.isEnabled = isActive
     }
 }

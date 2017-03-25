@@ -75,7 +75,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
 
     // In regular mode when used to display locations.
     func refreshFromServer() {
-        SyncMgr.shared.sync(completion: { (syncResult) in
+        SyncMgr.shared.sync(context: CoreDataMgr.shared.mainThreadContext!, completion: { (syncResult) in
             if let error = syncResult.error {
                 self.showAlert(title: "Error syncing with server", message: error)
             }
@@ -200,7 +200,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
                     if let error = error {
                         self.showAlert(title: "Delete failed", message: "Unable to delete location: \(error)")
                     } else {
-                        CoreDataMgr.shared.deleteObject(object: location)
+                        CoreDataMgr.shared.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: location)
                         self.refreshOnMainThread()
                     }
                 })

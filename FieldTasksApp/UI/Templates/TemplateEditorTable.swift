@@ -96,7 +96,7 @@ class TemplateEditorTable : UITableViewController {
             tasks.remove(at: indexPath.row)
             tableView.reloadData()
         } else {
-            print("unimplemented editing style")
+            FTErrorMessage(error: "unimplemented editing style")
         }
     }
 

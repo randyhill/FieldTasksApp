@@ -6,7 +6,7 @@ open class ChoicesResult: _ChoicesResult {
 
     override func fromDict(results: [String : AnyObject]) {
         super.fromDict(results: results)
-        if let resultValues = results["values"] as? [Bool] {
+        if let resultValues = results["values"] as? [String] {
             for value in resultValues {
                 values! += [value]
             }
@@ -14,15 +14,10 @@ open class ChoicesResult: _ChoicesResult {
     }
 
 
-    func save(newValues: [Bool]) {
+    func save(newValues: [String]) {
         values!.removeAll()
-        completed_private = false
-        for newValue in newValues {
-            values! += [newValue]
-            if newValue {
-               completed_private = true;
-            }
-        }
+        values = newValues
+        completed_private = (newValues.count > 0) as NSNumber
     }
 
     // MARK: Description  Methods -------------------------------------------------------------------------------
@@ -37,21 +32,19 @@ open class ChoicesResult: _ChoicesResult {
 
     override func resultString() -> String {
         var text = "Done: "
-        if let choicesTask = task as? ChoicesTask {
-            var checked = 0
-            for (value, choice) in zip(values!, choicesTask.titles!) {
-                if value {
-                    // separate with checkmarks.
-                    if checked > 0 {
-                        text += ", "
-                    }
-                    text += choice
-                    checked += 1
-                }
+        var checked = 0
+
+        for value in values! {
+            // separate with checkmarks.
+            if checked > 0 {
+                text += ", "
             }
-            if checked == 0 {
-                text += "No choices selected"
-            }
+            text += value
+            checked += 1
+        }
+
+        if checked == 0 {
+            text += "No choices selected"
         }
 
         return text

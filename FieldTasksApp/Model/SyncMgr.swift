@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 let cTemplatesUpdateNotification = Notification.Name("TemplatesUpdated")
 let cLocationsUpdateNotification = Notification.Name("LocationsUpdated")
@@ -22,7 +23,7 @@ class SyncMgr {
     }
 
     // Get updated/new/deleted Templates/Forms/Locations and update coredata
-    func sync(completion: @escaping ( _ updated: (templates : Int, locations : Int, forms : Int, error: String?))->()) {
+    func sync(context: NSManagedObjectContext, completion: @escaping ( _ updated: (templates : Int, locations : Int, forms : Int, error: String?))->()) {
         ServerMgr.shared.syncAll(sinceDate: self.lastSync!) { (data, timeStamp, error) in
             FTAssert(exists: timeStamp, error: "No time stamp for sync")
             FTAssert(exists: data, error: "No result for sync")
@@ -39,17 +40,17 @@ class SyncMgr {
                 var locations = 0
                 var forms = 0
                 if let templateList = syncDict["Templates"] as? [AnyObject]  {
-                    let synced = SyncTemplates.syncList(newList: templateList)
+                    let synced = SyncTemplates.syncList(context: context, newList: templateList)
                     templates = synced.updated
                     error = synced.error
                 }
                 if error == nil, let locationList = syncDict["Locations"] as? [AnyObject]  {
-                    let synced = SyncLocations.syncList(newList: locationList)
+                    let synced = SyncLocations.syncList(context: context, newList: locationList)
                     locations = synced.updated
                     error = synced.error
                 }
                 if error == nil, let formsList = syncDict["Forms"] as? [AnyObject]  {
-                    let synced = SyncForms.syncList(newList: formsList)
+                    let synced = SyncForms.syncList(context: context, newList: formsList)
                     forms = synced.updated
                     error = synced.error
                }
@@ -57,7 +58,7 @@ class SyncMgr {
                     self.lastSync = timeStamp
                     Globals.saveSettingsValue(key: self.cSyncValue, value: timeStamp as AnyObject)
                 }
-                CoreDataMgr.shared.save()
+                CoreDataMgr.shared.saveOnMainThread()
                 completion((templates: templates, locations: locations, forms: forms, error: error))
             }
         }
@@ -69,36 +70,36 @@ class SyncLocations {
         return FTLocation.entityName()
     }
 
-    internal class  func createObject(objectDict: [String : AnyObject]) {
-        let location = CoreDataMgr.shared.createLocation()
+    internal class  func createObject(context: NSManagedObjectContext, objectDict: [String : AnyObject]) {
+        let location = CoreDataMgr.shared.createLocation(context: CoreDataMgr.shared.mainThreadContext!)
         location.fromDict(locationDict: objectDict)
     }
 
-    internal class func updateObject(object : AnyObject, objectDict: [String : AnyObject]) {
+    internal class func updateObject(context: NSManagedObjectContext, object : AnyObject, objectDict: [String : AnyObject]) {
         if let location = object as? FTLocation {
             location.fromDict(locationDict: objectDict)
         }
     }
 
-    class func syncList(newList : [AnyObject]) -> (updated: Int, error: String?) {
+    class func syncList(context: NSManagedObjectContext, newList : [AnyObject]) -> (updated: Int, error: String?) {
         var updated = 0
         for dictionary in newList {
             if let objectDict = dictionary as? [String : AnyObject] {
                 if let objectId = objectDict["_id"] as? String, let auditTrail = objectDict["auditTrail"] as? [String:Any] {
-                      let object = CoreDataMgr.shared.fetchById(entityName: self.entityName(), objectId: objectId)
+                      let object = CoreDataMgr.shared.fetchById(context: context, entityName: self.entityName(), objectId: objectId)
                     if let _ = auditTrail["deleted"] {
                         // Deleting ignores previously deleted objects, such as deleted before we first logged in.
                         if let _ = object {
-                            CoreDataMgr.shared.removeObjectById(entityName: self.entityName(), objectId: objectId)
+                            CoreDataMgr.shared.removeObjectById(context: context, entityName: self.entityName(), objectId: objectId)
                             updated += 1
                         }
                     } else {
                         // Create new/update existing object
                         if let object = object {
-                            self.updateObject(object: object, objectDict: objectDict)
+                            self.updateObject(context: context, object: object, objectDict: objectDict)
                             updated += 1
                         } else {
-                            self.createObject(objectDict: objectDict)
+                            self.createObject(context: context, objectDict: objectDict)
                             updated += 1
                         }
                     }
@@ -107,7 +108,7 @@ class SyncLocations {
                 }
             }
         }
-        CoreDataMgr.shared.save()
+      //  CoreDataMgr.shared.saveOnMainThread()
         return (updated: updated, error: nil)
     }
 }
@@ -117,14 +118,14 @@ class SyncTemplates : SyncLocations {
         return Template.entityName()
     }
 
-    override class  func createObject(objectDict: [String : AnyObject]) {
-        let template = CoreDataMgr.shared.createTemplate()
-        template.fromDict(templateDict: objectDict)
+    override class  func createObject(context: NSManagedObjectContext, objectDict: [String : AnyObject]) {
+        let template = CoreDataMgr.shared.createTemplate(context: context)
+        template.fromDict(context: context, templateDict: objectDict)
     }
 
-    override internal class func updateObject(object : AnyObject, objectDict: [String : AnyObject]) {
+    override internal class func updateObject(context: NSManagedObjectContext, object : AnyObject, objectDict: [String : AnyObject]) {
         if let template = object as? Template {
-            template.fromDict(templateDict: objectDict)
+            template.fromDict(context: context, templateDict: objectDict)
         }
     }
 }
@@ -135,14 +136,14 @@ class SyncForms : SyncLocations {
         return Form.entityName()
     }
 
-    override class  func createObject(objectDict: [String : AnyObject]) {
-        let template = CoreDataMgr.shared.createForm()
-        template.fromDict(formDict: objectDict)
+    override class  func createObject(context: NSManagedObjectContext, objectDict: [String : AnyObject]) {
+        let template = CoreDataMgr.shared.createForm(context: context)
+        template.fromDict(context: context, formDict: objectDict)
     }
 
-    override internal class func updateObject(object : AnyObject, objectDict: [String : AnyObject]) {
+    override internal class func updateObject(context: NSManagedObjectContext, object : AnyObject, objectDict: [String : AnyObject]) {
         if let form = object as? Form {
-            form.fromDict(formDict: objectDict)
+            form.fromDict(context: context, formDict: objectDict)
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum TaskType : String {
     case Text = "Text",
@@ -37,21 +38,21 @@ enum TaskDictFields : String {
 }
 
 // MARK: Task Factories -------------------------------------------------------------------------------
-func TaskFromDictionary(taskDict : [String : AnyObject]) -> Task? {
+func TaskFromDictionary(context : NSManagedObjectContext, taskDict : [String : AnyObject]) -> Task? {
     var newTask : Task?
     if let typeString = taskDict[TaskDictFields.type.rawValue] as? String {
         let entityName = typeString + "Task"
-        newTask = CoreDataMgr.shared.createTask(entityName: entityName)
-        newTask?.fromDict(taskDict: taskDict)
+        newTask = CoreDataMgr.shared.createTask(context: context, entityName: entityName)
+        newTask?.fromDict(context: context, taskDict: taskDict)
     } else {
         FTErrorMessage(error: "Could not get type of task")
     }
     return newTask
 }
 
-func TaskFromType(type : TaskType) -> Task? {
+func TaskFromType(context : NSManagedObjectContext, type : TaskType) -> Task? {
     let entityName = type.rawValue + "Task"
-   return CoreDataMgr.shared.createTask(entityName: entityName)
+   return CoreDataMgr.shared.createTask(context: context, entityName: entityName)
 }
 
 

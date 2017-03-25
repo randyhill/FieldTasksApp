@@ -12,6 +12,9 @@ open class ChoicesTask: _ChoicesTask {
         if let isRadio = dataDict["selections"] as? String {
             self.isRadio = (isRadio == "single") as NSNumber
         }
+        if let hasOther = dataDict["hasOther"] as? NSNumber {
+            self.hasOther = hasOther
+        }
         if let titles = dataDict["choices"] as? [String] {
             self.titles = titles
         }
@@ -26,6 +29,7 @@ open class ChoicesTask: _ChoicesTask {
         var dict = super.taskDescriptionDict()
         dict["selections"] = (isRadio!.boolValue ? "single" : "multiple") as AnyObject
         dict["choices"] = titles as AnyObject?
+        dict["hasOther"] = hasOther!.boolValue as AnyObject
         return dict
     }
 

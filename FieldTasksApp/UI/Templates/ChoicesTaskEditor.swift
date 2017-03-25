@@ -19,6 +19,8 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
     @IBOutlet weak var addChoice: FUIButton!
     @IBOutlet weak var editTable: FUIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var otherSwitch: FUISwitch!
+    @IBOutlet weak var otherTitle: UILabel!
 
     private var task : ChoicesTask?
     private var choices = [String]()
@@ -28,6 +30,8 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
 
         multipleSwitch.makeFlatSwitch()
         multipleLabel.makeDetailStyle()
+        otherSwitch.makeFlatSwitch()
+        otherTitle.makeTitleStyle()
         choiceField.setActiveStyle(isActive: true)
         choiceField.addHideKeyboardButton()
         choiceField.delegate = self
@@ -38,7 +42,8 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
 
     override func viewWillAppear(_ animated: Bool) {
         if let task = task {
-            multipleSwitch.isOn = !task.isRadio!.boolValue
+            multipleSwitch.isOn = task.isRadio!.boolValue
+            otherSwitch.isOn = task.hasOther!.boolValue
             choices = task.titles!
         }
         super.viewWillAppear(animated)
@@ -50,6 +55,7 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
 
         task?.isRadio = multipleSwitch.isOn as NSNumber?
         task?.titles = choices
+        task?.hasOther = otherSwitch.isOn as NSNumber?
     }
 
     override func setTask(task : Task) {

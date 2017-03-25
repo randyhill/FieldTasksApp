@@ -13,21 +13,21 @@ class TemplatesMgr {
     static let shared = TemplatesMgr()
 
     func all() -> [Template] {
-        if let list = CoreDataMgr.shared.fetchTemplates() {
+        if let list = CoreDataMgr.shared.fetchTemplates(context: CoreDataMgr.shared.mainThreadContext!) {
             return list
         }
         return [Template]()
     }
 
     func templatesFromId(idList : [String]) -> [Template]{
-        if let list = CoreDataMgr.shared.fetchObjectsWithIds(entityName: Template.entityName(), ids: idList) {
+        if let list = CoreDataMgr.shared.fetchObjectsWithIds(context: CoreDataMgr.shared.mainThreadContext!, entityName: Template.entityName(), ids: idList) {
             return list as! [Template]
         }
         return [Template]()
     }
 
     private func removeTemplate(templateId : String) {
-        CoreDataMgr.shared.removeObjectById(entityName: Template.entityName(), objectId: templateId)
+        CoreDataMgr.shared.removeObjectById(context: CoreDataMgr.shared.mainThreadContext!, entityName: Template.entityName(), objectId: templateId)
     }
 
     func deleteTemplate(templateId : String, completion: @escaping (_ error : String?)->()) {
@@ -51,14 +51,14 @@ class TemplatesMgr {
             ServerMgr.shared.newTemplate(template: template) { (resultDict, error ) in
                 if let resultDict = resultDict as? [String: AnyObject]{
                     // Update with id, and any other changes.
-                    template.fromDict(templateDict: resultDict)
-                    CoreDataMgr.shared.save()
+                    template.fromDict(context: CoreDataMgr.shared.mainThreadContext!, templateDict: resultDict)
+                    CoreDataMgr.shared.saveOnMainThread()
                 }
                 completion(error)
             }
         } else {
             ServerMgr.shared.saveTemplate(template: template) { (error ) in
-                CoreDataMgr.shared.save()
+                CoreDataMgr.shared.saveOnMainThread()
                 completion(error)
             }
         }

@@ -45,13 +45,13 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         listController = segue.destination as? TemplateEditorTable
         listController?.parentTemplateEditor = self
         if template == nil {
-            template = CoreDataMgr.shared.createTemplate()
+            template = CoreDataMgr.shared.createTemplate(context: CoreDataMgr.shared.mainThreadContext!)
         }
         listController?.tasks = self.template!.tasks
     }
 
     func addTask(taskType: TaskType) {
-        if let task = TaskFromType(type: taskType) {
+        if let task = TaskFromType(context: CoreDataMgr.shared.mainThreadContext!, type: taskType) {
             listController?.tasks += [task]
             listController?.openTaskEditor(task: task)
             editButton.isHidden = false
@@ -65,7 +65,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
     func cancelAction () {
         if isEmptyTemplate(template: template!) {
             // Don't save newly created/empty objects
-            CoreDataMgr.shared.deleteObject(object: template!)
+            CoreDataMgr.shared.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: template!)
         }
         self.dismiss(animated: true) { }
     }
@@ -86,13 +86,13 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
             template.name = titleField.text!
             if isEmptyTemplate(template: template) {
                 // Don't save empties
-                CoreDataMgr.shared.deleteObject(object: template)
+                CoreDataMgr.shared.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: template)
             } else {
                 TemplatesMgr.shared.updateTemplate(template: template) { (error) in
                     if let error = error {
                         FTAlertError(message: error)
                     } else {
-                        CoreDataMgr.shared.save()
+                        CoreDataMgr.shared.saveOnMainThread()
                         self.dismiss(animated: true) { }
                     }
                 }

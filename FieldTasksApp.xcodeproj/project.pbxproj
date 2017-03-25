@@ -207,6 +207,8 @@
 		D89770C11E5BC49200A9318D /* FormsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770BF1E5BC49200A9318D /* FormsTable.swift */; };
 		D89770D21E5CBBFD00A9318D /* LocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* LocationEditor.swift */; };
 		D89770D31E5CBBFD00A9318D /* LocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* LocationEditor.swift */; };
+		D89A04181E86F2E3005576B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A04171E86F2E3005576B4 /* String.swift */; };
+		D89A04191E86F2E3005576B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A04171E86F2E3005576B4 /* String.swift */; };
 		D89B77601E777C2D004B755A /* StringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89B775F1E777C2D004B755A /* StringArray.swift */; };
 		D89B77611E777C2D004B755A /* StringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89B775F1E777C2D004B755A /* StringArray.swift */; };
 		D8B4388F1E6B870A00FDCB0B /* FormsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */; };
@@ -364,6 +366,7 @@
 		D89770B71E5BC09F00A9318D /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus@2x.png"; path = "Images/plus@2x.png"; sourceTree = "<group>"; };
 		D89770BF1E5BC49200A9318D /* FormsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsTable.swift; path = UI/FormsTable.swift; sourceTree = "<group>"; };
 		D89770D11E5CBBFD00A9318D /* LocationEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationEditor.swift; path = UI/LocationEditor.swift; sourceTree = "<group>"; };
+		D89A04171E86F2E3005576B4 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extensions/String.swift; sourceTree = "<group>"; };
 		D89B775F1E777C2D004B755A /* StringArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringArray.swift; path = Model/StringArray.swift; sourceTree = "<group>"; };
 		D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsMgr.swift; path = Singletons/FormsMgr.swift; sourceTree = "<group>"; };
 		D8B820D81E678F0B005527C9 /* FUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FUISwitch.swift; path = Extensions/FUISwitch.swift; sourceTree = "<group>"; };
@@ -544,7 +547,6 @@
 			children = (
 				D89B775F1E777C2D004B755A /* StringArray.swift */,
 				D8F1D7131E53A96900A07F70 /* TaskUtitlities.swift */,
-				D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */,
 				D86C79C01E6DDD9600A8A801 /* Model */,
 			);
 			name = "Data Classes";
@@ -614,6 +616,7 @@
 				D835A3E01E635C31002C3EB1 /* UITextView.swift */,
 				D835A3E11E635C31002C3EB1 /* UIViewController.swift */,
 				D8B820D81E678F0B005527C9 /* FUISwitch.swift */,
+				D89A04171E86F2E3005576B4 /* String.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				D87390161E3BCC5500142FD6 /* PhotoFileList.swift */,
 				D86BF72C1E6397EC00884277 /* TemplatesMgr.swift */,
 				D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */,
+				D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -1026,6 +1030,7 @@
 				D8E4B7981E6F34C200BDE823 /* _ChoicesTask.swift in Sources */,
 				D8E4B7AE1E6F34C200BDE823 /* _TextTask.swift in Sources */,
 				D86BF72E1E6397EC00884277 /* ServerMgr.swift in Sources */,
+				D89A04181E86F2E3005576B4 /* String.swift in Sources */,
 				D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */,
 				D86BF7781E64A43800884277 /* NumberTaskViewer.swift in Sources */,
 				D86C7A021E6DDDBF00A8A801 /* Template.swift in Sources */,
@@ -1104,6 +1109,7 @@
 				D8E4B7AD1E6F34C200BDE823 /* _TextResult.swift in Sources */,
 				D8E4B7991E6F34C200BDE823 /* _ChoicesTask.swift in Sources */,
 				D8E4B7AF1E6F34C200BDE823 /* _TextTask.swift in Sources */,
+				D89A04191E86F2E3005576B4 /* String.swift in Sources */,
 				D835A3F31E635C58002C3EB1 /* UIViewController.swift in Sources */,
 				D835A3EF1E635C58002C3EB1 /* UILabel.swift in Sources */,
 				D86C7A1E1E6DEBFD00A8A801 /* NumberResult.swift in Sources */,
@@ -1320,6 +1326,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1340,6 +1347,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nVariance.FieldTasksApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

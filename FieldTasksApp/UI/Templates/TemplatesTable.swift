@@ -56,7 +56,7 @@ class TemplatesTable: UITableViewController {
     // MARK: Refresh Methods -------------------------------------------------------------------------------
 
     func serverRefresh() {
-        SyncMgr.shared.sync(completion: { (syncResult) in
+        SyncMgr.shared.sync(context: CoreDataMgr.shared.mainThreadContext!, completion: { (syncResult) in
             if let error = syncResult.error {
                 self.showAlert(title: "Error syncing with server", message: error)
             }
@@ -140,7 +140,7 @@ class TemplatesTable: UITableViewController {
         edit.backgroundColor = UIColor.peterRiver()
 
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
-            self.isEditing = false
+            //self.isEditing = false
             if self.parentTemplatesViewer?.style == .List {
                 self.deleteTemplateFromServer(forRowAt: indexPath)
             } else {
@@ -204,13 +204,13 @@ class TemplatesTable: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if parentTemplatesViewer?.style != .Picker {
             let template = templatesList[indexPath.row]
-            if let form = FormsMgr.shared.formExists(templateId: template.id!) {
+            if let form = FormsMgr.shared.formExists(context: CoreDataMgr.shared.mainThreadContext!, templateId: template.id!) {
                 self.askAlert(title: "Continue using previous Form?", body: "You did not submit the previous version of this form, would you like to continue filling it out?", action: "OK", cancel: "No", completion: { (usePreviousForm) in
-                    let form = usePreviousForm ? form : FormsMgr.shared.newForm(template: template)
+                    let form = usePreviousForm ? form : FormsMgr.shared.newForm(context: CoreDataMgr.shared.mainThreadContext!, template: template)
                     self.openFormViewer(form: form)
                 })
             } else {
-                let form = FormsMgr.shared.newForm(template: template)
+                let form = FormsMgr.shared.newForm(context: CoreDataMgr.shared.mainThreadContext!, template: template)
                 self.openFormViewer(form: form)
             }
         }

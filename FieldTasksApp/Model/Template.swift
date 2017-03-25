@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 @objc(Template)
 open class Template: _Template {
@@ -14,7 +15,7 @@ open class Template: _Template {
         }
     }
 
-    func fromDict(templateDict : [String : Any]) {
+    func fromDict(context : NSManagedObjectContext, templateDict : [String : Any]) {
         self.name = templateDict["name"] as? String ?? ""
         self.descriptionString = templateDict["description"] as? String ?? ""
         self.id = templateDict["_id"] as? String ?? ""
@@ -23,7 +24,7 @@ open class Template: _Template {
             var newTasks = [Task]()
             for taskObject in tasksArray {
                 if let taskDict = taskObject as? [String : AnyObject] {
-                    if let newTask = TaskFromDictionary(taskDict: taskDict) {
+                    if let newTask = TaskFromDictionary(context: context, taskDict: taskDict) {
                         newTasks += [newTask]
                     }
                 }
