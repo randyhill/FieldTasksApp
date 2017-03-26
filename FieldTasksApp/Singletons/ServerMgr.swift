@@ -125,15 +125,15 @@ class ServerMgr {
 
     private func newTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
         // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let formDict = form.toDict()
 
         // for some reason POST requests require the path to end with / or the server will redirect to GET
         let url = url + "/"
         Alamofire.request(url, method: .post, parameters: formDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
+//            DispatchQueue.main.async() {
+//                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//            }
             var resultDict : [String : Any]?
             if response.result.isSuccess, let jsonData = response.data {
                 do {
@@ -382,8 +382,7 @@ class ServerMgr {
                 }
             })
         }
-
-   }
+    }
 
     func uploadImages(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
         // Start spinner
@@ -421,4 +420,29 @@ class ServerMgr {
             }
         })
      }
+
+    func uploadImagesWithoutUI(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
+        var files = [String:HTTPFile]()
+        var fileIndex = 0
+        for map in photoFileList.mapOfAllImages() {
+            // Images saved to server are saved without proper orientation flag
+            // This flag is not being saved to the exif data in the uploaded jpeg image, so make sure image is uploaded in
+            // vertical orientation as that's what it will display in when read back.
+            if let data = UIImagePNGRepresentation(map.image!.fixOrientation()) {
+                files["\(fileIndex)"] = HTTPFile.data("\(fileIndex)", data, nil)
+                fileIndex += 1
+            }
+        }
+
+        if let jsonDict = Just.post(cUploadPhotoURL, files: files, asyncProgressHandler: {(p) in
+            print("Uploading photos: \(p.percent)")
+        }).json {
+            if let fileArray = jsonDict as? [Any] {
+                photoFileList.addNamesFromJson(fileArray: fileArray)
+                completion(photoFileList, nil)
+            } else {
+                completion(nil, "Couldn't parse JSON")
+            }
+        }
+    }
 }

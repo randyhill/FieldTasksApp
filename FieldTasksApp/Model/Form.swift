@@ -51,7 +51,6 @@ open class Form: _Form {
                     if let submissionString = formDict["submitted"] as? String {
                         self.submitted = Globals.shared.utcFormatter.date(from: submissionString)  // Server sets submission date so we know was successful
                     }
-                    CoreDataMgr.shared.saveOnMainThread()
                     completion(nil)
                 } else {
                     completion("couldn't update form id")
@@ -69,15 +68,17 @@ open class Form: _Form {
         if photosList.count == 0 {
             submitForm(completion: completion)
         } else {
+            NetworkOpQueueMgr.shared.submitForm(form: self, photoFileList: photosList)
+            completion(nil)
             // upload Photos to server first.
-            ServerMgr.shared.uploadImages(photoFileList: photosList, completion: { (photoFileList, error) in
-                if let _ = photoFileList {
-                    // Photo file names should have been copied to photo tasks, we can submit form now
-                    self.submitForm(completion: completion)
-                } else {
-                    completion("Photos upload failed because of: \(error!)")
-                }
-            })
+//            ServerMgr.shared.uploadImages(photoFileList: photosList, completion: { (photoFileList, error) in
+//                if let _ = photoFileList {
+//                    // Photo file names should have been copied to photo tasks, we can submit form now
+//                    self.submitForm(completion: completion)
+//                } else {
+//                    completion("Photos upload failed because of: \(error!)")
+//                }
+//            })
         }
     }	// Custom logic goes here.
 }

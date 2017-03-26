@@ -35,7 +35,7 @@ class Choice {
         delegate?.choiceToggled(choice: self)
     }
 
-    init(frame : CGRect, width: CGFloat, title: String, delegate: ChoicesAction) {
+    init(frame : CGRect, width: CGFloat, isEnabled: Bool, title: String, delegate: ChoicesAction) {
         // Make label for title
         self.delegate = delegate
         var labelFrame = frame
@@ -43,9 +43,11 @@ class Choice {
         switchSize.width = width
         label.frame = labelFrame
         label.frame.size.width = title.widthOfString(usingFont: label.font) + 20
-        label.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelTap))
-        label.addGestureRecognizer(tapGesture)
+        label.isUserInteractionEnabled = isEnabled
+        if isEnabled {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelTap))
+            label.addGestureRecognizer(tapGesture)
+        }
         label.text = title;
         label.makeTitleStyle()
     }
@@ -68,7 +70,7 @@ class Switchbox : Choice {
         }
     }
     init(frame : CGRect, title : String, isEnabled: Bool, delegate: ChoicesAction) {
-        super.init(frame : frame, width: 64.0, title: title, delegate: delegate)
+        super.init(frame : frame, width: 64.0, isEnabled: isEnabled, title: title, delegate: delegate)
         _switch.frame = frame
         _switch.frame.size.width = switchSize.width;
         _switch.addTarget(self, action: #selector(didSwitch), for: .valueChanged)

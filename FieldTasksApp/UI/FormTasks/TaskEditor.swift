@@ -47,7 +47,7 @@ class TaskEditor : UIViewController {
         super.viewWillLayoutSubviews()
 
         embeddedView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-   }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

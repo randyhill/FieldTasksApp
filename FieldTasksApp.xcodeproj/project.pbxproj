@@ -209,6 +209,8 @@
 		D89770D31E5CBBFD00A9318D /* LocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* LocationEditor.swift */; };
 		D89A04181E86F2E3005576B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A04171E86F2E3005576B4 /* String.swift */; };
 		D89A04191E86F2E3005576B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A04171E86F2E3005576B4 /* String.swift */; };
+		D89A041B1E874240005576B4 /* NetworkOpsQueueMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A041A1E874240005576B4 /* NetworkOpsQueueMgr.swift */; };
+		D89A041C1E874240005576B4 /* NetworkOpsQueueMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A041A1E874240005576B4 /* NetworkOpsQueueMgr.swift */; };
 		D89B77601E777C2D004B755A /* StringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89B775F1E777C2D004B755A /* StringArray.swift */; };
 		D89B77611E777C2D004B755A /* StringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89B775F1E777C2D004B755A /* StringArray.swift */; };
 		D8B4388F1E6B870A00FDCB0B /* FormsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */; };
@@ -367,6 +369,7 @@
 		D89770BF1E5BC49200A9318D /* FormsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsTable.swift; path = UI/FormsTable.swift; sourceTree = "<group>"; };
 		D89770D11E5CBBFD00A9318D /* LocationEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationEditor.swift; path = UI/LocationEditor.swift; sourceTree = "<group>"; };
 		D89A04171E86F2E3005576B4 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extensions/String.swift; sourceTree = "<group>"; };
+		D89A041A1E874240005576B4 /* NetworkOpsQueueMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkOpsQueueMgr.swift; path = Singletons/NetworkOpsQueueMgr.swift; sourceTree = "<group>"; };
 		D89B775F1E777C2D004B755A /* StringArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringArray.swift; path = Model/StringArray.swift; sourceTree = "<group>"; };
 		D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsMgr.swift; path = Singletons/FormsMgr.swift; sourceTree = "<group>"; };
 		D8B820D81E678F0B005527C9 /* FUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FUISwitch.swift; path = Extensions/FUISwitch.swift; sourceTree = "<group>"; };
@@ -676,6 +679,7 @@
 				D86BF72C1E6397EC00884277 /* TemplatesMgr.swift */,
 				D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */,
 				D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */,
+				D89A041A1E874240005576B4 /* NetworkOpsQueueMgr.swift */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -1004,6 +1008,7 @@
 				D8E4B7AA1E6F34C200BDE823 /* _Template.swift in Sources */,
 				D86BF77A1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
 				D86C79F51E6DDDBF00A8A801 /* ChoicesTask.swift in Sources */,
+				D89A041B1E874240005576B4 /* NetworkOpsQueueMgr.swift in Sources */,
 				D86BF72D1E6397EC00884277 /* LocationsMgr.swift in Sources */,
 				D8E4B7601E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */,
 				D86BF7681E64A42500884277 /* TemplateEditor.swift in Sources */,
@@ -1083,6 +1088,7 @@
 				D8E4B7AB1E6F34C200BDE823 /* _Template.swift in Sources */,
 				D86C7A191E6DEBFD00A8A801 /* ChoicesTask.swift in Sources */,
 				D86C7A1F1E6DEBFD00A8A801 /* NumberTask.swift in Sources */,
+				D89A041C1E874240005576B4 /* NetworkOpsQueueMgr.swift in Sources */,
 				D86BF77B1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
 				D84AAF2D1E4531EA000D584F /* LocationsViewer.swift in Sources */,
 				D8E4B7611E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */,
