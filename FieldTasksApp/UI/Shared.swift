@@ -71,6 +71,10 @@ func FTErrorMessage(error: String, file: String = #file, line: Int = #line) {
     print("Assert failure - file: \(file) line: \(line) error:\(error)")
 }
 
+func FTMessage(message: String, file: String = #file, line: Int = #line) {
+    print(message + " file: \(file) line: \(line)")
+}
+
 func FTAlertMessage(message: String) {
     SVProgressHUD.showInfo(withStatus: message)
 }

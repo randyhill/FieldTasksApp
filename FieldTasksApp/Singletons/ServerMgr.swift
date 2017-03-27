@@ -421,6 +421,7 @@ class ServerMgr {
         })
      }
 
+    // Copys file names to form if successfull
     func uploadImagesWithoutUI(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
         var files = [String:HTTPFile]()
         var fileIndex = 0

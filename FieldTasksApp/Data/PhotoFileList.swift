@@ -121,6 +121,7 @@ class PhotoFileList {
         }
     }
 
+    // Sets file names for photo tasks results in Form.
     // JSON contains array index in mapArray for each fileName, add each to correct result in mapArray with
     func addNamesFromJson(fileArray : [Any]) {
         // Now add submitted
