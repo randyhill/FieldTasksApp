@@ -36,6 +36,7 @@ class NetworkOp : Operation {
     }
 
     override func start() {
+        print( "Starting net op")
         if self.checkCancel() {
             return
         }
@@ -52,15 +53,26 @@ class NetworkOp : Operation {
         self.isRunning = false
         self.didChangeValue(forKey: "isFinished")
         self.didChangeValue(forKey: "isExecuting")
+        print( "Completed net op")
     }
 
     // Always resubmit if we get canceled before completion
     func checkCancel() -> Bool {
         if self.isCancelled {
-            NetOpsQueueMgr.shared.retry(op: self)
+            print( "Canceled net op")
+            self.retry()
             self.complete()
         }
         return self.isCancelled
+    }
+
+    func retry() {
+        // Create a new NetworkOp to match and resubmit since we can't reuse existing.
+    }
+
+    func success() {
+        // Success means reset delay
+        NetOpsQueueMgr.shared.resetRetryIncrement()
     }
 }
 
@@ -74,14 +86,14 @@ class ImagesUploadOp : NetworkOp {
     }
 
     override func main() {
+        print( "Photos upload starting")
         if self.checkCancel() {
             return
         }
-        FTMessage(message: "Photos upload starting")
-        ServerMgr.shared.uploadImagesWithoutUI(photoFileList: photoFileList) { (list, err) in
+         ServerMgr.shared.uploadImagesWithoutUI(photoFileList: photoFileList) { (list, err) in
             if let _ = list {
                 // Form should have been updated with file names, write to CoreData
-                FTMessage(message: "Photos uploaded successfully")
+                print( "Photos uploaded successfully")
                 let backgroundContext = CoreDataMgr.shared.getNewContext()
                 backgroundContext.perform({
                     CoreDataMgr.shared.saveInContext(context: backgroundContext)
@@ -92,11 +104,15 @@ class ImagesUploadOp : NetworkOp {
                     NetOpsQueueMgr.shared.submitForm(form: self.form)
                  }
             } else {
-                FTMessage(message:"Photos upload failed because of: \(err!)")
-                NetOpsQueueMgr.shared.retry(op: self)
+                print("Photos upload failed because of: \(err!)")
+                self.retry()
             }
             self.complete()
         }
+    }
+
+    override func retry() {
+        NetOpsQueueMgr.shared.retryWithDelay(op: ImagesUploadOp(form: self.form, photoFileList: self.photoFileList))
     }
 }
 
@@ -111,32 +127,38 @@ class FormSubmitOp : NetworkOp {
         if self.checkCancel() {
             return
         }
-        FTMessage(message: "Form submission starting")
+        print( "Form submission starting")
         ServerMgr.shared.saveAsForm(form: form) { (result, error) in
             if error != nil {
-                FTMessage(message: "Error submitting form: \(error)")
-                NetOpsQueueMgr.shared.retry(op: self)
+                print( "Error submitting form: \(error)")
+                self.retry()
             } else {
                 //  update id
                 if let formDict = result, let formId = formDict["_id"] as? String {
                     self.form.id = formId
                     if let submissionString = formDict["submitted"] as? String {
                         self.form.submitted = Globals.shared.utcFormatter.date(from: submissionString)  // Server sets submission date so we know was successful
-                        FTMessage(message: "Form submitted successfully")
+                        print( "Form submitted successfully")
                         let backgroundContext = CoreDataMgr.shared.getNewContext()
                         backgroundContext.perform({
                             CoreDataMgr.shared.saveInContext(context: backgroundContext)
+                            self.success()
                         })
                     } else {
-                        FTMessage(message: "couldn't get form submission time stamp")
-                        NetOpsQueueMgr.shared.retry(op: self)
+                        print( "couldn't get form submission time stamp")
+                        self.retry()
                     }
                 } else {
-                    FTMessage(message: "couldn't update form id")
-                    NetOpsQueueMgr.shared.retry(op: self)
+                    print( "couldn't update form id")
+                    self.retry()
                 }
             }
+            self.complete()
         }
+    }
+
+    override func retry() {
+        NetOpsQueueMgr.shared.retryWithDelay(op: FormSubmitOp(form: self.form))
     }
 }
 
@@ -153,39 +175,45 @@ class NetOpsQueueMgr {
         return queue
     }()
 
-    private var _retryInterval : TimeInterval = 0
+    private var _retryInterval : TimeInterval = retryIncrement
     var currentRetryInterval : TimeInterval {
         get {
-            _retryInterval += retryIncrement
+            print("incrementing retry increment from \(_retryInterval)")
+            _retryInterval *= 2
+            print("to \(_retryInterval)")
             return _retryInterval
         }
     }
 
     fileprivate func resetRetryIncrement() {
+        print("Reset retry increment")
         _retryInterval = 0
     }
 
-    fileprivate func retry(op : Operation) {
-        let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(currentRetryInterval * Double(NSEC_PER_SEC)))
+    fileprivate func retryWithDelay(op : Operation) {
+        print( "Retry net op: \(currentRetryInterval) seconds")
+        let dispatchTime: DispatchTime = DispatchTime.now() + currentRetryInterval
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            print( "Checking for net access")
             if isConnectedToNetwork() {
+                print( "We have net access")
                 self.opsQueue.addOperation(op)
-                self.resetRetryIncrement()
             } else {
-                self.retry(op: op)
+                self.retryWithDelay(op: op)
             }
         }
     }
 
     fileprivate func submitForm(form: Form) {
         let formSubOp = FormSubmitOp(form: form)
-        FTMessage(message: "Adding submit form to queue")
+        print( "Adding submit form to queue")
         opsQueue.addOperation(formSubOp)
     }
 
     fileprivate func uploadImages(form : Form, photoFileList : PhotoFileList) {
         let imagesOp = ImagesUploadOp(form: form, photoFileList: photoFileList)
-        FTMessage(message: "Adding upload images to queue")
+        print( "Adding upload images to queue")
+        print( "Opsqueue count: \(opsQueue.operationCount)")
         opsQueue.addOperation(imagesOp)
     }
 

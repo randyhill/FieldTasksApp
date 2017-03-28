@@ -403,7 +403,7 @@ class ServerMgr {
                 }
             }
 
-            if let jsonDict = Just.post(cUploadPhotoURL, files: files, asyncProgressHandler: {(p) in
+            if let jsonDict = Just.post(cUploadPhotoURL, files: files, timeout:2.0, asyncProgressHandler: {(p) in
                 FTAlertProgress(progress: p.percent, status: "Uploading photos")
             }).json {
                 DispatchQueue.main.async() {
@@ -423,27 +423,56 @@ class ServerMgr {
 
     // Copys file names to form if successfull
     func uploadImagesWithoutUI(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
-        var files = [String:HTTPFile]()
+        var files = [String:Data]()
         var fileIndex = 0
         for map in photoFileList.mapOfAllImages() {
             // Images saved to server are saved without proper orientation flag
             // This flag is not being saved to the exif data in the uploaded jpeg image, so make sure image is uploaded in
             // vertical orientation as that's what it will display in when read back.
             if let data = UIImagePNGRepresentation(map.image!.fixOrientation()) {
-                files["\(fileIndex)"] = HTTPFile.data("\(fileIndex)", data, nil)
+                files["\(fileIndex)"] = data //HTTPFile.data("\(fileIndex)", data, nil)
                 fileIndex += 1
             }
         }
 
-        if let jsonDict = Just.post(cUploadPhotoURL, files: files, asyncProgressHandler: {(p) in
-            print("Uploading photos: \(p.percent)")
-        }).json {
-            if let fileArray = jsonDict as? [Any] {
-                photoFileList.addNamesFromJson(fileArray: fileArray)
-                completion(photoFileList, nil)
-            } else {
-                completion(nil, "Couldn't parse JSON")
-            }
-        }
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                for (key, value) in files {
+                    multipartFormData.append(value, withName: key, fileName: key, mimeType: "image/jpeg")
+                }
+        }, to: cUploadPhotoURL,
+        encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.uploadProgress(closure: { progress in
+                        debugPrint("Upload progress: \(progress)")
+                    })
+                    upload.responseJSON { response in
+                        switch response.result {
+                        case .success(let value):
+                            if let fileArray = value as? [Any]{
+                                photoFileList.addNamesFromJson(fileArray: fileArray)
+                                completion(photoFileList, nil)
+                            }
+                            print("responseObject: \(value)")
+                        case .failure(let responseError):
+                            print("responseError: \(responseError)")
+                            completion(nil, "Couldn't upload images: \(responseError)")
+                        }
+                     }
+                case .failure(let encodingError):
+                    completion(nil, "Couldn't upload images: \(encodingError)")
+                }
+        })
+//        if let jsonDict = Just.post(cUploadPhotoURL, files: files,  timeout:2.0, asyncProgressHandler: {(p) in
+//            print("Uploading photos: \(p.percent)")
+//        }).json {
+//            if let fileArray = jsonDict as? [Any] {
+//                photoFileList.addNamesFromJson(fileArray: fileArray)
+//                completion(photoFileList, nil)
+//            } else {
+//                completion(nil, "Couldn't parse JSON")
+//            }
+ //       }
     }
 }
