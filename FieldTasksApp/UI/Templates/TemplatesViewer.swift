@@ -35,16 +35,16 @@ class TemplatesViewer : UIViewController {
 
         switch style {
         case .List:
-            self.title = "Templates"
+            self.title = "Forms"
             self.navigationItem.rightBarButtonItem = FlatBarButton(withImageNamed: "refresh", target: self, action: #selector(refreshList))
         case .Location:
-            self.title = location?.name ?? "Location Templates"
+            self.title = location?.name ?? "Location Forms"
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(cancelAction))
-            self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Forms", target: self, action: #selector(showForms))
+            self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Submissions", target: self, action: #selector(showForms))
             newButton.setTitle("Add", for: .normal)
             newButton.setTitle("Add", for: .highlighted)
         case .Picker:
-            self.title = "Add Templates"
+            self.title = "Add Forms"
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
             self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Add", target: self, action: #selector(addAction))
             newButton.isHidden = true

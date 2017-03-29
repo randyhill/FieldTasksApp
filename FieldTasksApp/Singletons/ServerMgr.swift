@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 import Alamofire
-import Just
+import AWSS3
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 #if LOCALHOST
 let cBaseURL = "http://localhost:8080"
@@ -25,15 +29,17 @@ let cLocationsURL = cBaseURL + "/locations"
 let cLocationTemplatesURL = cBaseURL + "/locations/templates"
 let cUploadPhotoURL = cBaseURL + "/upload"
 let cDownloadPhotoURL = cBaseURL + "/download/"
+let cS3Bucket = "com.fieldtasks.images"
+let cFileNameLength = 12
 
 typealias loadListCallback = (_ result: [AnyObject]?, _ timeStamp: Date,  _ error: String?)->()
 
 class ServerMgr {
     static let shared = ServerMgr()
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+    let transferManager = AWSS3TransferManager.default()
 
     init() {
-
     }
 
     // MARK: Sync All -------------------------------------------------------------------------------
@@ -295,184 +301,74 @@ class ServerMgr {
         })
     }
 
-    // MARK: Images  -------------------------------------------------------------------------------
-    func uploadImage(image: UIImage, progress : @escaping (Float)->(), completion : @escaping (_ fileName: String, _ error: String?)->()) {
-        // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    // MARK: Image Files  -------------------------------------------------------------------------------
 
-        if let data = UIImagePNGRepresentation(image) {
-            if var fileId = Just.post(cUploadPhotoURL, files: ["image" : .data("image.jpg", data, nil)], asyncProgressHandler: {(p) in
-                progress(p.percent)
-            }).text {
-                DispatchQueue.main.async() {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-                // fileId string should be 12 characters, plus quotes
-                if fileId.characters.count > 12 {
-                    // Remove quotes
-                    fileId.remove(at: fileId.index(before: fileId.endIndex))
-                    fileId.remove(at: fileId.startIndex)
-                    completion(fileId, nil)
-                } else {
-                    completion("",  "Upload failed")
-                }
+    func uploadImage(fileName: String, progress : @escaping (Float)->(), completion : @escaping (_ fileName: String, _ error: String?)->()) {
+        let localPath = getImageDirectory().appendingPathComponent(fileName)
+        if let uploadRequest = AWSS3TransferManagerUploadRequest() {
+            uploadRequest.bucket = cS3Bucket
+            uploadRequest.key = fileName
+            uploadRequest.body = localPath
+            uploadRequest.uploadProgress = {(bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) -> Void in
+                let progressValue = Float(totalBytesSent)/Float(totalBytesExpectedToSend)
+                progress(progressValue)
             }
-        }
-    }
+            transferManager.upload(uploadRequest).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
 
-    func downloadFile(imageFileName : String, completion : @escaping (_ data : Data?, _ error: String?)->()) {
-        // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        FTAlertProgress(progress: 0.01, status: "Downloading photo")
-
-        // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
-        OperationQueue.main.addOperation({
-           let path = cDownloadPhotoURL + imageFileName
-            _ = Just.get(path, params: [:], asyncProgressHandler: {(p) in
-                FTAlertProgress(progress: p.percent, status: "Downloading photo")
-            }) { (result) in
-                FTAlertDismiss(completion: { 
-
-                })
-                if let code = result.statusCode, code == 200   {
-                    if let data = result.content {
-                        return completion(data, nil)
-                    } else {
-                        return completion(nil, "Server did not have that image")
-                    }
-                } else {
-                    return completion(nil, result.error != nil ?  result.error!.localizedDescription : "Server did not have that image")
-                 }
-            }
-        })
-    }
-
-    func downloadFiles(photoFileList: PhotoFileList, imageUpdate : @escaping (_ updatedIndex: Int)->(), completion : @escaping (_ error: String?)->()) {
-        // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
-        // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
-        let mapArray = photoFileList.mapOfUnloaded()
-        var fileCount = mapArray.count
-        for map in mapArray {
-            OperationQueue.main.addOperation({
-               let path = cDownloadPhotoURL + map.fileName!
-                _ = Just.get(path, params: [:]) { (result) in
-                    if let code = result.statusCode, code == 200   {
-                        // Copy image back to original photo result array
-                        if let data = result.content {
-                            if let image = UIImage(data: data) {
-                                map.image = image
-                            }
-                            imageUpdate(map.resultIndex)
-                        } else {
-                            FTErrorMessage(error: "Server did not have image: \(map.fileName!)")
+                if let error = task.error as? NSError {
+                    if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                        switch code {
+                        case .cancelled, .paused:
+                            break
+                        default:
+                            completion("", "Error uploading: \(uploadRequest.key) Error: \(error)")
                         }
                     } else {
-                        FTErrorMessage(error: result.error != nil ?  result.error!.localizedDescription : "Server did not have that image")
+                        completion("", "Error uploading: \(uploadRequest.key) Error: \(error)")
                     }
-                    fileCount -= 1
-                    if fileCount == 0 {
-                        // Completely done, let view do full update
-                        OperationQueue.main.addOperation({
-                            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                            return completion(nil)
-                        })
+                } else {
+                    completion(fileName, nil)
+                }
+                return nil
+            })
+        } else {
+            FTMessage(message: "Couldn't load AWS Transfer Manager to upload image")
+            completion("", "Couldn't load AWS Transfer Manager to upload image")
+        }
+
+    }
+
+    func downloadFile(imageFileName : String, progress: @escaping (_ progress: Float)->(), completion : @escaping (_ image : UIImage?, _ error: String?)->()) {
+        // get a client with the default service configuration
+        let downloadingFileURL = getImageDirectory().appendingPathComponent(imageFileName)
+        if let downloadRequest = AWSS3TransferManagerDownloadRequest() {
+            downloadRequest.bucket = cS3Bucket
+            downloadRequest.key = imageFileName
+            downloadRequest.downloadingFileURL = downloadingFileURL
+            downloadRequest.downloadProgress = {(bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) -> Void in
+                let progressValue = Float(totalBytesSent)/Float(totalBytesExpectedToSend)
+                progress(progressValue)
+            }
+            transferManager.download(downloadRequest).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+                if let error = task.error as? NSError {
+                    if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                        switch code {
+                        case .cancelled, .paused:
+                            break
+                        default:
+                            completion(nil, "Error downloading: \(downloadRequest.key) Error: \(error)")
+                        }
+                    } else {
+                        completion(nil, "Error downloading: \(downloadRequest.key) Error: \(error)")
+                    }
+                } else {
+                    print("Download complete for: \(downloadRequest.key)")
+                    if let image = UIImage(contentsOfFile: downloadingFileURL.path) {
+                        completion(image, nil)
                     }
                 }
+                return nil
             })
         }
-    }
-
-    func uploadImages(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
-        // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        FTAlertProgress(progress: 0.01, status: "Uploading photos")
-
-        // SVProgressHUD is run from operations queue, so queue upload so it doesn't start until after alert is visible.
-        OperationQueue.main.addOperation({ 
-            var files = [String:HTTPFile]()
-            var fileIndex = 0
-            for map in photoFileList.mapOfAllImages() {
-                // Images saved to server are saved without proper orientation flag
-                // This flag is not being saved to the exif data in the uploaded jpeg image, so make sure image is uploaded in 
-                // vertical orientation as that's what it will display in when read back.
-                if let data = UIImagePNGRepresentation(map.image!.fixOrientation()) {
-                    files["\(fileIndex)"] = HTTPFile.data("\(fileIndex)", data, nil)
-                    fileIndex += 1
-                }
-            }
-
-            if let jsonDict = Just.post(cUploadPhotoURL, files: files, timeout:2.0, asyncProgressHandler: {(p) in
-                FTAlertProgress(progress: p.percent, status: "Uploading photos")
-            }).json {
-                DispatchQueue.main.async() {
-                    FTAlertDismiss(completion: {
-                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                        if let fileArray = jsonDict as? [Any] {
-                            photoFileList.addNamesFromJson(fileArray: fileArray)
-                            completion(photoFileList, nil)
-                        } else {
-                            completion(nil, "Couldn't parse JSON")
-                        }
-                    })
-                }
-            }
-        })
-     }
-
-    // Copys file names to form if successfull
-    func uploadImagesWithoutUI(photoFileList: PhotoFileList, completion : @escaping (_ photoFileList: PhotoFileList?, _ error: String?)->()) {
-        var files = [String:Data]()
-        var fileIndex = 0
-        for map in photoFileList.mapOfAllImages() {
-            // Images saved to server are saved without proper orientation flag
-            // This flag is not being saved to the exif data in the uploaded jpeg image, so make sure image is uploaded in
-            // vertical orientation as that's what it will display in when read back.
-            if let data = UIImagePNGRepresentation(map.image!.fixOrientation()) {
-                files["\(fileIndex)"] = data //HTTPFile.data("\(fileIndex)", data, nil)
-                fileIndex += 1
-            }
-        }
-
-        Alamofire.upload(
-            multipartFormData: { multipartFormData in
-                for (key, value) in files {
-                    multipartFormData.append(value, withName: key, fileName: key, mimeType: "image/jpeg")
-                }
-        }, to: cUploadPhotoURL,
-        encodingCompletion: { encodingResult in
-                switch encodingResult {
-                case .success(let upload, _, _):
-                    upload.uploadProgress(closure: { progress in
-                        debugPrint("Upload progress: \(progress)")
-                    })
-                    upload.responseJSON { response in
-                        switch response.result {
-                        case .success(let value):
-                            if let fileArray = value as? [Any]{
-                                photoFileList.addNamesFromJson(fileArray: fileArray)
-                                completion(photoFileList, nil)
-                            }
-                            print("responseObject: \(value)")
-                        case .failure(let responseError):
-                            print("responseError: \(responseError)")
-                            completion(nil, "Couldn't upload images: \(responseError)")
-                        }
-                     }
-                case .failure(let encodingError):
-                    completion(nil, "Couldn't upload images: \(encodingError)")
-                }
-        })
-//        if let jsonDict = Just.post(cUploadPhotoURL, files: files,  timeout:2.0, asyncProgressHandler: {(p) in
-//            print("Uploading photos: \(p.percent)")
-//        }).json {
-//            if let fileArray = jsonDict as? [Any] {
-//                photoFileList.addNamesFromJson(fileArray: fileArray)
-//                completion(photoFileList, nil)
-//            } else {
-//                completion(nil, "Couldn't parse JSON")
-//            }
- //       }
     }
 }

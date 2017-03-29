@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import AWSCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // init core data manager so we can load templates/locations
         CoreDataMgr.shared.initModelContext(model: self.managedObjectModel, context: self.managedObjectContext)
+
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "us-east-1:32e94d7b-6012-4bbc-877c-2ab82ff7953d")
+        let configuration = AWSServiceConfiguration(region: .USEast1 , credentialsProvider:credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+
         return true
     }
 

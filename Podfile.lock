@@ -1,27 +1,110 @@
 PODS:
   - Alamofire (4.4.0)
+  - AWSAutoScaling (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSCloudWatch (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSCognito (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSCognitoIdentityProvider (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSCore (2.5.2)
+  - AWSDynamoDB (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSEC2 (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSElasticLoadBalancing (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSIoT (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSKinesis (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSLambda (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSLex (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSMachineLearning (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSMobileAnalytics (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSPinpoint (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSPolly (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSRekognition (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSS3 (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSSES (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSSimpleDB (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSSNS (2.5.2):
+    - AWSCore (= 2.5.2)
+  - AWSSQS (2.5.2):
+    - AWSCore (= 2.5.2)
   - FlatUIKit (1.6.2)
   - IQKeyboardManagerSwift (4.0.8)
-  - Just (0.5.7)
   - SVProgressHUD (2.1.2)
   - SwiftDate (4.0.13)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - AWSAutoScaling
+  - AWSCloudWatch
+  - AWSCognito
+  - AWSCognitoIdentityProvider
+  - AWSDynamoDB
+  - AWSEC2
+  - AWSElasticLoadBalancing
+  - AWSIoT
+  - AWSKinesis
+  - AWSLambda
+  - AWSLex
+  - AWSMachineLearning
+  - AWSMobileAnalytics
+  - AWSPinpoint
+  - AWSPolly
+  - AWSRekognition
+  - AWSS3
+  - AWSSES
+  - AWSSimpleDB
+  - AWSSNS
+  - AWSSQS
   - FlatUIKit
   - IQKeyboardManagerSwift
-  - Just
   - SVProgressHUD
   - SwiftDate (~> 4.0)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AWSAutoScaling: 7fe819fa52fb37d2b4b15535ad557a219213a6a8
+  AWSCloudWatch: 765c1878c5005328acb24e15e523f98755ab90c0
+  AWSCognito: a29c52e3a3d4988f01b449c8b229a51b73d1c1bf
+  AWSCognitoIdentityProvider: 496a5d717180e4127f038be3c6494bc59e8ff4dd
+  AWSCore: b2fe455c2c7d6653521238c5b0b0ddb67ec4f063
+  AWSDynamoDB: 311ba51593276a198f8a611c9e89706bd0fe740f
+  AWSEC2: 0d88da0cb9d9d900a5b1e62f97a2365075b301fd
+  AWSElasticLoadBalancing: f7ba3b23dd605e283535e3ef42fba5db766eb1e2
+  AWSIoT: 282cd15afffb9c3a5767efa36f8d330635f0802c
+  AWSKinesis: 124bfe652495ca07e63cd947080829679cc32547
+  AWSLambda: 330b7bddbb34632de02b31536cb7f7c10546dfc4
+  AWSLex: b3a075d6c08321d6b10fa952d3c6dfd241e36d48
+  AWSMachineLearning: c77fe5eba3207bf1c26944b22d868973ee825300
+  AWSMobileAnalytics: d0ce50be90fba6b1dfac20f66c18ac7dc3daf6b6
+  AWSPinpoint: f33f4fed418034999d0708853b0889f6bdea676b
+  AWSPolly: a87083d6ec5278a81f6aa222eb8ecea852e53027
+  AWSRekognition: 3e4af236a7787336ae3d68378fa757927664095b
+  AWSS3: 1f53d780bae0a5949f11da99520c14684bc90af0
+  AWSSES: 01c1bd6953d7c3b8e2698ff6c30fc9b111c1c656
+  AWSSimpleDB: ba37cce420e00c9400bd62a54740dfc7083fc9d0
+  AWSSNS: 3437c505bfb8d5eda6bfc497368462ae31423324
+  AWSSQS: 558aac70d0c908fa5f3b043410243595e4100ff4
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
-  Just: d19e769d86b965e39ae58cb3c0cbad07706634a8
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   SwiftDate: 8ec416bb1b5129d1f35e8efaed720421f41d42df
 
-PODFILE CHECKSUM: 4792b5042103988f6e07f3a7444f00ae0a628e15
+PODFILE CHECKSUM: 86b500daa42bfe7330989f77e6f24c4dd2ff1b88
 
 COCOAPODS: 1.1.1

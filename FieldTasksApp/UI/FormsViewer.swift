@@ -30,7 +30,7 @@ class FormsViewer : UIViewController {
             newButton.isHidden = true
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(goBack))
         } else {
-            self.title = "Forms"
+            self.title = "Submissions"
             newButton.isHidden = true
             formNameLabel.isHidden = true
             formDateLabel.isHidden = true

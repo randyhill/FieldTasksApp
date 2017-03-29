@@ -91,6 +91,7 @@ class FormTitleCell : UITableViewCell {
 
 class FormViewer : UITableViewController {
     var form : Form?
+    var progressView = UIProgressView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,10 +101,22 @@ class FormViewer : UITableViewController {
         self.tableView.allowsSelection = true
         navigationItem.leftBarButtonItem = FlatBarButton(title: "Back", target: self, action: #selector(goBack))
         makeNavBarFlat()
+        self.view.addSubview(progressView)
     }
 
     func goBack(){
         dismiss(animated: true, completion: nil)
+    }
+
+    func startProgress() {
+        progressView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 4)
+        progressView.isHidden = false
+        progressView.progress = 0
+    }
+
+    func updateProgress(progress : Float) {
+        self.progressView.progress = progress
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -111,10 +124,17 @@ class FormViewer : UITableViewController {
         self.tableView.reloadData()
 
         var rowIndex = 0
+        startProgress()
         for task in form!.tasks {
             if let task = task as? PhotosTask {
                 if let result = task.result as? PhotosResult {
-                    result.loadAll(imageLoaded: { (image) in
+                    result.loadAll(progress: { progress in
+                        print("Background: \(progress)")
+                        DispatchQueue.main.async {
+                            self.progressView.progress = progress
+                            print("Main Thread: \(progress)")
+                        }
+                    }, imageLoaded: { (image) in
                         DispatchQueue.main.async {
                             self.tableView.beginUpdates()
                             self.tableView.reloadRows(at: [IndexPath(row: rowIndex, section: 0)], with: .automatic)

@@ -31,6 +31,12 @@ class FormsTable: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: cFormsUpdateNotification, object: nil)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadList()
+        self.tableView.reloadData()
+    }
+
     func refreshList() {
         SyncMgr.shared.sync(context: CoreDataMgr.shared.mainThreadContext!, completion: { (syncResult) in
             if let error = syncResult.error {

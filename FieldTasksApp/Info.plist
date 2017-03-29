@@ -57,5 +57,50 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>AWS</key>
+    <dict>
+        <key>CredentialsProvider</key>
+        <dict>
+            <key>CognitoIdentity</key>
+            <dict>
+                <key>Default</key>
+                <dict>
+                    <key>PoolId</key>
+                    <string>us-east-1_QB4FaOkzf</string>
+                    <key>Region</key>
+                    <string>us-east-1</string>
+                </dict>
+            </dict>
+        </dict>
+        <key>S3TransferManager</key>
+        <dict>
+            <key>Default</key>
+            <dict>
+                <key>Region</key>
+                <string>us-east-1</string>
+            </dict>
+        </dict>
+    </dict>
+</dict>
+<key>NSExceptionDomains</key>
+<dict>
+    <key>amazonaws.com</key>
+    <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+    </dict>
+    <key>amazonaws.com.cn</key>
+    <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+    </dict>
 </dict>
 </plist>

@@ -12,11 +12,12 @@ import FlatUIKit
 class PhotoCell : UICollectionViewCell {
     var delegate: PhotosTaskViewer?
     var image : UIImage?
+    var imageIndex = 0
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
 
     @IBAction func closeTapped(_ sender: Any) {
-        delegate?.removePicture(deleteImage: image!)
+        delegate?.removePicture(index: imageIndex)
     }
 }
 
@@ -41,6 +42,7 @@ class PhotosHeader : UICollectionReusableView {
 
 class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
+    var progressView = UIProgressView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,20 +65,20 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
         }
     }
 
-    func setPicture(picture : UIImage) {
+    func setPicture(picture: UIImage) {
         let data = photoData
         if data.isSingle!.boolValue {
             self.result.removeAll()
-            self.result.add(photo: picture)
+            self.result.add(photo: picture, fileName: randomFileName())
         } else {
-            self.result.add(photo: picture)
+            self.result.add(photo: picture, fileName: randomFileName())
             self.scrollToBottomAnimated(animated: true)
         }
         self.reloadOnMain()
     }
 
-    func removePicture(deleteImage : UIImage) {
-        result.remove(photo: deleteImage)
+    func removePicture(index : Int) {
+        result.remove(index: index)
         self.reloadOnMain()
     }
 
@@ -91,13 +93,24 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
     override func save() {
     }
 
+    func startProgress() {
+        progressView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 4)
+        progressView.isHidden = false
+        progressView.progress = 0
+    }
+
     override func restore() {
         if result.count() > 0 {
             self.collectionView.reloadData()
         } else {
-            result.loadAll(imageLoaded: { (image) in
-                self.setPicture(picture: image)
-            })
+            startProgress()
+            result.loadAll(progress: { progress in
+                self.progressView.progress = progress
+            }, imageLoaded: { (image) in
+                self.progressView.isHidden = true
+                self.scrollToBottomAnimated(animated: true)
+                self.reloadOnMain()
+           })
         }
     }
 
@@ -218,6 +231,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
             cell.imageView.image = image
             cell.delegate = self
             cell.image = image
+            cell.imageIndex = indexPath.row
             cell.closeButton.layer.cornerRadius = 16.0
             cell.closeButton.isHidden = !isEditable
         }
