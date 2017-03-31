@@ -137,6 +137,11 @@ class CoreDataMgr {
     }
 
     // MARK: Type specific Creation Methods -------------------------------------------------------------------------------
+    class func createNetOp(context : NSManagedObjectContext) -> NetOpData {
+        let entity = NSEntityDescription.entity(forEntityName: NetOpData.entityName(), in: context)
+        return NetOpData(entity: entity!, insertInto: context)
+    }
+
     func createLocation(context : NSManagedObjectContext) -> FTLocation {
         let entity = NSEntityDescription.entity(forEntityName: FTLocation.entityName(), in: context)
         return FTLocation(entity: entity!, insertInto: context)

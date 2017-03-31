@@ -42,19 +42,13 @@ private class PhotosResultMap {
     func remove(atIndex: Int, forName: String) {
         photos.remove(at: atIndex)
         nameMap[forName] = nil
-//        self.remove(forName: forName)
      }
-
-//    func remove(forName: String) {
-//        nameMap[forName] = nil
-//    }
 }
 
 @objc(PhotosResult)
 open class PhotosResult: _PhotosResult {
     private var photosMap = PhotosResultMap()
     private let imageDirectoryURL = getImageDirectory()
-   // private var photos = [UIImage]()
 
     override var completed: Bool {
         get {
@@ -132,21 +126,33 @@ open class PhotosResult: _PhotosResult {
     }
 
     func loadAll(progress: @escaping (_ progress: Float)->(), imageLoaded: @escaping (_ image: UIImage)->()) {
+        var downloads = [String]()
         for fileName in file_names! {
-            loadFile(fileName: fileName, progress: progress, imageLoaded : imageLoaded)
+            if let image = photosMap.named(name: fileName) {
+                imageLoaded(image)
+            }
+            else if let image = photoFromFile(name: fileName) {
+                photosMap.set(image: image, fileName: fileName)
+                imageLoaded(image)
+            } else {
+                downloads += [fileName]
+            }
+        }
+        if downloads.count > 0 {
+            NetworkOpsMgr.shared.downloadImages(fileNames: downloads, photosResult: self, progress: progress, imageLoaded: imageLoaded)
         }
     }
 
     // Photo is either loaded, or can be loaded from disc, or needs to be loaded from server
-     private func loadFile(fileName : String, progress: @escaping (_ progress: Float)->(), imageLoaded: @escaping (_ image: UIImage)->()) {
-        if let image = photosMap.named(name: fileName) {
-           imageLoaded(image)
-        }
-        else if let image = photoFromFile(name: fileName) {
-            photosMap.set(image: image, fileName: fileName)
-            imageLoaded(image)
-        } else {
-            NetOpsQueueMgr.shared.downloadImage(fileName: fileName, photosResult: self, progress: progress, imageLoaded: imageLoaded)
-        }
-    }
+//     private func loadImage(fileName : String, progress: @escaping (_ progress: Float)->(), imageLoaded: @escaping (_ image: UIImage)->()) {
+//        if let image = photosMap.named(name: fileName) {
+//           imageLoaded(image)
+//        }
+//        else if let image = photoFromFile(name: fileName) {
+//            photosMap.set(image: image, fileName: fileName)
+//            imageLoaded(image)
+//        } else {
+//            NetworkOpsMgr.shared.downloadImage(fileName: fileName, photosResult: self, progress: progress, imageLoaded: imageLoaded)
+//        }
+//    }
 }

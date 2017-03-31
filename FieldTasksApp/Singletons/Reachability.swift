@@ -13,7 +13,7 @@ func isConnectedToNetwork() -> Bool {
     let isReachable = flags.contains(.reachable)
     let needsConnection = flags.contains(.connectionRequired)
     let isConnected = (isReachable && !needsConnection)
-    FTMessage(message: isConnected ? "Connnected to network" : "Disconnected from network")
+    FTPrint(s: isConnected ? "Connnected to network" : "Disconnected from network")
     return isConnected
 }
 

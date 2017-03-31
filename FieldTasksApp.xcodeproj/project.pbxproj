@@ -207,8 +207,8 @@
 		D89770D31E5CBBFD00A9318D /* LocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89770D11E5CBBFD00A9318D /* LocationEditor.swift */; };
 		D89A04181E86F2E3005576B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A04171E86F2E3005576B4 /* String.swift */; };
 		D89A04191E86F2E3005576B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A04171E86F2E3005576B4 /* String.swift */; };
-		D89A041B1E874240005576B4 /* NetOpsQueueMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A041A1E874240005576B4 /* NetOpsQueueMgr.swift */; };
-		D89A041C1E874240005576B4 /* NetOpsQueueMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A041A1E874240005576B4 /* NetOpsQueueMgr.swift */; };
+		D89A041B1E874240005576B4 /* NetworkOpsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A041A1E874240005576B4 /* NetworkOpsMgr.swift */; };
+		D89A041C1E874240005576B4 /* NetworkOpsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A041A1E874240005576B4 /* NetworkOpsMgr.swift */; };
 		D89A041F1E889185005576B4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A041E1E889185005576B4 /* Reachability.swift */; };
 		D89A04201E889185005576B4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A041E1E889185005576B4 /* Reachability.swift */; };
 		D89B77601E777C2D004B755A /* StringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89B775F1E777C2D004B755A /* StringArray.swift */; };
@@ -217,9 +217,12 @@
 		D8B438901E6B870A00FDCB0B /* FormsMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */; };
 		D8B820D91E678F0B005527C9 /* FUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B820D81E678F0B005527C9 /* FUISwitch.swift */; };
 		D8B820DA1E678F0B005527C9 /* FUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B820D81E678F0B005527C9 /* FUISwitch.swift */; };
-		D8BD03591E8AFA0A0067B411 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8BD03581E8AFA0A0067B411 /* Info.plist */; };
 		D8BD035B1E8C29A70067B411 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BD035A1E8C29A70067B411 /* PhotoFileList.swift */; };
 		D8BD035C1E8C29BE0067B411 /* PhotoFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BD035A1E8C29A70067B411 /* PhotoFileList.swift */; };
+		D8BD03671E8DDEFA0067B411 /* _NetOpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BD03651E8DDEFA0067B411 /* _NetOpData.swift */; };
+		D8BD03681E8DDEFA0067B411 /* _NetOpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BD03651E8DDEFA0067B411 /* _NetOpData.swift */; };
+		D8BD03691E8DDEFA0067B411 /* NetOpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BD03661E8DDEFA0067B411 /* NetOpData.swift */; };
+		D8BD036A1E8DDEFA0067B411 /* NetOpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BD03661E8DDEFA0067B411 /* NetOpData.swift */; };
 		D8E4B7601E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */; };
 		D8E4B7611E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */; };
 		D8E4B7961E6F34C200BDE823 /* _ChoicesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */; };
@@ -359,13 +362,14 @@
 		D89770BF1E5BC49200A9318D /* FormsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsTable.swift; path = UI/FormsTable.swift; sourceTree = "<group>"; };
 		D89770D11E5CBBFD00A9318D /* LocationEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationEditor.swift; path = UI/LocationEditor.swift; sourceTree = "<group>"; };
 		D89A04171E86F2E3005576B4 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extensions/String.swift; sourceTree = "<group>"; };
-		D89A041A1E874240005576B4 /* NetOpsQueueMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetOpsQueueMgr.swift; path = Singletons/NetOpsQueueMgr.swift; sourceTree = "<group>"; };
+		D89A041A1E874240005576B4 /* NetworkOpsMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkOpsMgr.swift; path = Singletons/NetworkOpsMgr.swift; sourceTree = "<group>"; };
 		D89A041E1E889185005576B4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Singletons/Reachability.swift; sourceTree = "<group>"; };
 		D89B775F1E777C2D004B755A /* StringArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringArray.swift; path = Model/StringArray.swift; sourceTree = "<group>"; };
 		D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormsMgr.swift; path = Singletons/FormsMgr.swift; sourceTree = "<group>"; };
 		D8B820D81E678F0B005527C9 /* FUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FUISwitch.swift; path = Extensions/FUISwitch.swift; sourceTree = "<group>"; };
-		D8BD03581E8AFA0A0067B411 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8BD035A1E8C29A70067B411 /* PhotoFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFileList.swift; path = Data/PhotoFileList.swift; sourceTree = "<group>"; };
+		D8BD03651E8DDEFA0067B411 /* _NetOpData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _NetOpData.swift; path = Model/_NetOpData.swift; sourceTree = "<group>"; };
+		D8BD03661E8DDEFA0067B411 /* NetOpData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetOpData.swift; path = Model/NetOpData.swift; sourceTree = "<group>"; };
 		D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataMgr.swift; path = Model/CoreDataMgr.swift; sourceTree = "<group>"; };
 		D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _ChoicesResult.swift; path = Model/_ChoicesResult.swift; sourceTree = "<group>"; };
 		D8E4B78A1E6F34C200BDE823 /* _ChoicesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _ChoicesTask.swift; path = Model/_ChoicesTask.swift; sourceTree = "<group>"; };
@@ -525,7 +529,6 @@
 		D8549BCF1D67B652009DBE7A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D8BD03581E8AFA0A0067B411 /* Info.plist */,
 				D8C165E61E48FFD000129439 /* Images */,
 				D82411B01E36B405006D06E2 /* FlatUIKit Resources */,
 				D8549BA41D67871B009DBE7A /* Assets.xcassets */,
@@ -571,6 +574,7 @@
 				D86C79D31E6DDDBF00A8A801 /* ChoicesTask.swift */,
 				D86C79D81E6DDDBF00A8A801 /* Form.swift */,
 				D86C7A061E6DDE6800A8A801 /* FTLocation.swift */,
+				D8BD03661E8DDEFA0067B411 /* NetOpData.swift */,
 				D86C79DA1E6DDDBF00A8A801 /* NumberResult.swift */,
 				D86C79DB1E6DDDBF00A8A801 /* NumberTask.swift */,
 				D86C79DC1E6DDDBF00A8A801 /* PhotosResult.swift */,
@@ -587,6 +591,7 @@
 		D89A041D1E887442005576B4 /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				D8BD03651E8DDEFA0067B411 /* _NetOpData.swift */,
 				D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */,
 				D8E4B78A1E6F34C200BDE823 /* _ChoicesTask.swift */,
 				D8E4B78B1E6F34C200BDE823 /* _Form.swift */,
@@ -669,7 +674,7 @@
 				D86BF72C1E6397EC00884277 /* TemplatesMgr.swift */,
 				D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */,
 				D8E4B75F1E6F2CA200BDE823 /* CoreDataMgr.swift */,
-				D89A041A1E874240005576B4 /* NetOpsQueueMgr.swift */,
+				D89A041A1E874240005576B4 /* NetworkOpsMgr.swift */,
 				D89A041E1E889185005576B4 /* Reachability.swift */,
 			);
 			name = Singletons;
@@ -797,7 +802,6 @@
 				D858D9591E576B720059E0EF /* checkmark@3x.png in Resources */,
 				D858D9561E576B220059E0EF /* checkmark@2x.png in Resources */,
 				D86BF7521E63C6FB00884277 /* choices@3x.png in Resources */,
-				D8BD03591E8AFA0A0067B411 /* Info.plist in Resources */,
 				D89770861E5A98C100A9318D /* refresh@3x.png in Resources */,
 				D81753A61E678368003D8033 /* Templates.storyboard in Resources */,
 				D86BF7501E63C6FB00884277 /* choices@2x.png in Resources */,
@@ -988,7 +992,7 @@
 				D8E4B7AA1E6F34C200BDE823 /* _Template.swift in Sources */,
 				D86BF77A1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
 				D86C79F51E6DDDBF00A8A801 /* ChoicesTask.swift in Sources */,
-				D89A041B1E874240005576B4 /* NetOpsQueueMgr.swift in Sources */,
+				D89A041B1E874240005576B4 /* NetworkOpsMgr.swift in Sources */,
 				D86BF72D1E6397EC00884277 /* LocationsMgr.swift in Sources */,
 				D8E4B7601E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */,
 				D86BF7681E64A42500884277 /* TemplateEditor.swift in Sources */,
@@ -1027,6 +1031,7 @@
 				D86C79FF1E6DDDBF00A8A801 /* PhotosTask.swift in Sources */,
 				D86BF7801E64A43800884277 /* TextTaskViewer.swift in Sources */,
 				D86BF76A1E64A42500884277 /* TemplateEditorTable.swift in Sources */,
+				D8BD03691E8DDEFA0067B411 /* NetOpData.swift in Sources */,
 				D81753A01E675C34003D8033 /* ChoicesTaskEditor.swift in Sources */,
 				D86C7A081E6DDE6800A8A801 /* FTLocation.swift in Sources */,
 				D89299D01E65E6D300CC2070 /* TaskEditor.swift in Sources */,
@@ -1053,6 +1058,7 @@
 				D85C8C0E1E45289300B5404F /* LocationsViewer.swift in Sources */,
 				D81753941E675B95003D8033 /* NumberTaskEditor.swift in Sources */,
 				D8F1D70E1E53A92700A07F70 /* FormViewer.swift in Sources */,
+				D8BD03671E8DDEFA0067B411 /* _NetOpData.swift in Sources */,
 				D86C7A001E6DDDBF00A8A801 /* Task.swift in Sources */,
 				D86BF7261E638F3D00884277 /* Shared.swift in Sources */,
 				D81753971E675BAD003D8033 /* TaskTypeEditor.swift in Sources */,
@@ -1069,7 +1075,7 @@
 				D8E4B7AB1E6F34C200BDE823 /* _Template.swift in Sources */,
 				D86C7A191E6DEBFD00A8A801 /* ChoicesTask.swift in Sources */,
 				D86C7A1F1E6DEBFD00A8A801 /* NumberTask.swift in Sources */,
-				D89A041C1E874240005576B4 /* NetOpsQueueMgr.swift in Sources */,
+				D89A041C1E874240005576B4 /* NetworkOpsMgr.swift in Sources */,
 				D86BF77B1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
 				D84AAF2D1E4531EA000D584F /* LocationsViewer.swift in Sources */,
 				D8E4B7611E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */,
@@ -1108,6 +1114,7 @@
 				D86C7A201E6DEBFD00A8A801 /* PhotosResult.swift in Sources */,
 				D89770C11E5BC49200A9318D /* FormsTable.swift in Sources */,
 				D86BF7311E63982800884277 /* ServerMgr.swift in Sources */,
+				D8BD036A1E8DDEFA0067B411 /* NetOpData.swift in Sources */,
 				D86C7A221E6DEBFD00A8A801 /* Task.swift in Sources */,
 				D8F1D71B1E53A96900A07F70 /* TaskUtitlities.swift in Sources */,
 				D817539E1E675BED003D8033 /* PhotosTaskEditor.swift in Sources */,
@@ -1134,6 +1141,7 @@
 				D85D53E11D711051006D31F2 /* Globals.swift in Sources */,
 				D81753951E675B95003D8033 /* NumberTaskEditor.swift in Sources */,
 				D86C7A181E6DEBFD00A8A801 /* ChoicesResult.swift in Sources */,
+				D8BD03681E8DDEFA0067B411 /* _NetOpData.swift in Sources */,
 				D86BF7631E64A2B100884277 /* TasksToolbar.swift in Sources */,
 				D89770D31E5CBBFD00A9318D /* LocationEditor.swift in Sources */,
 				D81753981E675BAD003D8033 /* TaskTypeEditor.swift in Sources */,

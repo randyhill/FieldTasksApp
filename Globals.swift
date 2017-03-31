@@ -15,6 +15,7 @@ class Globals {
     static let shared = Globals()
     var utcFormatter = DateFormatter()      // Convert UTC date strings
     var dateFormatter = DateFormatter()     // For visual display
+    var timeFormatter = DateFormatter()     // For visual display
     let smallFont = UIFont.flatFont(ofSize: 13.0)!
     let mediumFont = UIFont.flatFont(ofSize: 16.0)!
     let bigFont = UIFont.boldFlatFont(ofSize: 18.0)!
@@ -31,6 +32,9 @@ class Globals {
 
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
+
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .long
 
         UIBarButtonItem.configureFlatButtons(with: barButtonColor, highlightedColor: barButtonColor, cornerRadius: 3.0)
         SVProgressHUD.setMinimumDismissTimeInterval(3)
@@ -56,6 +60,16 @@ class Globals {
     func encodeDate(date: Date) -> String? {
         let dateString = utcFormatter.string(from: date)
         return dateString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+    }
+
+    func formatDate(date: Date) -> String {
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
+
+    func formatTime(date: Date) -> String {
+        let timeString = timeFormatter.string(from: date)
+        return timeString
     }
 
     private func _stringToDate(dateString: String, format: String ) -> Date? {

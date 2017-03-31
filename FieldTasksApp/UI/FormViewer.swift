@@ -101,6 +101,7 @@ class FormViewer : UITableViewController {
         self.tableView.allowsSelection = true
         navigationItem.leftBarButtonItem = FlatBarButton(title: "Back", target: self, action: #selector(goBack))
         makeNavBarFlat()
+
         self.view.addSubview(progressView)
     }
 
@@ -108,9 +109,8 @@ class FormViewer : UITableViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    func startProgress() {
+    func setupProgress() {
         progressView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 4)
-        progressView.isHidden = false
         progressView.progress = 0
     }
 
@@ -122,17 +122,17 @@ class FormViewer : UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        self.progressView.isHidden = true
 
         var rowIndex = 0
-        startProgress()
+        setupProgress()
         for task in form!.tasks {
             if let task = task as? PhotosTask {
                 if let result = task.result as? PhotosResult {
                     result.loadAll(progress: { progress in
-                        print("Background: \(progress)")
                         DispatchQueue.main.async {
                             self.progressView.progress = progress
-                            print("Main Thread: \(progress)")
+                            self.progressView.isHidden = progress == 1.0
                         }
                     }, imageLoaded: { (image) in
                         DispatchQueue.main.async {

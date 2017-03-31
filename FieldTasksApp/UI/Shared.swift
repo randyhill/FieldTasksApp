@@ -42,6 +42,18 @@ func randomFileName() -> String {
     return randomString
 }
 
+func className(object: Any) -> String {
+    return (object is Any.Type) ? "\(object)" : "\(type(of: object))"
+}
+
+func beginBackgroundUpdateTask() -> UIBackgroundTaskIdentifier {
+    return UIApplication.shared.beginBackgroundTask(expirationHandler: {})
+}
+
+func endBackgroundUpdateTask(taskID: UIBackgroundTaskIdentifier) {
+    UIApplication.shared.endBackgroundTask(taskID)
+}
+
 func FlatBarButton(title: String, target: Any?, action: Selector) -> UIBarButtonItem {
     let customButton = FUIButton(type: .custom)
     customButton.setTitle(title, for: .normal)
@@ -62,31 +74,32 @@ enum FTError : Error {
     case RunTimeError(String)
 }
 
-func FTAssert(isTrue: Bool, error: String, file: String = #file, line: Int = #line) {
+func FTAssert(isTrue: Bool, error: String, method: String = #function, line: Int = #line) {
     if !isTrue {
-        FTErrorMessage(error: error, file: file, line: line)
+        FTErrorMessage(error: error, method: method, line: line)
     }
 }
 
-func FTAssert(exists: Any?, error: String, file: String = #file, line: Int = #line) {
+func FTAssert(exists: Any?, error: String, method: String = #function, line: Int = #line) {
     if exists == nil {
-        FTErrorMessage(error: error, file: file, line: line)
+        FTErrorMessage(error: error, method: method, line: line)
     }
 }
 
 
-func FTAssertString(error: String?, file: String = #file, line: Int = #line) {
+func FTAssertString(error: String?, method: String = #function, line: Int = #line) {
     if let error = error {
-        FTErrorMessage(error: error, file: file, line: line)
+        FTErrorMessage(error: error, method: method, line: line)
     }
 }
 
-func FTErrorMessage(error: String, file: String = #file, line: Int = #line) {
-    print("Assert failure - file: \(file) line: \(line) error:\(error)")
+func FTErrorMessage(error: String, method: String = #function, line: Int = #line) {
+    print("Assert failure: \(error) - \(method):\(line)")
 }
 
-func FTMessage(message: String, file: String = #file, line: Int = #line) {
-    print(message + " file: \(file) line: \(line)")
+func FTPrint(s: String, method: String = #function, line: Int = #line) {
+    let nowString = Globals.shared.formatTime(date: Date())
+    print(s + " : " + nowString + " \(method): \(line)")
 }
 
 func FTAlertMessage(message: String) {

@@ -40,48 +40,7 @@ open class Form: _Form {
         return formDict
     }
 
-//    func submitForm(completion : @escaping (_ error: String?)->()) {
-//        ServerMgr.shared.saveAsForm(form: self) { (result, error) in
-//            if error != nil {
-//                completion(error)
-//            } else {
-//                //  update id
-//                if let formDict = result, let formId = formDict["_id"] as? String {
-//                    self.id = formId
-//                    if let submissionString = formDict["submitted"] as? String {
-//                        self.submitted = Globals.shared.utcFormatter.date(from: submissionString)  // Server sets submission date so we know was successful
-//                    }
-//                    completion(nil)
-//                } else {
-//                    completion("couldn't update form id")
-//                }
-//            }
-//        }
-//    }
-
     func submit() {
-        NetOpsQueueMgr.shared.submitFormWithPhotos(form: self)
+        NetworkOpsMgr.shared.submitForm(form: self)
     }
-//    func submit(completion : @escaping (_ error: String?)->()) {
-//        if let coordinates = LocationsMgr.shared.currentCoordinates() {
-//            self.latitude = coordinates.latitude as NSNumber?
-//            self.longitude = coordinates.longitude as NSNumber?
-//        }
-//        let photosList = PhotoFileList(tasks: tasks , buildWithImages: true)
-//        if photosList.count == 0 {
-//            submitForm(completion: completion)
-//        } else {
-//            NetOpsQueueMgr.shared.uploadImages(form: self, photoFileList: photosList)
-//            completion(nil)
-            // upload Photos to server first.
-//            ServerMgr.shared.uploadImages(photoFileList: photosList, completion: { (photoFileList, error) in
-//                if let _ = photoFileList {
-//                    // Photo file names should have been copied to photo tasks, we can submit form now
-//                    self.submitForm(completion: completion)
-//                } else {
-//                    completion("Photos upload failed because of: \(error!)")
-//                }
-//            })
- //       }
- //   }	// Custom logic goes here.
 }

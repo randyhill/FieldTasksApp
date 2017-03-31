@@ -79,16 +79,6 @@ class FormTasksViewer : UITableViewController {
         } else {
             form?.submit()
             self.dismiss(animated: true, completion: nil)
-
-//            completion: { (error) in
-//                if let error = error {
-//                    FTAlertError(message: "Form Submission Failed: \(error)")
-//                } else {
-//                    FTAlertSuccess(message: "Form submitted successfuly")
-//                    CoreDataMgr.shared.saveOnMainThread()
-//                    self.dismiss(animated: true, completion: nil)
-//                }
-//            })
         }
     }
 

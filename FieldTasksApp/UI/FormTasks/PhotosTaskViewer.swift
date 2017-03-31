@@ -42,7 +42,6 @@ class PhotosHeader : UICollectionReusableView {
 
 class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
-    var progressView = UIProgressView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +49,6 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
         collectionView.backgroundColor = self.view.backgroundColor
         let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.sectionHeadersPinToVisibleBounds = true
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,22 +91,13 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
     override func save() {
     }
 
-    func startProgress() {
-        progressView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 4)
-        progressView.isHidden = false
-        progressView.progress = 0
-    }
-
     override func restore() {
         if result.count() > 0 {
             self.collectionView.reloadData()
         } else {
-            startProgress()
             result.loadAll(progress: { progress in
-                self.progressView.progress = progress
             }, imageLoaded: { (image) in
-                self.progressView.isHidden = true
-                self.scrollToBottomAnimated(animated: true)
+                 self.scrollToBottomAnimated(animated: true)
                 self.reloadOnMain()
            })
         }

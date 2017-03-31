@@ -332,7 +332,7 @@ class ServerMgr {
                 return nil
             })
         } else {
-            FTMessage(message: "Couldn't load AWS Transfer Manager to upload image")
+            FTPrint(s: "Couldn't load AWS Transfer Manager to upload image")
             completion("", "Couldn't load AWS Transfer Manager to upload image")
         }
 
