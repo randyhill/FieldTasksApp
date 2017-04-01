@@ -338,12 +338,12 @@ class ServerMgr {
 
     }
 
-    func downloadFile(imageFileName : String, progress: @escaping (_ progress: Float)->(), completion : @escaping (_ image : UIImage?, _ error: String?)->()) {
+    func downloadImage(fileName : String, progress: @escaping (_ progress: Float)->(), completion : @escaping (_ image : UIImage?, _ error: String?)->()) {
         // get a client with the default service configuration
-        let downloadingFileURL = getImageDirectory().appendingPathComponent(imageFileName)
+        let downloadingFileURL = getImageDirectory().appendingPathComponent(fileName)
         if let downloadRequest = AWSS3TransferManagerDownloadRequest() {
             downloadRequest.bucket = cS3Bucket
-            downloadRequest.key = imageFileName
+            downloadRequest.key = fileName
             downloadRequest.downloadingFileURL = downloadingFileURL
             downloadRequest.downloadProgress = {(bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) -> Void in
                 let progressValue = Float(totalBytesSent)/Float(totalBytesExpectedToSend)

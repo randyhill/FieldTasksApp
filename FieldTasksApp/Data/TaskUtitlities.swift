@@ -42,7 +42,7 @@ func TaskFromDictionary(context : NSManagedObjectContext, taskDict : [String : A
     var newTask : Task?
     if let typeString = taskDict[TaskDictFields.type.rawValue] as? String {
         let entityName = typeString + "Task"
-        newTask = CoreDataMgr.shared.createTask(context: context, entityName: entityName)
+        newTask = CoreDataMgr.createTask(context: context, entityName: entityName)
         newTask?.fromDict(context: context, taskDict: taskDict)
     } else {
         FTErrorMessage(error: "Could not get type of task")
@@ -52,7 +52,7 @@ func TaskFromDictionary(context : NSManagedObjectContext, taskDict : [String : A
 
 func TaskFromType(context : NSManagedObjectContext, type : TaskType) -> Task? {
     let entityName = type.rawValue + "Task"
-   return CoreDataMgr.shared.createTask(context: context, entityName: entityName)
+   return CoreDataMgr.createTask(context: context, entityName: entityName)
 }
 
 

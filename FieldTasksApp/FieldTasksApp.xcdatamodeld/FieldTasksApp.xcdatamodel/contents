@@ -41,9 +41,14 @@
         </attribute>
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="NetOpData" representedClassName="NetOpData" syncable="YES">
-        <attribute name="objectName" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="NetOpsQueue" representedClassName="NetOpsQueue" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="NetOpsQueue" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="NetQueueOp" inverseName="list" inverseEntity="NetQueueOp" syncable="YES"/>
+    </entity>
+    <entity name="NetQueueOp" representedClassName="NetQueueOp" syncable="YES">
+        <attribute name="objectKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NetOpsQueue" inverseName="relationship" inverseEntity="NetOpsQueue" syncable="YES"/>
     </entity>
     <entity name="NumberResult" representedClassName="NumberResult" parentEntity="TaskResult" syncable="YES">
         <attribute name="value" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
@@ -91,19 +96,20 @@
         <attribute name="max" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ChoicesResult" positionX="-144" positionY="117" width="128" height="60"/>
-        <element name="ChoicesTask" positionX="-99" positionY="162" width="128" height="90"/>
-        <element name="Form" positionX="-153" positionY="108" width="128" height="135"/>
+        <element name="ChoicesResult" positionX="97" positionY="-45" width="128" height="60"/>
+        <element name="ChoicesTask" positionX="-405" positionY="-396" width="128" height="90"/>
+        <element name="Form" positionX="142" positionY="396" width="128" height="135"/>
         <element name="FTLocation" positionX="-261" positionY="357" width="128" height="210"/>
-        <element name="NetOpData" positionX="-153" positionY="135" width="128" height="75"/>
-        <element name="NumberResult" positionX="-108" positionY="153" width="128" height="60"/>
-        <element name="NumberTask" positionX="-126" positionY="126" width="128" height="105"/>
-        <element name="PhotosResult" positionX="-117" positionY="144" width="128" height="60"/>
-        <element name="PhotosTask" positionX="-126" positionY="135" width="128" height="60"/>
-        <element name="Task" positionX="-279" positionY="-18" width="128" height="150"/>
+        <element name="NetQueueOp" positionX="-587" positionY="315" width="128" height="88"/>
+        <element name="NumberResult" positionX="277" positionY="18" width="128" height="60"/>
+        <element name="NumberTask" positionX="-225" positionY="-63" width="128" height="105"/>
+        <element name="PhotosResult" positionX="43" positionY="-180" width="128" height="60"/>
+        <element name="PhotosTask" positionX="-236" positionY="-321" width="128" height="60"/>
+        <element name="Task" positionX="-497" positionY="-78" width="128" height="150"/>
         <element name="TaskResult" positionX="-54" positionY="36" width="128" height="75"/>
-        <element name="Template" positionX="-99" positionY="162" width="128" height="105"/>
-        <element name="TextResult" positionX="-117" positionY="135" width="128" height="60"/>
-        <element name="TextTask" positionX="-36" positionY="180" width="128" height="75"/>
+        <element name="Template" positionX="-65" positionY="378" width="128" height="105"/>
+        <element name="TextResult" positionX="43" positionY="135" width="128" height="60"/>
+        <element name="TextTask" positionX="-153" positionY="-192" width="128" height="75"/>
+        <element name="NetOpsQueue" positionX="-486" positionY="177" width="128" height="73"/>
     </elements>
 </model>

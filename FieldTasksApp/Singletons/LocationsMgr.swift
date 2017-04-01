@@ -68,7 +68,7 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
 
     // MARK: FTLocation Methods -------------------------------------------------------------------------------
     func all() -> [FTLocation] {
-        if let list = CoreDataMgr.shared.fetchLocations(context: CoreDataMgr.shared.mainThreadContext!) {
+        if let list = CoreDataMgr.fetchLocations(context: CoreDataMgr.shared.mainThreadContext!) {
             return list
         }
         return [FTLocation]()

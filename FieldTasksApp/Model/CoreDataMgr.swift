@@ -26,7 +26,7 @@ class CoreDataMgr {
         return backgroundContext
     }
 
-    func saveInContext(context : NSManagedObjectContext) {
+    class func saveInContext(context : NSManagedObjectContext) {
         do {
             try context.save()
         }   catch let error as NSError {
@@ -45,7 +45,7 @@ class CoreDataMgr {
     }
 
     // MARK: Object Fetch/Remove Methods -------------------------------------------------------------------------------
-    func fetchById(context : NSManagedObjectContext, entityName: String, objectId: String) -> AnyObject? {
+    class func fetchById(context : NSManagedObjectContext, entityName: String, objectId: String) -> AnyObject? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id=%@", objectId)
         do {
@@ -60,7 +60,7 @@ class CoreDataMgr {
         return nil
     }
 
-    func fetchUnfinishedFormByTemplateId(context : NSManagedObjectContext, templateId: String) -> Form? {
+    class func fetchUnfinishedFormByTemplateId(context : NSManagedObjectContext, templateId: String) -> Form? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Form.entityName())
         fetchRequest.predicate = NSPredicate(format: "id='' AND templateId=%@", templateId)
         do {
@@ -74,12 +74,12 @@ class CoreDataMgr {
     }
 
     // This will delete any objects of this entity type with given id, so if we accidently create duplicates it will clear them
-    func deleteObject(context : NSManagedObjectContext, object: AnyObject) {
+    class func deleteObject(context : NSManagedObjectContext, object: AnyObject) {
         context.delete(object as! NSManagedObject)
     }
 
     // This will delete any objects of this entity type with given id, so if we accidently create duplicates it will clear them
-    func removeObjectById(context : NSManagedObjectContext, entityName: String, objectId: String) {
+    class func removeObjectById(context : NSManagedObjectContext, entityName: String, objectId: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id=%@", objectId)
         do {
@@ -93,7 +93,7 @@ class CoreDataMgr {
         }
     }
 
-    func fetchForms(context : NSManagedObjectContext) -> [Form]? {
+    class func fetchForms(context : NSManagedObjectContext) -> [Form]? {
         if let entity = Form.entity(managedObjectContext: context) {
             // Add predicate so we don't return subclasses of the class
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Form.entityName())
@@ -108,7 +108,7 @@ class CoreDataMgr {
         return nil
     }
 
-    func fetchTemplates(context : NSManagedObjectContext) -> [Template]? {
+    class func fetchTemplates(context : NSManagedObjectContext) -> [Template]? {
         if let entity = Template.entity(managedObjectContext: context) {
             // Add predicate so we don't return subclasses of the class
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Template.entityName())
@@ -123,8 +123,7 @@ class CoreDataMgr {
         return nil
     }
 
-
-    func fetchObjectsWithIds(context : NSManagedObjectContext, entityName: String, ids: [String]) -> [Any]? {
+    class func fetchObjectsWithIds(context : NSManagedObjectContext, entityName: String, ids: [String]) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id IN %@", ids)
         do {
@@ -137,17 +136,34 @@ class CoreDataMgr {
     }
 
     // MARK: Type specific Creation Methods -------------------------------------------------------------------------------
-    class func createNetOp(context : NSManagedObjectContext) -> NetOpData {
-        let entity = NSEntityDescription.entity(forEntityName: NetOpData.entityName(), in: context)
-        return NetOpData(entity: entity!, insertInto: context)
+    class func createNetQueueOp(context : NSManagedObjectContext) -> NetQueueOp {
+        let entity = NSEntityDescription.entity(forEntityName: NetQueueOp.entityName(), in: context)
+        return NetQueueOp(entity: entity!, insertInto: context)
     }
 
-    func createLocation(context : NSManagedObjectContext) -> FTLocation {
+    // Create net ops list if it doesn't exist
+    class func getNetOpList(context : NSManagedObjectContext) -> NetOpsQueue {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: NetOpsQueue.entityName())
+        do {
+            let objects = try context.fetch(fetchRequest)
+            if objects.count > 0 {
+                FTAssert(isTrue: objects.count <= 1, error: "Multiple net op lists")
+                return (objects[0] as? NetOpsQueue)!
+            }
+        } catch let error as NSError {
+            FTErrorMessage(error: "Could not fetch net ops list - \(error), \(error.userInfo)")
+        }
+        let entity = NSEntityDescription.entity(forEntityName: NetOpsQueue.entityName(), in: context)
+        return NetOpsQueue(entity: entity!, insertInto: context)
+    }
+
+
+    class func createLocation(context : NSManagedObjectContext) -> FTLocation {
         let entity = NSEntityDescription.entity(forEntityName: FTLocation.entityName(), in: context)
         return FTLocation(entity: entity!, insertInto: context)
     }
 
-    func createTemplate(context : NSManagedObjectContext) -> Template {
+    class func createTemplate(context : NSManagedObjectContext) -> Template {
         let entity = NSEntityDescription.entity(forEntityName: "Template", in: context)
         let template = Template(entity: entity!, insertInto: context)
         template.descriptionString = ""
@@ -156,7 +172,7 @@ class CoreDataMgr {
         return template
     }
 
-    func createForm(context : NSManagedObjectContext) -> Form {
+    class func createForm(context : NSManagedObjectContext) -> Form {
         let entity = NSEntityDescription.entity(forEntityName: "Form", in: context)
         let form = Form(entity: entity!, insertInto: context)
         form.createDate = Date()
@@ -165,7 +181,7 @@ class CoreDataMgr {
         return form
     }
 
-    func createTaskResult(context : NSManagedObjectContext, entityName: String, task: Task) -> TaskResult {
+    class func createTaskResult(context : NSManagedObjectContext, entityName: String, task: Task) -> TaskResult {
         let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
         var taskResult : TaskResult?
         switch entityName {
@@ -188,7 +204,7 @@ class CoreDataMgr {
         return taskResult!
     }
 
-    func createTask(context : NSManagedObjectContext, entityName: String) -> Task {
+    class func createTask(context : NSManagedObjectContext, entityName: String) -> Task {
         let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
         var task : Task?
         switch entityName {
@@ -234,7 +250,7 @@ class CoreDataMgr {
     }
 
     // MARK: Fetch Methods -------------------------------------------------------------------------------
-    func fetchLocations(context : NSManagedObjectContext) -> [FTLocation]? {
+    class func fetchLocations(context : NSManagedObjectContext) -> [FTLocation]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: FTLocation.entityName())
         do {
             let locations = try context.fetch(fetchRequest)

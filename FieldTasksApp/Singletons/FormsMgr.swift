@@ -13,20 +13,20 @@ class FormsMgr {
     static let shared = FormsMgr()
 
     func all() -> [Form] {
-        if let list = CoreDataMgr.shared.fetchForms(context: CoreDataMgr.shared.mainThreadContext!) {
+        if let list = CoreDataMgr.fetchForms(context: CoreDataMgr.shared.mainThreadContext!) {
             return list
         }
         return [Form]()
     }
 
     func newForm(context: NSManagedObjectContext, template: Template) -> Form {
-        let newForm = CoreDataMgr.shared.createForm(context: CoreDataMgr.shared.mainThreadContext!)
+        let newForm = CoreDataMgr.createForm(context: CoreDataMgr.shared.mainThreadContext!)
         newForm.initFromTemplate(context: context, template: template)
         return newForm
     }
 
     // Return form for  template if last form wasn't submitted
     func formExists(context: NSManagedObjectContext, templateId: String) -> Form? {
-        return CoreDataMgr.shared.fetchUnfinishedFormByTemplateId(context: context, templateId: templateId)
+        return CoreDataMgr.fetchUnfinishedFormByTemplateId(context: context, templateId: templateId)
     }
 }

@@ -71,7 +71,7 @@ class SyncLocations {
     }
 
     internal class  func createObject(context: NSManagedObjectContext, objectDict: [String : AnyObject]) {
-        let location = CoreDataMgr.shared.createLocation(context: CoreDataMgr.shared.mainThreadContext!)
+        let location = CoreDataMgr.createLocation(context: CoreDataMgr.shared.mainThreadContext!)
         location.fromDict(locationDict: objectDict)
     }
 
@@ -86,11 +86,11 @@ class SyncLocations {
         for dictionary in newList {
             if let objectDict = dictionary as? [String : AnyObject] {
                 if let objectId = objectDict["_id"] as? String, let auditTrail = objectDict["auditTrail"] as? [String:Any] {
-                      let object = CoreDataMgr.shared.fetchById(context: context, entityName: self.entityName(), objectId: objectId)
+                      let object = CoreDataMgr.fetchById(context: context, entityName: self.entityName(), objectId: objectId)
                     if let _ = auditTrail["deleted"] {
                         // Deleting ignores previously deleted objects, such as deleted before we first logged in.
                         if let _ = object {
-                            CoreDataMgr.shared.removeObjectById(context: context, entityName: self.entityName(), objectId: objectId)
+                            CoreDataMgr.removeObjectById(context: context, entityName: self.entityName(), objectId: objectId)
                             updated += 1
                         }
                     } else {
@@ -119,7 +119,7 @@ class SyncTemplates : SyncLocations {
     }
 
     override class  func createObject(context: NSManagedObjectContext, objectDict: [String : AnyObject]) {
-        let template = CoreDataMgr.shared.createTemplate(context: context)
+        let template = CoreDataMgr.createTemplate(context: context)
         template.fromDict(context: context, templateDict: objectDict)
     }
 
@@ -137,7 +137,7 @@ class SyncForms : SyncLocations {
     }
 
     override class  func createObject(context: NSManagedObjectContext, objectDict: [String : AnyObject]) {
-        let template = CoreDataMgr.shared.createForm(context: context)
+        let template = CoreDataMgr.createForm(context: context)
         template.fromDict(context: context, formDict: objectDict)
     }
 

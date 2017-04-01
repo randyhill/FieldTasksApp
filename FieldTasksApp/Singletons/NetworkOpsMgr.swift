@@ -22,232 +22,6 @@
 import UIKit
 import CoreData
 
-// MARK: Network Op  -------------------------------------------------------------------------------
-class NetworkOp : Operation {
-    // MARK: Inherited  -------------------------------------------------------------------------------
-    override var isAsynchronous: Bool {
-        get {
-            return true
-        }
-    }
-
-    override var isConcurrent: Bool {
-        get {
-            return true
-        }
-    }
-
-    override var isExecuting: Bool {
-        get {
-            return isRunning
-        }
-    }
-
-    override var isFinished: Bool {
-        get {
-            return !isRunning
-        }
-    }
-
-    override func start() {
-        FTPrint(s: "Starting net op: \(className(object: self))")
-        if self.canceled() {
-            return
-        }
-        bgTaskID = beginBackgroundUpdateTask()
-        self.willChangeValue(forKey: "isExecuting")
-        self.isRunning = true
-        self.didChangeValue(forKey: "isExecuting")
-
-        main()
-    }
-
-    // MARK: NetworkOp  -------------------------------------------------------------------------------
-    var isRunning = false
-    var bgTaskID : UIBackgroundTaskIdentifier?
-
-    func complete() {
-        setCompleteFlags()
-        FTPrint(s: "Completed net op: \(className(object: self))")
-        endBackgroundUpdateTask(taskID: bgTaskID!)
-    }
-
-    func cancelIt() {
-        self.cancel()
-        if self.isRunning {
-            endBackgroundUpdateTask(taskID: bgTaskID!)
-        }
-        setCompleteFlags()
-    }
-
-    private func setCompleteFlags() {
-        self.willChangeValue(forKey: "isFinished")
-        self.willChangeValue(forKey: "isExecuting")
-        self.isRunning = false
-        self.didChangeValue(forKey: "isFinished")
-        self.didChangeValue(forKey: "isExecuting")
-    }
-
-    // Don't resubmit if we get canceled before completion
-    func canceled() -> Bool {
-        if self.isCancelled {
-            FTPrint(s: "Canceled net op: \(className(object: self))")
-            self.complete()
-        }
-        return self.isCancelled
-    }
-
-    // Success means reset our queue delay
-    func success() {
-    }
-
- //   func save() -> NetOpData {
-//
-//    }
-}
-
-// MARK: AWS Image Ops  -------------------------------------------------------------------------------
-
-class AWSOp : NetworkOp {
-    var fileName : String
-
-    init(fileName: String) {
-        self.fileName = fileName
-    }
-
-    // The main thing we want to stop if canceled is resubmitting new operations
-    func retry(awsOp: AWSOp) {
-        if !self.canceled() {
-            NetworkOpsMgr.shared.retryAWSOp(awsOp: awsOp)
-        }
-    }
-
-    var lastProgress : Float = 0.0
-    func print(progress: Float) {
-        if progress - lastProgress > 0.1 {
-            lastProgress = progress
-            FTPrint(s: self.fileName + ": \(progress)")
-        }
-    }
-
-    override func success() {
-        NetworkOpsMgr.shared.resetAWSRetryDelay()
-    }
-
-//    override func save() -> NetOpData {
-//        //CoreDataMgr.createNetOp()
-//    }
-}
-
-class ImageUploadOp : AWSOp {
-    var map : PhotoFileListMap
-
-    init(map : PhotoFileListMap) {
-        self.map = map
-        super.init(fileName: map.fileName!)
-   }
-
-    override func main() {
-        FTPrint(s: "Start upload: \(self.fileName)")
-        ServerMgr.shared.uploadImage(fileName:  map.fileName!, progress: { progress in
-            self.print(progress: progress)
-        }, completion: { (filename, error ) in
-            if !self.canceled() {
-                if let error = error {
-                    FTPrint(s: "Retry upload: \(self.fileName) - \(error)")
-                    self.retry(awsOp: ImageUploadOp(map: self.map))
-                } else {
-                    FTPrint(s: "Finished upload: \(self.fileName)")
-                }
-                self.complete()
-            }
-
-        })
-    }
-}
-
-class ImageDownloadOp : AWSOp {
-    var photosResult : PhotosResult
-    var imageLoaded: (_ image: UIImage)->()
-    var progress: (_ progress: Float)->()
-
-    init(fileName : String, photosResult : PhotosResult, progress: @escaping (_ progress: Float)->(), imageLoaded: @escaping (_ image: UIImage)->()) {
-        self.photosResult = photosResult
-        self.imageLoaded = imageLoaded
-        self.progress = progress
-        super.init(fileName: fileName)
-    }
-
-    override func main() {
-        FTPrint(s: "Start download: \(self.fileName)")
-        ServerMgr.shared.downloadFile(imageFileName: fileName, progress: progress, completion: { (image, errorString) in
-            if !self.canceled() {
-                if let image = image {
-                    self.photosResult.set(photo: image, fileName: self.fileName)
-                    self.imageLoaded(image)
-                    self.success()
-                    FTPrint(s: "Finished download: \(self.fileName)")
-                } else {
-                    FTPrint(s: "Retry download: \(self.fileName)")
-                    self.retry(awsOp: ImageDownloadOp(fileName: self.fileName, photosResult: self.photosResult, progress: self.progress, imageLoaded: self.imageLoaded))
-                }
-                self.complete()
-            }
-        })
-    }
-}
-
-// MARK: Server Ops  -------------------------------------------------------------------------------
-
-class ServerOp : NetworkOp {
-    func retry(serverOp: ServerOp) {
-        if !self.canceled() {
-            NetworkOpsMgr.shared.retryServerOp(serverOp: serverOp)
-        }
-    }
-
-    // The main thing we want to stop if canceled is resubmitting new operations
-    override func success() {
-        NetworkOpsMgr.shared.resetServerRetryDelay()
-    }
-}
-
-class FormSubmitOp : ServerOp {
-    let form : Form
-
-    init(form : Form) {
-        self.form = form
-    }
-
-    override func main() {
-        FTPrint(s: "Form submission starting")
-        ServerMgr.shared.saveAsForm(form: form) { (result, error) in
-            if error != nil {
-                FTPrint(s: "Error submitting form: \(error)")
-                self.retry(serverOp: FormSubmitOp(form: self.form))
-            } else {
-                //  update id
-                if let formDict = result, let formId = formDict["_id"] as? String {
-                    self.form.id = formId
-                    if let submissionString = formDict["submitted"] as? String {
-                        // Form was created on main thread
-                        self.form.submitted = Globals.shared.utcFormatter.date(from: submissionString)  // Server sets submission date so we know was successful
-                        CoreDataMgr.shared.saveOnMainThread()
-                        self.success()
-                        FTPrint(s: "Form submitted successfully")
-                    } else {
-                        FTPrint(s: "couldn't get form submission time stamp")
-                        self.retry(serverOp: FormSubmitOp(form: self.form))
-                    }
-                } else {
-                    FTPrint(s: "Couldn't get updated form id")
-                    self.retry(serverOp: FormSubmitOp(form: self.form))
-                }
-            }
-            self.complete()
-        }
-    }
-}
 
 // MARK: NetworkOpsMgr  -------------------------------------------------------------------------------
 let cNetOpRetryStartIncrement : TimeInterval = 5.0
@@ -258,7 +32,7 @@ class NetworkOpsMgr {
     lazy var serverQueue : OperationQueue = {
         var queue = OperationQueue()
         queue.name = "com.fieldtasks.serverQueue"
-        queue.maxConcurrentOperationCount = 1
+        queue.maxConcurrentOperationCount = 2
         return queue
     }()
 
@@ -271,13 +45,85 @@ class NetworkOpsMgr {
 
     var acceptNewOps = true
 
+    init() {
+        DispatchQueue.global(qos: .background).async {
+            self.loadCoreDataList()
+        }
+    }
+
+    // MARK: CoreData  -------------------------------------------------------------------------------
+    // Store descriptors of active operations persistently so we can restart them if quit
     let backgroundContext = CoreDataMgr.shared.getNewContext()
+    var coreArray : NetOpsQueue?
 
     func saveCoreData(save: @escaping (_ context: NSManagedObjectContext)->()) {
         backgroundContext.perform({
             save(self.backgroundContext)
-            CoreDataMgr.shared.saveInContext(context: self.backgroundContext)
+            CoreDataMgr.saveInContext(context: self.backgroundContext)
         })
+    }
+
+    private func loadCoreDataList() {
+        coreArray = CoreDataMgr.getNetOpList(context: self.backgroundContext)
+        FTPrint(s: coreArray!.describe())
+
+        if let relationships = coreArray?.relationshipSet() {
+            for relation in relationships {
+                if let descriptor = relation as? NetQueueOp {
+                    let networkOp = createOpFromCoreDataDescriptor(descriptor: descriptor)
+                    if let awsOp = networkOp as? AWSOp {
+                        self.addAWSOp(awsOp: awsOp)
+                    } else if let serverOp = networkOp as? ServerOp {
+                        self.addServerOp(serverOp: serverOp)
+                    }
+                }
+            }
+        }
+    }
+
+    func createOpFromCoreDataDescriptor(descriptor: NetQueueOp) -> NetworkOp? {
+        var networkOp : NetworkOp?
+        switch descriptor.typeName! {
+        case className(object: ImageUploadOp.self):
+            networkOp = ImageUploadOp(fileName: descriptor.objectKey!)
+        case className(object: FormSubmitOp.self):
+            if let form = CoreDataMgr.fetchById(context: self.backgroundContext, entityName: Form.entityName(), objectId: descriptor.objectKey!) as? Form {
+                networkOp = FormSubmitOp(form: form)
+            }
+        default:
+            FTErrorMessage(error: "Could not recreate network op: \(descriptor.typeName)")
+        }
+        return networkOp
+    }
+
+    func addToCoreDataList(netOp: NetworkOp) {
+        let opDescription = netOp.asCoreData()
+
+        // Don't add duplicates
+        for existingOp in coreArray!.opsDataArray() {
+            if existingOp.compare(other: opDescription) {
+                return
+            }
+        }
+        FTPrint(s: "Added Core Data Descriptor: \(opDescription.describe())")
+        coreArray?.addRelationshipObject(opDescription)
+        CoreDataMgr.saveInContext(context: self.backgroundContext)
+    }
+
+
+    func removeFromCoreDataList(netOp: NetworkOp) {
+        if let opDescriptons = coreArray?.opsDataArray(){
+            let opDescription = netOp.asCoreData()
+            for descriptor in opDescriptons {
+                if descriptor.typeName == opDescription.typeName && descriptor.objectKey == opDescription.objectKey {
+                    coreArray?.removeRelationshipObject(descriptor)
+                    FTPrint(s: "Removed Core Data Descriptor: \(descriptor.describe())")
+                    FTPrint(s: coreArray!.describe())
+                    CoreDataMgr.saveInContext(context: self.backgroundContext)
+                    break;
+                }
+            }
+        }
     }
 
     // MARK: Retry  -------------------------------------------------------------------------------
@@ -301,17 +147,17 @@ class NetworkOpsMgr {
         }
     }
 
-    fileprivate func resetServerRetryDelay() {
+    func resetServerRetryDelay() {
         FTPrint(s:"Reset server increment")
         _serverInterval = cNetOpRetryStartIncrement
     }
 
-    fileprivate func resetAWSRetryDelay() {
+    func resetAWSRetryDelay() {
         FTPrint(s:"Reset AWS increment")
         _awsInterval = cNetOpRetryStartIncrement
     }
 
-    fileprivate func retryServerOp(serverOp : ServerOp) {
+    func retryServerOp(serverOp : ServerOp) {
         if !acceptNewOps {
             FTPrint(s: "Can't retry: \(className(object: serverOp)), queue stopped")
         } else {
@@ -329,7 +175,7 @@ class NetworkOpsMgr {
         }
     }
 
-    fileprivate func retryAWSOp(awsOp : AWSOp) {
+    func retryAWSOp(awsOp : AWSOp) {
         if !acceptNewOps {
             FTPrint(s: "Can't retry: \(awsOp.fileName), queue stopped")
         } else {
@@ -372,6 +218,7 @@ class NetworkOpsMgr {
     fileprivate func addServerOp(serverOp : ServerOp) {
         FTPrint(s: "Adding \(className(object: serverOp)) to Server queue")
         FTPrint(s: "Server Queue count: \(serverQueue.operationCount)")
+        addToCoreDataList(netOp: serverOp)
         serverQueue.addOperation(serverOp)
     }
 
@@ -386,6 +233,8 @@ class NetworkOpsMgr {
                 }
             }
         }
+        // Save to core data before we add to queue
+        addToCoreDataList(netOp: awsOp)
         awsQueue.addOperation(awsOp)
     }
 
@@ -400,7 +249,7 @@ class NetworkOpsMgr {
         // Upload each image seperately
         let photosMap = PhotoFileList(tasks: form.tasks).mapOfAllImages()
         for photoMap in photosMap {
-            self.addAWSOp(awsOp: ImageUploadOp(map: photoMap))
+            self.addAWSOp(awsOp: ImageUploadOp(fileName: photoMap.fileName!))
         }
     }
 

@@ -67,9 +67,9 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
         let data = photoData
         if data.isSingle!.boolValue {
             self.result.removeAll()
-            self.result.add(photo: picture, fileName: randomFileName())
+            self.result.add(photo: picture, fileName: randomName(length: cFileNameLength))
         } else {
-            self.result.add(photo: picture, fileName: randomFileName())
+            self.result.add(photo: picture, fileName: randomName(length: cFileNameLength))
             self.scrollToBottomAnimated(animated: true)
         }
         self.reloadOnMain()

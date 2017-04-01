@@ -45,7 +45,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         listController = segue.destination as? TemplateEditorTable
         listController?.parentTemplateEditor = self
         if template == nil {
-            template = CoreDataMgr.shared.createTemplate(context: CoreDataMgr.shared.mainThreadContext!)
+            template = CoreDataMgr.createTemplate(context: CoreDataMgr.shared.mainThreadContext!)
         }
         listController?.tasks = self.template!.tasks
     }
@@ -65,7 +65,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
     func cancelAction () {
         if isEmptyTemplate(template: template!) {
             // Don't save newly created/empty objects
-            CoreDataMgr.shared.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: template!)
+            CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: template!)
         }
         self.dismiss(animated: true) { }
     }
@@ -86,7 +86,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
             template.name = titleField.text!
             if isEmptyTemplate(template: template) {
                 // Don't save empties
-                CoreDataMgr.shared.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: template)
+                CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: template)
             } else {
                 TemplatesMgr.shared.updateTemplate(template: template) { (error) in
                     if let error = error {

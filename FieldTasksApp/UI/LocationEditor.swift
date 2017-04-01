@@ -58,7 +58,7 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
         super.viewDidLoad()
 
         if location == nil {
-            location = CoreDataMgr.shared.createLocation(context: CoreDataMgr.shared.mainThreadContext!)
+            location = CoreDataMgr.createLocation(context: CoreDataMgr.shared.mainThreadContext!)
         } else {
             createButton.setTitle("Save", for: .normal)
             createButton.setTitle("Save", for: .highlighted)
@@ -95,7 +95,7 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
     @IBAction func cancelAction(_ sender: Any) {
         if self.location!.id == nil {
             // Remove new location before it's saved to database
-            CoreDataMgr.shared.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: self.location!)
+            CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: self.location!)
         }
         self.dismiss(animated: true) {
 

@@ -1,20 +1,24 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to NetOpData.swift instead.
+// Make changes to NetQueueOp.swift instead.
 
 import Foundation
 import CoreData
 
-public enum NetOpDataAttributes: String {
-    case objectName = "objectName"
+public enum NetQueueOpAttributes: String {
+    case objectKey = "objectKey"
     case typeName = "typeName"
 }
 
-open class _NetOpData: NSManagedObject {
+public enum NetQueueOpRelationships: String {
+    case list = "list"
+}
+
+open class _NetQueueOp: NSManagedObject {
 
     // MARK: - Class methods
 
     open class func entityName () -> String {
-        return "NetOpData"
+        return "NetQueueOp"
     }
 
     open class func entity(managedObjectContext: NSManagedObjectContext) -> NSEntityDescription? {
@@ -28,19 +32,22 @@ open class _NetOpData: NSManagedObject {
     }
 
     public convenience init?(managedObjectContext: NSManagedObjectContext) {
-        guard let entity = _NetOpData.entity(managedObjectContext: managedObjectContext) else { return nil }
+        guard let entity = _NetQueueOp.entity(managedObjectContext: managedObjectContext) else { return nil }
         self.init(entity: entity, insertInto: managedObjectContext)
     }
 
     // MARK: - Properties
 
     @NSManaged open
-    var objectName: String?
+    var objectKey: String?
 
     @NSManaged open
     var typeName: String?
 
     // MARK: - Relationships
+
+    @NSManaged open
+    var list: NetOpsQueue?
 
 }
 

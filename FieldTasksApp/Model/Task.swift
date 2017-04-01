@@ -41,7 +41,7 @@ open class Task: _Task  {
 
 
     func initResults(context : NSManagedObjectContext, results : [String: AnyObject]) {
-        self.result = CoreDataMgr.shared.createTaskResult(context: context, entityName: self.resultTypeString(), task: self)
+        self.result = CoreDataMgr.createTaskResult(context: context, entityName: self.resultTypeString(), task: self)
         self.result?.fromDict(results: results)
     }
 

@@ -200,7 +200,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
                     if let error = error {
                         self.showAlert(title: "Delete failed", message: "Unable to delete location: \(error)")
                     } else {
-                        CoreDataMgr.shared.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: location)
+                        CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: location)
                         self.refreshOnMainThread()
                     }
                 })

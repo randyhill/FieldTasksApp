@@ -80,7 +80,7 @@ class FormsTable: UITableViewController {
             let form = formsList[indexPath.row]
             var locationText = ""
             if let locationId = form.locationId {
-                if let location = CoreDataMgr.shared.fetchById(context: CoreDataMgr.shared.mainThreadContext!, entityName: FTLocation.entityName(), objectId: locationId) as? FTLocation, let name = location.name {
+                if let location = CoreDataMgr.fetchById(context: CoreDataMgr.shared.mainThreadContext!, entityName: FTLocation.entityName(), objectId: locationId) as? FTLocation, let name = location.name {
                    locationText  = name
                 }
             }

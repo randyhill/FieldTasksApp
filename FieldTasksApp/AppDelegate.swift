@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        NetworkOpsMgr.shared.restartOperations()
 
         // Query server for any data changes, in backgorund so UI isn't interrupted, which means using BG context for Coredata
         DispatchQueue.global(qos: .background).async {
@@ -62,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                     // Switch back to main thread CoreData and save to make sure changes are saved.
                     DispatchQueue.main.async {
-                        CoreDataMgr.shared.saveInContext(context: backgroundContext)
+                        CoreDataMgr.saveInContext(context: backgroundContext)
                         if syncResult.templates > 0 {
                             NotificationCenter.default.post(name: cTemplatesUpdateNotification, object: syncResult.templates)
                         }
