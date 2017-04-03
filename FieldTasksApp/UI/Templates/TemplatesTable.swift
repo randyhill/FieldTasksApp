@@ -156,11 +156,7 @@ class TemplatesTable: UITableViewController {
         if let location = self.parentTemplatesViewer?.location {
             let template = self.templatesList[indexPath.row]
             location.removeTemplate(templateId: template.id!)
-            ServerMgr.updateLocation(location: location, completion: { (error) in
-                if let error = error {
-                    FTErrorMessage(error: "Could not update location: \(error)")
-                }
-            })
+            NetworkOpsMgr.shared.updateLocation(location: location)
             self.updateList()
         }
     }
@@ -169,14 +165,9 @@ class TemplatesTable: UITableViewController {
         self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (deleteIt) in
             if deleteIt {
                 let template = self.templatesList[indexPath.row]
-                TemplatesMgr.shared.deleteTemplate(templateId: template.id!, completion: { (error) in
-                    if let error = error {
-                        self.showAlert(title: "Delete failed", message: "Unable to delete template: \(error)")
-                    } else {
-                        self.templatesList = TemplatesMgr.shared.all()
-                        self.refreshOnMainThread()
-                    }
-                })
+                TemplatesMgr.shared.deleteTemplate(templateId: template.id!)
+                self.templatesList = TemplatesMgr.shared.all()
+                self.refreshOnMainThread()
             }
         })
     }

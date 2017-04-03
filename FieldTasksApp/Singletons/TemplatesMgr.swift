@@ -30,37 +30,25 @@ class TemplatesMgr {
         CoreDataMgr.removeObjectById(context: CoreDataMgr.shared.mainThreadContext!, entityName: Template.entityName(), objectId: templateId)
     }
 
-    func deleteTemplate(templateId : String, completion: @escaping (_ error : String?)->()) {
+    func deleteTemplate(templateId : String) {
         var index = 0
         for template in self.all() {
             if template.id == templateId {
-                ServerMgr.shared.deleteTemplate(templateId: templateId, completion: { (error) in
-                    if error == nil {
-                        self.removeTemplate(templateId: templateId)
-                    }
-                    completion(error)
-                })
+                NetworkOpsMgr.shared.deleteTemplate(templateId: templateId)
+                self.removeTemplate(templateId: templateId)
                 break
             }
             index += 1
         }
     }
 
-    func updateTemplate(template: Template, completion: @escaping (_ error : String?)->()) {
+    func updateTemplate(template: Template) {
         if template.id == "" {
-            ServerMgr.shared.newTemplate(template: template) { (resultDict, error ) in
-                if let resultDict = resultDict as? [String: AnyObject]{
-                    // Update with id, and any other changes.
-                    template.fromDict(context: CoreDataMgr.shared.mainThreadContext!, templateDict: resultDict)
-                    CoreDataMgr.shared.saveOnMainThread()
-                }
-                completion(error)
-            }
+            // Create new template
+            NetworkOpsMgr.shared.newTemplate(template: template)
         } else {
-            ServerMgr.shared.saveTemplate(template: template) { (error ) in
-                CoreDataMgr.shared.saveOnMainThread()
-                completion(error)
-            }
+            NetworkOpsMgr.shared.saveTemplate(template: template)
+            CoreDataMgr.shared.saveOnMainThread()
         }
     }
 }

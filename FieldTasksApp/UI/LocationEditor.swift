@@ -111,22 +111,11 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
             self.updateLocationFromFields(theLocation: self.location!)
             CoreDataMgr.shared.saveOnMainThread()
             if createNew {
-                ServerMgr.createLocation(location: location!) { (locationDict, error) in
-                    if let error = error {
-                        FTAlertMessage(message: "Creation failed: \(error)")
-                    } else if let locationId = locationDict?["_id"] as? String {
-                        self.location!.id = locationId
-                        self.dismissWith(message: "Location created")
-                    }
-                }
+                NetworkOpsMgr.shared.createLocation(location: location!)
+                self.dismissWith(message: "Location created")
             } else {
-                ServerMgr.updateLocation(location: location!) { (error) in
-                    if let error = error {
-                        FTAlertMessage(message: "Save failed: \(error)")
-                    } else {
-                        self.dismissWith(message: "Location saved")
-                    }
-                }
+                NetworkOpsMgr.shared.updateLocation(location: location!)
+                self.dismissWith(message: "Location saved")
             }
         }
     }

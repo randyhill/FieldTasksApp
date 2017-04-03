@@ -89,10 +89,8 @@ class TemplatesViewer : UIViewController {
         if let location = location {
             if let selectedTemplates = listController?.selectedTemplates() {
                 location.addTemplates(newTemplates: selectedTemplates)
-                ServerMgr.updateLocation(location: location, completion: { (error) in
-                    FTAssertString(error: error)
-                })
-             }
+                NetworkOpsMgr.shared.updateLocation(location: location)
+            }
         }
         self.dismiss(animated: true) {}
     }

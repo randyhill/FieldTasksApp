@@ -1,6 +1,18 @@
 //
 //  NetworkOps.swift
 //  FieldTasksApp
+/*
+
+    Each network operation needs to follow standard NSOperation rules for starting/completing, and checking for cancelation
+    - Since we are asynchornous background operations, execution starts in start() in parent class, it calls main() for subclasses to provide operation code
+    - The parent classes will create every network operation as a background operation so that they continue to run if app goes to background.
+    - This means start() and complete() have to be called to balance backgroundOps calls.
+    - isCanceled will be set to true for any ops that haven't started yet when app goes to background.
+    - isCanceled is automatically checked at start() and for any attempt to retry(), it doesn't need to be called elsewhere except for lengthy operations.
+    - Ops need to implement save()/restore() so they can be saved and re-created later if canceled from queue before being executed
+    - Ops need to call success() so they can be removed from CoreData queue and not relaunched at startup.
+
+*/
 //
 //  Created by CRH on 3/31/17.
 //  Copyright © 2017 CRH. All rights reserved.
@@ -86,6 +98,7 @@ class NetworkOp : Operation {
 
     // Success means reset our queue delay
     func success() {
+        FTPrint(s: "Success net op: \(className(object: self))")
         NetworkOpsMgr.shared.removeFromCoreDataList(netOp: self)
     }
 
@@ -184,6 +197,7 @@ class ImageDownloadOp : AWSOp {
 
     // We don't want to restart downloads at this point.
     override func success() {
+        FTPrint(s: "Success net op: \(className(object: self))")
         NetworkOpsMgr.shared.resetAWSRetryDelay()
     }
 
@@ -216,11 +230,15 @@ class FormSubmitOp : ServerOp {
 
     init(form : Form) {
         self.form = form
-
-        // Save with temp id that we can use to link to coredata net op, it will be replaced with serverId
-        self.form.id = randomName(length: 12)
-        CoreDataMgr.shared.saveOnMainThread()
     }
+
+    init(form : Form, tempId: String) {
+        self.form = form
+
+        // Save with temp id that we can save to coredata if op can't be completed, when done it will be replaced with serverId
+        self.form.id = tempId
+    }
+
 
     override func main() {
         FTPrint(s: "Form submission starting")
@@ -260,3 +278,184 @@ class FormSubmitOp : ServerOp {
         return data
     }
 }
+
+// MARK: Template Ops  -------------------------------------------------------------------------------
+class NewTemplateOp : ServerOp {
+    let template : Template
+
+    init(template : Template) {
+        self.template = template
+    }
+
+    init(template : Template, tempId: String) {
+        self.template = template
+
+        // Save with temp id that we can save to coredata if op can't be completed, when done it will be replaced with serverId
+        self.template.id = tempId
+    }
+
+    override func main() {
+        FTPrint(s: "New Template op starting")
+        ServerMgr.shared.newTemplate(template: template) { (templateDict, error ) in
+            if let error = error {
+                FTPrint(s: "Error submitting template: \(error)")
+                self.retry(serverOp: NewTemplateOp(template: self.template))
+            } else {
+                if let templateDict = templateDict as? [String: AnyObject]{
+                    // Clear from core data queue before id changes.
+                    self.success()
+
+                    // Update with id, and any other changes.
+                    self.template.fromDict(context: CoreDataMgr.shared.mainThreadContext!, templateDict: templateDict)
+                    CoreDataMgr.shared.saveOnMainThread()
+                }
+            }
+            self.complete()
+        }
+    }
+
+    override func asCoreData() -> NetQueueOp {
+        let data = super.asCoreData()
+        data.typeName = "NewTemplateOp"
+        data.objectKey = template.id
+        return data
+    }
+}
+
+
+class SaveTemplateOp : ServerOp {
+    let template : Template
+
+    init(template : Template) {
+        self.template = template
+    }
+
+    override func main() {
+        FTPrint(s: "Save Template op starting")
+        ServerMgr.shared.saveTemplate(template: self.template, completion: { (error ) in
+            if let error = error {
+                FTPrint(s: "Error submitting template: \(error)")
+                self.retry(serverOp: SaveTemplateOp(template: self.template))
+            } else {
+                self.success()
+            }
+            self.complete()
+        })
+    }
+
+    override func asCoreData() -> NetQueueOp {
+        let data = super.asCoreData()
+        data.typeName = "SaveTemplateOp"
+        data.objectKey = template.id
+        return data
+    }
+}
+
+class DeleteTemplateOp : ServerOp {
+    let templateId : String
+
+    init(templateId : String) {
+        self.templateId = templateId
+    }
+
+    override func main() {
+        FTPrint(s: "Delete Template op starting")
+        ServerMgr.shared.deleteTemplate(templateId: templateId, completion: { (statusCode, error) in
+            if let statusCode = statusCode  {
+                // Ignore not found errors because already deleted
+               if statusCode == 204 || statusCode == 204 {
+                    self.success()
+               } else {
+                    let error = error ?? "Status code: \(statusCode)"
+                    self.errorRetry(error: error)
+               }
+            } else {
+                self.errorRetry(error: error)
+            }
+            self.complete()
+        })
+    }
+
+    func errorRetry(error : String?) {
+        let error = error ?? "unknown error"
+        FTPrint(s: "Error deleting template id: \(self.templateId): \(error)")
+        self.retry(serverOp: DeleteTemplateOp(templateId: self.templateId))
+    }
+
+    override func asCoreData() -> NetQueueOp {
+        let data = super.asCoreData()
+        data.typeName = "DeleteTemplateOp"
+        data.objectKey = templateId
+        return data
+    }
+}
+
+// MARK: Location Ops  -------------------------------------------------------------------------------
+class NewLocationOp : ServerOp {
+    let location : FTLocation
+
+    init(location : FTLocation) {
+        self.location = location
+    }
+
+    init(location : FTLocation, tempId: String) {
+        self.location = location
+        self.location.id = tempId
+    }
+
+    override func main() {
+        FTPrint(s: "New Location op starting")
+        ServerMgr.createLocation(location: location) { (locationDict, error ) in
+            if let error = error {
+                FTPrint(s: "Error creating location: \(error)")
+                self.retry(serverOp: NewLocationOp(location: self.location))
+            } else {
+                if let locationDict = locationDict as? [String: AnyObject]{
+                    // Remove from queue before id updated
+                    self.success()
+
+                    // Update with id, and any other changes.
+                    self.location.fromDict(locationDict: locationDict)
+                    CoreDataMgr.shared.saveOnMainThread()
+                }
+            }
+            self.complete()
+        }
+    }
+
+    override func asCoreData() -> NetQueueOp {
+        let data = super.asCoreData()
+        data.typeName = "NewLocationOp"
+        data.objectKey = location.id
+        return data
+    }
+}
+
+class SaveLocationOp : ServerOp {
+    let location : FTLocation
+
+    init(location : FTLocation) {
+        self.location = location
+    }
+
+    override func main() {
+        FTPrint(s: "New Location op starting")
+        ServerMgr.updateLocation(location: self.location) { (error ) in
+            if let error = error {
+                FTPrint(s: "Error saving location: \(error)")
+                self.retry(serverOp: NewLocationOp(location: self.location))
+            } else {
+                self.success()
+            }
+            self.complete()
+        }
+    }
+
+    override func asCoreData() -> NetQueueOp {
+        let data = super.asCoreData()
+        data.typeName = "SaveLocationOp"
+        data.objectKey = location.id
+        return data
+    }
+}
+

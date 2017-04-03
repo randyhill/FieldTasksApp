@@ -4,7 +4,7 @@ import Foundation
 open class NetOpsQueue: _NetOpsQueue {
 	// Custom logic goes here.
     func describe() -> String {
-        var description = "Coredata List Operations: \(relationship.count)"
+        var description = "Coredata Net Ops: \(relationship.count)"
         let ops =  opsDataArray()
         for op in ops {
             description += ", " + op.describe()

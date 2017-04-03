@@ -18,7 +18,22 @@ class CoreDataMgr {
     func initModelContext(model : NSManagedObjectModel, context: NSManagedObjectContext) {
         self.model = model
         self.mainThreadContext = context
+        self.print(context: context, entity: "FTLocation")
      }
+
+    func print(context: NSManagedObjectContext, entity: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        do {
+            if let locations = try context.fetch(fetchRequest) as? [FTLocation] {
+                FTPrint(s: "Fetched list of \(locations.count) locations")
+                for location in locations {
+                    FTPrint(s: "Location: \(location.id)")
+                }
+            }
+        } catch let error as NSError {
+            FTErrorMessage(error: "Could not fetch list for: \(entity) \(error), \(error.userInfo)")
+        }
+    }
 
     func getNewContext() -> NSManagedObjectContext {
         let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)

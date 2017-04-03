@@ -88,14 +88,8 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
                 // Don't save empties
                 CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: template)
             } else {
-                TemplatesMgr.shared.updateTemplate(template: template) { (error) in
-                    if let error = error {
-                        FTAlertError(message: error)
-                    } else {
-                        CoreDataMgr.shared.saveOnMainThread()
-                        self.dismiss(animated: true) { }
-                    }
-                }
+                TemplatesMgr.shared.updateTemplate(template: template)
+                self.dismiss(animated: true) { }
             }
         }
     }

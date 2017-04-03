@@ -9,14 +9,7 @@
     - Resubmit network operations if they fail
     - Continue network operations for available time when app goes to background
     - Save and retry network operations if app runs out of background time or is quit before they finish
- 
-    Each network operation needs to follow standard NSOperation rules for starting/completing, and checking for cancelation
-    - Since we are asynchornous background operations, execution starts in start() in parent class, it calls main() for subclasses to provide operation code
-    - The parent classes will create every network operation as a background operation so that they continue to run if app goes to background.
-    - This means start() and complete() have to be called to balance backgroundOps calls.
-    - isCanceled will be set to true for any ops that haven't started yet when app goes to background.
-    - isCanceled is automatically checked at start() and for any attempt to retry(), it doesn't need to be called elsewhere except for lengthy operations.
-    - Ops need to implement save()/restore() so they can be saved and re-created later if canceled from queue before being executed
+
  */
 
 import UIKit
@@ -70,7 +63,7 @@ class NetworkOpsMgr {
         if let relationships = coreArray?.relationshipSet() {
             for relation in relationships {
                 if let descriptor = relation as? NetQueueOp {
-                    let networkOp = createOpFromCoreDataDescriptor(descriptor: descriptor)
+                    let networkOp = opFromDescriptor(descriptor: descriptor)
                     if let awsOp = networkOp as? AWSOp {
                         self.addAWSOp(awsOp: awsOp)
                     } else if let serverOp = networkOp as? ServerOp {
@@ -81,14 +74,36 @@ class NetworkOpsMgr {
         }
     }
 
-    func createOpFromCoreDataDescriptor(descriptor: NetQueueOp) -> NetworkOp? {
+    // Remake op using keys from descriptor to determine the type and object id we were trying to save/create/delete
+    func opFromDescriptor(descriptor: NetQueueOp) -> NetworkOp? {
         var networkOp : NetworkOp?
+
+        FTPrint(s: "Loading netop: " + descriptor.describe())
         switch descriptor.typeName! {
         case className(object: ImageUploadOp.self):
             networkOp = ImageUploadOp(fileName: descriptor.objectKey!)
         case className(object: FormSubmitOp.self):
             if let form = CoreDataMgr.fetchById(context: self.backgroundContext, entityName: Form.entityName(), objectId: descriptor.objectKey!) as? Form {
                 networkOp = FormSubmitOp(form: form)
+            }
+        case className(object: NewTemplateOp.self):
+            if let template = CoreDataMgr.fetchById(context: self.backgroundContext, entityName: Template.entityName(), objectId: descriptor.objectKey!) as? Template {
+                networkOp = NewTemplateOp(template: template)
+            }
+        case className(object: SaveTemplateOp.self):
+            if let template = CoreDataMgr.fetchById(context: self.backgroundContext, entityName: Template.entityName(), objectId: descriptor.objectKey!) as? Template {
+                networkOp = SaveTemplateOp(template: template)
+            }
+        case className(object: DeleteTemplateOp.self):
+            // Template should already be deleted locally, so just use with server id.
+            networkOp = DeleteTemplateOp(templateId: descriptor.objectKey!)
+        case className(object: NewLocationOp.self):
+            if let location = CoreDataMgr.fetchById(context: self.backgroundContext, entityName: FTLocation.entityName(), objectId: descriptor.objectKey!) as? FTLocation {
+                networkOp = NewLocationOp(location: location)
+            }
+        case className(object: SaveLocationOp.self):
+            if let location = CoreDataMgr.fetchById(context: self.backgroundContext, entityName: FTLocation.entityName(), objectId: descriptor.objectKey!) as? FTLocation {
+                networkOp = SaveLocationOp(location: location)
             }
         default:
             FTErrorMessage(error: "Could not recreate network op: \(descriptor.typeName)")
@@ -238,13 +253,14 @@ class NetworkOpsMgr {
         awsQueue.addOperation(awsOp)
     }
 
+    // MARK: Forms -------------------------------------------------------------------------------
     func submitForm(form : Form) {
         // Use location coords from initial submission point
         if let coordinates = LocationsMgr.shared.currentCoordinates() {
             form.latitude = coordinates.latitude as NSNumber?
             form.longitude = coordinates.longitude as NSNumber?
         }
-        self.addServerOp(serverOp: FormSubmitOp(form: form))
+        self.addServerOp(serverOp: FormSubmitOp(form: form, tempId: randomName(length: 12)))
 
         // Upload each image seperately
         let photosMap = PhotoFileList(tasks: form.tasks).mapOfAllImages()
@@ -253,6 +269,7 @@ class NetworkOpsMgr {
         }
     }
 
+    // MARK: Images -------------------------------------------------------------------------------
     func downloadImages(fileNames : [String], photosResult : PhotosResult, progress: @escaping (_ progress : Float)->(), imageLoaded: @escaping (_ image: UIImage)->()) {
         var progressCounts = [String : Float]()
         for fileName in fileNames {
@@ -269,5 +286,32 @@ class NetworkOpsMgr {
             }, imageLoaded: imageLoaded)
             self.addAWSOp(awsOp: downloadOp)
         }
+    }
+
+    // MARK: Templates -------------------------------------------------------------------------------
+    func newTemplate(template: Template) {
+        self.addServerOp(serverOp: NewTemplateOp(template: template, tempId: randomName(length: 12) ))
+    }
+
+    func deleteTemplate(templateId: String) {
+        self.addServerOp(serverOp: DeleteTemplateOp(templateId: templateId))
+    }
+
+    func saveTemplate(template: Template) {
+        self.addServerOp(serverOp: SaveTemplateOp(template: template))
+    }
+
+    // MARK: Locations  -------------------------------------------------------------------------------
+
+    func createLocation(location: FTLocation) {
+        self.addServerOp(serverOp: NewLocationOp(location: location, tempId: randomName(length: 12) ))
+    }
+
+    func updateLocation(location: FTLocation) {
+        self.addServerOp(serverOp: SaveLocationOp(location: location))
+    }
+
+    func deleteLocation(locationId: String) {
+
     }
 }

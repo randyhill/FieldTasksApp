@@ -55,11 +55,7 @@ class ServerMgr {
         }
 
         // Turn on network indicator and get sync data from server
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let dataTask = defaultSession.dataTask(with: url as URL, completionHandler: { (data, response, error) in
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
             if let error = error {
                 completion(nil, Date(), error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
@@ -95,11 +91,7 @@ class ServerMgr {
             FTErrorMessage(error: "URL couldn't be created, server loadList could not be invoked")
             return
         }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let dataTask = defaultSession.dataTask(with: url as URL, completionHandler: { (data, response, error) in
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
             // If we can't parse server timestamp just use now
             if let error = error {
                 completion(nil, Date(), error.localizedDescription)
@@ -129,17 +121,13 @@ class ServerMgr {
         dataTask.resume()
     }
 
-    private func newTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
+    func newTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
         // Start spinner
-//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let formDict = form.toDict()
 
         // for some reason POST requests require the path to end with / or the server will redirect to GET
         let url = url + "/"
         Alamofire.request(url, method: .post, parameters: formDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
-//            DispatchQueue.main.async() {
-//                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-//            }
             var resultDict : [String : Any]?
             if response.result.isSuccess, let jsonData = response.data {
                 do {
@@ -154,46 +142,38 @@ class ServerMgr {
     }
 
     private func saveTemplateForm(form: Template, url: String, successCode: Int, completion : @escaping (_ error: String?)->()) {
-        // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let formDict = form.toDict()
 
         let url = url + "/" + form.id!
         Alamofire.request(url, method: .put, parameters: formDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
             completion(response.result.isSuccess ? nil : "Failed to save form")
         })
     }
 
     // MARK: Templates Methods -------------------------------------------------------------------------------
-    func loadTemplates(location: FTLocation?, completion : @escaping loadListCallback) {
-        if var url = URL(string: cAllTemplatesURL) {
-            if let location = location {
-                url.appendPathComponent("/\(location.id)")
-            }
-            loadList(url: url, completion: completion)
-        }
-    }
+//    func loadTemplates(location: FTLocation?, completion : @escaping loadListCallback) {
+//        if var url = URL(string: cAllTemplatesURL) {
+//            if let location = location {
+//                url.appendPathComponent("/\(location.id)")
+//            }
+//            loadList(url: url, completion: completion)
+//        }
+//    }
 
-    func syncTemplates(sinceDate: Date, completion : @escaping loadListCallback) {
-        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
-            let urlString = cTemplatesURL + "/sync/" + encodedDateString
-            loadList(url: URL(string: urlString), completion: completion)
-        } else {
-            FTErrorMessage(error: "Bad string for date")
-        }
-    }
+//    func syncTemplates(sinceDate: Date, completion : @escaping loadListCallback) {
+//        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
+//            let urlString = cTemplatesURL + "/sync/" + encodedDateString
+//            loadList(url: URL(string: urlString), completion: completion)
+//        } else {
+//            FTErrorMessage(error: "Bad string for date")
+//        }
+//    }
 
-    func deleteTemplate(templateId: String, completion : @escaping (_ error : String?)->()) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    func deleteTemplate(templateId: String, completion : @escaping (_ statusCode: Int?, _ error : String?)->()) {
         let url = cTemplatesURL + "/" + templateId
         Alamofire.request(url, method: .delete, parameters: ["id":templateId], encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { response in
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
-            completion(response.error?.localizedDescription)
+            let statusCode = response.response?.statusCode
+            completion(statusCode, response.error?.localizedDescription)
         })
     }
 
@@ -208,54 +188,50 @@ class ServerMgr {
     // MARK: Forms Methods -------------------------------------------------------------------------------
 
     // Filter by location if set
-    func loadForms(location: FTLocation?, completion : @escaping loadListCallback) {
-        if var url = URL(string: cAllFormsURL) {
-            if let location = location {
-                url.appendPathComponent("/\(location.id)")
-            }
-            loadList(url: url, completion: completion)
-        }
-    }
+//    func loadForms(location: FTLocation?, completion : @escaping loadListCallback) {
+//        if var url = URL(string: cAllFormsURL) {
+//            if let location = location {
+//                url.appendPathComponent("/\(location.id)")
+//            }
+//            loadList(url: url, completion: completion)
+//        }
+//    }
 
-    func syncForms(sinceDate: Date, completion : @escaping loadListCallback) {
-        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
-            let urlString = cFormsURL + "/sync/" + encodedDateString
-            loadList(url: URL(string: urlString), completion: completion)
-        } else {
-            FTErrorMessage(error: "Bad string for date")
-        }
-    }
+//    func syncForms(sinceDate: Date, completion : @escaping loadListCallback) {
+//        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
+//            let urlString = cFormsURL + "/sync/" + encodedDateString
+//            loadList(url: URL(string: urlString), completion: completion)
+//        } else {
+//            FTErrorMessage(error: "Bad string for date")
+//        }
+//    }
 
     func saveAsForm(form: Template, completion : @escaping (_ result: [String : Any]?, _ error: String?)->()) {
         newTemplateForm(form: form, url: cFormsURL, successCode: 201, completion: completion)
     }
 
     // MARK: Locations  -------------------------------------------------------------------------------
-    func loadLocations(completion : @escaping loadListCallback) {
-        if let url = URL(string: cLocationsURL) {
-            loadList(url: url, completion: completion)
-        }
-    }
-
-    func syncLocations(sinceDate: Date, completion : @escaping loadListCallback) {
-        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
-            let urlString = cLocationsURL + "/sync/" + encodedDateString
-            loadList(url: URL(string: urlString), completion: completion)
-        } else {
-            FTErrorMessage(error: "Bad string for date")
-        }
-    }
+//    func loadLocations(completion : @escaping loadListCallback) {
+//        if let url = URL(string: cLocationsURL) {
+//            loadList(url: url, completion: completion)
+//        }
+//    }
+//
+//    func syncLocations(sinceDate: Date, completion : @escaping loadListCallback) {
+//        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
+//            let urlString = cLocationsURL + "/sync/" + encodedDateString
+//            loadList(url: URL(string: urlString), completion: completion)
+//        } else {
+//            FTErrorMessage(error: "Bad string for date")
+//        }
+//    }
 
     class func createLocation(location: FTLocation, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
         // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let locationDict = location.toDict()
 
         // for some reason POST requests require the path to end with / or the server will redirect to GET
         Alamofire.request(cBaseURL + "/locations/", method: .post, parameters: locationDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
             if !response.result.isSuccess {
                 completion(nil, "Failed to save location")
             } else {
@@ -275,28 +251,19 @@ class ServerMgr {
     }
 
     class func updateLocation(location: FTLocation, completion : @escaping (_ error: String?)->()) {
-        // Start spinner
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let locationDict = location.toDict()
 
         // for some reason POST requests require the path to end with / or the server will redirect to GET
         FTAssert(isTrue: location.id != "", error: "Trying to update location that wasn't saved")
         let url = cBaseURL + "/locations/" + location.id!
         Alamofire.request(url, method: .put, parameters: locationDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
             completion(response.error?.localizedDescription)
         })
     }
 
     func deleteLocation(locationId: String, completion : @escaping (_ error : String?)->()) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let url = cLocationsURL + "/" + locationId
         Alamofire.request(url, method: .delete, parameters: ["id":locationId], encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { response in
-            DispatchQueue.main.async() {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
             completion(response.error?.localizedDescription)
         })
     }
