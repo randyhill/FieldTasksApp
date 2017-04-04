@@ -40,7 +40,11 @@ class TemplatesViewer : UIViewController {
         case .Location:
             self.title = location?.name ?? "Location Forms"
             self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Done", target: self, action: #selector(cancelAction))
-            self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Submissions", target: self, action: #selector(showForms))
+            let barButton = FlatBarButton(title: "Submissions", target: self, action: #selector(showForms))
+            var barButtonFrame = barButton.customView!.frame
+            barButtonFrame.size.width = 110.0
+            barButton.customView?.frame = barButtonFrame
+            self.navigationItem.rightBarButtonItem = barButton
             newButton.setTitle("Add", for: .normal)
             newButton.setTitle("Add", for: .highlighted)
         case .Picker:

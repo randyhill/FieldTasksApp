@@ -162,7 +162,7 @@ class TemplatesTable: UITableViewController {
     }
 
     func deleteTemplateFromServer(forRowAt indexPath: IndexPath) {
-        self.askAlert(title: "Are you sure you want to delete this template?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (deleteIt) in
+        self.askAlert(title: "Are you sure you want to delete this form?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (deleteIt) in
             if deleteIt {
                 let template = self.templatesList[indexPath.row]
                 TemplatesMgr.shared.deleteTemplate(templateId: template.id!)

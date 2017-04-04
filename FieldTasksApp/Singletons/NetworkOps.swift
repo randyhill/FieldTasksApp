@@ -363,7 +363,7 @@ class DeleteTemplateOp : ServerOp {
         ServerMgr.shared.deleteTemplate(templateId: templateId, completion: { (statusCode, error) in
             if let statusCode = statusCode  {
                 // Ignore not found errors because already deleted
-               if statusCode == 204 || statusCode == 204 {
+               if statusCode == 204 || statusCode == 404 {
                     self.success()
                } else {
                     let error = error ?? "Status code: \(statusCode)"
@@ -376,17 +376,17 @@ class DeleteTemplateOp : ServerOp {
         })
     }
 
-    func errorRetry(error : String?) {
-        let error = error ?? "unknown error"
-        FTPrint(s: "Error deleting template id: \(self.templateId): \(error)")
-        self.retry(serverOp: DeleteTemplateOp(templateId: self.templateId))
-    }
-
     override func asCoreData() -> NetQueueOp {
         let data = super.asCoreData()
         data.typeName = "DeleteTemplateOp"
         data.objectKey = templateId
         return data
+    }
+
+    func errorRetry(error : String?) {
+        let error = error ?? "unknown error"
+        FTPrint(s: "Error deleting template id: \(self.templateId): \(error)")
+        self.retry(serverOp: DeleteTemplateOp(templateId: self.templateId))
     }
 }
 
@@ -456,6 +456,45 @@ class SaveLocationOp : ServerOp {
         data.typeName = "SaveLocationOp"
         data.objectKey = location.id
         return data
+    }
+}
+
+class DeleteLocationOp : ServerOp {
+    let locationId : String
+
+    init(locationId : String) {
+        self.locationId = locationId
+    }
+
+    override func main() {
+        FTPrint(s: "New Location op starting")
+        ServerMgr.shared.deleteLocation(locationId: locationId) { (statusCode, error ) in
+            if let statusCode = statusCode  {
+                // Ignore not found errors because already deleted
+                if statusCode == 204 || statusCode == 404 {
+                    self.success()
+                } else {
+                    let error = error ?? "Status code: \(statusCode)"
+                    self.errorRetry(error: error)
+                }
+            } else {
+                self.errorRetry(error: error)
+            }
+            self.complete()
+        }
+    }
+
+    override func asCoreData() -> NetQueueOp {
+        let data = super.asCoreData()
+        data.typeName = "DeleteLocationOp"
+        data.objectKey = locationId
+        return data
+    }
+
+    func errorRetry(error : String?) {
+        let error = error ?? "unknown error"
+        FTPrint(s: "Error deleting location id: \(self.locationId): \(error)")
+        self.retry(serverOp: DeleteLocationOp(locationId: self.locationId))
     }
 }
 

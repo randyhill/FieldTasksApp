@@ -105,6 +105,8 @@ class NetworkOpsMgr {
             if let location = CoreDataMgr.fetchById(context: self.backgroundContext, entityName: FTLocation.entityName(), objectId: descriptor.objectKey!) as? FTLocation {
                 networkOp = SaveLocationOp(location: location)
             }
+        case className(object: DeleteLocationOp.self):
+            networkOp = DeleteLocationOp(locationId: descriptor.objectKey!)
         default:
             FTErrorMessage(error: "Could not recreate network op: \(descriptor.typeName)")
         }
@@ -312,6 +314,6 @@ class NetworkOpsMgr {
     }
 
     func deleteLocation(locationId: String) {
-
+        self.addServerOp(serverOp: DeleteLocationOp(locationId: locationId))
     }
 }

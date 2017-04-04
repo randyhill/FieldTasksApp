@@ -18,6 +18,9 @@ class CoreDataMgr {
     func initModelContext(model : NSManagedObjectModel, context: NSManagedObjectContext) {
         self.model = model
         self.mainThreadContext = context
+        self.mainThreadContext?.perform {
+            self.mainThreadContext?.mergePolicy = NSMergePolicy(merge: .mergeByPropertyObjectTrumpMergePolicyType)
+        }
         self.print(context: context, entity: "FTLocation")
      }
 

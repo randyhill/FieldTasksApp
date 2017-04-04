@@ -51,7 +51,7 @@ class FormsTable: UITableViewController {
     }
 
     func loadList() {
-        self.formsList = FormsMgr.shared.all()
+        self.formsList = FormsMgr.shared.submissions()
 
         // Sort by newest
         self.formsList = self.formsList.sorted(by: { (a , b ) -> Bool in

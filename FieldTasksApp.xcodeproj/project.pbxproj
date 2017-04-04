@@ -442,7 +442,6 @@
 		D82411A21E301C01006D06E2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D83A02BD1E8EDE3E00331DF3 /* Networking */,
 				D8C165CB1E47EBEE00129439 /* Extensions */,
 				D8F234411E68DB000043D1C7 /* Views */,
 				D86BF7251E638F3D00884277 /* SharedUI.swift */,
@@ -524,6 +523,7 @@
 				D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */,
 				D8549B9A1D67871B009DBE7A /* AppDelegate.swift */,
 				D85D53DD1D710D94006D31F2 /* Globals.swift */,
+				D83A02BD1E8EDE3E00331DF3 /* Networking */,
 				D82411A21E301C01006D06E2 /* UI */,
 				D8E9547C1E622F71004D5D4C /* Singletons */,
 				D8549BD81D68C9D7009DBE7A /* Data Classes */,

@@ -151,24 +151,6 @@ class ServerMgr {
     }
 
     // MARK: Templates Methods -------------------------------------------------------------------------------
-//    func loadTemplates(location: FTLocation?, completion : @escaping loadListCallback) {
-//        if var url = URL(string: cAllTemplatesURL) {
-//            if let location = location {
-//                url.appendPathComponent("/\(location.id)")
-//            }
-//            loadList(url: url, completion: completion)
-//        }
-//    }
-
-//    func syncTemplates(sinceDate: Date, completion : @escaping loadListCallback) {
-//        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
-//            let urlString = cTemplatesURL + "/sync/" + encodedDateString
-//            loadList(url: URL(string: urlString), completion: completion)
-//        } else {
-//            FTErrorMessage(error: "Bad string for date")
-//        }
-//    }
-
     func deleteTemplate(templateId: String, completion : @escaping (_ statusCode: Int?, _ error : String?)->()) {
         let url = cTemplatesURL + "/" + templateId
         Alamofire.request(url, method: .delete, parameters: ["id":templateId], encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { response in
@@ -187,44 +169,11 @@ class ServerMgr {
 
     // MARK: Forms Methods -------------------------------------------------------------------------------
 
-    // Filter by location if set
-//    func loadForms(location: FTLocation?, completion : @escaping loadListCallback) {
-//        if var url = URL(string: cAllFormsURL) {
-//            if let location = location {
-//                url.appendPathComponent("/\(location.id)")
-//            }
-//            loadList(url: url, completion: completion)
-//        }
-//    }
-
-//    func syncForms(sinceDate: Date, completion : @escaping loadListCallback) {
-//        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
-//            let urlString = cFormsURL + "/sync/" + encodedDateString
-//            loadList(url: URL(string: urlString), completion: completion)
-//        } else {
-//            FTErrorMessage(error: "Bad string for date")
-//        }
-//    }
-
     func saveAsForm(form: Template, completion : @escaping (_ result: [String : Any]?, _ error: String?)->()) {
         newTemplateForm(form: form, url: cFormsURL, successCode: 201, completion: completion)
     }
 
     // MARK: Locations  -------------------------------------------------------------------------------
-//    func loadLocations(completion : @escaping loadListCallback) {
-//        if let url = URL(string: cLocationsURL) {
-//            loadList(url: url, completion: completion)
-//        }
-//    }
-//
-//    func syncLocations(sinceDate: Date, completion : @escaping loadListCallback) {
-//        if let encodedDateString = Globals.shared.encodeDate(date: sinceDate) {
-//            let urlString = cLocationsURL + "/sync/" + encodedDateString
-//            loadList(url: URL(string: urlString), completion: completion)
-//        } else {
-//            FTErrorMessage(error: "Bad string for date")
-//        }
-//    }
 
     class func createLocation(location: FTLocation, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
         // Start spinner
@@ -261,10 +210,11 @@ class ServerMgr {
         })
     }
 
-    func deleteLocation(locationId: String, completion : @escaping (_ error : String?)->()) {
+    func deleteLocation(locationId: String, completion : @escaping (_ statusCode: Int?, _ error : String?)->()) {
         let url = cLocationsURL + "/" + locationId
         Alamofire.request(url, method: .delete, parameters: ["id":locationId], encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { response in
-            completion(response.error?.localizedDescription)
+            let statusCode = response.response?.statusCode
+            completion(statusCode, response.error?.localizedDescription)
         })
     }
 

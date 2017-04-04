@@ -22,7 +22,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         super.viewDidLoad()
         toolbar.delegate = self
 
-        self.title = template!.name!.characters.count > 0 ? "Edit Template" : "New Template"
+        self.title = template!.name!.characters.count > 0 ? "Edit Form" : "New Form"
         self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
         self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Save", target: self, action: #selector(doneAction))
         makeNavBarFlat()
@@ -32,12 +32,12 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         titleLabel.makeDetailStyle()
         templateTitleLabel.makeTitleStyle()
         titleField.setActiveStyle(isActive: true)
-        titleField.text = template!.name
-        titleField.addHideKeyboardButton()
+         titleField.addHideKeyboardButton()
         editButton.makeFlatButton()
         editButton.isHidden = true
         if let template = template {
-            titleField.text = template.name
+            let title = template.name == "" ? "New Form" : template.name
+            titleField.text = title
         }
     }
 

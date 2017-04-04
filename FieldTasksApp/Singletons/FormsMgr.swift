@@ -19,6 +19,16 @@ class FormsMgr {
         return [Form]()
     }
 
+    func submissions() -> [Form] {
+        if let list = CoreDataMgr.fetchForms(context: CoreDataMgr.shared.mainThreadContext!) {
+            let submissions = list.filter({ (form) -> Bool in
+                return form.id != ""
+            })
+            return submissions
+        }
+        return [Form]()
+    }
+    
     func newForm(context: NSManagedObjectContext, template: Template) -> Form {
         let newForm = CoreDataMgr.createForm(context: CoreDataMgr.shared.mainThreadContext!)
         newForm.initFromTemplate(context: context, template: template)

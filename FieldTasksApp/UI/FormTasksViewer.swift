@@ -70,6 +70,11 @@ class FormTasksViewer : UITableViewController {
     }
 
     func goBack(){
+//        if form!.id == "" {
+//            // Remove unsubmitted forms.
+//            CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: form!)
+//            CoreDataMgr.shared.saveOnMainThread()
+//        }
         dismiss(animated: true, completion: nil)
     }
 

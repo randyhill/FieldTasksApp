@@ -196,14 +196,18 @@ class LocationsViewer: UITableViewController, LocationUpdates {
         self.askAlert(title: "Are you sure you want to delete this location?", body: "Deletion is permanent and can't be undone", action: "Delete", completion: { (deleteIt) in
             if deleteIt {
                 let location = self.locationList[indexPath.row]
-                ServerMgr.shared.deleteLocation(locationId: location.id!, completion: { (error) in
-                    if let error = error {
-                        self.showAlert(title: "Delete failed", message: "Unable to delete location: \(error)")
-                    } else {
-                        CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: location)
-                        self.refreshOnMainThread()
-                    }
-                })
+                NetworkOpsMgr.shared.deleteLocation(locationId: location.id!)
+                CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: location)
+                self.refreshOnMainThread()
+
+//                ServerMgr.shared.deleteLocation(locationId: location.id!, completion: { (error) in
+//                    if let error = error {
+//                        self.showAlert(title: "Delete failed", message: "Unable to delete location: \(error)")
+//                    } else {
+//                        CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: location)
+//                        self.refreshOnMainThread()
+//                    }
+//                })
             }
         })
     }
