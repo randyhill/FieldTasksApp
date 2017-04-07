@@ -21,14 +21,15 @@ let cBaseURL = "http://localhost:8080"
 let cBaseURL = "http://www.fieldtasks.co"
 #endif
 
-let cTemplatesURL = cBaseURL + "/templates"
-let cAllTemplatesURL = cBaseURL + "/alltemplates"
-let cFormsURL = cBaseURL + "/forms"
-let cAllFormsURL = cBaseURL + "/allforms"
-let cLocationsURL = cBaseURL + "/locations"
-let cLocationTemplatesURL = cBaseURL + "/locations/templates"
-let cUploadPhotoURL = cBaseURL + "/upload"
-let cDownloadPhotoURL = cBaseURL + "/download/"
+let cAPI_URL = cBaseURL + "/api"
+let cTemplatesURL = cAPI_URL + "/templates"
+let cAllTemplatesURL = cAPI_URL + "/alltemplates"
+let cFormsURL = cAPI_URL + "/forms"
+let cAllFormsURL = cAPI_URL + "/allforms"
+let cLocationsURL = cAPI_URL + "/locations"
+let cLocationTemplatesURL = cAPI_URL + "/locations/templates"
+//let cUploadPhotoURL = cAPI_URL + "/upload"
+//let cDownloadPhotoURL = cAPI_URL + "/download/"
 let cS3Bucket = "com.fieldtasks.images"
 let cFileNameLength = 12
 
@@ -49,7 +50,7 @@ class ServerMgr {
             FTErrorMessage(error: "Date string could not be encoded")
             return
         }
-        guard let url = URL(string: cBaseURL + "/sync/" + encodedDateString) else {
+        guard let url = URL(string: cAPI_URL + "/sync/" + encodedDateString) else {
             FTErrorMessage(error: "URL couldn't be created, server sync could not be invoked")
             return
         }
@@ -176,11 +177,10 @@ class ServerMgr {
     // MARK: Locations  -------------------------------------------------------------------------------
 
     class func createLocation(location: FTLocation, completion : @escaping (_ result: [String: Any]?, _ error: String?)->()) {
-        // Start spinner
         let locationDict = location.toDict()
 
         // for some reason POST requests require the path to end with / or the server will redirect to GET
-        Alamofire.request(cBaseURL + "/locations/", method: .post, parameters: locationDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
+        Alamofire.request(cLocationsURL, method: .post, parameters: locationDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
             if !response.result.isSuccess {
                 completion(nil, "Failed to save location")
             } else {
@@ -204,7 +204,7 @@ class ServerMgr {
 
         // for some reason POST requests require the path to end with / or the server will redirect to GET
         FTAssert(isTrue: location.id != "", error: "Trying to update location that wasn't saved")
-        let url = cBaseURL + "/locations/" + location.id!
+        let url = cLocationsURL + location.id!
         Alamofire.request(url, method: .put, parameters: locationDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
             completion(response.error?.localizedDescription)
         })
@@ -219,7 +219,6 @@ class ServerMgr {
     }
 
     // MARK: Image Files  -------------------------------------------------------------------------------
-
     func uploadImage(fileName: String, progress : @escaping (Float)->(), completion : @escaping (_ fileName: String, _ error: String?)->()) {
         let localPath = getImageDirectory().appendingPathComponent(fileName)
         if let uploadRequest = AWSS3TransferManagerUploadRequest() {
@@ -231,17 +230,16 @@ class ServerMgr {
                 progress(progressValue)
             }
             transferManager.upload(uploadRequest).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
-
-                if let error = task.error as? NSError {
+                if let error = (task.error as NSError?) {
                     if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
                         switch code {
                         case .cancelled, .paused:
                             break
                         default:
-                            completion("", "Error uploading: \(uploadRequest.key) Error: \(error)")
+                            completion("", "Error uploading: \(fileName) Error: \(error)")
                         }
                     } else {
-                        completion("", "Error uploading: \(uploadRequest.key) Error: \(error)")
+                        completion("", "Error uploading: \(fileName) Error: \(error)")
                     }
                 } else {
                     completion(fileName, nil)
@@ -267,19 +265,19 @@ class ServerMgr {
                 progress(progressValue)
             }
             transferManager.download(downloadRequest).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
-                if let error = task.error as? NSError {
+                if let error = (task.error as NSError?) {
                     if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
                         switch code {
                         case .cancelled, .paused:
                             break
                         default:
-                            completion(nil, "Error downloading: \(downloadRequest.key) Error: \(error)")
+                            completion(nil, "Error downloading: \(fileName) Error: \(error)")
                         }
                     } else {
-                        completion(nil, "Error downloading: \(downloadRequest.key) Error: \(error)")
+                        completion(nil, "Error downloading: \(fileName) Error: \(error)")
                     }
                 } else {
-                    print("Download complete for: \(downloadRequest.key)")
+                    print("Download complete for: \(fileName)")
                     if let image = UIImage(contentsOfFile: downloadingFileURL.path) {
                         completion(image, nil)
                     }
@@ -287,5 +285,28 @@ class ServerMgr {
                 return nil
             })
         }
+    }
+    
+    // MARK: Login  -------------------------------------------------------------------------------
+    func login(clientName: String, accountEmail : String, password: String, completion: @escaping (_ token: String?, _ error: String?)->()) {
+        let parameters = ["email" : accountEmail, "password" : password]
+        Alamofire.request(cBaseURL + "/login", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).validate(statusCode: 200..<201).responseJSON(completionHandler: { response in
+            let statusCode = response.response?.statusCode
+            if statusCode != 200 {
+                let error = statusCode == 401 ? "Login Failed: Could not find user" : "Login failed: Unknown error"
+                completion(nil, error)
+            } else {
+                if let jsonData = response.data {
+                    do {
+                        let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
+                        if let dict = jsonDict as? [String: Any] {
+                            completion(dict["token"] as? String, nil)
+                        }
+                    } catch {
+                        completion(nil, "Couldn't parse JSON: \(error)")
+                    }
+                }
+            }
+        })
     }
 }

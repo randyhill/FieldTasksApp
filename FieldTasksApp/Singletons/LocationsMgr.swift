@@ -153,7 +153,7 @@ class LocationsMgr : NSObject, CLLocationManagerDelegate {
     func clLocationToAddress(location: CLLocation, completion: @escaping (_ locationDict: [AnyHashable : Any])->()) {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, err) in
-            if err != nil {
+            if let err = err {
                 FTErrorMessage(error: "Failed to get address: \(err)")
             } else if let locationDict = placemarks?[0].addressDictionary {
                 completion(locationDict)

@@ -30,7 +30,7 @@ class CoreDataMgr {
             if let locations = try context.fetch(fetchRequest) as? [FTLocation] {
                 FTPrint(s: "Fetched list of \(locations.count) locations")
                 for location in locations {
-                    FTPrint(s: "Location: \(location.id)")
+                    FTPrint(s: "Location: \(location.id!)")
                 }
             }
         } catch let error as NSError {

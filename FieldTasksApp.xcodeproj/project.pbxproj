@@ -23,6 +23,14 @@
 /* Begin PBXBuildFile section */
 		02DC79A19BED6F37D1045500 /* Pods_FieldTasksApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE8420CBC9B3A1B24799E213 /* Pods_FieldTasksApp.framework */; };
 		2A93717BDF54F2F84376DF30 /* Pods_FieldTasksApp_Local.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE7A32FB2AD4BDB1E5B9D84 /* Pods_FieldTasksApp_Local.framework */; };
+		D806C9001E96E45700D773DF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D806C8FF1E96E45700D773DF /* Login.storyboard */; };
+		D806C9011E96E47000D773DF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D806C8FF1E96E45700D773DF /* Login.storyboard */; };
+		D806C9041E96E6A200D773DF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806C9031E96E6A200D773DF /* LoginController.swift */; };
+		D806C9051E96E6A200D773DF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806C9031E96E6A200D773DF /* LoginController.swift */; };
+		D806C9071E96E93900D773DF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806C9061E96E93900D773DF /* TabBarController.swift */; };
+		D806C9081E96E93900D773DF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806C9061E96E93900D773DF /* TabBarController.swift */; };
+		D806C90A1E96FE1E00D773DF /* LaunchMovie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D806C9091E96FE1E00D773DF /* LaunchMovie.mp4 */; };
+		D806C90B1E96FE1E00D773DF /* LaunchMovie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D806C9091E96FE1E00D773DF /* LaunchMovie.mp4 */; };
 		D81753941E675B95003D8033 /* NumberTaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81753931E675B95003D8033 /* NumberTaskEditor.swift */; };
 		D81753951E675B95003D8033 /* NumberTaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81753931E675B95003D8033 /* NumberTaskEditor.swift */; };
 		D81753971E675BAD003D8033 /* TaskTypeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81753961E675BAD003D8033 /* TaskTypeEditor.swift */; };
@@ -271,6 +279,10 @@
 		7BE7A32FB2AD4BDB1E5B9D84 /* Pods_FieldTasksApp_Local.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FieldTasksApp_Local.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEB5688752EF3DB8FAD426F /* Pods-FieldTasksApp Local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp Local.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp Local/Pods-FieldTasksApp Local.release.xcconfig"; sourceTree = "<group>"; };
 		D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldTasksApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldTasksApp/Pods-FieldTasksApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D806C8FF1E96E45700D773DF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = UI/Login.storyboard; sourceTree = "<group>"; };
+		D806C9031E96E6A200D773DF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = UI/Login/LoginController.swift; sourceTree = "<group>"; };
+		D806C9061E96E93900D773DF /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = UI/TabBarController.swift; sourceTree = "<group>"; };
+		D806C9091E96FE1E00D773DF /* LaunchMovie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LaunchMovie.mp4; sourceTree = "<group>"; };
 		D81753931E675B95003D8033 /* NumberTaskEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberTaskEditor.swift; path = UI/Templates/NumberTaskEditor.swift; sourceTree = "<group>"; };
 		D81753961E675BAD003D8033 /* TaskTypeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTypeEditor.swift; path = UI/Templates/TaskTypeEditor.swift; sourceTree = "<group>"; };
 		D817539C1E675BED003D8033 /* PhotosTaskEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosTaskEditor.swift; path = UI/Templates/PhotosTaskEditor.swift; sourceTree = "<group>"; };
@@ -439,13 +451,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D806C9021E96E66D00D773DF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D806C8FF1E96E45700D773DF /* Login.storyboard */,
+				D806C9031E96E6A200D773DF /* LoginController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		D82411A21E301C01006D06E2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D806C9021E96E66D00D773DF /* Login */,
 				D8C165CB1E47EBEE00129439 /* Extensions */,
 				D8F234411E68DB000043D1C7 /* Views */,
 				D86BF7251E638F3D00884277 /* SharedUI.swift */,
 				D8549B9E1D67871B009DBE7A /* Main.storyboard */,
+				D806C9061E96E93900D773DF /* TabBarController.swift */,
 				D82411A01E301BE6006D06E2 /* FormsViewer.swift */,
 				D89770BF1E5BC49200A9318D /* FormsTable.swift */,
 				D8F1D70C1E53A92700A07F70 /* FormViewer.swift */,
@@ -522,10 +545,9 @@
 			children = (
 				D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */,
 				D8549B9A1D67871B009DBE7A /* AppDelegate.swift */,
-				D85D53DD1D710D94006D31F2 /* Globals.swift */,
+				D8E9547C1E622F71004D5D4C /* Singletons */,
 				D83A02BD1E8EDE3E00331DF3 /* Networking */,
 				D82411A21E301C01006D06E2 /* UI */,
-				D8E9547C1E622F71004D5D4C /* Singletons */,
 				D8549BD81D68C9D7009DBE7A /* Data Classes */,
 				D8549BCF1D67B652009DBE7A /* Supporting Files */,
 			);
@@ -653,6 +675,7 @@
 		D8C165E61E48FFD000129439 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D806C9091E96FE1E00D773DF /* LaunchMovie.mp4 */,
 				D86BF74B1E63C6FB00884277 /* choices.png */,
 				D86BF74C1E63C6FB00884277 /* choices@2x.png */,
 				D86BF74D1E63C6FB00884277 /* choices@3x.png */,
@@ -692,6 +715,7 @@
 		D8E9547C1E622F71004D5D4C /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
+				D85D53DD1D710D94006D31F2 /* Globals.swift */,
 				D86BF72A1E6397EC00884277 /* LocationsMgr.swift */,
 				D86BF72C1E6397EC00884277 /* TemplatesMgr.swift */,
 				D8B4388E1E6B870A00FDCB0B /* FormsMgr.swift */,
@@ -758,7 +782,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = CRH;
 				TargetAttributes = {
 					D8549B961D67871B009DBE7A = {
@@ -804,6 +828,7 @@
 			files = (
 				D86BF7491E63C60200884277 /* text@3x.png in Resources */,
 				D89770AE1E5B801100A9318D /* forms.png in Resources */,
+				D806C9001E96E45700D773DF /* Login.storyboard in Resources */,
 				D89770AC1E5B801100A9318D /* forms@2x.png in Resources */,
 				D89770881E5A98C100A9318D /* refresh@2x.png in Resources */,
 				D86BF7401E63B4AE00884277 /* photo@3x.png in Resources */,
@@ -811,6 +836,7 @@
 				D86BF7451E63C60200884277 /* text.png in Resources */,
 				D82411B31E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
 				D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */,
+				D806C90A1E96FE1E00D773DF /* LaunchMovie.mp4 in Resources */,
 				D89770AA1E5B801100A9318D /* forms@3x.png in Resources */,
 				D86BF7471E63C60200884277 /* text@2x.png in Resources */,
 				D86BF75E1E63CA9B00884277 /* number@3x.png in Resources */,
@@ -852,6 +878,7 @@
 			files = (
 				D89299CD1E64FABC00CC2070 /* refresh.png in Resources */,
 				D86BF74A1E63C60200884277 /* text@3x.png in Resources */,
+				D806C9011E96E47000D773DF /* Login.storyboard in Resources */,
 				D89770AF1E5B801100A9318D /* forms.png in Resources */,
 				D858D95D1E576D770059E0EF /* checkmark@2x.png in Resources */,
 				D89770AD1E5B801100A9318D /* forms@2x.png in Resources */,
@@ -859,6 +886,7 @@
 				D86BF7411E63B4AE00884277 /* photo@3x.png in Resources */,
 				D86BF7461E63C60200884277 /* text.png in Resources */,
 				D858D95B1E576D770059E0EF /* checkmark@3x.png in Resources */,
+				D806C90B1E96FE1E00D773DF /* LaunchMovie.mp4 in Resources */,
 				D85D53D51D710750006D31F2 /* LaunchScreen.storyboard in Resources */,
 				D82411B41E36B405006D06E2 /* Lato-Bold.ttf in Resources */,
 				D89770AB1E5B801100A9318D /* forms@3x.png in Resources */,
@@ -1037,6 +1065,7 @@
 				D86C79F41E6DDDBF00A8A801 /* ChoicesResult.swift in Sources */,
 				D835A3E71E635C31002C3EB1 /* UITextField.swift in Sources */,
 				D86BF77C1E64A43800884277 /* TaskController.swift in Sources */,
+				D806C9041E96E6A200D773DF /* LoginController.swift in Sources */,
 				D8E4B7AC1E6F34C200BDE823 /* _TextResult.swift in Sources */,
 				D8E4B7981E6F34C200BDE823 /* _ChoicesTask.swift in Sources */,
 				D83A02C81E8F2EBF00331DF3 /* NetQueueOp.swift in Sources */,
@@ -1064,6 +1093,7 @@
 				D89770D21E5CBBFD00A9318D /* LocationEditor.swift in Sources */,
 				D835A3E81E635C31002C3EB1 /* UITextView.swift in Sources */,
 				D835A3E31E635C31002C3EB1 /* FUIButton.swift in Sources */,
+				D806C9071E96E93900D773DF /* TabBarController.swift in Sources */,
 				D86C79FD1E6DDDBF00A8A801 /* NumberTask.swift in Sources */,
 				D89A041F1E889185005576B4 /* Reachability.swift in Sources */,
 				D86BF77E1E64A43800884277 /* TasksViewer.swift in Sources */,
@@ -1123,6 +1153,7 @@
 				D82411A31E301D5A006D06E2 /* FormsViewer.swift in Sources */,
 				D835A3EC1E635C58002C3EB1 /* Double.swift in Sources */,
 				D86BF76D1E64A42500884277 /* TemplatesViewer.swift in Sources */,
+				D806C9051E96E6A200D773DF /* LoginController.swift in Sources */,
 				D86C7A1C1E6DEBFD00A8A801 /* Form.swift in Sources */,
 				D8E4B7AD1E6F34C200BDE823 /* _TextResult.swift in Sources */,
 				D83A02C91E8F2EBF00331DF3 /* NetQueueOp.swift in Sources */,
@@ -1150,6 +1181,7 @@
 				D8E4B7A11E6F34C200BDE823 /* _NumberTask.swift in Sources */,
 				D81753A11E675C34003D8033 /* ChoicesTaskEditor.swift in Sources */,
 				D89299D11E65E6D300CC2070 /* TaskEditor.swift in Sources */,
+				D806C9081E96E93900D773DF /* TabBarController.swift in Sources */,
 				D86C7A251E6DEBFD00A8A801 /* TextResult.swift in Sources */,
 				D89A04201E889185005576B4 /* Reachability.swift in Sources */,
 				D86BF7321E63982800884277 /* TemplatesMgr.swift in Sources */,
@@ -1296,7 +1328,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D470DF1679B69F1B3B8C4D0C /* Pods-FieldTasksApp.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1318,7 +1350,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4BEB6C5B210DC95D925F6144 /* Pods-FieldTasksApp.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1339,7 +1371,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65BD1D570094E531AEA25ED4 /* Pods-FieldTasksApp Local.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1360,7 +1392,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CAEB5688752EF3DB8FAD426F /* Pods-FieldTasksApp Local.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -44,7 +44,6 @@ PODS:
   - AWSSQS (2.5.2):
     - AWSCore (= 2.5.2)
   - FlatUIKit (1.6.2)
-  - IQKeyboardManagerSwift (4.0.8)
   - SVProgressHUD (2.1.2)
   - SwiftDate (4.0.13)
 
@@ -72,7 +71,6 @@ DEPENDENCIES:
   - AWSSNS
   - AWSSQS
   - FlatUIKit
-  - IQKeyboardManagerSwift
   - SVProgressHUD
   - SwiftDate (~> 4.0)
 
@@ -101,10 +99,9 @@ SPEC CHECKSUMS:
   AWSSNS: 3437c505bfb8d5eda6bfc497368462ae31423324
   AWSSQS: 558aac70d0c908fa5f3b043410243595e4100ff4
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
-  IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   SwiftDate: 8ec416bb1b5129d1f35e8efaed720421f41d42df
 
-PODFILE CHECKSUM: 86b500daa42bfe7330989f77e6f24c4dd2ff1b88
+PODFILE CHECKSUM: c0c1180609b1e5664e90c0438c17d49e7fca52fb
 
 COCOAPODS: 1.1.1

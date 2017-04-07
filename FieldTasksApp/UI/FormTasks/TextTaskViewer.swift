@@ -62,7 +62,7 @@ class TextTaskViewer : BaseTaskViewer {
             let count = textView.text.characters.count
             if count > 0 {
                 if !textTask.isUnlimited!.boolValue && (count > textTask.max!.intValue) {
-                    return "Too many characters, max allowed is \(textTask.max)"
+                    return "Too many characters, max allowed is \(textTask.max!)"
                 }
                 return nil
             } else {

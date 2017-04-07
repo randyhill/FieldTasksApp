@@ -112,7 +112,7 @@ open class FTLocation: _FTLocation {
     }
 
     func coordinates() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: (latitude as Double?)!, longitude: (longitude as Double?)!)
+        return CLLocationCoordinate2D(latitude: (latitude as! Double?)!, longitude: (longitude as! Double?)!)
     }
 
     func fromCLLocation(clLoc : CLLocation) {

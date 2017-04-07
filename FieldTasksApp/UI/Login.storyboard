@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login Controller-->
+        <scene sceneID="QLu-Qy-jTD">
+            <objects>
+                <viewController storyboardIdentifier="LoginController" id="ECD-eE-VzE" customClass="LoginController" customModule="FieldTasksApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ako-2H-iaM"/>
+                        <viewControllerLayoutGuide type="bottom" id="zcC-5P-5ZC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wt9-lh-WOM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="grF-Uw-jgJ">
+                                <rect key="frame" x="16" y="156" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Fdz-Xd-XfM"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ne-s0-6OI">
+                                <rect key="frame" x="16" y="203" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YbV-ke-vsp"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibi-ld-DBg" customClass="FUIButton">
+                                <rect key="frame" x="16" y="257" width="343" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="evy-ze-H2t"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginAtion:" destination="ECD-eE-VzE" eventType="touchUpInside" id="inm-zU-1zc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0d-3a-jJ9" customClass="FUIButton">
+                                <rect key="frame" x="16" y="309" width="343" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="OBz-BB-bjt"/>
+                                </constraints>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerAction:" destination="ECD-eE-VzE" eventType="touchUpInside" id="jmE-Yr-I19"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="grF-Uw-jgJ" firstAttribute="leading" secondItem="wt9-lh-WOM" secondAttribute="leadingMargin" id="4o6-ae-hqG"/>
+                            <constraint firstItem="zcC-5P-5ZC" firstAttribute="top" secondItem="C0d-3a-jJ9" secondAttribute="bottom" constant="320" id="Axt-aO-oZm"/>
+                            <constraint firstItem="2Ne-s0-6OI" firstAttribute="leading" secondItem="wt9-lh-WOM" secondAttribute="leadingMargin" id="Eho-CX-LSf"/>
+                            <constraint firstItem="C0d-3a-jJ9" firstAttribute="trailing" secondItem="wt9-lh-WOM" secondAttribute="trailingMargin" id="F5Q-3e-twa"/>
+                            <constraint firstItem="C0d-3a-jJ9" firstAttribute="top" secondItem="ibi-ld-DBg" secondAttribute="bottom" constant="14" id="KVw-BI-azx"/>
+                            <constraint firstItem="ibi-ld-DBg" firstAttribute="top" secondItem="2Ne-s0-6OI" secondAttribute="bottom" constant="24" id="NBx-VM-vZG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ibi-ld-DBg" secondAttribute="trailing" id="PaB-rb-JC2"/>
+                            <constraint firstItem="C0d-3a-jJ9" firstAttribute="leading" secondItem="wt9-lh-WOM" secondAttribute="leadingMargin" id="eUm-7f-PKl"/>
+                            <constraint firstItem="grF-Uw-jgJ" firstAttribute="trailing" secondItem="wt9-lh-WOM" secondAttribute="trailingMargin" id="gAW-0q-b8T"/>
+                            <constraint firstItem="2Ne-s0-6OI" firstAttribute="trailing" secondItem="wt9-lh-WOM" secondAttribute="trailingMargin" id="kcY-Ae-C8g"/>
+                            <constraint firstItem="ibi-ld-DBg" firstAttribute="leading" secondItem="wt9-lh-WOM" secondAttribute="leadingMargin" id="pq3-uL-zBa"/>
+                            <constraint firstItem="2Ne-s0-6OI" firstAttribute="top" secondItem="grF-Uw-jgJ" secondAttribute="bottom" constant="17" id="q7P-bY-SD6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailField" destination="grF-Uw-jgJ" id="ku6-A3-CCY"/>
+                        <outlet property="loginButton" destination="ibi-ld-DBg" id="ABH-1W-arp"/>
+                        <outlet property="passwordField" destination="2Ne-s0-6OI" id="8lv-ay-tk0"/>
+                        <outlet property="registerButton" destination="C0d-3a-jJ9" id="q7v-Wx-ad1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vaC-wA-0hU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-506.39999999999998" y="-421.43928035982015"/>
+        </scene>
+    </scenes>
+</document>

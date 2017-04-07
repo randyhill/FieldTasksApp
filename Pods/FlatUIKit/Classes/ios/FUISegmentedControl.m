@@ -128,16 +128,16 @@
                                         nil];
     } else {
         // iOS6- methods
-        selectedAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        self.selectedFontColor,
-                                        UITextAttributeTextColor,
-                                        [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
-                                        UITextAttributeTextShadowColor,
-                                        [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
-                                        UITextAttributeTextShadowOffset,
-                                        self.selectedFont,
-                                        UITextAttributeFont,
-                                        nil];
+//        selectedAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                        self.selectedFontColor,
+//                                        UITextAttributeTextColor,
+//                                        [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
+//                                        UITextAttributeTextShadowColor,
+//                                        [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
+//                                        UITextAttributeTextShadowOffset,
+//                                        self.selectedFont,
+//                                        UITextAttributeFont,
+//                                        nil];
     }
     
     [self setTitleTextAttributes:selectedAttributesDictionary forState:UIControlStateSelected];
@@ -158,16 +158,16 @@
                                           nil];
 	} else {
         // iOS6- methods.
-        deselectedAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          self.deselectedFontColor,
-                                          UITextAttributeTextColor,
-                                          [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
-                                          UITextAttributeTextShadowColor,
-                                          [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
-                                          UITextAttributeTextShadowOffset,
-                                          self.deselectedFont,
-                                          UITextAttributeFont,
-                                          nil];
+//        deselectedAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                          self.deselectedFontColor,
+//                                          UITextAttributeTextColor,
+//                                          [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
+//                                          UITextAttributeTextShadowColor,
+//                                          [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
+//                                          UITextAttributeTextShadowOffset,
+//                                          self.deselectedFont,
+//                                          UITextAttributeFont,
+//                                          nil];
     }
     [self setTitleTextAttributes:deselectedAttributesDictionary forState:UIControlStateNormal];
 
@@ -186,17 +186,17 @@
                 NSFontAttributeName,
                 nil];
     } else {
-        // iOS6- methods
-        disabledAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                self.disabledFontColor,
-                UITextAttributeTextColor,
-                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
-                UITextAttributeTextShadowColor,
-                [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
-                UITextAttributeTextShadowOffset,
-                self.disabledFont,
-                UITextAttributeFont,
-                nil];
+//        // iOS6- methods
+//        disabledAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+//                self.disabledFontColor,
+//                UITextAttributeTextColor,
+//                [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
+//                UITextAttributeTextShadowColor,
+//                [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
+//                UITextAttributeTextShadowOffset,
+//                self.disabledFont,
+//                UITextAttributeFont,
+//                nil];
     }
 
     [self setTitleTextAttributes:disabledAttributesDictionary forState:UIControlStateDisabled];
@@ -218,16 +218,16 @@
                                         nil];
     } else {
         // iOS6- methods
-        highlightedAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        self.highlightedFontColor,
-                                        UITextAttributeTextColor,
-                                        [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
-                                        UITextAttributeTextShadowColor,
-                                        [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
-                                        UITextAttributeTextShadowOffset,
-                                        self.highlightedFont,
-                                        UITextAttributeFont,
-                                        nil];
+//        highlightedAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                        self.highlightedFontColor,
+//                                        UITextAttributeTextColor,
+//                                        [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0],
+//                                        UITextAttributeTextShadowColor,
+//                                        [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
+//                                        UITextAttributeTextShadowOffset,
+//                                        self.highlightedFont,
+//                                        UITextAttributeFont,
+//                                        nil];
     }
     
     [self setTitleTextAttributes:highlightedAttributesDictionary forState:UIControlStateHighlighted];

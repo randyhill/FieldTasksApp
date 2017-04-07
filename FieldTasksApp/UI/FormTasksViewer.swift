@@ -92,7 +92,7 @@ class FormTasksViewer : UITableViewController {
             return "You must pick a location to save the form to"
         }
         if let incompleteTasks = form!.tasksStillIncomplete() {
-            return "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name) form"
+            return "Please complete required fields (\(incompleteTasks)) before submitting \(form!.name!) form"
         }
         return nil
     }

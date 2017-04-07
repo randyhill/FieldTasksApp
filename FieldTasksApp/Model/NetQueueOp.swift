@@ -11,6 +11,6 @@ open class NetQueueOp: _NetQueueOp {
     }
 
     func describe() -> String {
-        return "type: \(self.typeName) key: \(self.objectKey)"
+        return "type: \(self.typeName!) key: \(self.objectKey!)"
     }
 }

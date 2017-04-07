@@ -9,7 +9,7 @@ target 'FieldTasksApp' do
   pod 'Alamofire', '~> 4.3'
   pod 'FlatUIKit'
   pod 'SVProgressHUD'
-  pod 'IQKeyboardManagerSwift'
+  #pod 'IQKeyboardManagerSwift'
   pod 'SwiftDate', '~> 4.0'
 
     pod 'AWSAutoScaling'
@@ -43,7 +43,7 @@ target 'FieldTasksApp Local' do
   pod 'Alamofire', '~> 4.3'
   pod 'FlatUIKit'
   pod 'SVProgressHUD'
-  pod 'IQKeyboardManagerSwift'
+  #pod 'IQKeyboardManagerSwift'
   pod 'SwiftDate', '~> 4.0'
 
     pod 'AWSAutoScaling'

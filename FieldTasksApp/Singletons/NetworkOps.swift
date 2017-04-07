@@ -243,7 +243,7 @@ class FormSubmitOp : ServerOp {
     override func main() {
         FTPrint(s: "Form submission starting")
         ServerMgr.shared.saveAsForm(form: form) { (result, error) in
-            if error != nil {
+            if let error = error {
                 FTPrint(s: "Error submitting form: \(error)")
                 self.retry(serverOp: FormSubmitOp(form: self.form))
             } else {
@@ -301,7 +301,7 @@ class NewTemplateOp : ServerOp {
                 FTPrint(s: "Error submitting template: \(error)")
                 self.retry(serverOp: NewTemplateOp(template: self.template))
             } else {
-                if let templateDict = templateDict as? [String: AnyObject]{
+                if let templateDict = (templateDict as [String: AnyObject]?) {
                     // Clear from core data queue before id changes.
                     self.success()
 
@@ -410,7 +410,7 @@ class NewLocationOp : ServerOp {
                 FTPrint(s: "Error creating location: \(error)")
                 self.retry(serverOp: NewLocationOp(location: self.location))
             } else {
-                if let locationDict = locationDict as? [String: AnyObject]{
+                if let locationDict = (locationDict as [String: AnyObject]?) {
                     // Remove from queue before id updated
                     self.success()
 

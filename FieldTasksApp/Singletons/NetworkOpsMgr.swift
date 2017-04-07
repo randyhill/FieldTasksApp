@@ -108,7 +108,7 @@ class NetworkOpsMgr {
         case className(object: DeleteLocationOp.self):
             networkOp = DeleteLocationOp(locationId: descriptor.objectKey!)
         default:
-            FTErrorMessage(error: "Could not recreate network op: \(descriptor.typeName)")
+            FTErrorMessage(error: "Could not recreate network op: \(descriptor.typeName ?? "type unknown")")
         }
         return networkOp
     }
