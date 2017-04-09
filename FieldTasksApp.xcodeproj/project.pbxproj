@@ -87,6 +87,10 @@
 		D8549BA31D67871B009DBE7A /* FieldTasksApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8549BA11D67871B009DBE7A /* FieldTasksApp.xcdatamodeld */; };
 		D8549BA51D67871B009DBE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8549BA41D67871B009DBE7A /* Assets.xcassets */; };
 		D8549BA81D67871B009DBE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8549BA61D67871B009DBE7A /* LaunchScreen.storyboard */; };
+		D85633551E996B7700CDE39E /* _Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85633531E996B7700CDE39E /* _Login.swift */; };
+		D85633561E996B7700CDE39E /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85633541E996B7700CDE39E /* Login.swift */; };
+		D85633571E996D5A00CDE39E /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85633541E996B7700CDE39E /* Login.swift */; };
+		D85633581E996D7100CDE39E /* _Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85633531E996B7700CDE39E /* _Login.swift */; };
 		D858D9561E576B220059E0EF /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9551E576B220059E0EF /* checkmark@2x.png */; };
 		D858D9591E576B720059E0EF /* checkmark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9571E576B720059E0EF /* checkmark@3x.png */; };
 		D858D95A1E576B720059E0EF /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D858D9581E576B720059E0EF /* checkmark.png */; };
@@ -317,6 +321,8 @@
 		D8549BA71D67871B009DBE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8549BBD1D67871B009DBE7A /* FieldTasksAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTasksAppUITests.swift; sourceTree = "<group>"; };
 		D8549BBF1D67871B009DBE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D85633531E996B7700CDE39E /* _Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Login.swift; path = Model/_Login.swift; sourceTree = "<group>"; };
+		D85633541E996B7700CDE39E /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Model/Login.swift; sourceTree = "<group>"; };
 		D858D9551E576B220059E0EF /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "Images/checkmark@2x.png"; sourceTree = "<group>"; };
 		D858D9571E576B720059E0EF /* checkmark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@3x.png"; path = "Images/checkmark@3x.png"; sourceTree = "<group>"; };
 		D858D9581E576B720059E0EF /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmark.png; path = Images/checkmark.png; sourceTree = "<group>"; };
@@ -618,6 +624,7 @@
 				D86C79D31E6DDDBF00A8A801 /* ChoicesTask.swift */,
 				D86C79D81E6DDDBF00A8A801 /* Form.swift */,
 				D86C7A061E6DDE6800A8A801 /* FTLocation.swift */,
+				D85633541E996B7700CDE39E /* Login.swift */,
 				D83A02C01E8F2EBF00331DF3 /* NetOpsQueue.swift */,
 				D83A02C11E8F2EBF00331DF3 /* NetQueueOp.swift */,
 				D86C79DA1E6DDDBF00A8A801 /* NumberResult.swift */,
@@ -636,12 +643,13 @@
 		D89A041D1E887442005576B4 /* Machine */ = {
 			isa = PBXGroup;
 			children = (
-				D83A02BE1E8F2EBF00331DF3 /* _NetOpsQueue.swift */,
-				D83A02BF1E8F2EBF00331DF3 /* _NetQueueOp.swift */,
 				D8E4B7891E6F34C200BDE823 /* _ChoicesResult.swift */,
 				D8E4B78A1E6F34C200BDE823 /* _ChoicesTask.swift */,
 				D8E4B78B1E6F34C200BDE823 /* _Form.swift */,
 				D8E4B78C1E6F34C200BDE823 /* _FTLocation.swift */,
+				D85633531E996B7700CDE39E /* _Login.swift */,
+				D83A02BE1E8F2EBF00331DF3 /* _NetOpsQueue.swift */,
+				D83A02BF1E8F2EBF00331DF3 /* _NetQueueOp.swift */,
 				D8E4B78D1E6F34C200BDE823 /* _NumberResult.swift */,
 				D8E4B78E1E6F34C200BDE823 /* _NumberTask.swift */,
 				D8E4B78F1E6F34C200BDE823 /* _PhotosResult.swift */,
@@ -1043,6 +1051,7 @@
 				D89A041B1E874240005576B4 /* NetworkOpsMgr.swift in Sources */,
 				D86BF72D1E6397EC00884277 /* LocationsMgr.swift in Sources */,
 				D8E4B7601E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */,
+				D85633551E996B7700CDE39E /* _Login.swift in Sources */,
 				D86BF7681E64A42500884277 /* TemplateEditor.swift in Sources */,
 				D8E4B7A61E6F34C200BDE823 /* _Task.swift in Sources */,
 				D8E4B7A81E6F34C200BDE823 /* _TaskResult.swift in Sources */,
@@ -1052,6 +1061,7 @@
 				D86BF7761E64A43800884277 /* ChoicesTaskViewer.swift in Sources */,
 				D8E4B7A21E6F34C200BDE823 /* _PhotosResult.swift in Sources */,
 				D835A3E51E635C31002C3EB1 /* UILabel.swift in Sources */,
+				D85633561E996B7700CDE39E /* Login.swift in Sources */,
 				D86BF76E1E64A42500884277 /* TemplatesTable.swift in Sources */,
 				D835A3E21E635C31002C3EB1 /* Double.swift in Sources */,
 				D86C79FA1E6DDDBF00A8A801 /* Form.swift in Sources */,
@@ -1130,6 +1140,7 @@
 				D86C7A1F1E6DEBFD00A8A801 /* NumberTask.swift in Sources */,
 				D89A041C1E874240005576B4 /* NetworkOpsMgr.swift in Sources */,
 				D86BF77B1E64A43800884277 /* PhotosTaskViewer.swift in Sources */,
+				D85633581E996D7100CDE39E /* _Login.swift in Sources */,
 				D84AAF2D1E4531EA000D584F /* LocationsViewer.swift in Sources */,
 				D8E4B7611E6F2CA200BDE823 /* CoreDataMgr.swift in Sources */,
 				D8E4B7A71E6F34C200BDE823 /* _Task.swift in Sources */,
@@ -1139,6 +1150,7 @@
 				D83A02C71E8F2EBF00331DF3 /* NetOpsQueue.swift in Sources */,
 				D82411A61E315517006D06E2 /* FormTasksViewer.swift in Sources */,
 				D8E4B7A31E6F34C200BDE823 /* _PhotosResult.swift in Sources */,
+				D85633571E996D5A00CDE39E /* Login.swift in Sources */,
 				D86C7A261E6DEBFD00A8A801 /* TextTask.swift in Sources */,
 				D86BF7301E63982800884277 /* LocationsMgr.swift in Sources */,
 				D86BF7771E64A43800884277 /* ChoicesTaskViewer.swift in Sources */,

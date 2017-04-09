@@ -34,7 +34,8 @@ class LoginController : UIViewController {
         if let bottomLayer = self.view.layer.sublayers?.first {
             self.view.layer.insertSublayer(self.playerLayer, below: bottomLayer)
         }
-        if let email = Globals.shared.userAccount {
+        let email = Globals.shared.loginEmail
+        if email.characters.count > 0 {
             emailField.text = email
             passwordField.becomeFirstResponder()
         } else {
@@ -59,11 +60,14 @@ class LoginController : UIViewController {
     }
 
     @IBAction func loginAtion(_ sender: Any) {
-        Globals.shared.userAccount = emailField.text
-        ServerMgr.shared.login(clientName: "", accountEmail: emailField.text!, password: passwordField.text!) { (token, error) in
-            if let token = token {
-                Globals.shared.accessToken = token
-                self.dismiss(animated: true, completion: { 
+        ServerMgr.shared.login(clientName: "", accountEmail: emailField.text!, password: passwordField.text!) { (tokenDict, error) in
+            if let tokenDict = tokenDict, let decodedDict = tokenDict["decoded"] as? [String:Any] {
+                let token = tokenDict["token"] as? String
+                let expiration = (decodedDict["exp"] as? Int64) ?? 0
+                let email = decodedDict["email"] as? String
+                let account = decodedDict["name"] as? String
+                Globals.shared.setToken(token: token ?? "", expiration: expiration, email: email ?? "", account: account ?? "")
+                self.dismiss(animated: true, completion: {
 
                 })
             } else {
@@ -75,7 +79,7 @@ class LoginController : UIViewController {
     func appActivated() {
         self.playerLayer.player?.play()
     }
-    
+
     // MARK: Animation  -------------------------------------------------------------------------------
     func playerDidReachEnd(){
         self.playerLayer.player!.seek(to: kCMTimeZero)

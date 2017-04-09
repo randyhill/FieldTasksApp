@@ -20,6 +20,14 @@
 
 import UIKit
 
+func beginBackgroundUpdateTask() -> UIBackgroundTaskIdentifier {
+    return UIApplication.shared.beginBackgroundTask(expirationHandler: {})
+}
+
+func endBackgroundUpdateTask(taskID: UIBackgroundTaskIdentifier) {
+    UIApplication.shared.endBackgroundTask(taskID)
+}
+
 // MARK: Network Op  -------------------------------------------------------------------------------
 class NetworkOp : Operation {
 
@@ -405,7 +413,7 @@ class NewLocationOp : ServerOp {
 
     override func main() {
         FTPrint(s: "New Location op starting")
-        ServerMgr.createLocation(location: location) { (locationDict, error ) in
+        ServerMgr.shared.createLocation(location: location) { (locationDict, error ) in
             if let error = error {
                 FTPrint(s: "Error creating location: \(error)")
                 self.retry(serverOp: NewLocationOp(location: self.location))
@@ -440,7 +448,7 @@ class SaveLocationOp : ServerOp {
 
     override func main() {
         FTPrint(s: "New Location op starting")
-        ServerMgr.updateLocation(location: self.location) { (error ) in
+        ServerMgr.shared.updateLocation(location: self.location) { (error ) in
             if let error = error {
                 FTPrint(s: "Error saving location: \(error)")
                 self.retry(serverOp: NewLocationOp(location: self.location))

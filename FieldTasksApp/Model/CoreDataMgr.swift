@@ -141,6 +141,21 @@ class CoreDataMgr {
         return nil
     }
 
+
+    class func fetchLogin(context : NSManagedObjectContext) -> Login {
+          do {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Login.entityName())
+            let objects = try context.fetch(fetchRequest)
+            if objects.count > 0 {
+                return objects[0] as! Login
+            }
+        } catch let error as NSError {
+            FTErrorMessage(error: "Could not create login object: \(error), \(error.userInfo)")
+        }
+        return CoreDataMgr.createLogin(context: context)
+    }
+
+
     class func fetchObjectsWithIds(context : NSManagedObjectContext, entityName: String, ids: [String]) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id IN %@", ids)
@@ -175,6 +190,10 @@ class CoreDataMgr {
         return NetOpsQueue(entity: entity!, insertInto: context)
     }
 
+    class func createLogin(context: NSManagedObjectContext) -> Login {
+        let entity = NSEntityDescription.entity(forEntityName: Login.entityName(), in: context)
+        return Login(entity: entity!, insertInto: context)
+    }
 
     class func createLocation(context : NSManagedObjectContext) -> FTLocation {
         let entity = NSEntityDescription.entity(forEntityName: FTLocation.entityName(), in: context)

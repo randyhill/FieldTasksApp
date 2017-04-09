@@ -13,12 +13,11 @@ class TabBarController : UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if Globals.shared.accessToken == nil {
+        // Force login if session invalid
+        if Globals.shared.tokenExpired {
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "LoginController")
-            self.present(controller, animated: true, completion: {
-
-            })
+            self.present(controller, animated: true, completion: {})
         }
     }
 }

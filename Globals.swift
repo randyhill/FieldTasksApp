@@ -24,8 +24,57 @@ class Globals {
     let barColor = UIColor.asbestos()
     let barButtonColor = UIColor.peterRiver()
     let selectionColor = UIColor.wetAsphalt()
-    var accessToken : String?
-    var userAccount : String?
+
+    // MARK: Login Tokens  -------------------------------------------------------------------------------
+    private var _login : Login?
+    private var login : Login {
+        get {
+            if let login = _login {
+                return login
+            } else {
+                _login = CoreDataMgr.fetchLogin(context: CoreDataMgr.shared.mainThreadContext!)
+                 return _login!
+            }
+        }
+    }
+    var loginToken : String {
+        get {
+            let login = self.login
+            return login.token ?? ""
+        }
+    }
+    var loginEmail : String {
+        get {
+            // We'll use
+            let login = self.login
+            return login.email ?? ""
+        }
+    }
+    var loginAccount : String {
+        get {
+            let login = self.login
+            return login.account ?? ""
+        }
+    }
+    var tokenExpired : Bool {
+        get {
+            let login = self.login
+            if let expiration = login.expiration {
+                let dateTimeStamp = Date(timeIntervalSince1970: TimeInterval(expiration))
+                return Date().timeIntervalSince(dateTimeStamp) > 0
+            }
+            return true
+        }
+    }
+
+    func setToken(token : String, expiration: Int64, email: String, account: String) {
+        let login = self.login
+        login.token = token
+        login.expiration = expiration as NSNumber
+        login.email = email
+        login.account = account
+        CoreDataMgr.shared.saveOnMainThread()
+    }
 
     init() {
         utcFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -59,6 +108,7 @@ class Globals {
         return UserDefaults.standard.object(forKey: key) as AnyObject?
     }
 
+    // MARK: Dates  -------------------------------------------------------------------------------
     func encodeDate(date: Date) -> String? {
         let dateString = utcFormatter.string(from: date)
         return dateString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
@@ -93,6 +143,7 @@ class Globals {
    }
 }
 
+// MARK: Files  -------------------------------------------------------------------------------
 func getDocumentsDirectory() -> URL {
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     let documentsDirectory = paths[0]
@@ -124,14 +175,8 @@ func className(object: Any) -> String {
     return (object is Any.Type) ? "\(object)" : "\(type(of: object))"
 }
 
-func beginBackgroundUpdateTask() -> UIBackgroundTaskIdentifier {
-    return UIApplication.shared.beginBackgroundTask(expirationHandler: {})
-}
 
-func endBackgroundUpdateTask(taskID: UIBackgroundTaskIdentifier) {
-    UIApplication.shared.endBackgroundTask(taskID)
-}
-
+// MARK: Error Asserts  -------------------------------------------------------------------------------
 enum FTError : Error {
     case RunTimeError(String)
 }
