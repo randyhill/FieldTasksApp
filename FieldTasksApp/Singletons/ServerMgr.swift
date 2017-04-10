@@ -36,6 +36,15 @@ class ServerMgr {
     init() {
     }
 
+    // 403 codes mean our token has expired/been blacklisted.
+    func check(statusCode : Int?) {
+        if let statusCode = statusCode {
+            if statusCode == 403 {
+                Globals.shared.clearToken()
+            }
+        }
+    }
+
     func apiHeaders() -> HTTPHeaders {
         let token = Globals.shared.loginToken
         let headers: HTTPHeaders = [
@@ -72,7 +81,7 @@ class ServerMgr {
             return
         }
         Alamofire.request(createURLRequest(urlPath: cAPI_URL + "/sync/" + encodedDateString, method: .get, parameters: nil)).responseJSON { (response) in
-            debugPrint(response)
+            self.check(statusCode: response.response?.statusCode)
             if response.result.isSuccess && response.response?.statusCode == 200, let jsonData = response.data {
                 do {
                     // If we can't parse server timestamp just use now
@@ -98,6 +107,7 @@ class ServerMgr {
         // for some reason POST requests require the path to end with / or the server will redirect to GET
         let url = url + "/"
         Alamofire.request(createURLRequest(urlPath: url, method: .post, parameters: formDict)).responseJSON { (response) in
+            self.check(statusCode: response.response?.statusCode)
             var resultDict : [String : Any]?
             if response.result.isSuccess, let jsonData = response.data {
                 do {
@@ -116,6 +126,7 @@ class ServerMgr {
 
         let url = url + "/" + form.id!
         Alamofire.request(createURLRequest(urlPath: url, method: .put, parameters: formDict)).responseJSON { (response) in
+            self.check(statusCode: response.response?.statusCode)
             completion(response.result.isSuccess ? nil : "Failed to save form")
         }
     }
@@ -124,6 +135,7 @@ class ServerMgr {
     func deleteTemplate(templateId: String, completion : @escaping (_ statusCode: Int?, _ error : String?)->()) {
         let url = cTemplatesURL + "/" + templateId
         Alamofire.request(createURLRequest(urlPath: url, method: .delete, parameters: ["id":templateId])).responseString { (response) in
+            self.check(statusCode: response.response?.statusCode)
             let statusCode = response.response?.statusCode
             completion(statusCode, response.error?.localizedDescription)
         }
@@ -151,6 +163,7 @@ class ServerMgr {
         // for some reason POST requests require the path to end with / or the server will redirect to GET
         Alamofire.request(self.createURLRequest(urlPath: cLocationsURL, method: .post, parameters: locationDict)).responseJSON { (response) in
             if !response.result.isSuccess {
+                self.check(statusCode: response.response?.statusCode)
                 completion(nil, "Failed to save location")
             } else {
                 if let jsonData = response.data {
@@ -175,7 +188,7 @@ class ServerMgr {
         FTAssert(isTrue: location.id != "", error: "Trying to update location that wasn't saved")
         let url = cLocationsURL + "/" + location.id!
         Alamofire.request(createURLRequest(urlPath: url, method: .put, parameters: locationDict)).responseJSON { (response) in
-        // Alamofire.request(url, method: .put, parameters: locationDict, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { response in
+            self.check(statusCode: response.response?.statusCode)
             completion(response.error?.localizedDescription)
         }
     }
@@ -183,7 +196,7 @@ class ServerMgr {
     func deleteLocation(locationId: String, completion : @escaping (_ statusCode: Int?, _ error : String?)->()) {
         let url = cLocationsURL + "/" + locationId
         Alamofire.request(createURLRequest(urlPath: url, method: .delete, parameters: ["id":locationId])).responseJSON { (response) in
-        //Alamofire.request(url, method: .delete, parameters: ["id":locationId], encoding: JSONEncoding.default, headers: nil).responseString(completionHandler: { response in
+            self.check(statusCode: response.response?.statusCode)
             let statusCode = response.response?.statusCode
             completion(statusCode, response.error?.localizedDescription)
         }
@@ -281,19 +294,9 @@ class ServerMgr {
         })
     }
 
-//    func validateSession(completion: @escaping (_ error: String?)->()) {
-//        if Globals.shared.login.token == nil {
-//            completion("No login token")
-//        } else {
-//            Alamofire.request(cAPI_URL + "/validateSession", headers: apiHeaders()).validate(statusCode: 200..<201).responseJSON(completionHandler: { (response) in
-//                if response.result.isSuccess && response.response?.statusCode == 200 {
-//                    completion(nil)
-//                } else {
-//                    Globals.shared.login.token = nil
-//                    CoreDataMgr.shared.saveOnMainThread()
-//                    completion("Token no longer valid")
-//                }
-//             })
-//        }
-//    }
+    func revokeToken() {
+        Alamofire.request(createURLRequest(urlPath: cAPI_URL + "/revokeToken", method: .post, parameters: nil)).validate(statusCode: 200..<201).responseJSON(completionHandler: { response in
+            print(response)
+        })
+    }
 }

@@ -15,6 +15,7 @@ let cAppEnteredBackground = "AppEnteredBackground"
 let cAppResignedActive = "AppResignedActive"
 let cAppEnteredForeground = "AppEnteredForeground"
 let cAppActivated = "AppActivated"
+let cAppLoggedOut = "cAppLoggedOut"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

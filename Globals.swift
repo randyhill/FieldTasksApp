@@ -76,6 +76,13 @@ class Globals {
         CoreDataMgr.shared.saveOnMainThread()
     }
 
+    func clearToken() {
+        login.token = nil
+        login.expiration = 0
+        CoreDataMgr.shared.saveOnMainThread()
+        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: cAppLoggedOut)))
+    }
+
     init() {
         utcFormatter.locale = Locale(identifier: "en_US_POSIX")
         utcFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
