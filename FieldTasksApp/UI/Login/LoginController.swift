@@ -12,6 +12,7 @@ import FlatUIKit
 
 class LoginController : UIViewController {
 
+    @IBOutlet weak var tenantField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: FUIButton!
@@ -34,12 +35,14 @@ class LoginController : UIViewController {
         if let bottomLayer = self.view.layer.sublayers?.first {
             self.view.layer.insertSublayer(self.playerLayer, below: bottomLayer)
         }
-        let email = Globals.shared.loginEmail
-        if email.characters.count > 0 {
-            emailField.text = email
-            passwordField.becomeFirstResponder()
-        } else {
+        tenantField.text = Globals.shared.tenantName
+        emailField.text = Globals.shared.loginEmail
+        if tenantField.text!.characters.count == 0 {
+            tenantField.becomeFirstResponder()
+        } else if emailField.text!.characters.count == 0 {
             emailField.becomeFirstResponder()
+        } else {
+            passwordField.becomeFirstResponder()
         }
     }
 
@@ -59,19 +62,24 @@ class LoginController : UIViewController {
         })
     }
 
-    @IBAction func loginAtion(_ sender: Any) {
-        ServerMgr.shared.login(clientName: "", accountEmail: emailField.text!, password: passwordField.text!) { (tokenDict, error) in
-            if let tokenDict = tokenDict, let decodedDict = tokenDict["decoded"] as? [String:Any] {
+    @IBAction func loginAction(_ sender: Any) {
+        let email = emailField.text!
+        let tenant = tenantField.text!
+        Globals.shared.tenantName = tenant
+        Globals.shared.loginEmail = email
+        CoreDataMgr.shared.saveOnMainThread()
+        ServerMgr.shared.login(tenant: tenant, accountEmail: email, password: passwordField.text!) { (tokenDict, error) in
+            if let tokenDict = tokenDict {
+                // Server will clean up tenant names so they can be used in paths, removing spaces/bad chars, make sure we store and use
                 let token = tokenDict["token"] as? String
-                let expiration = (decodedDict["exp"] as? Int64) ?? 0
-                let email = decodedDict["email"] as? String
-                let account = decodedDict["name"] as? String
-                Globals.shared.setToken(token: token ?? "", expiration: expiration, email: email ?? "", account: account ?? "")
+                let tenantName = tokenDict["tenant"] as? String
+                let expiration = (tokenDict["expiration"] as? Int64) ?? 0
+                Globals.shared.setToken(token: token ?? "", expiration: expiration, email: email, tenant: tenantName ?? tenant)
                 self.dismiss(animated: true, completion: {
 
                 })
             } else {
-                FTAlertError(message: error ?? "Could not login do to unknown error")
+                FTAlertError(message: error ?? "Could not login due to unknown error")
             }
         }
     }

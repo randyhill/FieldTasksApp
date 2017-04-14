@@ -171,7 +171,10 @@ class CoreDataMgr {
     // MARK: Type specific Creation Methods -------------------------------------------------------------------------------
     class func createNetQueueOp(context : NSManagedObjectContext) -> NetQueueOp {
         let entity = NSEntityDescription.entity(forEntityName: NetQueueOp.entityName(), in: context)
-        return NetQueueOp(entity: entity!, insertInto: context)
+        let op = NetQueueOp(entity: entity!, insertInto: context)
+        op.typeName = ""
+        op.objectKey = ""
+        return op
     }
 
     // Create net ops list if it doesn't exist

@@ -203,11 +203,14 @@ class ServerMgr {
     }
 
     // MARK: Image Files  -------------------------------------------------------------------------------
+    func imageAWSPath(fileName : String) -> String {
+       return Globals.shared.tenantName + "/" + fileName
+    }
     func uploadImage(fileName: String, progress : @escaping (Float)->(), completion : @escaping (_ fileName: String, _ error: String?)->()) {
         let localPath = getImageDirectory().appendingPathComponent(fileName)
         if let uploadRequest = AWSS3TransferManagerUploadRequest() {
             uploadRequest.bucket = cS3Bucket
-            uploadRequest.key = fileName
+            uploadRequest.key = imageAWSPath(fileName: fileName)
             uploadRequest.body = localPath
             uploadRequest.uploadProgress = {(bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) -> Void in
                 let progressValue = Float(totalBytesSent)/Float(totalBytesExpectedToSend)
@@ -242,7 +245,7 @@ class ServerMgr {
         let downloadingFileURL = getImageDirectory().appendingPathComponent(fileName)
         if let downloadRequest = AWSS3TransferManagerDownloadRequest() {
             downloadRequest.bucket = cS3Bucket
-            downloadRequest.key = fileName
+            downloadRequest.key = imageAWSPath(fileName: fileName)
             downloadRequest.downloadingFileURL = downloadingFileURL
             downloadRequest.downloadProgress = {(bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) -> Void in
                 let progressValue = Float(totalBytesSent)/Float(totalBytesExpectedToSend)
@@ -272,8 +275,8 @@ class ServerMgr {
     }
     
     // MARK: Login  -------------------------------------------------------------------------------
-    func login(clientName: String, accountEmail : String, password: String, completion: @escaping (_ dict: [String:Any]?, _ error: String?)->()) {
-        let parameters = ["email" : accountEmail, "password" : password]
+    func login(tenant: String, accountEmail : String, password: String, completion: @escaping (_ dict: [String:Any]?, _ error: String?)->()) {
+        let parameters = ["email" : accountEmail, "password" : password, "tenant": tenant]
         Alamofire.request(cBaseURL + "/login", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).validate(statusCode: 200..<201).responseJSON(completionHandler: { response in
             let statusCode = response.response?.statusCode
             if statusCode != 200 {

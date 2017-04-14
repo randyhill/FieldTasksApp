@@ -42,9 +42,9 @@
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Login" representedClassName="Login" syncable="YES">
-        <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="expiration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tenant" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="NetOpsQueue" representedClassName="NetOpsQueue" syncable="YES">
@@ -106,6 +106,7 @@
         <element name="ChoicesTask" positionX="-405" positionY="-396" width="128" height="90"/>
         <element name="Form" positionX="142" positionY="396" width="128" height="135"/>
         <element name="FTLocation" positionX="-261" positionY="357" width="128" height="210"/>
+        <element name="Login" positionX="-387" positionY="-252" width="128" height="105"/>
         <element name="NetOpsQueue" positionX="-486" positionY="177" width="128" height="73"/>
         <element name="NetQueueOp" positionX="-587" positionY="315" width="128" height="88"/>
         <element name="NumberResult" positionX="277" positionY="18" width="128" height="60"/>
@@ -117,6 +118,5 @@
         <element name="Template" positionX="-65" positionY="378" width="128" height="105"/>
         <element name="TextResult" positionX="43" positionY="135" width="128" height="60"/>
         <element name="TextTask" positionX="-153" positionY="-192" width="128" height="75"/>
-        <element name="Login" positionX="-387" positionY="-252" width="128" height="105"/>
     </elements>
 </model>

@@ -5,9 +5,9 @@ import Foundation
 import CoreData
 
 public enum LoginAttributes: String {
-    case account = "account"
     case email = "email"
     case expiration = "expiration"
+    case tenant = "tenant"
     case token = "token"
 }
 
@@ -37,13 +37,13 @@ open class _Login: NSManagedObject {
     // MARK: - Properties
 
     @NSManaged open
-    var account: String?
-
-    @NSManaged open
     var email: String?
 
     @NSManaged open
     var expiration: NSNumber?
+
+    @NSManaged open
+    var tenant: String?
 
     @NSManaged open
     var token: String?

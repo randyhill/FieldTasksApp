@@ -49,11 +49,19 @@ class Globals {
             let login = self.login
             return login.email ?? ""
         }
+        set(newEmail) {
+            let login = self.login
+            login.email = newEmail
+        }
     }
-    var loginAccount : String {
+    var tenantName : String {
         get {
             let login = self.login
-            return login.account ?? ""
+            return login.tenant ?? ""
+        }
+        set(newTenant) {
+            let login = self.login
+            login.tenant = newTenant
         }
     }
     var tokenExpired : Bool {
@@ -67,12 +75,12 @@ class Globals {
         }
     }
 
-    func setToken(token : String, expiration: Int64, email: String, account: String) {
+    func setToken(token : String, expiration: Int64, email: String, tenant: String) {
         let login = self.login
         login.token = token
         login.expiration = expiration as NSNumber
         login.email = email
-        login.account = account
+        login.tenant = tenant
         CoreDataMgr.shared.saveOnMainThread()
     }
 
