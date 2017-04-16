@@ -45,14 +45,15 @@ class ServerMgr {
         }
     }
 
-    func apiHeaders() -> HTTPHeaders {
-        let token = Globals.shared.loginToken
-        let headers: HTTPHeaders = [
-            "Accept": "application/json",
-            "token" : token
-        ]
-        return headers
-    }
+//    func apiHeaders() -> HTTPHeaders {
+//        let token = Globals.shared.loginToken
+//        let headers: HTTPHeaders = [
+//            "Accept": "application/json",
+//            "token" : token,
+//            "tenant" : Globals.shared.tenantName
+//        ]
+//        return headers
+//    }
 
     func createURLRequest(urlPath: String, method: HTTPMethod, parameters: [String : Any]?) -> URLRequest {
         let url = URL(string: urlPath)!
@@ -68,9 +69,9 @@ class ServerMgr {
         }
 
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let token = Globals.shared.loginToken
-        urlRequest.setValue(token, forHTTPHeaderField: "token")
-        return urlRequest
+        urlRequest.setValue(Globals.shared.loginToken, forHTTPHeaderField: "token")
+        urlRequest.setValue(Globals.shared.tenantName, forHTTPHeaderField: "tenant")
+       return urlRequest
     }
 
     // MARK: Sync All -------------------------------------------------------------------------------
