@@ -6,11 +6,11 @@ target 'FieldTasksApp' do
   use_frameworks!
 
   # Pods for FieldTasksApp
-  pod 'Alamofire', '~> 4.3'
+  pod 'Alamofire'
   pod 'FlatUIKit'
   pod 'SVProgressHUD'
   #pod 'IQKeyboardManagerSwift'
-  pod 'SwiftDate', '~> 4.0'
+  pod 'SwiftDate'
 
     pod 'AWSAutoScaling'
     pod 'AWSCloudWatch'
@@ -40,11 +40,11 @@ target 'FieldTasksApp Local' do
   use_frameworks!
 
   # Pods for FieldTasksApp Local
-  pod 'Alamofire', '~> 4.3'
+  pod 'Alamofire'
   pod 'FlatUIKit'
   pod 'SVProgressHUD'
   #pod 'IQKeyboardManagerSwift'
-  pod 'SwiftDate', '~> 4.0'
+  pod 'SwiftDate'
 
     pod 'AWSAutoScaling'
     pod 'AWSCloudWatch'

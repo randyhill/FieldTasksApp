@@ -47,10 +47,10 @@ PODS:
     - AWSCore (= 2.12.7)
   - FlatUIKit (1.6.2)
   - SVProgressHUD (2.2.5)
-  - SwiftDate (4.5.1)
+  - SwiftDate (6.1.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.3)
+  - Alamofire
   - AWSAutoScaling
   - AWSCloudWatch
   - AWSCognito
@@ -74,7 +74,7 @@ DEPENDENCIES:
   - AWSSQS
   - FlatUIKit
   - SVProgressHUD
-  - SwiftDate (~> 4.0)
+  - SwiftDate
 
 SPEC REPOS:
   trunk:
@@ -133,8 +133,8 @@ SPEC CHECKSUMS:
   AWSSQS: 542392beb66b4f0a5272f20b9201489cd977113e
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftDate: 7b56d42a221f582047287deb256b23fc5ed49a60
+  SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
 
-PODFILE CHECKSUM: c0c1180609b1e5664e90c0438c17d49e7fca52fb
+PODFILE CHECKSUM: 3f184c7f36bc928cdb08482bb4d9262bc21dda0f
 
 COCOAPODS: 1.8.4
