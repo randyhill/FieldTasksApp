@@ -54,11 +54,11 @@ class TaskEditor : UIViewController {
 
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: task!.editorId) as? TaskTypeEditor {
             vc.setTask(task: task!)
-            vc.willMove(toParentViewController: self)
+            vc.willMove(toParent: self)
             self.embeddedView.addSubview(vc.view)
-            self.addChildViewController(vc)
+            self.addChild(vc)
             vc.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-            vc.didMove(toParentViewController: self)
+            vc.didMove(toParent: self)
             embeddedVC = vc
             vc.beginAppearanceTransition(true, animated: false)
         }
@@ -89,7 +89,7 @@ class TaskEditor : UIViewController {
         }
     }
 
-    func cancelAction () {
+    @objc func cancelAction () {
         // Tell parent controller new task was canceled (if no ID it's a freshly created task)
         if task?.id == "" {
             parentController?.removeLast()
@@ -97,7 +97,7 @@ class TaskEditor : UIViewController {
         self.dismiss(animated: true) {}
     }
 
-    func doneAction () {
+    @objc func doneAction () {
         if let errorMessage = embeddedVC?.validate() {
             FTAlertError(message: errorMessage)
         } else {

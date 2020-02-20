@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -118,6 +118,7 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
 	return @{
              @"attributes" : @"Attributes",
              @"queueName" : @"QueueName",
+             @"tags" : @"tags",
              };
 }
 
@@ -271,6 +272,26 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
 
 @end
 
+@implementation AWSSQSListQueueTagsRequest
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+             @"queueUrl" : @"QueueUrl",
+             };
+}
+
+@end
+
+@implementation AWSSQSListQueueTagsResult
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+             @"tags" : @"Tags",
+             };
+}
+
+@end
+
 @implementation AWSSQSListQueuesRequest
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -316,6 +337,20 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
 @end
 
 @implementation AWSSQSMessageAttributeValue
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+             @"binaryListValues" : @"BinaryListValues",
+             @"binaryValue" : @"BinaryValue",
+             @"dataType" : @"DataType",
+             @"stringListValues" : @"StringListValues",
+             @"stringValue" : @"StringValue",
+             };
+}
+
+@end
+
+@implementation AWSSQSMessageSystemAttributeValue
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
@@ -405,12 +440,21 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
              @"messageBody" : @"MessageBody",
              @"messageDeduplicationId" : @"MessageDeduplicationId",
              @"messageGroupId" : @"MessageGroupId",
+             @"messageSystemAttributes" : @"MessageSystemAttributes",
              };
 }
 
 + (NSValueTransformer *)messageAttributesJSONTransformer {
     return [AWSMTLValueTransformer reversibleTransformerWithForwardBlock:^id(id JSONDictionary) {
         return [AWSModelUtility mapMTLDictionaryFromJSONDictionary:JSONDictionary withModelClass:[AWSSQSMessageAttributeValue class]];
+    } reverseBlock:^id(id mapMTLDictionary) {
+        return [AWSModelUtility JSONDictionaryFromMapMTLDictionary:mapMTLDictionary];
+    }];
+}
+
++ (NSValueTransformer *)messageSystemAttributesJSONTransformer {
+    return [AWSMTLValueTransformer reversibleTransformerWithForwardBlock:^id(id JSONDictionary) {
+        return [AWSModelUtility mapMTLDictionaryFromJSONDictionary:JSONDictionary withModelClass:[AWSSQSMessageSystemAttributeValue class]];
     } reverseBlock:^id(id mapMTLDictionary) {
         return [AWSModelUtility JSONDictionaryFromMapMTLDictionary:mapMTLDictionary];
     }];
@@ -444,6 +488,7 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
              @"identifier" : @"Id",
              @"MD5OfMessageAttributes" : @"MD5OfMessageAttributes",
              @"MD5OfMessageBody" : @"MD5OfMessageBody",
+             @"MD5OfMessageSystemAttributes" : @"MD5OfMessageSystemAttributes",
              @"messageId" : @"MessageId",
              @"sequenceNumber" : @"SequenceNumber",
              };
@@ -460,6 +505,7 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
              @"messageBody" : @"MessageBody",
              @"messageDeduplicationId" : @"MessageDeduplicationId",
              @"messageGroupId" : @"MessageGroupId",
+             @"messageSystemAttributes" : @"MessageSystemAttributes",
              @"queueUrl" : @"QueueUrl",
              };
 }
@@ -467,6 +513,14 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
 + (NSValueTransformer *)messageAttributesJSONTransformer {
     return [AWSMTLValueTransformer reversibleTransformerWithForwardBlock:^id(id JSONDictionary) {
         return [AWSModelUtility mapMTLDictionaryFromJSONDictionary:JSONDictionary withModelClass:[AWSSQSMessageAttributeValue class]];
+    } reverseBlock:^id(id mapMTLDictionary) {
+        return [AWSModelUtility JSONDictionaryFromMapMTLDictionary:mapMTLDictionary];
+    }];
+}
+
++ (NSValueTransformer *)messageSystemAttributesJSONTransformer {
+    return [AWSMTLValueTransformer reversibleTransformerWithForwardBlock:^id(id JSONDictionary) {
+        return [AWSModelUtility mapMTLDictionaryFromJSONDictionary:JSONDictionary withModelClass:[AWSSQSMessageSystemAttributeValue class]];
     } reverseBlock:^id(id mapMTLDictionary) {
         return [AWSModelUtility JSONDictionaryFromMapMTLDictionary:mapMTLDictionary];
     }];
@@ -480,6 +534,7 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
 	return @{
              @"MD5OfMessageAttributes" : @"MD5OfMessageAttributes",
              @"MD5OfMessageBody" : @"MD5OfMessageBody",
+             @"MD5OfMessageSystemAttributes" : @"MD5OfMessageSystemAttributes",
              @"messageId" : @"MessageId",
              @"sequenceNumber" : @"SequenceNumber",
              };
@@ -493,6 +548,28 @@ NSString *const AWSSQSErrorDomain = @"com.amazonaws.AWSSQSErrorDomain";
 	return @{
              @"attributes" : @"Attributes",
              @"queueUrl" : @"QueueUrl",
+             };
+}
+
+@end
+
+@implementation AWSSQSTagQueueRequest
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+             @"queueUrl" : @"QueueUrl",
+             @"tags" : @"Tags",
+             };
+}
+
+@end
+
+@implementation AWSSQSUntagQueueRequest
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+             @"queueUrl" : @"QueueUrl",
+             @"tagKeys" : @"TagKeys",
              };
 }
 

@@ -23,9 +23,9 @@ func CreateFlatBarButtonCustomView(title: String, buttonFrame: CGRect) -> FUIBut
 func CreateDoneHideItems(barFrame: CGRect) -> (hideItem: UIBarButtonItem, doneItem: UIBarButtonItem, doneToolbar: UIToolbar) {
     let doneToolbar: UIToolbar = UIToolbar(frame: barFrame)
     doneToolbar.barStyle       = UIBarStyle.default
-    let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-    let doneItem: UIBarButtonItem  = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.done, target: nil, action: nil)
-    let hideItem: UIBarButtonItem  = UIBarButtonItem(title: "Hide", style: UIBarButtonItemStyle.done, target: nil, action: nil)
+    let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+    let doneItem: UIBarButtonItem  = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.done, target: nil, action: nil)
+    let hideItem: UIBarButtonItem  = UIBarButtonItem(title: "Hide", style: UIBarButtonItem.Style.done, target: nil, action: nil)
 
     var items = [UIBarButtonItem]()
     items.append(hideItem)
@@ -55,8 +55,8 @@ func CreateDoneHideKeyboardBar(title: String, target: Any?, completion : Selecto
 func CreateKeyboardHideItem(barFrame: CGRect) -> (hideItem: UIBarButtonItem, doneToolbar: UIToolbar) {
     let doneToolbar: UIToolbar = UIToolbar(frame: barFrame)
     doneToolbar.barStyle       = UIBarStyle.default
-    let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-    let hideItem: UIBarButtonItem  = UIBarButtonItem(title: "Hide", style: UIBarButtonItemStyle.done, target: nil, action: nil)
+    let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+    let hideItem: UIBarButtonItem  = UIBarButtonItem(title: "Hide", style: UIBarButtonItem.Style.done, target: nil, action: nil)
 
     var items = [UIBarButtonItem]()
     items.append(hideItem)
@@ -116,7 +116,7 @@ extension UITextView {
         self.inputAccessoryView =  CreateHideKeyboardBar(textView: self, selector: #selector(hideKeyboard))
     }
 
-    func hideKeyboard() {
+    @objc func hideKeyboard() {
         self.resignFirstResponder()
     }
 }

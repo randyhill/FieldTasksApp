@@ -15,7 +15,7 @@ open class FTLocation: _FTLocation {
     }
 
     private func addAddressString(string : String) -> String {
-        if string.characters.count > 0 {
+        if string.count > 0 {
             return ", " + string
         }
         return ""
@@ -124,7 +124,7 @@ open class FTLocation: _FTLocation {
         guard let latitude = latitude, let longitude = longitude else {
             return Double.greatestFiniteMagnitude
         }
-        let ourLocation = CLLocation(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        let ourLocation = CLLocation(latitude: CLLocationDegrees(truncating: latitude), longitude: CLLocationDegrees(truncating: longitude))
         return location.distance(from: ourLocation)
     }
 
@@ -132,7 +132,7 @@ open class FTLocation: _FTLocation {
         guard let latitude = latitude, let longitude = longitude else {
             return false
         }
-        let ourLocation = CLLocation(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        let ourLocation = CLLocation(latitude: CLLocationDegrees(truncating: latitude), longitude: CLLocationDegrees(truncating: longitude))
         let distance = Int(location.distance(from: ourLocation))
         return distance <= self.perimeter!.intValue
     }

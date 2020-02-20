@@ -72,9 +72,9 @@ class FormTitleCell : UITableViewCell {
         let coordinatesString = "\(form.latitude!),\(form.longitude!)"
         let descriptionString = "\n" + (form.descriptionString ?? "")
         let linkAttributes = [
-            NSLinkAttributeName: NSURL(string: "https://www.google.com/maps/place/\(coordinatesString)")!,
-            NSForegroundColorAttributeName: UIColor.blue
-            ] as [String : Any]
+            NSAttributedString.Key.link: NSURL(string: "https://www.google.com/maps/place/\(coordinatesString)")!,
+            NSAttributedString.Key.foregroundColor : UIColor.blue
+            ] as [NSAttributedString.Key : Any]
 
         let linkString = NSMutableAttributedString(string: "    (Map It)")
         linkString.setAttributes(linkAttributes, range: NSMakeRange(0, 12))
@@ -105,7 +105,7 @@ class FormViewer : UITableViewController {
         self.view.addSubview(progressView)
     }
 
-    func goBack(){
+    @objc func goBack(){
         dismiss(animated: true, completion: nil)
     }
 

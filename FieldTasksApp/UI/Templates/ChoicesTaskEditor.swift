@@ -67,7 +67,7 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
     }
 
     func addChoiceString() {
-        if let text = choiceField.text, text.characters.count > 0 {
+        if let text = choiceField.text, text.count > 0 {
             choices += [text]
             choiceField.text = ""
             editTable.isHidden = (choices.count == 0)
@@ -104,12 +104,12 @@ class ChoicesTaskEditor : TaskTypeEditor, UITableViewDataSource, UITableViewDele
         return true
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             choices.remove(at: indexPath.row)
             editTable.isHidden = (choices.count == 0)
             if choices.count == 0 {
-                self.toggleEditing(editTable)
+                self.toggleEditing(editTable as Any)
             }
             self.tableView.reloadData()
         } else {

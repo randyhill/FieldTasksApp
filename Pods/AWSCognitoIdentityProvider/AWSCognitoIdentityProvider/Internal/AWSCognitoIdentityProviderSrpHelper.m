@@ -2,23 +2,13 @@
 // Copyright 2014-2016 Amazon.com,
 // Inc. or its affiliates. All Rights Reserved.
 //
-// Licensed under the Amazon Software License (the "License").
-// You may not use this file except in compliance with the
-// License. A copy of the License is located at
-//
-//     http://aws.amazon.com/asl/
-//
-// or in the "license" file accompanying this file. This file is
-// distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-// CONDITIONS OF ANY KIND, express or implied. See the License
-// for the specific language governing permissions and
-// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
 //
 
 #import "AWSCognitoIdentityProviderSrpHelper.h"
 #import "AWSCognitoIdentityProviderHKDF.h"
 #import "AWSJKBigInteger.h"
-#import "AWSLogging.h"
+#import <AWSCore/AWSCocoaLumberjack.h>
 #import <CommonCrypto/CommonCrypto.h>
 #import <CommonCrypto/CommonKeyDerivation.h>
 #import <CommonCrypto/CommonDigest.h>
@@ -70,6 +60,11 @@ static NSString* N_IN_HEX = @"FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129
     unsigned int maxNumBytes = [N countBytes] + 1;
 
     uint8_t *bytes = malloc(sizeof(uint8_t) * maxNumBytes);
+    if (bytes == NULL) {
+        // this situation is irrecoverable and we don't want to return something corrupted, so we raise an exception (avoiding NSAssert that may be disabled)
+        [NSException raise:@"NSInternalInconsistencyException" format:@"failed malloc" arguments:nil];
+        return nil;
+    }
 
     CC_SHA256_CTX ctx;
     CC_SHA256_Init(&ctx);
@@ -212,9 +207,14 @@ static NSString* N_IN_HEX = @"FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129
     size_t aBitLength = bitLength;
     size_t aByteLength = aBitLength/8;
     uint8_t *aBytes = malloc(aByteLength);
+    if (aBytes == NULL && aByteLength > 0) {
+        // this situation is irrecoverable and we don't want to return something corrupted, so we raise an exception (avoiding NSAssert that may be disabled)
+        [NSException raise:@"NSInternalInconsistencyException" format:@"failed malloc" arguments:nil];
+        return nil;
+    }
     int functionExitCode = SecRandomCopyBytes(kSecRandomDefault, aByteLength, aBytes);
     if (functionExitCode < 0) {
-        AWSLogError("SecRandomCopyBytes failed with error code %d: %s", errno, strerror(errno));
+        AWSDDLogError(@"SecRandomCopyBytes failed with error code %d: %s", errno, strerror(errno));
     }
 
     aws_mp_int random;

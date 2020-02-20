@@ -1,18 +1,8 @@
 //
-// Copyright 2014-2017 Amazon.com,
+// Copyright 2014-2018 Amazon.com,
 // Inc. or its affiliates. All Rights Reserved.
 //
-// Licensed under the Amazon Software License (the "License").
-// You may not use this file except in compliance with the
-// License. A copy of the License is located at
-//
-//     http://aws.amazon.com/asl/
-//
-// or in the "license" file accompanying this file. This file is
-// distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-// CONDITIONS OF ANY KIND, express or implied. See the License
-// for the specific language governing permissions and
-// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
 //
 
 #import <Foundation/Foundation.h>
@@ -37,6 +27,8 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityUserStatus) {
 @class AWSCognitoIdentityUserSessionToken;
 @class AWSCognitoIdentityUserSettings;
 @class AWSCognitoIdentityUserMFAOption;
+@class AWSCognitoIdentityUserMfaType;
+@class AWSCognitoIdentityUserMfaPreferences;
 
 @class AWSCognitoIdentityUserConfirmSignUpResponse;
 @class AWSCognitoIdentityUserGetDetailsResponse;
@@ -54,7 +46,9 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityUserStatus) {
 @class AWSCognitoIdentityUserListDevicesResponse;
 @class AWSCognitoIdentityUserUpdateDeviceStatusResponse;
 @class AWSCognitoIdentityUserGetDeviceResponse;
-
+@class AWSCognitoIdentityUserSetUserMfaPreferenceResponse;
+@class AWSCognitoIdentityUserAssociateSoftwareTokenResponse;
+@class AWSCognitoIdentityUserVerifySoftwareTokenResponse;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -109,6 +103,11 @@ NS_ASSUME_NONNULL_BEGIN
                                                 password:(NSString *)password
                                           validationData:(nullable NSArray<AWSCognitoIdentityUserAttributeType *> *)validationData;
 
+- (AWSTask<AWSCognitoIdentityUserSession *> *)getSession:(NSString *)username
+                                                password:(NSString *)password
+                                          validationData:(nullable NSArray<AWSCognitoIdentityUserAttributeType *> *)validationData
+                                isInitialCustomChallenge:(BOOL)isInitialCustomChallenge;
+
 /**
  Get details about this user, including user attributes
  */
@@ -158,6 +157,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (AWSTask<AWSCognitoIdentityUserSetUserSettingsResponse *> *)setUserSettings:(AWSCognitoIdentityUserSettings *)settings;
 
+
+/**
+ Set the user mfa preference supercedes SetUserSettings
+*/
+- (AWSTask<AWSCognitoIdentityUserSetUserMfaPreferenceResponse *> *)setUserMfaPreference:(AWSCognitoIdentityUserMfaPreferences *) preferences;
+
+
+/**
+ Start the process of associating a software token
+ */
+- (AWSTask<AWSCognitoIdentityUserAssociateSoftwareTokenResponse *> *) associateSoftwareToken;
+
+/**
+ Complete the process of associating a software token by verifying the code and setting device friendly name
+ */
+-(AWSTask<AWSCognitoIdentityUserVerifySoftwareTokenResponse *>*) verifySoftwareToken: (NSString*) userCode friendlyDeviceName: (NSString* _Nullable) friendlyDeviceName;
+
 /**
  Delete this user
  */
@@ -176,7 +192,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Remove all sessions from the keychain for this user and clear last known user.
  */
-- (void)signOutAndClearLastKnownUser;
+- (void) signOutAndClearLastKnownUser;
+
+/**
+ Remove the id and access token from the keychain, but keep the refresh token.
+ Use this when you have updated user attributes and want to refresh the id and access tokens.
+ */
+- (void) clearSession;
 
 
 /**
@@ -237,18 +259,58 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface AWSCognitoIdentityUserSessionToken : NSObject
 
+/**
+ The raw JWT token as a string.
+ **/
 @property (nonatomic, readonly) NSString *  tokenString;
+
+/**
+ A NSDictionary of claims in this token.
+
+ @deprecated This property is incorrectly typed as a [String : String], but
+ claim values may be of several different type.
+ */
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString*> * claims DEPRECATED_MSG_ATTRIBUTE("Use `tokenClaims` instead.");
+
+/**
+ A Dictionary of claims in this token
+ */
+@property (nonatomic, readonly) NSDictionary<NSString *, id> * tokenClaims;
 
 @end
 
 /**
- User settings.  Currently only mfa options.
+ User settings. Currently only mfa options.
  */
 @interface AWSCognitoIdentityUserSettings : NSObject
 
 @property (nonatomic, copy) NSArray<AWSCognitoIdentityUserMFAOption *>* _Nullable mfaOptions;
 
 @end
+
+
+/**
+ User MFA preferences. Replaces user settings for mfa
+ */
+@interface AWSCognitoIdentityUserMfaPreferences : NSObject
+
+@property (nonatomic, strong) AWSCognitoIdentityUserMfaType* _Nullable smsMfa;
+@property (nonatomic, strong) AWSCognitoIdentityUserMfaType* _Nullable softwareTokenMfa;
+
+@end
+
+/**
+ User settings. Currently only mfa options.
+ */
+@interface AWSCognitoIdentityUserMfaType : NSObject
+
+@property (nonatomic, assign) BOOL enabled;
+@property (nonatomic, assign) BOOL preferred;
+
+- (instancetype) initWithEnabled:(BOOL) enabled preferred:(BOOL) preferred;
+
+@end
+
 
 @interface AWSCognitoIdentityUserMFAOption : NSObject
 
@@ -322,5 +384,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface AWSCognitoIdentityUserVerifySoftwareTokenResponse : AWSCognitoIdentityProviderVerifySoftwareTokenResponse
+
+@end
+
+@interface AWSCognitoIdentityUserAssociateSoftwareTokenResponse : AWSCognitoIdentityProviderAssociateSoftwareTokenResponse
+
+@end
+
+@interface AWSCognitoIdentityUserSetUserMfaPreferenceResponse : AWSCognitoIdentityProviderSetUserMFAPreferenceResponse
+
+@end
 
 NS_ASSUME_NONNULL_END

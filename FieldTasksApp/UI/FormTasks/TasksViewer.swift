@@ -58,7 +58,7 @@ class TasksViewer : UIViewController {
 
     func updateViewValues() {
         var barTitle = ""
-         if curTask.name!.characters.count > 0 {
+         if curTask.name!.count > 0 {
             barTitle = curTask.name!
         } else {
             barTitle = "Task"
@@ -99,7 +99,7 @@ class TasksViewer : UIViewController {
         taskController?.task = task
         taskController?.parentController = self
         taskController?.isEditable = isEditable
-        self.addChildViewController(taskController!)
+        self.addChild(taskController!)
         self.taskView.addSubview(taskController!.view)
         taskController?.restore()
     }

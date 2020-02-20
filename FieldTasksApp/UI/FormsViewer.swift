@@ -44,12 +44,12 @@ class FormsViewer : UIViewController {
         listController?.parentFormsViewer = self
     }
 
-    func goBack() {
+    @objc func goBack() {
         self.dismiss(animated: true) {
         }
     }
 
-    func refreshList() {
+    @objc func refreshList() {
         listController?.refreshList()
     }
 

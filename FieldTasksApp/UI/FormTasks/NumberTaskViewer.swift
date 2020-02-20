@@ -54,7 +54,7 @@ class NumberTaskViewer : BaseTaskViewer, UITextFieldDelegate {
         return isEditable
     }
 
-    func doneButtonAction() {
+    @objc func doneButtonAction() {
         self.save()
         parentController?.dismiss(animated: true, completion: nil)
     }
@@ -66,10 +66,10 @@ class NumberTaskViewer : BaseTaskViewer, UITextFieldDelegate {
         if taskData.isUnlimited!.boolValue {
             return nil
         }
-        if value < Float(taskData.min!) {
+        if value < Float(truncating: taskData.min!) {
             return "Value less than minimum allowed"
         }
-        if value > Float(taskData.max!) {
+        if value > Float(truncating: taskData.max!) {
             return "Value more than maximum allowed"
         }
         return nil

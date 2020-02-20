@@ -22,7 +22,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         super.viewDidLoad()
         toolbar.delegate = self
 
-        self.title = template!.name!.characters.count > 0 ? "Edit Form" : "New Form"
+        self.title = template!.name!.count > 0 ? "Edit Form" : "New Form"
         self.navigationItem.leftBarButtonItem = FlatBarButton(title: "Cancel", target: self, action: #selector(cancelAction))
         self.navigationItem.rightBarButtonItem = FlatBarButton(title: "Save", target: self, action: #selector(doneAction))
         makeNavBarFlat()
@@ -62,7 +62,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         listController?.toggleEditing(button: editButton)
     }
 
-    func cancelAction () {
+    @objc func cancelAction () {
         if isEmptyTemplate(template: template!) {
             // Don't save newly created/empty objects
             CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: template!)
@@ -71,8 +71,8 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
     }
 
     func isEmptyTemplate(template: Template) -> Bool {
-        if template.id!.characters.count > 0 { return false }
-        if template.name!.characters.count > 0 { return false }
+        if template.id!.count > 0 { return false }
+        if template.name!.count > 0 { return false }
         if template.tasks.count > 0 {
             template.name = "Untitled"
             return false
@@ -80,7 +80,7 @@ class TemplateEditor : UIViewController, TemplateTasksToolProtocol {
         return true
     }
 
-    func doneAction () {
+    @objc func doneAction () {
         if let template = template {
             template.tasks = (listController?.tasks)!
             template.name = titleField.text!

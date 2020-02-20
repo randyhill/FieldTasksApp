@@ -1,6 +1,7 @@
 //
 //  SyncObjects.swift
 //  FieldTasksApp
+//                  Sync server and local Coredata store.
 //
 //  Created by CRH on 3/8/17.
 //  Copyright © 2017 CRH. All rights reserved.

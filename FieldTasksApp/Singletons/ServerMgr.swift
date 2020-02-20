@@ -1,6 +1,7 @@
 //
 //  ServerMgr
 //  FieldTasksApp
+//                  API to read/write forms/templates/etc to Server.
 //
 //  Created by CRH on 8/19/16.
 //  Copyright © 2016 CRH. All rights reserved.

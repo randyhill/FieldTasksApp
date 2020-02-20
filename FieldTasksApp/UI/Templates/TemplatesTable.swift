@@ -179,7 +179,7 @@ class TemplatesTable: UITableViewController {
             let template = templatesList[indexPath.row]
             cell.title!.text = template.name
             cell.tasks!.text = "\(template.tasks.count)"
-            if template.descriptionString!.characters.count > 0 {
+            if template.descriptionString!.count > 0 {
                 cell.body!.text = "Description: \(template.descriptionString!)"
             } else {
                 cell.body!.text = ""

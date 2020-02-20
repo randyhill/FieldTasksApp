@@ -1,6 +1,7 @@
 //
 //  TemplatesMgr
 //  FieldTasksApp
+//                  API to read and write form templates to Core Data.
 //
 //  Created by CRH on 2/26/17.
 //  Copyright © 2017 CRH. All rights reserved.

@@ -5,7 +5,7 @@ open class TextResult: _TextResult {
     override func save(newText : String) {
        completed_private = false
         text = newText
-        if text!.characters.count > 0 {
+        if text!.count > 0 {
            completed_private = true
         }
     }

@@ -1,6 +1,7 @@
 //
 //  CoreDataMgr.swift
 //  FieldTasksApp
+//                  Wrapper for CoreData to ensure it's inited correctly and accessed on correct context.
 //
 //  Created by CRH on 3/7/17.
 //  Copyright © 2017 CRH. All rights reserved.

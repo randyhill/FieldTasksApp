@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
 //
 
 #import "AWSSNSService.h"
-#import <AWSCore/AWSNetworking.h>
 #import <AWSCore/AWSCategory.h>
 #import <AWSCore/AWSNetworking.h>
 #import <AWSCore/AWSSignature.h>
@@ -26,7 +25,7 @@
 #import "AWSSNSResources.h"
 
 static NSString *const AWSInfoSNS = @"SNS";
-static NSString *const AWSSNSSDKVersion = @"2.5.2";
+NSString *const AWSSNSSDKVersion = @"2.12.7";
 
 
 @interface AWSSNSResponseSerializer : AWSXMLResponseSerializer
@@ -41,13 +40,26 @@ static NSDictionary *errorCodeDictionary = nil;
 + (void)initialize {
     errorCodeDictionary = @{
                             @"AuthorizationError" : @(AWSSNSErrorAuthorizationError),
+                            @"ConcurrentAccess" : @(AWSSNSErrorConcurrentAccess),
                             @"EndpointDisabled" : @(AWSSNSErrorEndpointDisabled),
+                            @"FilterPolicyLimitExceeded" : @(AWSSNSErrorFilterPolicyLimitExceeded),
                             @"InternalError" : @(AWSSNSErrorInternalError),
                             @"InvalidParameter" : @(AWSSNSErrorInvalidParameter),
                             @"ParameterValueInvalid" : @(AWSSNSErrorInvalidParameterValue),
+                            @"InvalidSecurity" : @(AWSSNSErrorInvalidSecurity),
+                            @"KMSAccessDenied" : @(AWSSNSErrorKMSAccessDenied),
+                            @"KMSDisabled" : @(AWSSNSErrorKMSDisabled),
+                            @"KMSInvalidState" : @(AWSSNSErrorKMSInvalidState),
+                            @"KMSNotFound" : @(AWSSNSErrorKMSNotFound),
+                            @"KMSOptInRequired" : @(AWSSNSErrorKMSOptInRequired),
+                            @"KMSThrottling" : @(AWSSNSErrorKMSThrottling),
                             @"NotFound" : @(AWSSNSErrorNotFound),
                             @"PlatformApplicationDisabled" : @(AWSSNSErrorPlatformApplicationDisabled),
+                            @"ResourceNotFound" : @(AWSSNSErrorResourceNotFound),
+                            @"StaleTag" : @(AWSSNSErrorStaleTag),
                             @"SubscriptionLimitExceeded" : @(AWSSNSErrorSubscriptionLimitExceeded),
+                            @"TagLimitExceeded" : @(AWSSNSErrorTagLimitExceeded),
+                            @"TagPolicy" : @(AWSSNSErrorTagPolicy),
                             @"Throttled" : @(AWSSNSErrorThrottled),
                             @"TopicLimitExceeded" : @(AWSSNSErrorTopicLimitExceeded),
                             };
@@ -66,23 +78,24 @@ static NSDictionary *errorCodeDictionary = nil;
                                                     data:data
                                                    error:error];
     if (!*error && [responseObject isKindOfClass:[NSDictionary class]]) {
-    	if (!*error && [responseObject isKindOfClass:[NSDictionary class]]) {
-	        if ([errorCodeDictionary objectForKey:[[[responseObject objectForKey:@"__type"] componentsSeparatedByString:@"#"] lastObject]]) {
-	            if (error) {
-	                *error = [NSError errorWithDomain:AWSSNSErrorDomain
-	                                             code:[[errorCodeDictionary objectForKey:[[[responseObject objectForKey:@"__type"] componentsSeparatedByString:@"#"] lastObject]] integerValue]
-	                                         userInfo:responseObject];
-	            }
-	            return responseObject;
-	        } else if ([[[responseObject objectForKey:@"__type"] componentsSeparatedByString:@"#"] lastObject]) {
-	            if (error) {
-	                *error = [NSError errorWithDomain:AWSCognitoIdentityErrorDomain
-	                                             code:AWSCognitoIdentityErrorUnknown
-	                                         userInfo:responseObject];
-	            }
-	            return responseObject;
-	        }
-    	}
+
+        NSDictionary *errorInfo = responseObject[@"Error"];
+        if (errorInfo[@"Code"] && errorCodeDictionary[errorInfo[@"Code"]]) {
+            if (error) {
+                *error = [NSError errorWithDomain:AWSSNSErrorDomain
+                                             code:[errorCodeDictionary[errorInfo[@"Code"]] integerValue]
+                                         userInfo:errorInfo
+                         ];
+                return responseObject;
+            }
+        } else if (errorInfo) {
+            if (error) {
+                *error = [NSError errorWithDomain:AWSSNSErrorDomain
+                                             code:AWSSNSErrorUnknown
+                                         userInfo:errorInfo];
+                return responseObject;
+            }
+        }
     }
 
     if (!*error && response.statusCode/100 != 2) {
@@ -98,7 +111,8 @@ static NSDictionary *errorCodeDictionary = nil;
                                                        error:error];
         }
     }
-	    return responseObject;
+
+    return responseObject;
 }
 
 @end
@@ -169,7 +183,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
         if (!serviceConfiguration) {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                           reason:@"The service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration` before using this method."
+                                           reason:@"The service configuration is `nil`. You need to configure `awsconfiguration.json`, `Info.plist` or set `defaultServiceConfiguration` before using this method."
                                          userInfo:nil];
         }
         _defaultSNS = [[AWSSNS alloc] initWithConfiguration:serviceConfiguration];
@@ -713,6 +727,29 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     }];
 }
 
+- (AWSTask<AWSSNSListTagsForResourceResponse *> *)listTagsForResource:(AWSSNSListTagsForResourceRequest *)request {
+    return [self invokeRequest:request
+                    HTTPMethod:AWSHTTPMethodPOST
+                     URLString:@""
+                  targetPrefix:@""
+                 operationName:@"ListTagsForResource"
+                   outputClass:[AWSSNSListTagsForResourceResponse class]];
+}
+
+- (void)listTagsForResource:(AWSSNSListTagsForResourceRequest *)request
+     completionHandler:(void (^)(AWSSNSListTagsForResourceResponse *response, NSError *error))completionHandler {
+    [[self listTagsForResource:request] continueWithBlock:^id _Nullable(AWSTask<AWSSNSListTagsForResourceResponse *> * _Nonnull task) {
+        AWSSNSListTagsForResourceResponse *result = task.result;
+        NSError *error = task.error;
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
 - (AWSTask<AWSSNSListTopicsResponse *> *)listTopics:(AWSSNSListTopicsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
@@ -938,6 +975,29 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     }];
 }
 
+- (AWSTask<AWSSNSTagResourceResponse *> *)tagResource:(AWSSNSTagResourceRequest *)request {
+    return [self invokeRequest:request
+                    HTTPMethod:AWSHTTPMethodPOST
+                     URLString:@""
+                  targetPrefix:@""
+                 operationName:@"TagResource"
+                   outputClass:[AWSSNSTagResourceResponse class]];
+}
+
+- (void)tagResource:(AWSSNSTagResourceRequest *)request
+     completionHandler:(void (^)(AWSSNSTagResourceResponse *response, NSError *error))completionHandler {
+    [[self tagResource:request] continueWithBlock:^id _Nullable(AWSTask<AWSSNSTagResourceResponse *> * _Nonnull task) {
+        AWSSNSTagResourceResponse *result = task.result;
+        NSError *error = task.error;
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
 - (AWSTask *)unsubscribe:(AWSSNSUnsubscribeInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
@@ -954,6 +1014,29 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
         if (completionHandler) {
             completionHandler(error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSSNSUntagResourceResponse *> *)untagResource:(AWSSNSUntagResourceRequest *)request {
+    return [self invokeRequest:request
+                    HTTPMethod:AWSHTTPMethodPOST
+                     URLString:@""
+                  targetPrefix:@""
+                 operationName:@"UntagResource"
+                   outputClass:[AWSSNSUntagResourceResponse class]];
+}
+
+- (void)untagResource:(AWSSNSUntagResourceRequest *)request
+     completionHandler:(void (^)(AWSSNSUntagResourceResponse *response, NSError *error))completionHandler {
+    [[self untagResource:request] continueWithBlock:^id _Nullable(AWSTask<AWSSNSUntagResourceResponse *> * _Nonnull task) {
+        AWSSNSUntagResourceResponse *result = task.result;
+        NSError *error = task.error;
+
+        if (completionHandler) {
+            completionHandler(result, error);
         }
 
         return nil;

@@ -1,6 +1,7 @@
 //
 //  Globals.swift
 //  FieldTasksApp
+//                  Cache frequently used values for user's account.
 //
 //  Created by CRH on 8/26/16.
 //  Copyright © 2016 CRH. All rights reserved.
@@ -68,7 +69,7 @@ class Globals {
         get {
             let login = self.login
             if let expiration = login.expiration {
-                let dateTimeStamp = Date(timeIntervalSince1970: TimeInterval(expiration))
+                let dateTimeStamp = Date(timeIntervalSince1970: TimeInterval(truncating: expiration))
                 return Date().timeIntervalSince(dateTimeStamp) > 0
             }
             return true

@@ -37,9 +37,9 @@ class LoginController : UIViewController {
         }
         tenantField.text = Globals.shared.tenantName
         emailField.text = Globals.shared.loginEmail
-        if tenantField.text!.characters.count == 0 {
+        if tenantField.text!.count == 0 {
             tenantField.becomeFirstResponder()
-        } else if emailField.text!.characters.count == 0 {
+        } else if emailField.text!.count == 0 {
             emailField.becomeFirstResponder()
         } else {
             passwordField.becomeFirstResponder()
@@ -84,13 +84,13 @@ class LoginController : UIViewController {
         }
     }
 
-    func appActivated() {
+    @objc func appActivated() {
         self.playerLayer.player?.play()
     }
 
     // MARK: Animation  -------------------------------------------------------------------------------
-    func playerDidReachEnd(){
-        self.playerLayer.player!.seek(to: kCMTimeZero)
+    @objc func playerDidReachEnd(){
+        self.playerLayer.player!.seek(to: CMTime.zero)
         self.playerLayer.player!.play()
 
     }
@@ -105,7 +105,7 @@ class LoginController : UIViewController {
 
         // This is needed so it would not cut off users audio (if listening to music etc.
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
         } catch var error1 as NSError {
             error = error1
         } catch {
@@ -117,7 +117,7 @@ class LoginController : UIViewController {
 
         var playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.view.frame
-        playerLayer.videoGravity = "AVLayerVideoGravityResizeAspectFill"
+        playerLayer.videoGravity = AVLayerVideoGravity(rawValue: "AVLayerVideoGravityResizeAspectFill")
         playerLayer.backgroundColor = UIColor.black.cgColor
         player.play()
         NotificationCenter.default.addObserver(self, selector:#selector(LoginController.playerDidReachEnd), name:NSNotification.Name.AVPlayerItemDidPlayToEndTime, object:nil)

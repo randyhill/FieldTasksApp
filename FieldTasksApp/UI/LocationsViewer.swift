@@ -61,7 +61,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
         // Dispose of any resources that can be recreated.
     }
 
-    func refreshOnMainThread() {
+    @objc func refreshOnMainThread() {
         self.locationList = self.locations.all() //self.locations.within(meters: self.searchRadius)
         if let cLoc = LocationsMgr.shared.currentCLLocation() {
             self.locationList = self.locationList.sorted { (a , b ) -> Bool in
@@ -74,7 +74,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
     }
 
     // In regular mode when used to display locations.
-    func refreshFromServer() {
+    @objc func refreshFromServer() {
         SyncMgr.shared.sync(context: CoreDataMgr.shared.mainThreadContext!, completion: { (syncResult) in
             if let error = syncResult.error {
                 self.showAlert(title: "Error syncing with server", message: error)
@@ -87,18 +87,18 @@ class LocationsViewer: UITableViewController, LocationUpdates {
     }
 
     // In modal mode when used as location picker
-    func selectionCancel() {
+    @objc func selectionCancel() {
         self.dismiss(animated: true) {}
     }
 
-    func selectionDone() {
+    @objc func selectionDone() {
         if let form = self.form, let selectedLocation = self.selectedLocation {
             form.locationId = selectedLocation.id
         }
         self.dismiss(animated: true) {}
     }
 
-    func createNewLocation() {
+    @objc func createNewLocation() {
         self.performSegue(withIdentifier: "LocationEditor", sender: nil)
     }
 
@@ -140,7 +140,7 @@ class LocationsViewer: UITableViewController, LocationUpdates {
                 cell.locationImage.image = nil
             }
             if location === selectedLocation {
-                tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.middle)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.middle)
             }
             return cell
         }

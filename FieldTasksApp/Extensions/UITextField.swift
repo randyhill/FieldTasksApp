@@ -17,7 +17,7 @@ extension UITextField {
         self.inputAccessoryView =  CreateHideKeyboardBar(textView: self, selector: #selector(hideKeyboard))
     }
 
-    internal func hideKeyboard() {
+    @objc internal func hideKeyboard() {
         self.resignFirstResponder()
     }
 

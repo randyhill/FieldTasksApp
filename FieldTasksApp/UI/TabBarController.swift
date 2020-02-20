@@ -26,7 +26,7 @@ class TabBarController : UITabBarController {
         }
     }
 
-    func loggedOut() {
+    @objc func loggedOut() {
         self.displayLogoutScreen()
     }
 

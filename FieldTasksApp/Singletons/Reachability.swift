@@ -1,6 +1,7 @@
 //
 //  Reachability.swift
 //  FieldTasksApp
+//                  Tools to determine network reachablity status.
 //
 //  Created by CRH on 3/26/17.
 //  Copyright © 2017 CRH. All rights reserved.

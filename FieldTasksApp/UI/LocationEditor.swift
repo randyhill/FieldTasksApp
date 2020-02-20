@@ -188,9 +188,9 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
         location.mapItem().openInMaps(launchOptions: launchOptions)
     }
 
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState,
-                 fromOldState oldState: MKAnnotationViewDragState) {
-        if newState == MKAnnotationViewDragState.ending {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState,
+                 fromOldState oldState: MKAnnotationView.DragState) {
+        if newState == MKAnnotationView.DragState.ending {
             if let newCoord = view.annotation?.coordinate {
                 location!.latitude = newCoord.latitude as NSNumber?
                 location!.longitude = newCoord.longitude as NSNumber?
@@ -252,7 +252,7 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
             let coordinate = theLocation.coordinates()
             annotation?.coordinate = coordinate
             self.updatePerimeterOverlay(coordinate: coordinate, radius: CLLocationDistance(perimeterSlider.value))
-            self.updatePerimeter(meters: Int(location.perimeter!))
+            self.updatePerimeter(meters: Int(truncating: location.perimeter!))
         }
     }
 
@@ -268,16 +268,16 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
     }
 
     func validateFields() -> String? {
-        if self.fields[FieldType.name.rawValue].text?.characters.count == 0 {
+        if self.fields[FieldType.name.rawValue].text?.count == 0 {
             return "Locations must have names"
         }
-        if self.fields[FieldType.street.rawValue].text?.characters.count == 0 {
+        if self.fields[FieldType.street.rawValue].text?.count == 0 {
             return "Locations must have street addresses"
         }
-        if self.fields[FieldType.city.rawValue].text?.characters.count == 0 {
+        if self.fields[FieldType.city.rawValue].text?.count == 0 {
             return "Locations must have city"
         }
-        if self.fields[FieldType.state.rawValue].text?.characters.count == 0 {
+        if self.fields[FieldType.state.rawValue].text?.count == 0 {
             return "Locations must have state"
         }
         return nil
@@ -297,10 +297,10 @@ class LocationEditor : UIViewController, MKMapViewDelegate, UITextFieldDelegate 
 
     func updatePerimeterOverlay(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance) {
         if let perimeter = self.perimeter {
-            self.map.remove(perimeter)
+            self.map.removeOverlay(perimeter)
         }
         self.perimeter = MKCircle(center: coordinate, radius: radius)
-        self.map.add(self.perimeter!)
+        self.map.addOverlay(self.perimeter!)
     }
 
     func updateAnnotationLocation(coordinate: CLLocationCoordinate2D) {

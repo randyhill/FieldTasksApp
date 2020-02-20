@@ -1,51 +1,53 @@
 PODS:
-  - Alamofire (4.4.0)
-  - AWSAutoScaling (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSCloudWatch (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSCognito (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSCognitoIdentityProvider (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSCore (2.5.2)
-  - AWSDynamoDB (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSEC2 (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSElasticLoadBalancing (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSIoT (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSKinesis (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSLambda (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSLex (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSMachineLearning (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSMobileAnalytics (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSPinpoint (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSPolly (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSRekognition (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSS3 (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSSES (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSSimpleDB (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSSNS (2.5.2):
-    - AWSCore (= 2.5.2)
-  - AWSSQS (2.5.2):
-    - AWSCore (= 2.5.2)
+  - Alamofire (4.9.1)
+  - AWSAutoScaling (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSCloudWatch (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSCognito (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSCognitoIdentityProvider (2.12.7):
+    - AWSCognitoIdentityProviderASF (= 1.0.1)
+    - AWSCore (= 2.12.7)
+  - AWSCognitoIdentityProviderASF (1.0.1)
+  - AWSCore (2.12.7)
+  - AWSDynamoDB (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSEC2 (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSElasticLoadBalancing (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSIoT (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSKinesis (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSLambda (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSLex (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSMachineLearning (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSMobileAnalytics (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSPinpoint (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSPolly (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSRekognition (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSS3 (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSSES (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSSimpleDB (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSSNS (2.12.7):
+    - AWSCore (= 2.12.7)
+  - AWSSQS (2.12.7):
+    - AWSCore (= 2.12.7)
   - FlatUIKit (1.6.2)
-  - SVProgressHUD (2.1.2)
-  - SwiftDate (4.0.13)
+  - SVProgressHUD (2.2.5)
+  - SwiftDate (4.5.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
@@ -74,34 +76,65 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftDate (~> 4.0)
 
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AWSAutoScaling
+    - AWSCloudWatch
+    - AWSCognito
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
+    - AWSDynamoDB
+    - AWSEC2
+    - AWSElasticLoadBalancing
+    - AWSIoT
+    - AWSKinesis
+    - AWSLambda
+    - AWSLex
+    - AWSMachineLearning
+    - AWSMobileAnalytics
+    - AWSPinpoint
+    - AWSPolly
+    - AWSRekognition
+    - AWSS3
+    - AWSSES
+    - AWSSimpleDB
+    - AWSSNS
+    - AWSSQS
+    - FlatUIKit
+    - SVProgressHUD
+    - SwiftDate
+
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  AWSAutoScaling: 7fe819fa52fb37d2b4b15535ad557a219213a6a8
-  AWSCloudWatch: 765c1878c5005328acb24e15e523f98755ab90c0
-  AWSCognito: a29c52e3a3d4988f01b449c8b229a51b73d1c1bf
-  AWSCognitoIdentityProvider: 496a5d717180e4127f038be3c6494bc59e8ff4dd
-  AWSCore: b2fe455c2c7d6653521238c5b0b0ddb67ec4f063
-  AWSDynamoDB: 311ba51593276a198f8a611c9e89706bd0fe740f
-  AWSEC2: 0d88da0cb9d9d900a5b1e62f97a2365075b301fd
-  AWSElasticLoadBalancing: f7ba3b23dd605e283535e3ef42fba5db766eb1e2
-  AWSIoT: 282cd15afffb9c3a5767efa36f8d330635f0802c
-  AWSKinesis: 124bfe652495ca07e63cd947080829679cc32547
-  AWSLambda: 330b7bddbb34632de02b31536cb7f7c10546dfc4
-  AWSLex: b3a075d6c08321d6b10fa952d3c6dfd241e36d48
-  AWSMachineLearning: c77fe5eba3207bf1c26944b22d868973ee825300
-  AWSMobileAnalytics: d0ce50be90fba6b1dfac20f66c18ac7dc3daf6b6
-  AWSPinpoint: f33f4fed418034999d0708853b0889f6bdea676b
-  AWSPolly: a87083d6ec5278a81f6aa222eb8ecea852e53027
-  AWSRekognition: 3e4af236a7787336ae3d68378fa757927664095b
-  AWSS3: 1f53d780bae0a5949f11da99520c14684bc90af0
-  AWSSES: 01c1bd6953d7c3b8e2698ff6c30fc9b111c1c656
-  AWSSimpleDB: ba37cce420e00c9400bd62a54740dfc7083fc9d0
-  AWSSNS: 3437c505bfb8d5eda6bfc497368462ae31423324
-  AWSSQS: 558aac70d0c908fa5f3b043410243595e4100ff4
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AWSAutoScaling: e2e8ce852065dfd84bb3a1c5f7bb38c457904b84
+  AWSCloudWatch: eb3f241cde197ff25cab6bef2f402bd6196b8f49
+  AWSCognito: 6d49ab5351072db2463c8c586ba89d3d07a48272
+  AWSCognitoIdentityProvider: 4998bdbfbafe5038dae0237a598580e102e7b6b5
+  AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
+  AWSCore: 2f0f88ae94a63a198274d683c7d0e18709d7090b
+  AWSDynamoDB: 9db6819e9bc3744314c8cf87522ec9af5f7c661d
+  AWSEC2: 4e37b45db13c4cb829f1bf29fd71050ec3c3e88f
+  AWSElasticLoadBalancing: c32c7a340e20dd02b5e30788d99e56284f2ff872
+  AWSIoT: 7e6bc2899c38ef93d7a2f7db933fef26d74d8c8e
+  AWSKinesis: f7feac48f16499aee2191e9a4d805f8d30dcbbb1
+  AWSLambda: 46b763172227d6e74f54f0fbad34cf67dd74ce4f
+  AWSLex: c393876cf61e7b5abf30a3f06bfbf51ac06edb53
+  AWSMachineLearning: 90d59533ec4c31417255e649f7698e97249f4c2b
+  AWSMobileAnalytics: 241dae54da3a9c1fa881ebfb740a08b932f3b586
+  AWSPinpoint: 8a7b997b44a225f4d0589f2d40ff21f7816d7c29
+  AWSPolly: 4b16ec4ac218c127268206a44fbe776efb335665
+  AWSRekognition: d6cc7c73ba6851bcaf32b192f18371d4407572d7
+  AWSS3: 40d2f99d91e34999789a534d95c80cc7c1135c6d
+  AWSSES: 6dbeaa21c65b001eb7ead23b70beebc1c38086d3
+  AWSSimpleDB: c7933a6707c467b51a422b1ad4fe8ab74a18d595
+  AWSSNS: ec093ba2aeea026c744ea372bc5f055b106b38c6
+  AWSSQS: 542392beb66b4f0a5272f20b9201489cd977113e
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
-  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
-  SwiftDate: 8ec416bb1b5129d1f35e8efaed720421f41d42df
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftDate: 7b56d42a221f582047287deb256b23fc5ed49a60
 
 PODFILE CHECKSUM: c0c1180609b1e5664e90c0438c17d49e7fca52fb
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.8.4

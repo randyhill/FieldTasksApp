@@ -40,12 +40,12 @@ class TextTaskViewer : BaseTaskViewer {
         if isEditable {
             textView.addDoneHideKeyboardButtons(title: "Done", target: self, completion: #selector(self.doneButton))
 //            textView.text = result.text
-//            textView.selectedRange = NSMakeRange(textView.text.characters.count, 0)
+//            textView.selectedRange = NSMakeRange(textView.text.count, 0)
 //            textView.becomeFirstResponder()
       }
     }
 
-    func doneButton() {
+    @objc func doneButton() {
         self.save()
         parentController?.dismiss(animated: true, completion: nil)
     }
@@ -59,7 +59,7 @@ class TextTaskViewer : BaseTaskViewer {
     }
     override func validate() -> String? {
         if let textTask = task as? TextTask {
-            let count = textView.text.characters.count
+            let count = textView.text.count
             if count > 0 {
                 if !textTask.isUnlimited!.boolValue && (count > textTask.max!.intValue) {
                     return "Too many characters, max allowed is \(textTask.max!)"

@@ -21,16 +21,12 @@
 #import "AWSPinpointConfiguration.h"
 #import "AWSClientContext.h"
 #import "AWSPinpointTargeting.h"
-#import "AWSPinpointAnalytics.h"
 #import "AWSPinpointNotificationManager.h"
 #import "AWSPinpointAnalyticsClient.h"
 #import "AWSPinpointTargetingClient.h"
 #import <AWSCore/AWSSynchronizedMutableDictionary.h>
 
 #pragma mark - Categories -
-@interface AWSPinpointAnalytics()
-- (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration;
-@end
 
 @interface AWSPinpointTargeting()
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration;
@@ -59,13 +55,9 @@
 #pragma mark - AWSPinpoint -
 @interface AWSPinpoint()
 
-@property (nonatomic, strong) AWSPinpointSessionClient *sessionClient;
-@property (nonatomic, strong) AWSPinpointTargetingClient *targetingClient;
-@property (nonatomic, strong) AWSPinpointAnalyticsClient *analyticsClient;
 @property (nonatomic, strong) AWSPinpointNotificationManager *notificationManager;
 @property (nonatomic, strong) AWSPinpointConfiguration *configuration;
 @property (nonatomic, strong) AWSPinpointContext *pinpointContext;
-
 @end
 
 @implementation AWSPinpoint
@@ -100,6 +92,13 @@ static AWSSynchronizedMutableDictionary *_pinpointForAppNamespace = nil;
     }
 }
 
+/// Removes the pinpoint client from the map of clients, making it suitable for release. Only exposed for testing.
+- (void) destroy {
+    @synchronized (_pinpointForAppNamespace) {
+        [_pinpointForAppNamespace removeObjectForKey:self.configuration.appId];
+    }
+}
+
 - (instancetype)init {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:@"You must not initialize this class directly. Please use the public static constructors."
@@ -123,26 +122,26 @@ static AWSSynchronizedMutableDictionary *_pinpointForAppNamespace = nil;
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                            reason:@"Failed to initialize Pinpoint SDK. The targeting service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration`."
                                          userInfo:nil];
-        }
-        
+        }        
+
         _pinpointContext = [AWSPinpointContext contextWithConfiguration:_configuration];
-        
+
         if (_configuration.enableTargeting) {
             _pinpointContext.targetingService = [[AWSPinpointTargeting alloc] initWithConfiguration:_configuration.targetingServiceConfiguration];
-            _targetingClient = [[AWSPinpointTargetingClient alloc] initWithContext:_pinpointContext];
-            _pinpointContext.targetingClient = _targetingClient;
+            AWSPinpointTargetingClient *targetingClient = [[AWSPinpointTargetingClient alloc] initWithContext:_pinpointContext];
+            _pinpointContext.targetingClient = targetingClient;
         } else {
-            AWSLogWarn(@"Pinpoint Targeting is disabled.");
+            AWSDDLogWarn(@"Pinpoint Targeting is disabled.");
         }
         
         if (_configuration.enableEvents) {
-            _sessionClient = [[AWSPinpointSessionClient alloc] initWithContext:_pinpointContext];
-            _pinpointContext.sessionClient = _sessionClient;
-            _pinpointContext.analyticsService = [[AWSPinpointAnalytics alloc] initWithConfiguration:_configuration.serviceConfiguration];
-            _analyticsClient = [[AWSPinpointAnalyticsClient alloc] initWithContext:_pinpointContext];
-            _pinpointContext.analyticsClient = _analyticsClient;
+            AWSPinpointSessionClient *sessionClient = [[AWSPinpointSessionClient alloc] initWithContext:_pinpointContext];
+            _pinpointContext.sessionClient = sessionClient;
+
+            AWSPinpointAnalyticsClient *analyticsClient = [[AWSPinpointAnalyticsClient alloc] initWithContext:_pinpointContext];
+            _pinpointContext.analyticsClient = analyticsClient;
         } else {
-            AWSLogWarn(@"Pinpoint Analytics Event recording is disabled.");
+            AWSDDLogWarn(@"Pinpoint Analytics Event recording is disabled.");
         }
         
         _notificationManager = [[AWSPinpointNotificationManager alloc] initWithContext:_pinpointContext];
@@ -154,34 +153,34 @@ static AWSSynchronizedMutableDictionary *_pinpointForAppNamespace = nil;
         }
         
         if (configuration.enableAutoSessionRecording) {
-            [_sessionClient startSession];
+            [_pinpointContext.sessionClient startSession];
         }
         
-        AWSLogInfo(@"Pinpoint SDK Initialization successfully completed.");
+        AWSDDLogInfo(@"Pinpoint SDK Initialization successfully completed.");
     }
     
     return self;
 }
 
 - (AWSPinpointTargetingClient *)targetingClient {
-    if (!_targetingClient) {
-        AWSLogError(@"Pinpoint Targeting is not enabled");
+    if (!self.pinpointContext.targetingClient) {
+        AWSDDLogError(@"Pinpoint Targeting is not enabled");
     }
-    return _targetingClient;
+    return self.pinpointContext.targetingClient;
 }
 
 - (AWSPinpointAnalyticsClient *)analyticsClient {
-    if (!_analyticsClient) {
-        AWSLogError(@"Pinpoint Analytics is not enabled");
+    if (!self.pinpointContext.analyticsClient) {
+        AWSDDLogError(@"Pinpoint Analytics is not enabled");
     }
-    return _analyticsClient;
+    return self.pinpointContext.analyticsClient;
 }
 
 - (AWSPinpointSessionClient *)sessionClient {
-    if (!_sessionClient) {
-        AWSLogError(@"Pinpoint Analytics is not enabled");
+    if (!self.pinpointContext.sessionClient) {
+        AWSDDLogError(@"Pinpoint Analytics is not enabled");
     }
-    return _sessionClient;
+    return self.pinpointContext.sessionClient;
 }
 
 @end

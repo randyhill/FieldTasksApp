@@ -1,6 +1,7 @@
 //
 //  FormsMgr.swift
 //  FieldTasksApp
+//                  API to write/read form submissions to CoreData.
 //
 //  Created by CRH on 3/4/17.
 //  Copyright © 2017 CRH. All rights reserved.

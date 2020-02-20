@@ -89,7 +89,7 @@ class TemplatesViewer : UIViewController {
         }
     }
 
-    func addAction() {
+    @objc func addAction() {
         if let location = location {
             if let selectedTemplates = listController?.selectedTemplates() {
                 location.addTemplates(newTemplates: selectedTemplates)
@@ -99,15 +99,15 @@ class TemplatesViewer : UIViewController {
         self.dismiss(animated: true) {}
     }
 
-    func cancelAction() {
+    @objc func cancelAction() {
         self.dismiss(animated: true) {}
     }
 
-    func refreshList() {
+    @objc func refreshList() {
         listController?.serverRefresh()
     }
 
-    func showForms() {
+    @objc func showForms() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let formController = storyboard.instantiateViewController(withIdentifier: "FormsViewer") as? FormsViewer {
             // Create form so it's editable.

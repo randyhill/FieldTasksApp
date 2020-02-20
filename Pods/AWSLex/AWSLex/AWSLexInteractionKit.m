@@ -22,7 +22,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 NSString *const AWSInfoInteractionKit = @"LexInteractionKit";
-NSString *const AWSInteractionKitSDKVersion = @"2.5.2";
+NSString *const AWSInteractionKitSDKVersion = @"2.12.7";
 NSString *const AWSInternalLexInteractionKit = @"LexInteractionKitClient";
 NSString *const AWSLexInteractionKitUserAgent = @"interactionkit";
 NSString *const AWSLexInteractionKitErrorDomain = @"com.amazonaws.AWSLexInteractionKitErrorDomain";
@@ -59,6 +59,38 @@ typedef NS_ENUM(NSInteger, AWSLexSpeechState) {
 
 @end
 
+@interface AWSLexSwitchModeInput()
+
+@property (nonatomic, strong, readwrite) NSString * _Nullable intent;
+
+@property (nonatomic, strong, readwrite) NSString * _Nullable outputText;
+
+@property (nonatomic, strong, readwrite) NSDictionary * _Nullable slots;
+
+@property (nonatomic, strong, readwrite) NSString * _Nullable elicitSlot;
+
+@property (nonatomic, assign, readwrite) AWSLexDialogState dialogState;
+
+@property (nonatomic, strong, readwrite) NSDictionary * _Nullable sessionAttributes;
+
+@property (nonatomic, strong, readwrite) NSData * _Nullable audioStream;
+
+@property (nonatomic, strong, readwrite) NSString * _Nullable audioContentType;
+
+@property (nonatomic, strong, readwrite) NSString * _Nullable inputTranscript;
+
+- (instancetype) initWithOutputText:(NSString *)outputText
+                             intent:(NSString * _Nullable)intent
+                  sessionAttributes:(NSDictionary * _Nullable)sessionAttributes
+                       slotToElicit:(NSString * _Nullable)elicitSlot
+                              slots:(NSDictionary * _Nullable)slots
+                        dialogState:(AWSLexDialogState)dialogState
+                        audioStream:(NSData * _Nullable)audioStream
+                   audioContentType:(NSString * _Nullable)audioContentType
+                    inputTranscript:(NSString * _Nullable)inputTranscript;
+
+@end
+
 @implementation AWSLexSwitchModeInput
 
 - (instancetype) initWithOutputText:(NSString *)outputText
@@ -68,7 +100,8 @@ typedef NS_ENUM(NSInteger, AWSLexSpeechState) {
                               slots:(NSDictionary * _Nullable)slots
                         dialogState:(AWSLexDialogState)dialogState
                         audioStream:(NSData * _Nullable)audioStream
-                   audioContentType:(NSString * _Nullable)audioContentType{
+                   audioContentType:(NSString * _Nullable)audioContentType
+                    inputTranscript:(NSString * _Nullable)inputTranscript{
     self = [super init];
     if(self) {
         _intent = intent;
@@ -79,6 +112,7 @@ typedef NS_ENUM(NSInteger, AWSLexSpeechState) {
         _dialogState = dialogState;
         _audioStream = [audioStream copy];
         _audioContentType = audioContentType;
+        _inputTranscript = inputTranscript;
     }
     return self;
 }
@@ -251,7 +285,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
             interactionKitConfig = [AWSLexInteractionKitConfig defaultInteractionKitConfigWithBotName:botName botAlias:botAlias];
         }
         
-        if (!serviceConfiguration && !interactionKitConfig) {
+        if (!serviceConfiguration || !interactionKitConfig) {
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                            reason:@"The service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration` before using this method."
                                          userInfo:nil];
@@ -281,8 +315,8 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     [_serviceClients removeObjectForKey:key];
 }
 
-- (instancetype)initWithServiceConfiguration:(AWSServiceConfiguration *)serviceConfiguration
-                        interactionKitConfig:(AWSLexInteractionKitConfig *)interactionConfig
+- (instancetype)initWithServiceConfiguration:(nonnull AWSServiceConfiguration *)serviceConfiguration
+                        interactionKitConfig:(nonnull AWSLexInteractionKitConfig *)interactionConfig
 {
     if (self = [super init]) {
         _configuration = [serviceConfiguration copy];
@@ -345,8 +379,8 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     AWSLexPostContentRequest *request = [AWSLexPostContentRequest new];
     
     NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:self.interactionKitConfig.globalSessionAttributes];
-    [attributes addEntriesFromDictionary:sessionAttributes];
     [attributes addEntriesFromDictionary:self.sessionAttributes];
+    [attributes addEntriesFromDictionary:sessionAttributes];
     
     [request setSessionAttributes:attributes];
     [request setAccept:AWSLexAcceptText];
@@ -365,8 +399,8 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     AWSLexPostContentRequest *request = [AWSLexPostContentRequest new];
     
     NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:self.interactionKitConfig.globalSessionAttributes];
-    [attributes addEntriesFromDictionary:sessionAttributes];
     [attributes addEntriesFromDictionary:self.sessionAttributes];
+    [attributes addEntriesFromDictionary:sessionAttributes];
     
     [request setSessionAttributes:attributes];
     [request setAccept:AWSLexAcceptMPEG];
@@ -406,7 +440,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
 - (void)didStart{
     recordingStartDate = [NSDate date];
-    AWSLogVerbose(@"recording started at %@", recordingStartDate);
+    AWSDDLogVerbose(@"recording started at %@", recordingStartDate);
     __weak AWSLexInteractionKit *weakSelf = self;
     [self dispatchBlockOnMainQueue:^{
         if(weakSelf.microphoneDelegate && [weakSelf.microphoneDelegate respondsToSelector:@selector(interactionKitOnRecordingStart:)]) {
@@ -428,7 +462,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
             case AWSLexSpeechStateUninitialized:{
                 NSTimeInterval noSpeechTimout = [[NSDate date] timeIntervalSinceDate:recordingStartDate];
                 if (noSpeechTimout > self.interactionKitConfig.noSpeechTimeoutInterval) {
-                    AWSLogVerbose(@"no speech for interval %f", noSpeechTimout);
+                    AWSDDLogVerbose(@"no speech for interval %f", noSpeechTimout);
                     [self handleNoSpeechTimeout];
                 } else {
                     // Add beginning of audio. Without this, voice will not be recognized due to missing audio stream.
@@ -481,18 +515,18 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 }
 
 - (void)didHaveError:(NSError *)error{
-    AWSLogVerbose(@"Voice detection errored %@", error);
+    AWSDDLogVerbose(@"Voice detection errored %@", error);
     [self handleError:error];
 }
 
 - (void)didDetectStartOfSpeech{
-    AWSLogVerbose(@"AWSLexSpeechStateStarted",nil);
+    AWSDDLogVerbose(@"AWSLexSpeechStateStarted",nil);
     speechState = AWSLexSpeechStateStarted;
 }
 
 //to handle end of speech form vad
 - (void)didDetectEndOfSpeech{
-    AWSLogVerbose(@"AWSLexSpeechStateEnded",nil);
+    AWSDDLogVerbose(@"AWSLexSpeechStateEnded",nil);
     [self handleEndOfSpeech];
 }
 
@@ -525,20 +559,20 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 }
 
 - (void)handleEndOfSpeech{
-    AWSLogVerbose(@"AWSLexSpeechStateEnded",nil);
+    AWSDDLogVerbose(@"AWSLexSpeechStateEnded",nil);
     speechState = AWSLexSpeechStateEnded;
     __weak AWSLexInteractionKit *weakSelf = self;
     [self dispatchBlockOnMainQueue:^{
         if(weakSelf.microphoneDelegate && [weakSelf.microphoneDelegate respondsToSelector:@selector(interactionKitOnRecordingEnd:audioStream:contentType:)]) {
             //TODO: need to decode the audio to something thats understandable by the audio player.
-            [weakSelf.microphoneDelegate interactionKitOnRecordingEnd:weakSelf audioStream:[producerAudioBuffer copy] contentType:[audioSource contentType]];
+            [weakSelf.microphoneDelegate interactionKitOnRecordingEnd:weakSelf audioStream:[self->producerAudioBuffer copy] contentType:[self->audioSource contentType]];
         }
     }];
 }
 
 - (void)closeStreams{
     @synchronized (self) {
-        AWSLogVerbose(@"closing streams", nil);
+        AWSDDLogVerbose(@"closing streams", nil);
         [producerStream close];
         [consumerStream close];
     }
@@ -558,7 +592,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     self.currentState = interactionMode;
     if(!isListening && !isStreaming) {
         speechState = AWSLexSpeechStateUninitialized;
-        AWSLogVerbose(@"Start Listening",nil);
+        AWSDDLogVerbose(@"Start Listening",nil);
         
         //setup all resources.
         audioSource = [[BFAudioRecorder alloc] initWithEncoding:[self blueFrontAudioEncoding:self.interactionKitConfig.encoding] voiceActivityDetectorConfiguration:vadConfig];
@@ -585,7 +619,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         
         producerStream.delegate = self;
         
-        AWSLogVerbose(@"finished creating consumer and producer streams %@  %@", consumerStream, producerStream);
+        AWSDDLogVerbose(@"finished creating consumer and producer streams %@  %@", consumerStream, producerStream);
         [producerStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                   forMode:NSDefaultRunLoopMode];
         [producerStream open];
@@ -594,13 +628,13 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         
         [audioSource start];
         
-        AWSLogVerbose(@"Started Listening to Audio Source");
+        AWSDDLogVerbose(@"Started Listening to Audio Source");
     }
 }
 
 - (void)stopListening{
     if (isListening) {
-        AWSLogVerbose(@"Stop Listening",nil);
+        AWSDDLogVerbose(@"Stop Listening",nil);
         isListening = NO;
         [producerStream close];
         producerStream.delegate = nil;
@@ -616,7 +650,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         UInt8 chunkBuffer[range.length];
         [producerAudioBuffer getBytes:chunkBuffer range:range];
         NSInteger result = [producerStream write:chunkBuffer maxLength:range.length];
-        AWSLogVerbose(@"wrote %ld to producer stream", (long)result);
+        AWSDDLogVerbose(@"wrote %ld to producer stream", (long)result);
         if (result >= 0) {
             numOfBytesSent += result;
             //start streaming only after we get an actual audio
@@ -635,8 +669,8 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         AWSLexPostContentRequest *request = [AWSLexPostContentRequest new];
         
         NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:self.interactionKitConfig.globalSessionAttributes];
-        [attributes addEntriesFromDictionary:sessionAttributesForSpeechInput];
         [attributes addEntriesFromDictionary:self.sessionAttributes];
+        [attributes addEntriesFromDictionary:sessionAttributesForSpeechInput];
         [request setSessionAttributes:attributes];
         
         if (self.currentState == AWSLexInteractionModeSpeechToText){
@@ -657,7 +691,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 #pragma mark NSStreamDelegate
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode{
-    AWSLogVerbose(@"stream event %lu", (unsigned long)eventCode);
+    AWSDDLogVerbose(@"stream event %lu", (unsigned long)eventCode);
     switch (eventCode)
     {
         case NSStreamEventErrorOccurred:{
@@ -706,15 +740,15 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
             [self handleError:task.error];
             return nil;
         }else{
-            return [_serviceClient postContent:request];
+            return [self->_serviceClient postContent:request];
         }
     }] continueWithBlock:^id _Nullable(AWSTask<AWSLexPostContentResponse *> * _Nonnull task) {
-        isStreaming = NO;
+        self->isStreaming = NO;
         self.resumeListening = NO;
         
         [self releaseAudioSource];
         
-        postRequest = nil;
+        self->postRequest = nil;
         
         if(task.error){
             [self handleError:task.error];
@@ -738,7 +772,8 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                                                                                    slots:response.slots
                                                                              dialogState:response.dialogState
                                                                              audioStream:response.audioStream
-                                                                        audioContentType:response.contentType];
+                                                                        audioContentType:response.contentType
+                                                                         inputTranscript:response.inputTranscript];
         
         if(response.dialogState == AWSLexDialogStateFailed) {
             //send the response in the userInfo since the callback is not called.
@@ -822,11 +857,11 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     }];
 }
 
-- (void)dispatchBlockOnMainQueue:(void (^)())block{
+- (void)dispatchBlockOnMainQueue:(void (^)(void))block{
     dispatch_async(dispatch_get_main_queue(), block);
 }
 
-- (void)dispatchBlockOnInteractionDelegateQueue:(void (^)())block{
+- (void)dispatchBlockOnInteractionDelegateQueue:(void (^)(void))block{
     dispatch_async(interactionDelegateQueue, block);
 }
 
@@ -866,7 +901,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         [session setPlayAndRecordCategory:&audioPlaybackError];
         
         if(audioPlaybackError) {
-            AWSLogError(@"error processing audio , %@", audioPlaybackError);
+            AWSDDLogError(@"error processing audio , %@", audioPlaybackError);
             [self handleError:audioPlaybackError];
             return;
         }
@@ -874,7 +909,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         [session overrideOutputAudioPort:&audioPlaybackError];
         
         if(audioPlaybackError) {
-            AWSLogError(@"error processing audio , %@", audioPlaybackError);
+            AWSDDLogError(@"error processing audio , %@", audioPlaybackError);
             [self handleError:audioPlaybackError];
             return;
         }
@@ -883,7 +918,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         audioPlayer = [[AWSLexAudioPlayer alloc] initWithData:audioData];
         __typeof__(self) __weak weakSelf = self;
         audioPlayer.errorBlock = ^(NSError *error) {
-            AWSLogError(@"error processing audio , %@", error);
+            AWSDDLogError(@"error processing audio , %@", error);
             [[AWSLexAudioSession sharedInstance] endObservingAudioSessionRouteChangeNotification];
             [weakSelf handleError:error];
         };
@@ -905,7 +940,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         };
         
         [self dispatchBlockOnMainQueue:^{
-            [audioPlayer start];
+            [self->audioPlayer start];
         }];
     }
 }
@@ -1055,7 +1090,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
             self.completionBlock();
         }
     } else {
-        AWSLogVerbose(@"audio player finished unsuccessfully", nil);
+        AWSDDLogVerbose(@"audio player finished unsuccessfully", nil);
         if (self.errorBlock) {
             self.errorBlock([NSError errorWithDomain:AWSLexInteractionKitErrorDomain
                                                 code:AWSLexInteractionKitErrorCodeAudioStreaming

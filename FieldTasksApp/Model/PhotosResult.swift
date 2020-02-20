@@ -108,7 +108,7 @@ open class PhotosResult: _PhotosResult {
     // MARK: FileName Methods -------------------------------------------------------------------------------
 
     private func photoToFile(fileName : String, photo : UIImage) -> Bool {
-        if let data = UIImagePNGRepresentation(photo) {
+        if let data = photo.pngData() {
             let fileURL = imageDirectoryURL.appendingPathComponent(fileName)
             do {
                 try data.write(to: fileURL)

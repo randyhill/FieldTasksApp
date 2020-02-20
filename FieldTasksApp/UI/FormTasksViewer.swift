@@ -69,7 +69,7 @@ class FormTasksViewer : UITableViewController {
         makeNavBarFlat()
     }
 
-    func goBack(){
+    @objc func goBack(){
 //        if form!.id == "" {
 //            // Remove unsubmitted forms.
 //            CoreDataMgr.deleteObject(context: CoreDataMgr.shared.mainThreadContext!, object: form!)
@@ -78,7 +78,7 @@ class FormTasksViewer : UITableViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    func submitForm() {
+    @objc func submitForm() {
         if let errorMessage = self.validate() {
             FTAlertMessage(message: errorMessage)
         } else {

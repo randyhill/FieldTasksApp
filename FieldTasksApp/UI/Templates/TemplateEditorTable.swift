@@ -37,7 +37,7 @@ class TemplateEditorTable : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0)
+        self.tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 0, right: 0)
         tableView.backgroundColor = UIColor.greenSea()
     }
 
@@ -91,7 +91,7 @@ class TemplateEditorTable : UITableViewController {
         return 90.0
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tasks.remove(at: indexPath.row)
             tableView.reloadData()

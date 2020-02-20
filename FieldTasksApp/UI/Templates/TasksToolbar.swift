@@ -46,7 +46,7 @@ class TemplateTasksToolIcon : UIImageView {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.superview?.bringSubview(toFront: self)
+        self.superview?.bringSubviewToFront(self)
         self.backgroundColor = UIColor.asbestos()
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -1,6 +1,7 @@
 //
 //  Locations - self contained singleton to manage our lists of locations and current lcoation.
 //  FieldTasksApp
+//                  Is a ClLocationManagerDelegate to get our location updates.
 //
 //  Created by CRH on 2/5/17.
 //  Copyright © 2017 CRH. All rights reserved.

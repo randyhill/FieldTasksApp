@@ -121,7 +121,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
         getImage(sourceType: .photoLibrary)
     }
 
-    func getImage(sourceType : UIImagePickerControllerSourceType) {
+    func getImage(sourceType : UIImagePickerController.SourceType) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.makeNavBarFlat()
@@ -138,8 +138,8 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
         })
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let picture = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let picture = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
             setPicture(picture: picture)
         }
         picker.dismiss(animated: true) {
@@ -187,7 +187,7 @@ class PhotosTaskViewer : BaseTaskViewer, UIImagePickerControllerDelegate, UINavi
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "PhotosHeader",
                                                                              for: indexPath) as! PhotosHeader
