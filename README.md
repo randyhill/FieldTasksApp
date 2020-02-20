@@ -8,10 +8,15 @@ Current State:
 Project was a prototype and server is no longer running. But the app runs and you can create form templates, and save forms locally (use local target). To login just tap the Register button, it should take you right in.
 
 Recently updated to Swift 5, but the Cocoapods I've used seem to have lots of warnings with Swift 5, haven't dug into figure out why. Project uses lots of Cocoapods to speed development
+
 • AlamoFire for network connections
+
 • AWS S3 for photo storage.
+
 • FlatUIKit - Project didn't have a graphic designer yet, so used FlatUIKit (which is getting super long in the tooth) so the controls were a little more interesting to look at.
+
 • SwiftDate - Handle processing dates in easiest manner possible.
+
 • SVProgressHUD - Provided feedback spinner for lengthy operations. 
 
 Local data storage is handled by Coredata, using MOGenerator to auto generate Coredata classes.
