@@ -1,13 +1,13 @@
 # FieldTasksApp
 
-This is the front end iOS app for a client-server project written in 2017. FieldTasks was designed for 
+This is the front end iOS app for a client-server project written in 2017 in Swift 3.2. FieldTasks was designed for 
 field service workers to record client visits using location-aware forms filed for a central office. I wrote the 
 server in NodeJS, it provides the reporting interface and has the form editor. 
 
 Current State:
 Project was a prototype and server is no longer running. But the app runs and you can create form templates, and save forms locally (use local target). To login just tap the Register button, it should take you right in.
 
-Recently updated to Swift 5, but the Cocoapods I've used seem to have lots of warnings with Swift 5, haven't dug into figure out why. Project uses lots of Cocoapods to speed development
+Project used Cocoapods to speed development. Recently updated to Swift 5, but the Cocoapods used seem to have lots of warnings with Swift 5, haven't dug into figure out why yet. 
 
 • AlamoFire for network connections
 
